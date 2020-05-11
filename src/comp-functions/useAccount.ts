@@ -1,4 +1,5 @@
 import { computed, ref } from '@vue/composition-api'
+import  msal  from 'src//api/endpoints/auth'
 
 
 const accountId = ref('')
@@ -18,6 +19,9 @@ export const useAccount = () => {
 
     const login = () => {
         console.log('log me in')
+        loading.value = true
+
+        console.log('msal is ',msal)
     }
 
     return {

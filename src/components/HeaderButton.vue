@@ -3,17 +3,13 @@
     <app-header-button-login v-if="!isAuthenticated" />
     <app-header-button-profile v-else />
     <!-- <q-btn color="primary" label="Primary" /> -->
-
   </div>
 </template>
 
 
 <script lang="ts">
   import { defineComponent } from '@vue/composition-api'
-  // import { useAccount } from '@/src/comp-functions/useAccount'
-  // import { useAccount } from '../../src/comp-functions/useAccount'
-  import { useAccount } from 'src/comp-functions/useAccount'
-  // import { useAccount } from 'compfunc/useAccount'
+  import { useAccount } from '../../src/comp-functions/useAccount'
 
   export default defineComponent({
     setup() {
@@ -26,7 +22,7 @@
       appHeaderButtonProfile: () =>
         import('src/components/HeaderButtonProfile.vue'),
     },
-  })  
+  })
 </script>
 
 
