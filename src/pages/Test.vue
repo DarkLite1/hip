@@ -6,16 +6,15 @@
   </q-page>
 </template>
 
-
 <script lang="ts">
-  import { defineComponent } from '@vue/composition-api'
-  import { useAccount } from 'src/comp-functions/useAccount'
+import { defineComponent } from '@vue/composition-api'
+import { useAccount } from 'src/comp-functions/useAccount'
 
-  export default defineComponent({
-    setup() {
-      const { setAccount, accountId } = useAccount()
+export default defineComponent({
+  setup() {
+    const { setAccount, accountId } = useAccount()
 
-      return { setAccount, accountId }
-    },
-  })
+    return { setAccount, accountId }
+  },
+})
 </script>

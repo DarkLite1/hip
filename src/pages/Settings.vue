@@ -52,19 +52,21 @@
 import { openURL } from 'quasar'
 
 export default {
-   data () {
+  data() {
     return {
-      active: true
+      active: true,
     }
   },
   methods: {
     selfHelp() {
-      openURL('http://unite.grouphc.net/benelux/staffdepartments/it_bene/selfhelp/Pages/BNL_SelfHelp.aspx');
+      openURL(
+        'http://unite.grouphc.net/benelux/staffdepartments/it_bene/selfhelp/Pages/BNL_SelfHelp.aspx'
+      )
     },
     emailUs() {
       window.location.href =
-        'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal';
-    }
+        'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
+    },
   },
-};
+}
 </script>

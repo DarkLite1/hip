@@ -13,7 +13,7 @@
   export default defineComponent({
     components: {
       appHeaderButton: () => import('components/HeaderButton.vue'),
-    }
+    },
   })
 </script>
 

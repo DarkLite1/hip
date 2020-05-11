@@ -12,7 +12,9 @@ import { mapGetters } from 'vuex'
 export default {
   computed: mapGetters('auth', ['isAuthenticated']),
   created() {
-    if (this.isAuthenticated) { this.$router.push('/') }
-  }
-};
+    if (this.isAuthenticated) {
+      this.$router.push('/')
+    }
+  },
+}
 </script>

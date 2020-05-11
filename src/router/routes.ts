@@ -10,15 +10,15 @@ const routes: RouteConfig[] = [
       { path: 'tickets', component: () => import('pages/Tickets.vue') },
       { path: 'test', component: () => import('pages/Test.vue') },
       { path: 'settings', component: () => import('pages/Settings.vue') },
-    ]
-  }
+    ],
+  },
 ]
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/Error404.vue'),
   })
 }
 

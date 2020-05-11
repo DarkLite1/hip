@@ -13,7 +13,7 @@
           :placeholder-src="placeholder"
         />
       </q-avatar>
-    </q-chip> -->
+    </q-chip>-->
   </div>
 </template>
 
