@@ -1,13 +1,41 @@
-import { Screen } from 'quasar'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
-import * as authPopup from 'src/services/auth/authPopup'
-import * as authRedirect from 'src/services/auth/authRedirect'
+import * as Msal from 'msal'
+import * as config from 'src/app-config.json'
 
+function MSALConfigFactory(): Msal.Configuration {
+  return {
+    auth: {
+      clientId: config.auth.clientId,
+      authority: config.auth.authority,
+      validateAuthority: true,
+      redirectUri: config.auth.redirectUri,
+      postLogoutRedirectUri: config.auth.postLogoutRedirectUri,
+      navigateToLoginRequestUrl: true,
+    },
+    cache: {
+      cacheLocation: config.cache.cacheLocation as Msal.CacheLocation,
+      storeAuthStateInCookie: isInternetExplorer, // set to true for IE 11
+    },
+  }
+}
 
-const loginMethod = Screen.lt.sm || isInternetExplorer ? 'redirect' : 'popup'
+export const consentScopes: { scopes: string[] } = {
+  scopes: [
+    config.resources.gatewayApi.resourceScope,
+    ...config.scopes.loginRequest,
+  ],
+}
 
-console.log('loginMethod ', loginMethod)
+export const auth = new Msal.UserAgentApplication(MSALConfigFactory())
 
-export const auth = (loginMethod === 'popup')
-  ? { loginMethod, ...authPopup }
-  : { loginMethod, ...authRedirect }
+export const getTokenPopup = (request: Msal.AuthenticationParameters) => {
+  return auth
+    .acquireTokenSilent(request)
+    .catch(() => auth.acquireTokenPopup(request))
+}
+
+export const getTokenRedirect = (request: Msal.AuthenticationParameters) => {
+  return auth
+    .acquireTokenSilent(request)
+    .catch(() => auth.acquireTokenRedirect(request)) // page reload
+}
