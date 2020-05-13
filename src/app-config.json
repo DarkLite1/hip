@@ -1,25 +1,20 @@
 {
-    "auth": {
-      "clientId": "d95f2323-b4a1-443f-a6be-acb610688b49",
-      "authority": "https://login.microsoftonline.com/57952406-af28-43c8-b4de-a4e06f57476d",
-      "validateAuthority": true,
-      "redirectUri": "http://localhost:4200",
-      "postLogoutRedirectUri": "http://localhost:4200",
-      "navigateToLoginRequestUrl": true
-    },
-    "cache": {
-      "cacheLocation": "localStorage"
-    },
-    "scopes": {
-      "loginRequest": [
-        "openid",
-        "profile"
-      ]
-    },
-    "resources": {
-      "gatewayApi": {
-        "resourceUri": "https://localhost:44351/api",
-        "resourceScope": "api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"
-      }
+  "auth": {
+    "clientId": "d95f2323-b4a1-443f-a6be-acb610688b49",
+    "authority": "https://login.microsoftonline.com/57952406-af28-43c8-b4de-a4e06f57476d",
+    "redirectUri": "http://localhost:8080",
+    "postLogoutRedirectUri": "http://localhost:8080"
+  },
+  "cache": {
+    "cacheLocation": "localStorage"
+  },
+  "scopes": {
+    "loginRequest": ["openid", "profile", "user.read"]
+  },
+  "resources": {
+    "gatewayApi": {
+      "resourceUri": "https://localhost:44351/api",
+      "resourceScope": "api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"
     }
   }
+}

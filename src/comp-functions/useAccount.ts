@@ -1,16 +1,15 @@
 import { computed, ref } from '@vue/composition-api'
-import msal from 'src//api/endpoints/auth'
+import { auth } from 'src/services/auth/authService'
 
 const accountId = ref('')
 
 export const useAccount = () => {
   console.log('imported useAccount')
-  // super complicated account logic
 
   const loading = ref(false)
+  const disabled = ref(false)
 
-  const setAccount = (id: string) => {
-    console.log('run setAccount')
+  const setLoggedOnAccount = (id: string) => {
     console.log('setAccount ', id)
     accountId.value = id
   }
@@ -18,16 +17,44 @@ export const useAccount = () => {
   const login = () => {
     console.log('log me in')
     loading.value = true
+    disabled.value = true
 
-    console.log('msal is ', msal)
+    
+
+    if (auth.loginMethod === 'popup') {
+      auth
+        .loginPopup()
+        .catch(console.log.bind(console))
+        .finally(() => {
+          
+          const test = auth.getAccount()
+          const account = test.idTokenClaims.oid
+
+          if (account) {
+            setLoggedOnAccount(account)
+            disabled.value = true
+            // if (this.$router.currentRoute.path === '/login') {
+            //   this.$router.push('/')
+            // }
+          } else {
+            disabled.value = false
+          }
+          loading.value = false
+        })
+    } else {
+      // triggers a page reload handled by src/boot/auth.js
+      auth.loginRedirect()
+    }
+
+    const account = auth.getAccount()
+    console.log('msal account is ', account)
   }
 
   return {
     accountId: computed(() => accountId.value),
     isAuthenticated: computed(() => Boolean(accountId.value)),
-    disabled: computed(() => loading.value),
-    loading,
-    login,
-    setAccount,
+    loading: computed(() => loading.value),
+    disabled: computed(() => disabled.value),
+    login
   }
 }

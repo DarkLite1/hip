@@ -12,9 +12,9 @@ import { useAccount } from 'src/comp-functions/useAccount'
 
 export default defineComponent({
   setup() {
-    const { setAccount, accountId } = useAccount()
+    const { accountId } = useAccount()
 
-    return { setAccount, accountId }
+    return { accountId }
   },
 })
 </script>

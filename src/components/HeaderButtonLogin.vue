@@ -18,7 +18,7 @@
 
   export default defineComponent({
     setup() {
-      const { login, loading, disabled } = useAccount()
+      const { login, loading , disabled} = useAccount()
 
       return { login, loading, disabled }
     },
