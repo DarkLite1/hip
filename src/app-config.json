@@ -14,7 +14,21 @@
   "resources": {
     "gatewayApi": {
       "resourceUri": "https://localhost:44351/api",
-      "resourceScope": "api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"
+      "resourceScope": [
+        "api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"
+      ]
+    },
+    "msGraphProfile": {
+      "resourceUri": "https://graph.microsoft.com/v1.0/me",
+      "resourceScope": ["openid", "profile", "user.read"]
+    },
+    "msGraphMail": {
+      "resourceUri": "https://graph.microsoft.com/v1.0/me/messages",
+      "resourceScope": ["Mail.Read"]
+    },
+    "msGraphGroupMember": {
+      "resourceUri": "https://graph.microsoft.com/v1.0/me/memberOf",
+      "resourceScope": ["GroupMember.Read.All"]
     }
   }
 }

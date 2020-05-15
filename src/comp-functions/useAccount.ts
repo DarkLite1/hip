@@ -1,7 +1,7 @@
 import { computed, ref } from '@vue/composition-api'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
-import { auth, consentScopes } from 'src/services/auth/authService'
+import { auth, getAllScopes } from 'src/services/auth/authService'
 
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 const loggedOnAccount = ref('')
@@ -22,7 +22,7 @@ export const useAccount = () => {
 
     if (isLoginPopup) {
       try {
-        const response = await auth.loginPopup(consentScopes)
+        const response = await auth.loginPopup(getAllScopes())
         setLoggedOnAccount(response.idTokenClaims.oid)
       } catch (error) {
         console.log('login with popup failed: ', error)

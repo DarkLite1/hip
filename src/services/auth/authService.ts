@@ -1,6 +1,24 @@
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import * as Msal from 'msal'
-import * as config from 'src/app-config.json'
+import * as configJson from 'src/app-config.json'
+
+type resourceType = {
+  resourceUri: string
+  resourceScope: string | string[]
+}
+
+type resourcesType = {
+  [key: string]: resourceType
+}
+
+interface JsonConfigInterface extends Msal.Configuration {
+  scopes: {
+    loginRequest: string[]
+  }
+  resources: resourcesType
+}
+
+const config: JsonConfigInterface = configJson as JsonConfigInterface
 
 function MSALConfigFactory(): Msal.Configuration {
   return {
@@ -13,17 +31,23 @@ function MSALConfigFactory(): Msal.Configuration {
       navigateToLoginRequestUrl: true,
     },
     cache: {
-      cacheLocation: config.cache.cacheLocation as Msal.CacheLocation,
-      storeAuthStateInCookie: isInternetExplorer, // set to true for IE 11
+      cacheLocation: config.cache?.cacheLocation,
+      storeAuthStateInCookie: isInternetExplorer,
     },
   }
 }
 
-export const consentScopes: { scopes: string[] } = {
-  scopes: [
-    config.resources.gatewayApi.resourceScope,
-    ...config.scopes.loginRequest,
-  ],
+
+export const getAllScopes = () => {
+  const uniqueSet = new Set(
+    Object.values(config.resources)
+      .flatMap((resource) => resource.resourceScope)
+      .filter((resourceScope) => resourceScope)
+  )
+
+  return {
+    scopes: Array.from(uniqueSet),
+  }
 }
 
 export const auth = new Msal.UserAgentApplication(MSALConfigFactory())
