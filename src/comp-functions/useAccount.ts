@@ -10,23 +10,39 @@ export const useAccount = () => {
   const loading = ref(false)
   const disabled = ref(false)
 
-  const login = async () => {
+  auth.getAccount()
+
+  const login = () => {
     console.log('log me in')
     loading.value = true
     disabled.value = true
 
-    const setLoggedOnAccount = (id: string) => {
-      console.log('setLoggedOnAccount ', id)
-      loggedOnAccount.value = id
-    }
+    // const setLoggedOnAccount = (id: string) => {
+    //   console.log('setLoggedOnAccount ', id)
+    //   loggedOnAccount.value = id
+    // }
 
     if (isLoginPopup) {
+      console.log('pop login')
       try {
-        const response = await auth.loginPopup(getAllScopes())
-        setLoggedOnAccount(response.idTokenClaims.oid)
+        // const scopes = getAllScopes()
+        // console.log('scopes ', scopes)
+        // const response = return await auth.loginPopup()
+        // const response = await auth.loginPopup()
+
+        // const loginRequest = {
+        //   scopes: ['openid', 'profile', 'User.Read'],
+        // }
+        // const response = await auth.loginPopup(loginRequest)
+
+        // auth.loginPopup(loginRequest).then(response => {
+        //   console.log('we got response', response)
+        // })
+        // setLoggedOnAccount(response.idTokenClaims.oid)
+        // console.log('response ', response)
       } catch (error) {
         console.log('login with popup failed: ', error)
-        setLoggedOnAccount('')
+        // setLoggedOnAccount('')
       } finally {
         disabled.value = false
         loading.value = false
@@ -36,7 +52,7 @@ export const useAccount = () => {
       }
     } else {
       // triggers a page reload handled by src/boot/auth.js
-      auth.loginRedirect()
+      // auth.loginRedirect()
     }
 
     // const account = auth.getAccount()

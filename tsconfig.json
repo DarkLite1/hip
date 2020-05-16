@@ -10,5 +10,6 @@
       "DOM.Iterable",
       "ScriptHost"
     ],
+    "sourceMap": true,
   },
 }
