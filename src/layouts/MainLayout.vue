@@ -13,45 +13,50 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from '@vue/composition-api'
+import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import { setAccountID } from './../comp-functions/useAccount'
 
 export default defineComponent({
   name: 'MainLayout',
   setup() {
-    const mainNavigationLinks = reactive(
-      [
-        {
-          label: 'Home',
-          name: 'home',
-          to: '/',
-          icon: 'mail_outline',
-        },
-        {
-          label: 'Tickets',
-          name: 'tickets',
-          to: '/tickets',
-          icon: 'mail_outline',
-        },
-        {
-          label: 'Settings',
-          name: 'settings',
-          to: '/settings',
-          icon: 'settings',
-        },
-      ]
-    )
-    return { 
-      mainNavigationLinks
-     }
+    const mainNavigationLinks = reactive([
+      {
+        label: 'Home',
+        name: 'home',
+        to: '/',
+        icon: 'mail_outline',
+      },
+      {
+        label: 'Tickets',
+        name: 'tickets',
+        to: '/tickets',
+        icon: 'mail_outline',
+      },
+      {
+        label: 'Settings',
+        name: 'settings',
+        to: '/settings',
+        icon: 'settings',
+      },
+    ])
+
+    onMounted(() => {
+      console.log('loaded mainLayout')
+      setAccountID()
+    })
+
+    return {
+      mainNavigationLinks,
+    }
   },
+
   components: {
     appHeader: () => import('components/Header.vue'),
     appFooter: () => import('components/Footer.vue'),
-    appSidebarNavigationMenu: () => import('components/SidebarNavigationMenu.vue'),
+    appSidebarNavigationMenu: () =>
+      import('components/SidebarNavigationMenu.vue'),
   },
 })
 </script>
 
-
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>

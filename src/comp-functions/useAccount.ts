@@ -4,30 +4,35 @@ import { Screen } from 'quasar'
 import { auth, getAllScopes } from 'src/services/auth/authService'
 
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
-const loggedOnAccount = ref('')
+const accountID = ref('')
+
+export const setAccountID = () => {
+  const account = auth.getAccount()
+
+  if (account) {
+    accountID.value = account.idTokenClaims.oid
+  } else {
+    accountID.value = ''
+  }
+}
 
 export const useAccount = () => {
   const loading = ref(false)
   const disabled = ref(false)
 
-  const setLoggedOnAccount = (id: string) => {
-    console.log('setLoggedOnAccount ', id)
-    loggedOnAccount.value = id
-  }
-
   const login = async () => {
     loading.value = true
     disabled.value = true
 
+    const allScopes = getAllScopes()
+
     if (isLoginPopup) {
       try {
-        const response = await auth.loginPopup(getAllScopes())
-        setLoggedOnAccount(response.idTokenClaims.oid)
-        // console.log('response ', response)
+        await auth.loginPopup(allScopes)
       } catch (error) {
         console.log('login with popup failed: ', error)
-        // setLoggedOnAccount('')
       } finally {
+        setAccountID()
         disabled.value = false
         loading.value = false
         // if (this.$router.currentRoute.path === '/login') {
@@ -35,7 +40,7 @@ export const useAccount = () => {
         // }
       }
     } else {
-      auth.loginRedirect() // page reload
+      auth.loginRedirect(allScopes) // page reload
     }
   }
 
@@ -44,8 +49,8 @@ export const useAccount = () => {
   }
 
   return {
-    loggedOnAccount: computed(() => loggedOnAccount.value),
-    isAuthenticated: computed(() => Boolean(loggedOnAccount.value)),
+    accountID: computed(() => accountID.value),
+    isAuthenticated: computed(() => Boolean(accountID.value)),
     loading: computed(() => loading.value),
     disabled: computed(() => disabled.value),
     login,

@@ -6,7 +6,7 @@
     "postLogoutRedirectUri": "http://localhost:8080"
   },
   "cache": {
-    "cacheLocation": "localStorage"
+    "cacheLocation": "sessionStorage"
   },
   "scopes": {
     "loginRequest": ["openid", "profile", "user.read"]

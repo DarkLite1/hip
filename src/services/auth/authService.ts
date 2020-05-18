@@ -8,9 +8,9 @@ const MSALConfig: Msal.Configuration = {
   auth: {
     clientId: config.auth.clientId,
     authority: config.auth.authority,
-    validateAuthority: true,
     redirectUri: config.auth.redirectUri,
     postLogoutRedirectUri: config.auth.postLogoutRedirectUri,
+    validateAuthority: true,
     navigateToLoginRequestUrl: true,
   },
   cache: {

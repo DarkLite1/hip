@@ -8,22 +8,17 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/camelcase */
-const { configure } = require('quasar/wrappers');
+const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
-    return {
+  return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
-    boot: [
-      'composition-api',
-      'i18n',
-    ],
+    boot: ['composition-api', 'i18n', 'auth'],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: [
-      'app.scss'
-    ],
+    css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -57,7 +52,7 @@ module.exports = configure(function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [],
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -65,7 +60,7 @@ module.exports = configure(function (ctx) {
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ts
     supportTS: {
-      tsCheckerConfig: { eslint: true }
+      tsCheckerConfig: { eslint: true },
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature
@@ -85,20 +80,20 @@ module.exports = configure(function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack (cfg) {
+      extendWebpack(cfg) {
         // cfg.devtool = 'source-map'
         // cfg.devtool =  'cheap-module-eval-source-map'
-          // linting is slow in TS projects, we execute it only for production builds
+        // linting is slow in TS projects, we execute it only for production builds
         if (ctx.prod) {
-        cfg.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /node_modules/,
-          options: {
-            formatter: require('eslint').CLIEngine.getFormatter('stylish'),
-          }
-        })
+          cfg.module.rules.push({
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /node_modules/,
+            options: {
+              formatter: require('eslint').CLIEngine.getFormatter('stylish'),
+            },
+          })
         }
       },
     },
@@ -107,7 +102,7 @@ module.exports = configure(function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
@@ -116,7 +111,7 @@ module.exports = configure(function (ctx) {
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
-      pwa: false
+      pwa: false,
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
@@ -126,7 +121,8 @@ module.exports = configure(function (ctx) {
       manifest: {
         name: 'HC IT Portal',
         short_name: 'HC IT Portal',
-        description: 'Portal for end users where they can easily request IT assistance',
+        description:
+          'Portal for end users where they can easily request IT assistance',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
@@ -135,41 +131,41 @@ module.exports = configure(function (ctx) {
           {
             src: 'statics/icons/icon-128x128.png',
             sizes: '128x128',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-256x256.png',
             sizes: '256x256',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-384x384.png',
             sizes: '384x384',
-            type: 'image/png'
+            type: 'image/png',
           },
           {
             src: 'statics/icons/icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
-      }
+            type: 'image/png',
+          },
+        ],
+      },
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
-      id: 'org.cordova.quasar.app'
+      id: 'org.cordova.quasar.app',
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
@@ -178,13 +174,11 @@ module.exports = configure(function (ctx) {
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -192,16 +186,16 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'hip'
+        appId: 'hip',
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack (/* cfg */) {
+      extendWebpack(/* cfg */) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
-      }
-    }
+      },
+    },
   }
-});
+})
