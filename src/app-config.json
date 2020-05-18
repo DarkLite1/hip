@@ -21,14 +21,6 @@
     "msGraphProfile": {
       "resourceUri": "https://graph.microsoft.com/v1.0/me",
       "resourceScope": ["openid", "profile", "user.read"]
-    },
-    "msGraphMail": {
-      "resourceUri": "https://graph.microsoft.com/v1.0/me/messages",
-      "resourceScope": ["Mail.Read"]
-    },
-    "msGraphGroupMember": {
-      "resourceUri": "https://graph.microsoft.com/v1.0/me/memberOf",
-      "resourceScope": ["GroupMember.Read.All"]
     }
   }
 }

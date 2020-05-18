@@ -10,6 +10,7 @@ const routes: RouteConfig[] = [
       { path: 'tickets', component: () => import('pages/Tickets.vue') },
       { path: 'test', component: () => import('pages/Test.vue') },
       { path: 'settings', component: () => import('pages/Settings.vue') },
+      { path: 'profile', component: () => import('pages/Profile.vue') },
     ],
   },
 ]

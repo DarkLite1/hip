@@ -1,7 +1,7 @@
 <template>
   <div>
-    <q-btn class="absolute-right">jup</q-btn>
-    <!-- <q-chip clickable @click="goToProfilePage" class="absolute-right">
+    <!-- <q-btn class="absolute-right">jup</q-btn> -->
+    <q-chip clickable @click="goToProfilePage" class="absolute-right">
       {{ user.firstName }}
       <q-avatar class="q-avatar--right">
         <q-img
@@ -13,7 +13,7 @@
           :placeholder-src="placeholder"
         />
       </q-avatar>
-    </q-chip>-->
+    </q-chip>
   </div>
 </template>
 
@@ -22,37 +22,37 @@
 // import { getGraphProfile, getGraphPhoto } from 'src/services/graph/graphService'
 
 export default {
-  // data() {
-  //   return {
-  //     placeholder: "statics/img/account.png",
-  //     user: {
-  //       firstName: 'Welcome',
-  //       photo: null,
-  //     },
-  //   }
-  // },
-  // methods: {
-  //   ...mapActions('auth', ['setGraphProfile', 'setGraphPhoto']),
-  //   goToProfilePage() {
-  //     this.$router.push('/profile').catch((err) => { })
-  //   },
-  // },
+  data() {
+    return {
+      placeholder: 'statics/img/account.png',
+      user: {
+        firstName: 'Welcome',
+        photo: null,
+      },
+    }
+  },
+  methods: {
+    // ...mapActions('auth', ['setGraphProfile', 'setGraphPhoto']),
+    goToProfilePage() {
+      this.$router.push('/profile').catch(() => {null})
+    },
+  },
   // created() {
   //   getGraphProfile()
-  //     .then(response => {
+  //     .then((response) => {
   //       this.user.firstName = response.data.givenName
   //       this.setGraphProfile(response.data)
   //     })
   //     .catch(console.log.bind(console))
 
   //   getGraphPhoto()
-  //     .then(image => {
+  //     .then((image) => {
   //       this.user.photo = image
   //       this.setGraphPhoto(image)
   //     })
   //     .catch(console.log.bind(console))
-  // }
-};
+  // },
+}
 </script>
 
 <style lang="sass" scoped>

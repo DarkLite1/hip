@@ -3,10 +3,6 @@ import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { auth, getAllScopes } from 'src/services/auth/authService'
 
-
-const account = auth.getAccount()
-console.log('account ', account)
-
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 const loggedOnAccount = ref('')
 
@@ -14,34 +10,19 @@ export const useAccount = () => {
   const loading = ref(false)
   const disabled = ref(false)
 
+  const setLoggedOnAccount = (id: string) => {
+    console.log('setLoggedOnAccount ', id)
+    loggedOnAccount.value = id
+  }
+
   const login = async () => {
     loading.value = true
     disabled.value = true
 
-    // const account = auth.getAccount()
-    // console.log('account login ', account)
-
-    const setLoggedOnAccount = (id: string) => {
-      console.log('setLoggedOnAccount ', id)
-      loggedOnAccount.value = id
-    }
-
     if (isLoginPopup) {
-      console.log('popup login')
       try {
-        const scopes = getAllScopes()
-        console.log('scopes ', scopes)
-        const response = await auth.loginPopup(scopes)
-
-        // const loginRequest = {
-        //   scopes: ['openid', 'profile', 'User.Read'],
-        // }
-        // const response = await auth.loginPopup(loginRequest)
-
-        // auth.loginPopup(loginRequest).then(response => {
-        //   console.log('we got response', response)
-        // })
-        // setLoggedOnAccount(response.idTokenClaims.oid)
+        const response = await auth.loginPopup(getAllScopes())
+        setLoggedOnAccount(response.idTokenClaims.oid)
         // console.log('response ', response)
       } catch (error) {
         console.log('login with popup failed: ', error)
@@ -54,12 +35,12 @@ export const useAccount = () => {
         // }
       }
     } else {
-      // triggers a page reload handled by src/boot/auth.js
-      auth.loginRedirect()
+      auth.loginRedirect() // page reload
     }
+  }
 
-    // const account = auth.getAccount()
-    // console.log('msal account is ', account)
+  const logout = () => {
+    auth.logout()
   }
 
   return {
@@ -68,5 +49,6 @@ export const useAccount = () => {
     loading: computed(() => loading.value),
     disabled: computed(() => disabled.value),
     login,
+    logout,
   }
 }
