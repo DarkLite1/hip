@@ -86,6 +86,8 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack (cfg) {
+        // cfg.devtool = 'source-map'
+        // cfg.devtool =  'cheap-module-eval-source-map'
           // linting is slow in TS projects, we execute it only for production builds
         if (ctx.prod) {
         cfg.module.rules.push({

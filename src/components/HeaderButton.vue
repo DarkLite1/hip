@@ -2,7 +2,6 @@
   <div>
     <app-header-button-login v-if="!isAuthenticated" />
     <app-header-button-profile v-else />
-    <!-- <q-btn color="primary" label="Primary" /> -->
   </div>
 </template>
 

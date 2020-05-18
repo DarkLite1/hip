@@ -3,6 +3,10 @@ import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { auth, getAllScopes } from 'src/services/auth/authService'
 
+
+const account = auth.getAccount()
+console.log('account ', account)
+
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 const loggedOnAccount = ref('')
 
@@ -10,25 +14,24 @@ export const useAccount = () => {
   const loading = ref(false)
   const disabled = ref(false)
 
-  auth.getAccount()
-
-  const login = () => {
-    console.log('log me in')
+  const login = async () => {
     loading.value = true
     disabled.value = true
 
-    // const setLoggedOnAccount = (id: string) => {
-    //   console.log('setLoggedOnAccount ', id)
-    //   loggedOnAccount.value = id
-    // }
+    // const account = auth.getAccount()
+    // console.log('account login ', account)
+
+    const setLoggedOnAccount = (id: string) => {
+      console.log('setLoggedOnAccount ', id)
+      loggedOnAccount.value = id
+    }
 
     if (isLoginPopup) {
-      console.log('pop login')
+      console.log('popup login')
       try {
-        // const scopes = getAllScopes()
-        // console.log('scopes ', scopes)
-        // const response = return await auth.loginPopup()
-        // const response = await auth.loginPopup()
+        const scopes = getAllScopes()
+        console.log('scopes ', scopes)
+        const response = await auth.loginPopup(scopes)
 
         // const loginRequest = {
         //   scopes: ['openid', 'profile', 'User.Read'],
@@ -52,7 +55,7 @@ export const useAccount = () => {
       }
     } else {
       // triggers a page reload handled by src/boot/auth.js
-      // auth.loginRedirect()
+      auth.loginRedirect()
     }
 
     // const account = auth.getAccount()

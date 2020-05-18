@@ -4,8 +4,6 @@ import config from 'src/app-config.json'
 
 console.log('loaded authService')
 
-console.log('config', config)
-
 const MSALConfig: Msal.Configuration = {
   auth: {
     clientId: config.auth.clientId,
@@ -21,14 +19,12 @@ const MSALConfig: Msal.Configuration = {
   },
 }
 
-console.log('MSALConfig created')
-
 export const getAllScopes = (): { scopes: string[] } => {
-  const uniqueSet = new Set(
-    Object.values(config.resources)
-      .flatMap((resource) => resource.resourceScope)
-      .filter((resourceScope) => resourceScope)
-  )
+  const resourceScopes = Object.values(config.resources)
+    .flatMap((resource) => resource.resourceScope)
+    .filter((resourceScope) => resourceScope)
+
+  const uniqueSet = new Set([...resourceScopes, ...config.scopes.loginRequest])
 
   return {
     scopes: Array.from(uniqueSet),
@@ -36,8 +32,6 @@ export const getAllScopes = (): { scopes: string[] } => {
 }
 
 export const auth = new Msal.UserAgentApplication(MSALConfig)
-
-
 
 export const getTokenPopup = (request: Msal.AuthenticationParameters) => {
   return auth
@@ -50,30 +44,3 @@ export const getTokenRedirect = (request: Msal.AuthenticationParameters) => {
     .acquireTokenSilent(request)
     .catch(() => auth.acquireTokenRedirect(request)) // page reload
 }
-
-// console.log('auth created')
-
-// const loginRequest = {
-//   scopes: ['openid', 'profile', 'User.Read']
-// };
-
-// export const loginPopup = () => auth.loginPopup(loginRequest)
-
-// type resourceType = {
-//   resourceUri: string
-//   resourceScope: string | string[]
-// }
-
-// type resourcesType = {
-//   [key: string]: resourceType
-// }
-
-// interface JsonConfigInterface extends Msal.Configuration {
-//   scopes: {
-//     loginRequest: string[]
-//   }
-//   resources: resourcesType
-// }
-
-// console.log('configJson', configJson)
-// const config: JsonConfigInterface = configJson as JsonConfigInterface
