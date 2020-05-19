@@ -3,6 +3,7 @@
     <h3>My profile</h3>
     <q-btn label="Logout" color="primary" @click="logout" />
     <hr />
+    <p>accountID: {{ accountID }}</p>
   </q-page>
 </template>
 
@@ -12,9 +13,9 @@ import { useAccount } from '../../src/comp-functions/useAccount'
 
 export default defineComponent({
   setup() {
-    const { logout } = useAccount()
+    const { accountID, logout } = useAccount()
 
-    return { logout }
+    return { accountID, logout }
   },
 })
 </script>
