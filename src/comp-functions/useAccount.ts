@@ -1,4 +1,4 @@
-import { computed, ref } from '@vue/composition-api'
+import { computed, ref, SetupContext } from '@vue/composition-api'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { auth, getAllScopes } from 'src/services/auth/authService'
@@ -16,7 +16,7 @@ export const setAccountID = () => {
   }
 }
 
-export const useAccount = () => {
+export const useAccount = (context?: SetupContext) => {
   const loading = ref(false)
   const disabled = ref(false)
 
@@ -29,15 +29,16 @@ export const useAccount = () => {
     if (isLoginPopup) {
       try {
         await auth.loginPopup(allScopes)
+
+        if (context?.root.$router.currentRoute.path === '/login') {
+          context?.root.$router.push('/')
+        }
       } catch (error) {
         console.log('login with popup failed: ', error)
       } finally {
         setAccountID()
         disabled.value = false
         loading.value = false
-        // if (this.$router.currentRoute.path === '/login') {
-        //   this.$router.push('/')
-        // }
       }
     } else {
       auth.loginRedirect(allScopes) // page reload

@@ -10,13 +10,12 @@
 import { defineComponent, onBeforeMount } from '@vue/composition-api'
 import { useAccount } from '../../src/comp-functions/useAccount'
 
+const { isAuthenticated } = useAccount()
+
 export default defineComponent({
   setup(props, context) {
-    const { isAuthenticated } = useAccount()
     onBeforeMount(() => {
-      console.log('created login.vue')
       if (isAuthenticated.value) {
-        console.log('push home')
         context.root.$router.push('/')
       }
     })

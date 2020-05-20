@@ -17,8 +17,8 @@
   import { useAccount } from './../comp-functions/useAccount'
 
   export default defineComponent({
-    setup() {
-      const { login, loading , disabled} = useAccount()
+    setup(props, context) {
+      const { login, loading , disabled} = useAccount(context)
 
       return { login, loading, disabled }
     },
