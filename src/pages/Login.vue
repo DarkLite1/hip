@@ -6,15 +6,20 @@
   </q-page>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
+<script lang="ts">
+import { defineComponent, onBeforeMount } from '@vue/composition-api'
+import { useAccount } from '../../src/comp-functions/useAccount'
 
-export default {
-  computed: mapGetters('auth', ['isAuthenticated']),
-  created() {
-    if (this.isAuthenticated) {
-      this.$router.push('/')
-    }
+export default defineComponent({
+  setup(props, context) {
+    const { isAuthenticated } = useAccount()
+    onBeforeMount(() => {
+      console.log('created login.vue')
+      if (isAuthenticated.value) {
+        console.log('push home')
+        context.root.$router.push('/')
+      }
+    })
   },
-}
+})
 </script>
