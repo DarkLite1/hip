@@ -6,6 +6,8 @@
 import { boot } from 'quasar/wrappers'
 import { setAccountID } from './../comp-functions/useAccount'
 
+console.log('boot file loaded')
+
 export default boot(() => {
   setAccountID()
 })
