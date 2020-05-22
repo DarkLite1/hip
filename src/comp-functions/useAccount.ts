@@ -17,6 +17,13 @@ export const setAccountID = () => {
   }
 }
 
+auth
+  .handleRedirectPromise()
+  .then(setAccountID)
+  .catch((error) => {
+    console.log('login with redirect failed: ', error)
+  })
+
 export const useAccount = (context?: SetupContext) => {
   const loading = ref(false)
   const disabled = ref(false)

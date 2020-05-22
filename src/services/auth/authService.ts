@@ -43,20 +43,3 @@ export const getTokenRedirect = (request: Msal.AuthenticationParameters) => {
     .acquireTokenSilent(request)
     .catch(() => auth.acquireTokenRedirect(request)) // page reload
 }
-
-// function authRedirectCallBack(error, response) {
-//   if (error) {
-//     console.error(error)
-//   } else {
-//     if (auth.getAccount()) {
-//       console.log('id_token acquired at: ' + new Date().toString())
-//       getTokenRedirect(getAllScopes())
-//     } else if (response.tokenType === 'Bearer') {
-//       console.log('access_token acquired at: ' + new Date().toString())
-//     } else {
-//       console.log('token type is:' + response.tokenType)
-//     }
-//   }
-// }
-// auth.handleRedirectCallback(authRedirectCallBack)
-
