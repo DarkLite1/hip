@@ -32,14 +32,16 @@ export const getAllScopes = (): { scopes: string[] } => {
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
 
-export const getTokenPopup = (request: Msal.AuthenticationParameters) => {
-  return auth
-    .acquireTokenSilent(request)
-    .catch(() => auth.acquireTokenPopup(request))
+export async function getTokenRedirect(request: Msal.AuthenticationParameters) {
+  return await auth.acquireTokenSilent(request).catch(() => {
+    return auth.acquireTokenRedirect(request)
+  })
 }
 
-export const getTokenRedirect = (request: Msal.AuthenticationParameters) => {
-  return auth
-    .acquireTokenSilent(request)
-    .catch(() => auth.acquireTokenRedirect(request)) // page reload
+export async function getTokenPopup(request: Msal.AuthenticationParameters) {
+  return await auth.acquireTokenSilent(request).catch(async () => {
+    return await auth.acquireTokenPopup(request).catch((error) => {
+      console.log('login with popup failed: ', error)
+    })
+  })
 }
