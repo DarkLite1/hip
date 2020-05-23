@@ -17,7 +17,6 @@
     "@vue/composition-api": "^0.5.0",
     "global": "^4.4.0",
     "quasar": "^1.11.3",
-    "typescript": "^3.8.3",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {

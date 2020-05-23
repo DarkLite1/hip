@@ -13,18 +13,16 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from '@vue/composition-api'
-  import { useAccount } from './../comp-functions/useAccount'
+import { defineComponent } from '@vue/composition-api'
+import { useAccount } from './../comp-functions/useAccount'
 
-  export default defineComponent({
-    setup(props, context) {
-      const { login, loading , disabled} = useAccount(context)
+export default defineComponent({
+  setup(props, context) {
+    const { login, loading, disabled } = useAccount(context)
 
-      return { login, loading, disabled }
-    },
-  })
+    return { login, loading, disabled }
+  },
+})
 </script>
 
-
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>
