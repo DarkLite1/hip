@@ -2,8 +2,6 @@ import { isInternetExplorer } from 'src/services/utils/utilsService'
 import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 
-console.log('loaded authService')
-
 const MSALConfig: Msal.Configuration = {
   auth: {
     clientId: config.auth.clientId,
@@ -18,6 +16,8 @@ const MSALConfig: Msal.Configuration = {
   },
 }
 
+export const auth = new Msal.PublicClientApplication(MSALConfig)
+
 export const getAllScopes = (): { scopes: string[] } => {
   const resourceScopes = Object.values(config.resources)
     .flatMap((resource) => resource.resourceScope)
@@ -29,8 +29,6 @@ export const getAllScopes = (): { scopes: string[] } => {
     scopes: Array.from(uniqueSet),
   }
 }
-
-export const auth = new Msal.PublicClientApplication(MSALConfig)
 
 export async function getTokenRedirect(request: Msal.AuthenticationParameters) {
   return await auth.acquireTokenSilent(request).catch(() => {
