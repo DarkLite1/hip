@@ -1,7 +1,7 @@
 import { computed, ref, SetupContext } from '@vue/composition-api'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
-import { auth, getAllScopes } from 'src/services/auth/authService'
+import { auth, allScopes } from 'src/services/auth/authService'
 
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 const accountID = ref('')
@@ -31,8 +31,6 @@ export const useAccount = (context?: SetupContext) => {
   const login = async () => {
     loading.value = true
     disabled.value = true
-
-    const allScopes = getAllScopes()
 
     if (isLoginPopup) {
       try {

@@ -18,7 +18,7 @@ const MSALConfig: Msal.Configuration = {
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
 
-export const getAllScopes = (): { scopes: string[] } => {
+export const allScopes = (() => {
   const resourceScopes = Object.values(config.resources)
     .flatMap((resource) => resource.resourceScope)
     .filter((resourceScope) => resourceScope)
@@ -28,7 +28,7 @@ export const getAllScopes = (): { scopes: string[] } => {
   return {
     scopes: Array.from(uniqueSet),
   }
-}
+})()
 
 export async function getTokenRedirect(request: Msal.AuthenticationParameters) {
   return await auth.acquireTokenSilent(request).catch(() => {
