@@ -23,9 +23,6 @@ export const useAccount = (context?: SetupContext) => {
       accountID.value = ''
       console.log('accountID ', null)
     }
-
-    // disabled.value = false
-    // loading.value = false
   }
 
   auth
