@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 
 
-import { useAccount } from 'src/comp-functions/useAccount'
+import { useAccount } from 'src/comp-functions/useAuth'
 const { isAuthenticated } = useAccount()
 
 /*

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useAccount } from './../comp-functions/useAccount'
+import { useAccount } from './../comp-functions/useAuth'
 
 export default defineComponent({
   setup(props, context) {

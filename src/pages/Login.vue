@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, onBeforeMount } from '@vue/composition-api'
-import { useAccount } from '../../src/comp-functions/useAccount'
+import { useAccount } from '../../src/comp-functions/useAuth'
 
 const { isAuthenticated } = useAccount()
 
