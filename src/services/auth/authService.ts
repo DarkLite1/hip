@@ -2,6 +2,8 @@ import { isInternetExplorer } from 'src/services/utils/utilsService'
 import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 
+// import { useAccount } from 'src/comp-functions/useAuth'
+
 const MSALConfig: Msal.Configuration = {
   auth: {
     clientId: config.auth.clientId,
@@ -17,6 +19,17 @@ const MSALConfig: Msal.Configuration = {
 }
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
+
+// auth
+//   .handleRedirectPromise()
+//   .then(() => {
+//     console.log('redirect callback promise')
+//     const { setAccountID } = useAccount()
+//     setAccountID()
+//   })
+//   .catch((error) => {
+//     console.log('login with redirect failed: ', error)
+//   })
 
 export const allScopes = (() => {
   const resourceScopes = Object.values(config.resources)

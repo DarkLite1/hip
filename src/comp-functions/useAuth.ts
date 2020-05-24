@@ -6,27 +6,41 @@ import { auth, allScopes } from 'src/services/auth/authService'
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 const accountID = ref('')
 
-export const setAccountID = () => {
-  const account = auth.getAccount()
-
-  if (account) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    accountID.value = account.idTokenClaims.oid!
-  } else {
-    accountID.value = ''
-  }
-}
-
-auth
-  .handleRedirectPromise()
-  .then(setAccountID)
-  .catch((error) => {
-    console.log('login with redirect failed: ', error)
-  })
+const loading = ref(true)
+const disabled = ref(true)
 
 export const useAccount = (context?: SetupContext) => {
-  const loading = ref(false)
-  const disabled = ref(false)
+  console.log('user account')
+
+  const setAccountID = () => {
+    const account = auth.getAccount()
+
+    if (account) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      accountID.value = account.idTokenClaims.oid!
+      console.log('accountID ', accountID.value)
+    } else {
+      accountID.value = ''
+      console.log('accountID ', null)
+    }
+
+    // disabled.value = false
+    // loading.value = false
+  }
+
+  auth
+    .handleRedirectPromise()
+    .then(() => {
+      console.log('redirect callback promise')
+      setAccountID()
+    })
+    .catch((error) => {
+      console.log('login with redirect failed: ', error)
+    })
+    .finally(() => {
+      disabled.value = false
+      loading.value = false
+    })
 
   const login = async () => {
     loading.value = true
@@ -62,5 +76,6 @@ export const useAccount = (context?: SetupContext) => {
     disabled: computed(() => disabled.value),
     login,
     logout,
+    setAccountID,
   }
 }

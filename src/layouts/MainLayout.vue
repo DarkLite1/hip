@@ -14,7 +14,7 @@
 
 <script>
 import { defineComponent, reactive, onMounted } from '@vue/composition-api'
-import { setAccountID } from './../comp-functions/useAuth'
+// import { setAccountID } from './../comp-functions/useAuth'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -41,8 +41,8 @@ export default defineComponent({
     ])
 
     onMounted(() => {
-      console.log('loaded mainLayout')
-      setAccountID()
+      console.log('load mainLayout')
+      // setAccountID()
     })
 
     return {
