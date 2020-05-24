@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
-// import { setAccountID } from './../comp-functions/useAuth'
+import { defineComponent, reactive } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -39,11 +38,6 @@ export default defineComponent({
         icon: 'settings',
       },
     ])
-
-    onMounted(() => {
-      console.log('load mainLayout')
-      // setAccountID()
-    })
 
     return {
       mainNavigationLinks,
