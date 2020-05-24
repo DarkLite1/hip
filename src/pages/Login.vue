@@ -15,7 +15,9 @@ const { isAuthenticated } = useAccount()
 export default defineComponent({
   setup(props, context) {
     onBeforeMount(() => {
+      debugger;
       if (isAuthenticated.value) {
+        console.log('from ', context.root.$router)
         context.root.$router.push('/')
       }
     })

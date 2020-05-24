@@ -3,11 +3,12 @@ import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { auth, allScopes } from 'src/services/auth/authService'
 
-console.log('import useAuth')
-
-// needs to be available before the component HeaderButtonLogin is loaded
 const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
+
+// needs to be available before components are loaded
 const accountID = ref('')
+const loading = ref(true)
+const disabled = ref(true)
 
 const setAccountID = () => {
   const account = auth.getAccount()
@@ -15,20 +16,14 @@ const setAccountID = () => {
   if (account) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     accountID.value = account.idTokenClaims.oid!
-    console.log('accountID ', accountID.value)
   } else {
     accountID.value = ''
-    console.log('accountID ', null)
   }
 }
 
 setAccountID()
 
-export const useAccount = (context?: SetupContext) => {
-  const loading = ref(true)
-  const disabled = ref(true)
-
-  auth
+auth
   .handleRedirectPromise()
   .catch((error) => {
     console.log('login with redirect failed: ', error)
@@ -39,7 +34,7 @@ export const useAccount = (context?: SetupContext) => {
     loading.value = false
   })
 
-
+export const useAccount = (context?: SetupContext) => {
   const login = async () => {
     loading.value = true
     disabled.value = true
@@ -74,6 +69,5 @@ export const useAccount = (context?: SetupContext) => {
     disabled: computed(() => disabled.value),
     login,
     logout,
-    setAccountID,
   }
 }
