@@ -22,7 +22,7 @@ setAccountID()
 auth
   .handleRedirectPromise()
   .catch((error) => {
-    console.log('login with redirect failed: ', error)
+    console.log('login with redirect failed: shit', error)
   })
   .finally(() => {
     setAccountID()

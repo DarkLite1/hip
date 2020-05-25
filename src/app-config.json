@@ -21,6 +21,10 @@
     "msGraphProfile": {
       "resourceUri": "https://graph.microsoft.com/v1.0/me",
       "resourceScope": ["openid", "profile", "user.read"]
+    },
+    "msGraphPhoto": {
+      "resourceUri": "https://graph.microsoft.com/v1.0/me/photo/$value",
+      "resourceScope": ["openid", "profile", "user.read"]
     }
   }
 }

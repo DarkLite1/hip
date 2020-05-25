@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-chip clickable @click="goToProfilePage" class="absolute-right">
-      {{ user.firstName }}
+      {{ user.profile.givenName || 'Welcome' }}
       <q-avatar class="q-avatar--right">
         <q-img
           :src="user.photo"
@@ -9,7 +9,7 @@
           width="38px"
           transition="scale"
           ratio="1"
-          :placeholder-src="placeholder"
+          placeholder-src="statics/img/account.png"
         />
       </q-avatar>
     </q-chip>
@@ -17,62 +17,49 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, reactive } from '@vue/composition-api'
-import { useAuth } from '../../src/comp-functions/useAuth'
-
-const { isAuthenticated } = useAuth()
+import { defineComponent, reactive } from '@vue/composition-api'
+import { getGraphProfile } from 'src/services/graph/graphService'
 
 export default defineComponent({
   setup(props, context) {
-    const placeholder = 'statics/img/account.png'
+    const graphProfileDefault = () => {
+      return {
+        id: '',
+        displayName: '',
+        givenName: '',
+        surName: '',
+        jobTitle: '',
+        mail: '',
+        mobilePhone: '',
+        businessPhones: '',
+        officeLocation: '',
+        preferredLanguage: '',
+        userPrincipalName: '',
+      }
+    }
 
-    const user = reactive({
+    const graph = reactive({
+      profile: graphProfileDefault(),
       photo: null,
-      firstName: 'Welcome',
     })
+
+    getGraphProfile()
+      .then((response) => {
+        graph.profile = { ...graphProfileDefault(), ...response.data }
+      })
+      .catch(console.log.bind(console))
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {
         null
       })
     }
-
-    getGraphProfile()
-      .then((response) => {
-        this.user.firstName = response.data.givenName
-        this.setGraphProfile(response.data)
-      })
-      .catch(console.log.bind(console))
-
     return {
       goToProfilePage,
-      user,
-      placeholder,
+      user: graph,
     }
-    // onBeforeMount(() => {
-    //   if (isAuthenticated.value) {
-    //     console.log('from ', context.root.$router)
-    //     context.root.$router.push('/')
-    //   }
-    // })
   },
 })
-// created() {
-//   getGraphProfile()
-//     .then((response) => {
-//       this.user.firstName = response.data.givenName
-//       this.setGraphProfile(response.data)
-//     })
-//     .catch(console.log.bind(console))
-
-//   getGraphPhoto()
-//     .then((image) => {
-//       this.user.photo = image
-//       this.setGraphPhoto(image)
-//     })
-//     .catch(console.log.bind(console))
-// },
-// }
 </script>
 
 <style lang="sass" scoped>

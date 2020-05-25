@@ -33,16 +33,20 @@ export const allScopes = (() => {
   }
 })()
 
-export async function getTokenRedirect(request: Msal.AuthenticationParameters) {
-  return await auth.acquireTokenSilent(request).catch(() => {
+export async function getTokenRedirect(request: Msal.TokenExchangeParameters) {
+  try {
+    return await auth.acquireTokenSilent(request)
+  } catch (error) {
+    console.log('error acquireTokenSilent', error)
     return auth.acquireTokenRedirect(request)
-  })
+  }
 }
 
-export async function getTokenPopup(request: Msal.AuthenticationParameters) {
-  return await auth.acquireTokenSilent(request).catch(async () => {
-    return await auth.acquireTokenPopup(request).catch((error) => {
-      console.log('login with popup failed: ', error)
-    })
-  })
+export async function getTokenPopup(request: Msal.TokenExchangeParameters) {
+  try {
+    return await auth.acquireTokenSilent(request)
+  } catch (error) {
+    console.log('error acquireTokenSilent', error)
+    return await auth.acquireTokenPopup(request)
+  }
 }
