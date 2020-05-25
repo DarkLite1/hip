@@ -7,19 +7,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import { useAuth } from '../../src/comp-functions/useAuth'
 
 const { isAuthenticated } = useAuth()
 
 export default defineComponent({
   setup(props, context) {
-    onBeforeMount(() => {
-      if (isAuthenticated.value) {
-        // console.log('from ', context.root.$router)
-        context.root.$router.push('/')
-      }
-    })
+    if (isAuthenticated.value) {
+      // console.log('from ', context.root.$router)
+      context.root.$router.push('/')
+    }
   },
 })
 </script>
