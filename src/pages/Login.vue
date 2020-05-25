@@ -16,7 +16,7 @@ export default defineComponent({
   setup(props, context) {
     onBeforeMount(() => {
       if (isAuthenticated.value) {
-        console.log('from ', context.root.$router)
+        // console.log('from ', context.root.$router)
         context.root.$router.push('/')
       }
     })
