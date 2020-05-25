@@ -14,11 +14,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useAccount } from './../comp-functions/useAuth'
+import { useAuth } from './../comp-functions/useAuth'
 
 export default defineComponent({
   setup(props, context) {
-    const { login, loading, disabled } = useAccount(context)
+    const { login, loading, disabled } = useAuth(context)
 
     return { login, loading, disabled }
   },

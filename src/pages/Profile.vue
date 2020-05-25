@@ -9,11 +9,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useAccount } from '../../src/comp-functions/useAuth'
+import { useAuth } from '../../src/comp-functions/useAuth'
 
 export default defineComponent({
   setup() {
-    const { accountID, logout } = useAccount()
+    const { accountID, logout } = useAuth()
 
     return { accountID, logout }
   },

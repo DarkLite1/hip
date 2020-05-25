@@ -8,14 +8,13 @@
 
 <script lang="ts">
 import { defineComponent, onBeforeMount } from '@vue/composition-api'
-import { useAccount } from '../../src/comp-functions/useAuth'
+import { useAuth } from '../../src/comp-functions/useAuth'
 
-const { isAuthenticated } = useAccount()
+const { isAuthenticated } = useAuth()
 
 export default defineComponent({
   setup(props, context) {
     onBeforeMount(() => {
-      debugger;
       if (isAuthenticated.value) {
         console.log('from ', context.root.$router)
         context.root.$router.push('/')
