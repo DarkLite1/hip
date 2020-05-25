@@ -1,4 +1,5 @@
 import { isInternetExplorer } from 'src/services/utils/utilsService'
+import { Screen } from 'quasar'
 import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 
@@ -17,6 +18,8 @@ const MSALConfig: Msal.Configuration = {
 }
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
+
+export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
 export const allScopes = (() => {
   const resourceScopes = Object.values(config.resources)

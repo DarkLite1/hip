@@ -1,9 +1,5 @@
 import { computed, ref, SetupContext } from '@vue/composition-api'
-import { isInternetExplorer } from 'src/services/utils/utilsService'
-import { Screen } from 'quasar'
-import { auth, allScopes } from 'src/services/auth/authService'
-
-const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
+import { auth, allScopes, isLoginPopup } from 'src/services/auth/authService'
 
 // needs to be available before components are loaded
 const accountID = ref('')
