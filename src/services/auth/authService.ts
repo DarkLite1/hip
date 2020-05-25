@@ -1,7 +1,7 @@
-import { isInternetExplorer } from 'src/services/utils/utilsService'
-import { Screen } from 'quasar'
 import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
+import { isInternetExplorer } from 'src/services/utils/utilsService'
+import { Screen } from 'quasar'
 
 const MSALConfig: Msal.Configuration = {
   auth: {

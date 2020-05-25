@@ -37,6 +37,13 @@ export default defineComponent({
       })
     }
 
+    getGraphProfile()
+      .then((response) => {
+        this.user.firstName = response.data.givenName
+        this.setGraphProfile(response.data)
+      })
+      .catch(console.log.bind(console))
+
     return {
       goToProfilePage,
       user,
@@ -50,25 +57,6 @@ export default defineComponent({
     // })
   },
 })
-// import { mapActions } from "vuex"
-// import { getGraphProfile, getGraphPhoto } from 'src/services/graph/graphService'
-
-// export default {
-//   data() {
-//     return {
-//       placeholder: 'statics/img/account.png',
-//       user: {
-//         firstName: 'Welcome',
-//         photo: null,
-//       },
-//     }
-//   },
-//   methods: {
-// ...mapActions('auth', ['setGraphProfile', 'setGraphPhoto']),
-//   goToProfilePage() {
-//     this.$router.push('/profile').catch(() => {null})
-//   },
-// },
 // created() {
 //   getGraphProfile()
 //     .then((response) => {

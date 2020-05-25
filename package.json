@@ -15,6 +15,7 @@
     "@azure/msal-browser": "^2.0.0-beta.2",
     "@quasar/extras": "^1.0.0",
     "@vue/composition-api": "^0.5.0",
+    "axios": "^0.19.2",
     "global": "^4.4.0",
     "quasar": "^1.11.3",
     "vue-i18n": "^8.0.0"
