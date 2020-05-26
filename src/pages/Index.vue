@@ -7,16 +7,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { getGraphProfile } from 'src/services/graph/graphService'
 
 export default defineComponent({
   setup() {
     const onClick = () => {
-      getGraphProfile()
-        .then((response) => {
-          console.log('response.data  ', response.data)
-        })
-        .catch(console.log.bind(console))
+      console.log('cliked ')
     }
 
     return { onClick }

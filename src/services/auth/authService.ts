@@ -26,7 +26,7 @@ export const allScopes = (() => {
     .flatMap((resource) => resource.scopes)
     .filter((scope) => scope)
 
-  const uniqueSet = new Set([...resourceScopes, ...config.scopes.loginRequest])
+  const uniqueSet = new Set([...config.scopes.loginRequest, ...resourceScopes])
 
   return {
     scopes: Array.from(uniqueSet),
@@ -36,19 +36,15 @@ export const allScopes = (() => {
 export async function getTokenRedirect(request: Msal.TokenExchangeParameters) {
   try {
     return await auth.acquireTokenSilent(request)
-  } catch (error) {
-    console.log('error acquireTokenSilent', error)
+  } catch {
     return auth.acquireTokenRedirect(request)
   }
 }
 
 export async function getTokenPopup(request: Msal.TokenExchangeParameters) {
   try {
-    console.log('getTokenPopup called')
-    console.log('getTokenPopup scopes ', request)
     return await auth.acquireTokenSilent(request)
-  } catch (error) {
-    console.log('error acquireTokenSilent', error)
+  } catch {
     return await auth.acquireTokenPopup(request)
   }
 }

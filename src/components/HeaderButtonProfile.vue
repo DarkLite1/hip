@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from '@vue/composition-api'
-import { getGraphProfile } from 'src/services/graph/graphService'
+import { getGraphProfile } from './../services/graph/graphService'
 
 export default defineComponent({
   setup(props, context) {
@@ -45,15 +45,9 @@ export default defineComponent({
 
     getGraphProfile()
       .then((response) => {
-        console.log('onMounted getGraphProfile success')
-        console.log('response.data  ', response.data)
         graph.profile = { ...graphProfileDefault(), ...response.data }
       })
-      .catch((error) => {
-        console.log('onMounted getGraphProfile fail')
-        console.log('error in component', error)
-      })
-    // .catch(console.log.bind(console))
+      .catch(console.log.bind(console))
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {
