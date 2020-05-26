@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import { defineComponent, reactive } from '@vue/composition-api'
 import { getGraphProfile } from 'src/services/graph/graphService'
 
 export default defineComponent({
@@ -43,20 +43,17 @@ export default defineComponent({
       photo: null,
     })
 
-    onMounted(() => {
-      console.log('call onMounted getGraphProfile')
-      getGraphProfile()
-        .then((response) => {
-          console.log('onMounted getGraphProfile success')
-          console.log('response.data  ', response.data)
-          graph.profile = { ...graphProfileDefault(), ...response.data }
-        })
-        .catch((error) => {
-          console.log('onMounted getGraphProfile fail')
-          console.log('error in component', error)
-        })
-      // .catch(console.log.bind(console))
-    })
+    getGraphProfile()
+      .then((response) => {
+        console.log('onMounted getGraphProfile success')
+        console.log('response.data  ', response.data)
+        graph.profile = { ...graphProfileDefault(), ...response.data }
+      })
+      .catch((error) => {
+        console.log('onMounted getGraphProfile fail')
+        console.log('error in component', error)
+      })
+    // .catch(console.log.bind(console))
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {
