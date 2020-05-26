@@ -25,6 +25,7 @@ auth
     console.log('login with redirect failed: shit', error)
   })
   .finally(() => {
+    console.log('redirect promise resolved')
     setAccountID()
     disabled.value = false
     loading.value = false
@@ -32,12 +33,16 @@ auth
 
 export const useAuth = (context?: SetupContext) => {
   const login = async () => {
+    console.log('login method')
     loading.value = true
     disabled.value = true
 
     if (isLoginPopup) {
       try {
-        await auth.loginPopup(allScopes)
+        console.log('loginPopup called')
+        console.log('loginPopup scopes ', allScopes)
+        const response = await auth.loginPopup(allScopes)
+        console.log('loginPopup response ', response)
 
         if (context?.root.$router.currentRoute.path === '/login') {
           context?.root.$router.push('/')

@@ -7,6 +7,7 @@ import {
   getTokenRedirect,
 } from 'src/services/auth/authService'
 
+
 const callGraph = (
   url: string,
   token: string,
@@ -43,17 +44,17 @@ const getGraphDetails = async (
 }
 
 export const getGraphProfile = () => {
-  return getGraphDetails(config.resources.msGraphProfile.resourceUri, {
-    scopes: config.resources.msGraphProfile.resourceScope,
+  return getGraphDetails(config.resources.msGraphProfile.uri, {
+    scopes: config.resources.msGraphProfile.scopes,
   })
 }
 
 export const getGraphPhoto = async () => {
   try {
     const response = await getGraphDetails(
-      config.resources.msGraphPhoto.resourceUri,
+      config.resources.msGraphPhoto.uri,
       {
-        scopes: config.resources.msGraphPhoto.resourceScope,
+        scopes: config.resources.msGraphPhoto.scopes,
       },
       {
         responseType: 'arraybuffer',

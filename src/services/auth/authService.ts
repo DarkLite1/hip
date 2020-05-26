@@ -23,8 +23,8 @@ export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
 export const allScopes = (() => {
   const resourceScopes = Object.values(config.resources)
-    .flatMap((resource) => resource.resourceScope)
-    .filter((resourceScope) => resourceScope)
+    .flatMap((resource) => resource.scopes)
+    .filter((scope) => scope)
 
   const uniqueSet = new Set([...resourceScopes, ...config.scopes.loginRequest])
 
@@ -44,6 +44,8 @@ export async function getTokenRedirect(request: Msal.TokenExchangeParameters) {
 
 export async function getTokenPopup(request: Msal.TokenExchangeParameters) {
   try {
+    console.log('getTokenPopup called')
+    console.log('getTokenPopup scopes ', request)
     return await auth.acquireTokenSilent(request)
   } catch (error) {
     console.log('error acquireTokenSilent', error)

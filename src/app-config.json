@@ -13,18 +13,16 @@
   },
   "resources": {
     "gatewayApi": {
-      "resourceUri": "https://localhost:44351/api",
-      "resourceScope": [
-        "api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"
-      ]
+      "uri": "https://localhost:44351/api",
+      "scopes": ["api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"]
     },
     "msGraphProfile": {
-      "resourceUri": "https://graph.microsoft.com/v1.0/me",
-      "resourceScope": ["openid", "profile", "user.read"]
+      "uri": "https://graph.microsoft.com/v1.0/me",
+      "scopes": ["openid", "profile", "user.read"]
     },
     "msGraphPhoto": {
-      "resourceUri": "https://graph.microsoft.com/v1.0/me/photo/$value",
-      "resourceScope": ["openid", "profile", "user.read"]
+      "uri": "https://graph.microsoft.com/v1.0/me/photo/$value",
+      "scopes": ["openid", "profile", "user.read"]
     }
   }
 }
