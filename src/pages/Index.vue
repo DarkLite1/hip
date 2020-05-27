@@ -1,20 +1,22 @@
 <template>
   <q-page padding>
-    <h1>Home</h1>
+    <p>Welcome {{ profile.givenName }}</p>
     <q-btn color="primary" label="Test" @click="onClick" />
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { useGraph } from './../comp-functions/useGraph'
 
 export default defineComponent({
   setup() {
+    const { profile } = useGraph()
     const onClick = () => {
       console.log('cliked ')
     }
 
-    return { onClick }
+    return { onClick, profile }
   },
 })
 </script>

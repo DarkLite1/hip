@@ -26,6 +26,8 @@ const graph = reactive({
 })
 
 export const useGraph = () => {
+  console.log('call useGraph')
+
   getGraphProfile()
     .then((response) => {
       graph.profile = { ...graphProfileDefault(), ...response.data }
