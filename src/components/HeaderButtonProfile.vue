@@ -1,10 +1,10 @@
 <template>
   <div>
     <q-chip clickable @click="goToProfilePage" class="absolute-right">
-      {{ user.profile.givenName || 'Welcome' }}
+      {{ profile.givenName || 'Welcome' }}
       <q-avatar class="q-avatar--right">
         <q-img
-          :src="user.photo"
+          :src="photo"
           spinner-color="black"
           width="38px"
           transition="scale"
@@ -17,37 +17,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@vue/composition-api'
-import { getGraphProfile } from './../services/graph/graphService'
+import { defineComponent } from '@vue/composition-api'
+import { useGraph } from './../comp-functions/useGraph'
 
 export default defineComponent({
   setup(props, context) {
-    const graphProfileDefault = () => {
-      return {
-        id: '',
-        displayName: '',
-        givenName: '',
-        surName: '',
-        jobTitle: '',
-        mail: '',
-        mobilePhone: '',
-        businessPhones: '',
-        officeLocation: '',
-        preferredLanguage: '',
-        userPrincipalName: '',
-      }
-    }
-
-    const graph = reactive({
-      profile: graphProfileDefault(),
-      photo: null,
-    })
-
-    getGraphProfile()
-      .then((response) => {
-        graph.profile = { ...graphProfileDefault(), ...response.data }
-      })
-      .catch(console.log.bind(console))
+    const { profile, photo } = useGraph()
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {
@@ -56,7 +31,8 @@ export default defineComponent({
     }
     return {
       goToProfilePage,
-      user: graph,
+      photo,
+      profile,
     }
   },
 })

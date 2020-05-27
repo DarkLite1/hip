@@ -7,7 +7,6 @@ import {
   getTokenRedirect,
 } from 'src/services/auth/authService'
 
-
 const callGraph = (
   url: string,
   token: string,
@@ -60,10 +59,11 @@ export const getGraphPhoto = async () => {
         responseType: 'arraybuffer',
       }
     )
-    if (response && response.data) {
-      const imageBase64 = new Buffer(response.data, 'binary').toString('base64')
-      return `data:${response.headers['content-type']};base64, ${imageBase64}`
+    if (!(response && response.data)) {
+      return ''
     }
+    const imageBase64 = new Buffer(response.data, 'binary').toString('base64')
+    return `data:${response.headers['content-type']};base64, ${imageBase64}`
   } catch (error) {
     throw new Error(`Failed retrieving the graph photo: ${error}`)
   }
