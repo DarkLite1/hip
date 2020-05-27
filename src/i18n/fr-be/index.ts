@@ -2,6 +2,6 @@
 // so you can safely delete all default props below
 
 export default {
-  welcomeMessage: 'Welcome',
-  Settings: 'Settings',
+  welcomeMessage: 'Bienvenue',
+  Settings: 'Paramétrage',
 }

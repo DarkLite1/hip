@@ -2,14 +2,34 @@
   <q-page padding>
     <div class="q-pa-md">
       <q-list class="q-mb-md" bordered padding>
-        <q-item-label header>Settings</q-item-label>
+        <q-item-label header>{{ $t('Settings') }}</q-item-label>
+        <!-- <q-item-label header>Settings</q-item-label> -->
 
         <q-item tag="label" v-ripple>
           <q-item-section>
             <q-item-label>Some cool option</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle v-model="active" color="blue" />
+            <q-toggle v-model="coolOptionActive" color="blue" />
+          </q-item-section>
+        </q-item>
+
+        <q-item tag="label">
+          <q-item-section>
+            <q-item-label>Language</q-item-label>
+          </q-item-section>
+          <q-item-section side>
+            <q-select
+              rounded
+              outlined
+              dense
+              v-model="language"
+              :options="languageOptions"
+              emit-value
+              map-options
+              options-dense
+              style="min-width: 150px;"
+            />
           </q-item-section>
         </q-item>
       </q-list>
@@ -54,7 +74,14 @@ import { openURL } from 'quasar'
 export default {
   data() {
     return {
-      active: true,
+      coolOptionActive: true,
+      language: this.$i18n.locale,
+      languageOptions: [
+        { value: 'en-us', label: 'English' },
+        { value: 'de-de', label: 'Deutsch' },
+        { value: 'nl-be', label: 'Nederlands' },
+        { value: 'fr-be', label: 'Français' },
+      ],
     }
   },
   methods: {
@@ -66,6 +93,11 @@ export default {
     emailUs() {
       window.location.href =
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
+    },
+  },
+  watch: {
+    language(language) {
+      this.$i18n.locale = language
     },
   },
 }
