@@ -7,12 +7,13 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useGraph } from 'src/composables/useGraph'
+
+import { setGraphProfile, profile } from 'src/store/graphStore'
 
 export default defineComponent({
   setup() {
-    const { profile } = useGraph()
     const onClick = () => {
+      setGraphProfile()
       console.log('cliked ')
     }
 

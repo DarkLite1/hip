@@ -18,11 +18,17 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useGraph } from 'src/composables/useGraph'
+import {
+  setGraphProfile,
+  setGraphPhoto,
+  profile,
+  photo,
+} from 'src/store/graphStore'
 
 export default defineComponent({
-  setup(props, context) {
-    const { profile, photo } = useGraph()
+  setup(_, context) {
+    setGraphPhoto()
+    setGraphProfile()
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {

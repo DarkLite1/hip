@@ -1,8 +1,5 @@
 import { reactive, computed } from '@vue/composition-api'
-import {
-  getGraphProfile,
-  getGraphPhoto,
-} from '../services/graph/graphService'
+import { getGraphProfile, getGraphPhoto } from '../services/graph/graphService'
 
 const graphProfileDefault = () => {
   return {
