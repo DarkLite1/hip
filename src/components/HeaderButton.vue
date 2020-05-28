@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import { defineComponent } from '@vue/composition-api'
-  import { useAuth } from '../../src/comp-functions/useAuth'
+  import { useAuth } from 'src/composables/useAuth'
 
   export default defineComponent({
     setup() {

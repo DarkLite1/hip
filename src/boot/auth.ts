@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers'
-import { useAuth } from 'src/comp-functions/useAuth'
+import { useAuth } from 'src/composables/useAuth'
 
 // page refresh keeps us on the same page when authenticated
 export default boot(({ router }) => {

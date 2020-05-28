@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useGraph } from './../comp-functions/useGraph'
+import { useGraph } from 'src/composables/useGraph'
 
 export default defineComponent({
   setup() {

@@ -28,7 +28,6 @@
               emit-value
               map-options
               options-dense
-              style="min-width: 150px;"
             />
           </q-item-section>
         </q-item>
@@ -68,37 +67,42 @@
   </q-page>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref, watch } from '@vue/composition-api'
 import { openURL } from 'quasar'
 
-export default {
-  data() {
-    return {
-      coolOptionActive: true,
-      language: this.$i18n.locale,
-      languageOptions: [
-        { value: 'en-us', label: 'English' },
-        { value: 'de-de', label: 'Deutsch' },
-        { value: 'nl-be', label: 'Nederlands' },
-        { value: 'fr-be', label: 'Français' },
-      ],
-    }
-  },
-  methods: {
-    selfHelp() {
+export default defineComponent({
+  setup(props, context) {
+    const coolOptionActive = ref(true)
+
+    const languageOptions = [
+      { value: 'en-us', label: 'English' },
+      { value: 'de-de', label: 'Deutsch' },
+      { value: 'nl-be', label: 'Nederlands' },
+      { value: 'fr-be', label: 'Français' },
+    ]
+    const language = ref(context.root.$i18n.locale)
+
+    const selfHelp = () => {
       openURL(
         'http://unite.grouphc.net/benelux/staffdepartments/it_bene/selfhelp/Pages/BNL_SelfHelp.aspx'
       )
-    },
-    emailUs() {
+    }
+    const emailUs = () => {
       window.location.href =
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
-    },
+    }
+    watch(language, (language) => {
+      context.root.$i18n.locale = language
+    })
+
+    return {
+      coolOptionActive,
+      language,
+      languageOptions,
+      selfHelp,
+      emailUs,
+    }
   },
-  watch: {
-    language(language) {
-      this.$i18n.locale = language
-    },
-  },
-}
+})
 </script>
