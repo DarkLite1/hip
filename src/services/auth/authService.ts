@@ -19,6 +19,8 @@ const MSALConfig: Msal.Configuration = {
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
 
+
+
 export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
 export const allScopes = (() => {

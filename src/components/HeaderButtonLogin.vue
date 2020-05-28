@@ -17,7 +17,7 @@ import { defineComponent } from '@vue/composition-api'
 import { useAuth } from 'src/composables/useAuth'
 
 export default defineComponent({
-  setup(props, context) {
+  setup(_, context) {
     const { login, loading, disabled } = useAuth(context)
 
     return { login, loading, disabled }

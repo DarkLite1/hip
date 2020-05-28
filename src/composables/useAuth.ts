@@ -1,33 +1,20 @@
 import { computed, ref, SetupContext } from '@vue/composition-api'
 import { auth, allScopes, isLoginPopup } from 'src/services/auth/authService'
+import { setAccountId } from 'src/store/authStore'
 
-const accountID = ref('')
 const loading = ref(true)
 
-const setAccountID = () => {
-  const account = auth.getAccount()
-
-  if (account) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    accountID.value = account.idTokenClaims.oid!
-  } else {
-    accountID.value = ''
-  }
-}
-
-setAccountID()
-
 auth
-  .handleRedirectPromise()
+  .handleRedirectPromise() // only called when not authenticated by msal
   .catch((error) => {
     console.log('login with redirect failed: ', error)
   })
   .finally(() => {
-    setAccountID()
+    setAccountId()
     loading.value = false
   })
 
-export const useAuth = (context?: SetupContext) => {
+export const useAuth = (context: SetupContext) => {
   const login = async () => {
     loading.value = true
 
@@ -35,13 +22,13 @@ export const useAuth = (context?: SetupContext) => {
       try {
         await auth.loginPopup(allScopes)
 
-        if (context?.root.$router.currentRoute.path === '/login') {
-          context?.root.$router.push('/')
+        if (context.root.$router.currentRoute.path === '/login') {
+          context.root.$router.push('/')
         }
       } catch (error) {
         console.log('login with popup failed: ', error)
       } finally {
-        setAccountID()
+        setAccountId()
         loading.value = false
       }
     } else {
@@ -49,16 +36,9 @@ export const useAuth = (context?: SetupContext) => {
     }
   }
 
-  const logout = () => {
-    auth.logout()
-  }
-
   return {
-    accountID: computed(() => accountID.value),
-    isAuthenticated: computed(() => Boolean(accountID.value)),
     loading: computed(() => loading.value),
     disabled: computed(() => loading.value),
     login,
-    logout,
   }
 }

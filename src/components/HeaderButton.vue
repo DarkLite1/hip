@@ -8,12 +8,10 @@
 
 <script lang="ts">
   import { defineComponent } from '@vue/composition-api'
-  import { useAuth } from 'src/composables/useAuth'
+  import { isAuthenticated } from 'src/store/authStore'
 
   export default defineComponent({
     setup() {
-      const { isAuthenticated } = useAuth()
-
       return { isAuthenticated }
     },
     components: {
