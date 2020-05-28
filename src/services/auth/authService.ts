@@ -38,8 +38,15 @@ export const getToken = async (request: Msal.TokenExchangeParameters) => {
     return await auth.acquireTokenSilent(request)
   } catch {
     if (isLoginPopup) {
-      return await auth.acquireTokenPopup(request)  
+      return await auth.acquireTokenPopup(request)
     }
     return auth.acquireTokenRedirect(request)
   }
+}
+
+export const login = async () => {
+  if (isLoginPopup) {
+    return auth.loginPopup(allScopes)
+  }
+  return auth.loginRedirect(allScopes)
 }

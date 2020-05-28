@@ -1,5 +1,5 @@
 import { computed, ref, SetupContext } from '@vue/composition-api'
-import { auth, allScopes, isLoginPopup } from 'src/services/auth/authService'
+import { auth, login as loginAccount } from 'src/services/auth/authService'
 import { setAccountId } from 'src/store/authStore'
 
 const loading = ref(true)
@@ -18,21 +18,17 @@ export const useAuth = (context: SetupContext) => {
   const login = async () => {
     loading.value = true
 
-    if (isLoginPopup) {
-      try {
-        await auth.loginPopup(allScopes)
+    try {
+      await loginAccount()
 
-        if (context.root.$router.currentRoute.path === '/login') {
-          context.root.$router.push('/')
-        }
-      } catch (error) {
-        console.log('login with popup failed: ', error)
-      } finally {
-        setAccountId()
-        loading.value = false
+      if (context.root.$router.currentRoute.path === '/login') {
+        context.root.$router.push('/')
       }
-    } else {
-      auth.loginRedirect(allScopes) // page reload
+    } catch (error) {
+      console.log('login with popup failed: ', error)
+    } finally {
+      setAccountId()
+      loading.value = false
     }
   }
 
