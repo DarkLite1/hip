@@ -42,10 +42,14 @@ const getGraphDetails = async (
   }
 }
 
-export const getGraphProfile = () => {
-  return getGraphDetails(config.resources.msGraphProfile.uri, {
-    scopes: config.resources.msGraphProfile.scopes,
-  })
+export const getGraphProfile = async () => {
+  try {
+    return await getGraphDetails(config.resources.msGraphProfile.uri, {
+      scopes: config.resources.msGraphProfile.scopes,
+    })
+  } catch (error) {
+    throw new Error(`Failed retrieving the graph profile: ${error}`)
+  }
 }
 
 export const getGraphPhoto = async () => {
