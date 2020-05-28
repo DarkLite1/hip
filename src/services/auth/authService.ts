@@ -19,8 +19,6 @@ const MSALConfig: Msal.Configuration = {
 
 export const auth = new Msal.PublicClientApplication(MSALConfig)
 
-
-
 export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
 export const allScopes = (() => {
@@ -35,18 +33,13 @@ export const allScopes = (() => {
   }
 })()
 
-export async function getTokenRedirect(request: Msal.TokenExchangeParameters) {
+export const getToken = async (request: Msal.TokenExchangeParameters) => {
   try {
     return await auth.acquireTokenSilent(request)
   } catch {
+    if (isLoginPopup) {
+      return await auth.acquireTokenPopup(request)  
+    }
     return auth.acquireTokenRedirect(request)
-  }
-}
-
-export async function getTokenPopup(request: Msal.TokenExchangeParameters) {
-  try {
-    return await auth.acquireTokenSilent(request)
-  } catch {
-    return await auth.acquireTokenPopup(request)
   }
 }

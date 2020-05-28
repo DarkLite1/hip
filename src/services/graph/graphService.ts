@@ -1,11 +1,7 @@
 import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 import axios, { AxiosRequestConfig } from 'axios'
-import {
-  isLoginPopup,
-  getTokenPopup,
-  getTokenRedirect,
-} from 'src/services/auth/authService'
+import { getToken } from 'src/services/auth/authService'
 
 const callGraph = (
   url: string,
@@ -26,12 +22,7 @@ const getGraphDetails = async (
   axiosConfig?: AxiosRequestConfig
 ) => {
   try {
-    let response = null
-    if (isLoginPopup) {
-      response = await getTokenPopup(scopes)
-    } else {
-      response = await getTokenRedirect(scopes)
-    }
+    const response = await getToken(scopes)
     if (response && response.accessToken) {
       return callGraph(uri, response.accessToken, axiosConfig)
     } else {
