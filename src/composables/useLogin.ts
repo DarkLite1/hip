@@ -14,7 +14,7 @@ auth
     loading.value = false
   })
 
-export const useAuth = (context: SetupContext) => {
+export const useLogin = (context: SetupContext) => {
   const login = async () => {
     loading.value = true
 

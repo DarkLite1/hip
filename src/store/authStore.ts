@@ -13,8 +13,7 @@ export const setAccountId = () => {
   const account = auth.getAccount()
 
   if (account) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    state.accountId = account.idTokenClaims.oid!
+    state.accountId = account.accountIdentifier
   } else {
     state.accountId = defaultState().accountId
   }
