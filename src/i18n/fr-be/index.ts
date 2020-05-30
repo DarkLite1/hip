@@ -1,13 +1,13 @@
 export default {
   general: {
-    welcome: 'Bienvenue'
+    welcome: "Bienvenue",
   },
   homePage: {
-    welcomeMessage: 'Bienvenue',
+    welcomeMessage: "Bienvenue",
   },
   navigationMenu: {
-    home: 'Accueil',
-    tickets: 'Mes tickets',
-    settings: 'Paramétrage'
-  }
+    home: "Accueil",
+    tickets: "Mes tickets",
+    settings: "Paramétrage",
+  },
 }

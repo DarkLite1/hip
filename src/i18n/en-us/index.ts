@@ -3,14 +3,14 @@
 
 export default {
   general: {
-    welcome: 'Welcome'
+    welcome: "Welcome",
   },
   homePage: {
-    welcomeMessage: 'Welcome',
+    welcomeMessage: "Hello 'from {company}!",
   },
   navigationMenu: {
-    home: 'Home',
-    tickets: 'My tickets',
-    settings: 'Settings'
-  }
+    home: "Home",
+    tickets: "My tickets",
+    settings: "Settings",
+  },
 }

@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve } = require('path')
 module.exports = {
   // https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
   // This option interrupts the configuration hierarchy at this file
@@ -17,11 +17,11 @@ module.exports = {
     project: resolve(__dirname, './tsconfig.json'),
     tsconfigRootDir: __dirname,
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module' // Allows for the use of imports
+    sourceType: 'module', // Allows for the use of imports
   },
 
   env: {
-    browser: true
+    browser: true,
   },
 
   // Rules order is important, please avoid shuffling them
@@ -65,12 +65,12 @@ module.exports = {
   ],
 
   globals: {
-    'ga': true, // Google Analytics
-    'cordova': true,
-    '__statics': true,
-    'process': true,
-    'Capacitor': true,
-    'chrome': true
+    ga: true, // Google Analytics
+    cordova: true,
+    __statics: true,
+    process: true,
+    Capacitor: true,
+    chrome: true,
   },
 
   // add your custom rules here
@@ -78,10 +78,18 @@ module.exports = {
     'prefer-promise-reject-errors': 'off',
 
     // TypeScript
-    'quotes': ['warn', 'single'],
+    quotes: ['warn', 'single'],
     '@typescript-eslint/explicit-function-return-type': 'off',
 
     // allow debugger during development only
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+  },
+  overrides: [
+    {
+      files: ['src/i18n/**/*.ts'],
+      rules: {
+        quotes: ['warn', 'double'],
+      },
+    },
+  ],
 }
