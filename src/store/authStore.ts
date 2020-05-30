@@ -7,6 +7,9 @@ const defaultState = () => {
   }
 }
 
+console.log('kiwi is nooooot a ot')
+
+
 const state = reactive(defaultState())
 
 export const setAccountId = () => {

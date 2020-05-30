@@ -6,7 +6,7 @@ export default {
     welcome: "Welcome",
   },
   homePage: {
-    welcomeMessage: "Hello 'from {company}!",
+    welcomeMessage: "Welcome {userName}!",
   },
   navigationMenu: {
     home: "Home",
