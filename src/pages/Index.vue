@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-
 import { setGraphProfile, profile } from 'src/store/graphStore'
 
 export default defineComponent({

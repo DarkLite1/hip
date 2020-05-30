@@ -2,8 +2,7 @@
   <q-page padding>
     <div class="q-pa-md">
       <q-list class="q-mb-md" bordered padding>
-        <q-item-label header>{{ $t('Settings') }}</q-item-label>
-        <!-- <q-item-label header>Settings</q-item-label> -->
+        <q-item-label header>{{ $t('navigationMenu.settings') }}</q-item-label>
 
         <q-item tag="label" v-ripple>
           <q-item-section>
@@ -72,7 +71,7 @@ import { defineComponent, ref, watch } from '@vue/composition-api'
 import { openURL } from 'quasar'
 
 export default defineComponent({
-  setup(props, context) {
+  setup(_, context) {
     const coolOptionActive = ref(true)
 
     const languageOptions = [
@@ -92,8 +91,8 @@ export default defineComponent({
       window.location.href =
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
     }
-    watch(language, (language) => {
-      context.root.$i18n.locale = language
+    watch(language, (newLanguage) => {
+      context.root.$i18n.locale = newLanguage
     })
 
     return {

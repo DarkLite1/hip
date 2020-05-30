@@ -2,6 +2,15 @@
 // so you can safely delete all default props below
 
 export default {
-  welcomeMessage: 'Welcome',
-  Settings: 'Settings',
+  general: {
+    welcome: 'Welcome'
+  },
+  homePage: {
+    welcomeMessage: 'Welcome',
+  },
+  navigationMenu: {
+    home: 'Home',
+    tickets: 'My tickets',
+    settings: 'Settings'
+  }
 }

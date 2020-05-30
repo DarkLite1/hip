@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-chip clickable @click="goToProfilePage" class="absolute-right">
-      {{ profile.givenName || 'Welcome' }}
+      {{ profile.givenName || $t('general.welcome') }}
       <q-avatar class="q-avatar--right">
         <q-img
           :src="photo"
