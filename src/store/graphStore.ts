@@ -1,31 +1,31 @@
 import { reactive, computed } from '@vue/composition-api'
 import { getGraphProfile, getGraphPhoto } from 'src/services/graph/graphService'
 
-const graphProfileDefault = () => {
+const defaultState = () => {
   return {
-    id: '',
-    displayName: '',
-    givenName: '',
-    surName: '',
-    jobTitle: '',
-    mail: '',
-    mobilePhone: '',
-    businessPhones: '',
-    officeLocation: '',
-    preferredLanguage: '',
-    userPrincipalName: '',
+    profile: {
+      id: '',
+      displayName: '',
+      givenName: '',
+      surName: '',
+      jobTitle: '',
+      mail: '',
+      mobilePhone: '',
+      businessPhones: '',
+      officeLocation: '',
+      preferredLanguage: '',
+      userPrincipalName: '',
+    },
+    photo: '',
   }
 }
 
-const graph = reactive({
-  profile: graphProfileDefault(),
-  photo: '',
-})
+const state = reactive(defaultState())
 
 export const setGraphProfile = async () => {
   try {
     const response = await getGraphProfile()
-    graph.profile = { ...graphProfileDefault(), ...response.data }
+    state.profile = { ...defaultState().profile, ...response.data }
   } catch (error) {
     console.log(`Failed setting the graph profile ${error}`)
   }
@@ -34,11 +34,11 @@ export const setGraphProfile = async () => {
 export const setGraphPhoto = async () => {
   try {
     const response = await getGraphPhoto()
-    graph.photo = response
+    state.photo = response
   } catch (error) {
     console.log(`Failed setting the graph photo ${error}`)
   }
 }
 
-export const profile = computed(() => graph.profile)
-export const photo = computed(() => graph.photo)
+export const profile = computed(() => state.profile)
+export const photo = computed(() => state.photo)
