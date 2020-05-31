@@ -25,8 +25,7 @@
             <q-item-section avatar>
               <q-icon :name="link.icon" />
             </q-item-section>
-
-            <q-item-section>{{ link.label }}</q-item-section>
+            <q-item-section>{{ link.label.value }}</q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
@@ -34,47 +33,47 @@
   </div>
 </template>
 
-<script lang='ts'>
-  import { defineComponent, ref, watch } from '@vue/composition-api'
+<script lang="ts">
+import { defineComponent, ref, watch } from '@vue/composition-api'
 
-  export default defineComponent({
-    name: 'SidebarNavigationMenu',
-    props: {
-      links: {
-        type: Array,
-        required: false,
-      },
+export default defineComponent({
+  name: 'SidebarNavigationMenu',
+  props: {
+    links: {
+      type: Array,
+      required: false,
     },
-    setup(props, context) {
-      const miniState = ref(true)
+  },
+  setup(props, context) {
+    const miniState = ref(true)
 
-      const setMiniState = (state: boolean | undefined) => {
-        if (context.root.$q.screen.width > 1023) {
-          miniState.value = false
-        } else if (state !== void 0) {
-          miniState.value = state === true
-        } else {
-          miniState.value = true
-        }
+    const setMiniState = (state: boolean | undefined) => {
+      if (context.root.$q.screen.width > 1023) {
+        miniState.value = false
+      } else if (state !== void 0) {
+        miniState.value = state === true
+      } else {
+        miniState.value = true
       }
+    }
 
-      watch(
-        () => context.root.$q.screen.width,
-        () => setMiniState(undefined)
-      )
+    watch(
+      () => context.root.$q.screen.width,
+      () => setMiniState(undefined)
+    )
 
-      return {
-        miniState,
-        setMiniState,
-      }
-    },
-  })
+    return {
+      miniState,
+      setMiniState,
+    }
+  },
+})
 </script>
 
-<style lang='scss' scoped>
-  .my-active-link {
-    color: white;
-    border-radius: 0 32px 32px 0;
-    background: $blue-grey-5;
-  }
+<style lang="scss" scoped>
+.my-active-link {
+  color: white;
+  border-radius: 0 32px 32px 0;
+  background: $blue-grey-5;
+}
 </style>

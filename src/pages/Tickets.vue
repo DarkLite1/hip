@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h1>Tickets</h1>
+    <h1>{{ $t('navigationMenu.tickets') }}</h1>
   </q-page>
 </template>
 

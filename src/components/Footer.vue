@@ -6,7 +6,7 @@
         :key="link.name"
         :name="link.name"
         :to="link.to"
-        :label="link.label"
+        :label="link.label.value"
         exact
       />
     </q-tabs>
