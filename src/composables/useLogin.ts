@@ -14,15 +14,15 @@ auth
     loading.value = false
   })
 
-export const useLogin = (context: SetupContext) => {
+export const useLogin = (router: SetupContext['root']['$router']) => {
   const login = async () => {
     loading.value = true
 
     try {
       await loginAccount()
 
-      if (context.root.$router.currentRoute.path === '/login') {
-        context.root.$router.push('/')
+      if (router.currentRoute.path === '/login') {
+        router.push('/')
       }
     } catch (error) {
       console.log('login with popup failed: ', error)

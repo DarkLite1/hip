@@ -18,7 +18,7 @@ import { useLogin } from 'src/composables/useLogin'
 
 export default defineComponent({
   setup(_, context) {
-    const { login, loading, disabled } = useLogin(context)
+    const { login, loading, disabled } = useLogin(context.root.$router)
 
     return { login, loading, disabled }
   },
