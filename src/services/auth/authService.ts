@@ -27,10 +27,7 @@ export const allScopes = (() => {
     .filter((scope) => scope)
 
   const uniqueSet = new Set([...config.scopes.loginRequest, ...resourceScopes])
-
-  return {
-    scopes: Array.from(uniqueSet),
-  }
+  return Array.from(uniqueSet)
 })()
 
 export const getToken = async (request: Msal.TokenExchangeParameters) => {
@@ -46,7 +43,13 @@ export const getToken = async (request: Msal.TokenExchangeParameters) => {
 
 export const login = async () => {
   if (isLoginPopup) {
-    return auth.loginPopup(allScopes)
+    return auth.loginPopup({
+      redirectUri: config.auth.redirectUri,
+      scopes: allScopes,
+    })
   }
-  return auth.loginRedirect(allScopes)
+  return auth.loginRedirect({
+    redirectUri: config.auth.redirectUri,
+    scopes: allScopes,
+  })
 }

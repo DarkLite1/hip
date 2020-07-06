@@ -3,27 +3,41 @@ import { auth } from 'src/services/auth/authService'
 
 const defaultState = () => {
   return {
-    accountId: '',
+    account: {
+      homeAccountId: '',
+      tenantId: '',
+      username: '',
+    },
   }
 }
 
 const state = reactive(defaultState())
 
-export const setAccountId = () => {
-  const account = auth.getAccount()
-  console.dir(account)
-
-  if (account) {
-    state.accountId = account.accountIdentifier
+export const setAccountId = (response?) => {
+  console.log('response setAccountId', response)
+  if (response && response.account) {
+    console.log('setAccountId from response')
+    state.account = response.account
   } else {
-    state.accountId = defaultState().accountId
+    console.log('setAccountId getAllAccounts')
+    const currentAccounts = auth.getAllAccounts()
+    console.log('setAccountId getAllAccounts ', currentAccounts)
+    if (currentAccounts === null) {
+      state.account = defaultState().account
+    } else if (currentAccounts.length > 1) {
+      // Add choose account code here
+    } else if (currentAccounts.length === 1) {
+      state.account = currentAccounts[0]
+    }
   }
 }
 
 export const logout = () => {
-  state.accountId = defaultState().accountId
+  state.account = defaultState().account
   auth.logout()
 }
 
-export const accountId = computed(() => state.accountId)
-export const isAuthenticated = computed(() => Boolean(state.accountId))
+export const account = computed(() => state.account)
+export const isAuthenticated = computed(() =>
+  Boolean(state.account.homeAccountId)
+)

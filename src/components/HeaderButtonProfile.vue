@@ -9,7 +9,7 @@
           width="38px"
           transition="scale"
           ratio="1"
-          placeholder-src="statics/img/account.png"
+          placeholder-src="img/account.png"
         />
       </q-avatar>
     </q-chip>

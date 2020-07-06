@@ -3,17 +3,21 @@
     <h3>My profile</h3>
     <q-btn label="Logout" color="primary" @click="logout" />
     <hr />
-    <p>accountID: {{ accountId }}</p>
+    <ul>
+      <li v-for="(value, name) in account" :key="name.homeAccountId">
+        {{ name }} : {{ value }}
+      </li>
+    </ul>
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { accountId, logout } from 'src/store/authStore'
+import { account, logout } from 'src/store/authStore'
 
 export default defineComponent({
   setup() {
-    return { accountId, logout }
+    return { account, logout }
   },
 })
 </script>
