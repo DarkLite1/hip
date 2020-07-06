@@ -13,7 +13,7 @@ export default defineComponent({
   setup() {
     const onClick = () => {
       setGraphProfile()
-      console.log('cliked ')
+      console.log('clicked ')
     }
 
     return { onClick, profile }

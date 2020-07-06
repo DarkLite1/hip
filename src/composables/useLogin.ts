@@ -17,17 +17,16 @@ auth
 export const useLogin = (router: SetupContext['root']['$router']) => {
   const login = async () => {
     loading.value = true
-
     try {
-      await loginAccount()
-
+      const response = await loginAccount()
+      console.log('response loginAccount', response)
       if (router.currentRoute.path === '/login') {
         router.push('/')
       }
+      setAccountId(response)
     } catch (error) {
       console.log('login with popup failed: ', error)
     } finally {
-      setAccountId()
       loading.value = false
     }
   }
