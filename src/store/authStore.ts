@@ -11,6 +11,7 @@ const state = reactive(defaultState())
 
 export const setAccountId = () => {
   const account = auth.getAccount()
+  console.dir(account)
 
   if (account) {
     state.accountId = account.accountIdentifier
