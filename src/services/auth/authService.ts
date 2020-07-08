@@ -32,7 +32,7 @@ export const allScopes = (() => {
   return Array.from(uniqueSet)
 })()
 
-const handleResponse = (resp: Msal.AuthenticationResult | null) => {
+export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
   console.log('handleResponse ', resp)
 
   if (resp != null) {

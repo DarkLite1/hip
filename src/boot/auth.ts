@@ -1,13 +1,10 @@
 import { boot } from 'quasar/wrappers'
 import { isAuthenticated } from 'src/store/authStore'
-// import { isAuthenticated, setAccount } from 'src/store/authStore'
-// import 'src/store/authStore'
+import { handleResponse } from 'src/services/auth/authService'
 
-// page refresh keeps us on the same page when authenticated
-// setAccount()
+handleResponse
 
 export default boot(({ router }) => {
-
   router.beforeEach((to, from, next) => {
     console.log('isAuthenticated ', isAuthenticated.value)
     if (isAuthenticated.value || to.path === '/' || to.path === '/login') {
