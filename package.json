@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@azure/msal-browser": "^2.0.0-beta.4",
-    "@quasar/app": "^2.0.1",
+    "@quasar/app": "^2.0.2",
     "@quasar/extras": "^1.8.2",
     "@vue/composition-api": "^1.0.0-beta.2",
     "axios": "^0.19.2",

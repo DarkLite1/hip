@@ -20,6 +20,5 @@ const Router = new VueRouter({
 
 export default route(function ({ Vue }) {
   Vue.use(VueRouter)
-
   return Router
 })
