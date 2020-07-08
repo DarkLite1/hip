@@ -1,11 +1,10 @@
 import { computed, reactive } from '@vue/composition-api'
-import { auth } from 'src/services/auth/authService'
+import { AuthenticationResult } from '@azure/msal-browser'
 
 const defaultState = () => {
   return {
     account: {
       homeAccountId: '',
-      tenantId: '',
       username: '',
     },
   }
@@ -13,28 +12,10 @@ const defaultState = () => {
 
 const state = reactive(defaultState())
 
-export const setAccountId = (response?) => {
-  console.log('response setAccountId', response)
-  if (response && response.account) {
-    console.log('setAccountId from response')
-    state.account = response.account
-  } else {
-    console.log('setAccountId getAllAccounts')
-    const currentAccounts = auth.getAllAccounts()
-    console.log('setAccountId getAllAccounts ', currentAccounts)
-    if (currentAccounts === null) {
-      state.account = defaultState().account
-    } else if (currentAccounts.length > 1) {
-      // Add choose account code here
-    } else if (currentAccounts.length === 1) {
-      state.account = currentAccounts[0]
-    }
-  }
-}
-
-export const logout = () => {
-  state.account = defaultState().account
-  auth.logout()
+export const setAccount = (account?: AuthenticationResult['account']) => {
+  console.log('response setAccount', account)
+  if (account) state.account = account
+  else state.account = defaultState().account
 }
 
 export const account = computed(() => state.account)

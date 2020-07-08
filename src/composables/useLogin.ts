@@ -1,25 +1,21 @@
 import { computed, ref, SetupContext } from '@vue/composition-api'
-import { auth, login as loginAccount } from 'src/services/auth/authService'
-import { setAccountId } from 'src/store/authStore'
+import { login as loginAccount } from 'src/services/auth/authService'
 
 const loading = ref(true)
 
-auth
-  .handleRedirectPromise() // only called when not authenticated by msal
-  .catch((error) => {
-    console.log('login with redirect failed: ', error)
-  })
-  .finally(() => {
-    setAccountId()
-    loading.value = false
-  })
+export const stopLoading = () => {
+      console.log('stopLoading');
+      loading.value = false
+}
 
 export const useLogin = (router: SetupContext['root']['$router']) => {
   const login = async () => {
     loading.value = true
     try {
-      const response = await loginAccount()
-      console.log('response loginAccount', response)
+      console.log('call loginAccount');
+      
+      await loginAccount()
+
       if (router.currentRoute.path === '/login') {
         router.push('/')
       }
@@ -27,6 +23,7 @@ export const useLogin = (router: SetupContext['root']['$router']) => {
     } catch (error) {
       console.log('login with popup failed: ', error)
     } finally {
+      console.log('useLogin stop loading')
       loading.value = false
     }
   }
