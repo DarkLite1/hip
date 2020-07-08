@@ -2,8 +2,9 @@ import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
-import { setAccount, account } from 'src/store/authStore'
+import { setAccount, account, isAuthenticated } from 'src/store/authStore'
 import { stopLoading } from 'src/composables/useLogin'
+import { Router } from 'src/router'
 
 const MSALConfig: Msal.Configuration = {
   auth: {
@@ -60,14 +61,13 @@ auth
   .then(() => {
     stopLoading()
 
-    // change route here
-    console.log('this', this)
-     
+    console.log('handleRedirectPromise Router', Router)
+    console.log('handleRedirectPromise isAuthenticated', isAuthenticated.value)
 
-    // if (router.currentRoute.path === '/login') {
-    //   console.log('authService push to /')
-    //   router.push('/')
-    // }
+    if (Router.currentRoute.path === '/login') {
+      console.log('authService push to /')
+      Router.push('/')
+    }
   })
   .catch((err) => {
     console.error(err)
