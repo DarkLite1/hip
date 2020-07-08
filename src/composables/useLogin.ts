@@ -1,4 +1,4 @@
-import { computed, ref, SetupContext } from '@vue/composition-api'
+import { computed, ref } from '@vue/composition-api'
 import { login as loginAccount } from 'src/services/auth/authService'
 
 const loading = ref(true)
@@ -8,19 +8,12 @@ export const stopLoading = () => {
   loading.value = false
 }
 
-export const useLogin = (router: SetupContext['root']['$router']) => {
+export const useLogin = () => {
   const login = async () => {
     loading.value = true
     try {
       console.log('call loginAccount')
-
       await loginAccount()
-
-      if (router.currentRoute.path === '/login') {
-        console.log('useLogin push to /');
-        router.push('/')
-      }
-      setAccountId(response)
     } catch (error) {
       console.log('login with popup failed: ', error)
     } finally {

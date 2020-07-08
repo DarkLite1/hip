@@ -7,7 +7,7 @@ import routes from './routes'
  * directly export the Router instantiation
  */
 
-export const Router = new VueRouter({
+const Router = new VueRouter({
   scrollBehavior: () => ({ x: 0, y: 0 }),
   routes,
 

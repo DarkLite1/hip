@@ -7,15 +7,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, watch } from '@vue/composition-api'
 import { isAuthenticated } from 'src/store/authStore'
 
 export default defineComponent({
   setup(props, context) {
     if (isAuthenticated.value) {
-      // console.log('from ', context.root.$router)
       context.root.$router.push('/')
     }
+
+    // on page redirect the status might change
+    watch(isAuthenticated, (isAuthenticated) => {
+      if (isAuthenticated) {
+        context.root.$router.push('/')
+      }
+    })
   },
 })
 </script>

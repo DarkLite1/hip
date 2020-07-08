@@ -17,8 +17,8 @@ import { defineComponent } from '@vue/composition-api'
 import { useLogin } from 'src/composables/useLogin'
 
 export default defineComponent({
-  setup(_, context) {
-    const { login, loading, disabled } = useLogin(context.root.$router)
+  setup() {
+    const { login, loading, disabled } = useLogin()
 
     return { login, loading, disabled }
   },
