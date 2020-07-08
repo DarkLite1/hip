@@ -27,8 +27,8 @@ import {
 
 export default defineComponent({
   setup(_, context) {
-    setGraphPhoto()
-    setGraphProfile()
+    // setGraphPhoto()
+    // setGraphProfile()
 
     const goToProfilePage = () => {
       context.root.$router.push('/profile').catch(() => {

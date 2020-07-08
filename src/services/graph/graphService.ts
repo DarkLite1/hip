@@ -1,4 +1,3 @@
-import * as Msal from '@azure/msal-browser'
 import config from 'src/app-config.json'
 import axios, { AxiosRequestConfig } from 'axios'
 import { getToken } from 'src/services/auth/authService'
@@ -18,7 +17,7 @@ const callGraph = (
 
 const getGraphDetails = async (
   uri: string,
-  scopes: Msal.TokenExchangeParameters,
+  scopes: { scopes: string[] },
   axiosConfig?: AxiosRequestConfig
 ) => {
   try {

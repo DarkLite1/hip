@@ -1,8 +1,10 @@
 import { boot } from 'quasar/wrappers'
-import { isAuthenticated, setAccountId } from 'src/store/authStore'
+import { isAuthenticated } from 'src/store/authStore'
+// import { isAuthenticated, setAccount } from 'src/store/authStore'
+// import 'src/store/authStore'
 
 // page refresh keeps us on the same page when authenticated
-setAccountId()
+// setAccount()
 
 export default boot(({ router }) => {
 

@@ -13,7 +13,8 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { account, logout } from 'src/store/authStore'
+import { account } from 'src/store/authStore'
+import { logout } from 'src/services/auth/authService'
 
 export default defineComponent({
   setup() {
