@@ -59,6 +59,15 @@ auth
   .then(handleResponse)
   .then(() => {
     stopLoading()
+
+    // change route here
+    console.log('this', this)
+     
+
+    // if (router.currentRoute.path === '/login') {
+    //   console.log('authService push to /')
+    //   router.push('/')
+    // }
   })
   .catch((err) => {
     console.error(err)

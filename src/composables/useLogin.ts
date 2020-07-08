@@ -4,19 +4,20 @@ import { login as loginAccount } from 'src/services/auth/authService'
 const loading = ref(true)
 
 export const stopLoading = () => {
-      console.log('stopLoading');
-      loading.value = false
+  console.log('stopLoading')
+  loading.value = false
 }
 
 export const useLogin = (router: SetupContext['root']['$router']) => {
   const login = async () => {
     loading.value = true
     try {
-      console.log('call loginAccount');
-      
+      console.log('call loginAccount')
+
       await loginAccount()
 
       if (router.currentRoute.path === '/login') {
+        console.log('useLogin push to /');
         router.push('/')
       }
     } catch (error) {
