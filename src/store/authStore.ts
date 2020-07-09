@@ -6,6 +6,8 @@ const defaultState = () => {
     account: {
       homeAccountId: '',
       username: '',
+      environment: '',
+      tenantId: '',
     },
   }
 }

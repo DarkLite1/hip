@@ -17,7 +17,7 @@ const callGraph = (
 
 const getGraphDetails = async (
   uri: string,
-  scopes: { scopes: string[] },
+  scopes: string[],
   axiosConfig?: AxiosRequestConfig
 ) => {
   try {
@@ -34,9 +34,10 @@ const getGraphDetails = async (
 
 export const getGraphProfile = async () => {
   try {
-    return await getGraphDetails(config.resources.msGraphProfile.uri, {
-      scopes: config.resources.msGraphProfile.scopes,
-    })
+    return await getGraphDetails(
+      config.resources.msGraphProfile.uri,
+      config.resources.msGraphProfile.scopes
+    )
   } catch (error) {
     throw new Error(`Failed retrieving the graph profile: ${error}`)
   }
@@ -46,12 +47,8 @@ export const getGraphPhoto = async () => {
   try {
     const response = await getGraphDetails(
       config.resources.msGraphPhoto.uri,
-      {
-        scopes: config.resources.msGraphPhoto.scopes,
-      },
-      {
-        responseType: 'arraybuffer',
-      }
+      config.resources.msGraphPhoto.scopes,
+      { responseType: 'arraybuffer' }
     )
     if (!(response && response.data)) {
       return ''

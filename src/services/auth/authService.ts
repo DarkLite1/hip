@@ -56,9 +56,12 @@ auth
     stopLoading()
   })
 
-export const getToken = async (request) => {
+export const getToken = async (scopes: string[]) => {
+  const request = {
+    scopes: scopes,
+    account: account.value,
+  }
   try {
-    request.account = account.value
     return await auth.acquireTokenSilent(request)
   } catch {
     if (isLoginPopup) {
