@@ -13,7 +13,6 @@ const defaultState = () => {
 const state = reactive(defaultState())
 
 export const setAccount = (account?: AuthenticationResult['account']) => {
-  console.log('response setAccount', account)
   if (account) state.account = account
   else state.account = defaultState().account
 }

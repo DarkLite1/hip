@@ -33,21 +33,16 @@ export const allScopes = (() => {
 })()
 
 export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
-  console.log('handleResponse ', resp)
-
   if (resp != null) {
     setAccount(resp.account)
   } else {
     const currentAccounts = auth.getAllAccounts()
-    console.log('handleResponse getAllAccounts ', currentAccounts)
     if (currentAccounts === null) {
-      console.log('handleResponse currentAccounts null')
       return
     } else if (currentAccounts.length > 1) {
       console.log('handleResponse currentAccounts > 1')
       // Add choose account code here
     } else if (currentAccounts.length === 1) {
-      console.log('call setAccount with currentAccounts[0]')
       setAccount(currentAccounts[0])
     }
   }
@@ -56,25 +51,21 @@ export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
 auth
   .handleRedirectPromise()
   .then(handleResponse)
-  .catch((err) => {
-    console.error(err)
-  })
+  .catch(console.error.bind(console))
   .finally(() => {
     stopLoading()
   })
 
 export const getToken = async (request) => {
   try {
-    console.log('getToken acquireTokenSilent')
+    request.account = account.value
     return await auth.acquireTokenSilent(request)
-    console.log('getToken acquireTokenSilent ok')
   } catch {
-    console.log('getToken acquireTokenSilent failed')
     if (isLoginPopup) {
-      console.log('getToken acquireTokenPopup')
-      return await auth.acquireTokenPopup(request)
+      const res = await auth.acquireTokenPopup(request)
+      setAccount(res.account)
+      return res
     }
-    console.log('getToken acquireTokenRedirect')
     return auth.acquireTokenRedirect(request)
   }
 }

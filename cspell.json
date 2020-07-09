@@ -26,6 +26,7 @@
     ],
     // words - list of words to be always considered correct
     "words": [
+        "arraybuffer",
         "browserslist",
         "composables",
         "githubusercontent",
