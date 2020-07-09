@@ -12,12 +12,10 @@ export const useLogin = () => {
   const login = async () => {
     loading.value = true
     try {
-      console.log('call loginAccount')
       await loginAccount()
     } catch (error) {
       console.log('login with popup failed: ', error)
     } finally {
-      console.log('useLogin stop loading')
       loading.value = false
     }
   }

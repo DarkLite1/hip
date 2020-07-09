@@ -36,7 +36,6 @@ export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
   console.log('handleResponse ', resp)
 
   if (resp != null) {
-    console.log('handleResponse call setAccount with resp.account')
     setAccount(resp.account)
   } else {
     const currentAccounts = auth.getAllAccounts()
@@ -57,11 +56,11 @@ export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
 auth
   .handleRedirectPromise()
   .then(handleResponse)
-  .then(() => {
-    stopLoading()
-  })
   .catch((err) => {
     console.error(err)
+  })
+  .finally(() => {
+    stopLoading()
   })
 
 export const getToken = async (request) => {
@@ -82,8 +81,6 @@ export const getToken = async (request) => {
 
 export const login = async () => {
   if (isLoginPopup) {
-    console.log('isLoginPopup')
-
     return auth
       .loginPopup({
         redirectUri: config.auth.redirectUri,
@@ -91,7 +88,6 @@ export const login = async () => {
       })
       .then(handleResponse)
   }
-  console.log('not LoginPopup')
   return auth.loginRedirect({
     redirectUri: config.auth.redirectUri,
     scopes: allScopes,
