@@ -12,11 +12,6 @@ import { isAuthenticated } from 'src/store/authStore'
 
 export default defineComponent({
   setup(props, context) {
-    if (isAuthenticated.value) {
-      context.root.$router.push('/')
-    }
-
-    // on page redirect the status might change
     watch(isAuthenticated, (isAuthenticated) => {
       if (isAuthenticated) {
         context.root.$router.push('/')
