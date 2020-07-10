@@ -30,6 +30,7 @@
         "browserslist",
         "composables",
         "githubusercontent",
+        "inmemory",
         "mkdirp",
         "Msal",
         "SSSD",
