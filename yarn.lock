@@ -1610,6 +1610,13 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
+"@vue/apollo-composable@^4.0.0-alpha.8":
+  version "4.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-alpha.8.tgz#6e82a64b1f9637941579aa560defbca3765401ba"
+  integrity sha512-d+9Uigio43C13ex/FfvJ6oaB3YjNUvIc91jSix4PfJERcCPtCeLlVHYinX2MMv40va6gY9sC6GN6QzL5o/80uQ==
+  dependencies:
+    throttle-debounce "^2.1.0"
+
 "@vue/component-compiler-utils@^3.1.0":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-3.1.2.tgz#8213a5ff3202f9f2137fe55370f9e8b9656081c3"
@@ -1627,9 +1634,9 @@
     prettier "^1.18.2"
 
 "@vue/composition-api@^1.0.0-beta.2":
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.2.tgz#09a1add47f65a5a52774db9d30745521f649563b"
-  integrity sha512-jPdh8cXJg3xurPfLMht5AmEOLnYXEZ9kenRWBnKcZHd+PennsW1LgcXDtiIGWQggE2DO/6/5T59Fx7PzwzNFsg==
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-beta.3.tgz#d1edc1c56ed01b3e862e9e8f61efed4df5701991"
+  integrity sha512-er8gDgHTH/cAZCInR77xufPwnUwkonrzBhDdwxODEnnDffd7AC6Zn7I5+o83lGQbUe97UxJQMlAXGUSs81pzUg==
   dependencies:
     tslib "^2.0.0"
 
@@ -9036,6 +9043,11 @@ text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+throttle-debounce@^2.1.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-2.2.1.tgz#fbd933ae6793448816f7d5b3cae259d464c98137"
+  integrity sha512-i9hAVld1f+woAiyNGqWelpDD5W1tpMroL3NofTz9xzwq6acWBlO2dC8k5EFSZepU6oOINtV5Q3aSPoRg7o4+fA==
 
 through2@^2.0.0:
   version "2.0.5"
