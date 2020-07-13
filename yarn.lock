@@ -1178,10 +1178,10 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@quasar/app@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@quasar/app/-/app-2.0.3.tgz#047985391cee85451dd088ea105dd7bd4f1c3bc7"
-  integrity sha512-tdwhGcULlXsn764EKUdBm29yjSM6HtpaC50TFsgRwb17YS4WkFfW8XQJhktd1DOtmNDyJ+yL7FUiWXDyG5PlYw==
+"@quasar/app@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@quasar/app/-/app-2.0.5.tgz#d3051088d9a9dc10ab62fcb8f71802d6d21ac0aa"
+  integrity sha512-R5yNt1Eiexv877dpymel9G22k0jPlG3u7MXikJ/DsE0tKQMLPwhfogClaN1G/1fEF23n3HYwU9um85ias/XVOA==
   dependencies:
     "@quasar/babel-preset-app" "2.0.1"
     "@quasar/fastclick" "1.1.4"
@@ -1446,15 +1446,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.5.tgz#3d03acd3b3414cf67faf999aed11682ed121f22b"
   integrity sha512-90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==
 
+"@types/node@12":
+  version "12.12.50"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.50.tgz#e9b2e85fafc15f2a8aa8fdd41091b983da5fd6ee"
+  integrity sha512-5ImO01Fb8YsEOYpV+aeyGYztcYcjGsBvN4D7G5r1ef2cuQOpymjWNQi5V0rKHE6PC2ru3HkoUr/Br2/8GUA84w==
+
 "@types/node@>=6":
   version "14.0.20"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.20.tgz#0da05cddbc761e1fa98af88a17244c8c1ff37231"
   integrity sha512-MRn/NP3dee8yL5QhbSA6riuwkS+UOcsPUMOIOG3KMUQpuor/2TopdRBu8QaaB4fGU+gz/bzyDWt0FtUbeJ8H1A==
-
-"@types/node@^10.17.26":
-  version "10.17.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.26.tgz#a8a119960bff16b823be4c617da028570779bcfd"
-  integrity sha512-myMwkO2Cr82kirHY8uknNRHEVtn0wV3DTQfkrjx17jmkstDRZ24gNUdl8AHXVyVclTYI/bNjgTPTAWvWLqXqkw==
 
 "@types/q@^1.5.1":
   version "1.5.4"
@@ -7804,10 +7804,10 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-quasar@^1.12.8:
-  version "1.12.8"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.12.8.tgz#842a4af517257812b573fbaf4b6bd57eb71039d4"
-  integrity sha512-IUcug03OuYSiNiggksQzS8MNorQxR6QJTiuDHsMPLRS63BUBmI8YYq+xADkZm2E2z2xwS1SnyDbX8ceU+shYXQ==
+quasar@^1.12.11:
+  version "1.12.11"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.12.11.tgz#269034a442c9889a7839e797053b9460c5427479"
+  integrity sha512-FeB/9Y1r3Uq0yVu8puOZ+8PrzOAKAvOpZInbJ8S6Qy3JnmUvZass/doDj0wtnLZ8uRjTRjwSw4uopSZMtVk+hQ==
 
 query-string@^4.1.0:
   version "4.3.4"

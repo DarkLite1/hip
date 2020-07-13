@@ -4,9 +4,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { provide } from '@vue/composition-api'
+import config from 'src/app-config.json'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: config.resources.gatewayApi.uri,
+  // uri: 'http://localhost:4000/graphql',
 })
 
 const cache = new InMemoryCache()

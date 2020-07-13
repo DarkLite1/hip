@@ -33,8 +33,11 @@
         "inmemory",
         "mkdirp",
         "Msal",
+        "roboto",
         "SSSD",
         "streetsidesoftware",
+        "transpiled",
+        "treeshaking",
         "tsmerge",
         "visualstudio",
         "vsmarketplacebadge"
