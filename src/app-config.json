@@ -13,7 +13,7 @@
   },
   "resources": {
     "gatewayApi": {
-      "uri": "https://localhost:44351/api",
+      "uri": "http://localhost:5000/graphql",
       "scopes": ["api://0e01a2d8-64bb-4c3b-a75d-939aa5d8d361/access_as_user"]
     },
     "msGraphProfile": {

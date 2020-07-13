@@ -8,7 +8,6 @@ import config from 'src/app-config.json'
 
 const httpLink = createHttpLink({
   uri: config.resources.gatewayApi.uri,
-  // uri: 'http://localhost:4000/graphql',
 })
 
 const cache = new InMemoryCache()
