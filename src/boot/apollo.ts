@@ -6,18 +6,18 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 import { provide } from '@vue/composition-api'
 import config from 'src/app-config.json'
 
-const httpLink = createHttpLink({
-  uri: config.resources.gatewayApi.uri,
-})
-
-const cache = new InMemoryCache()
-
-const apolloClient = new ApolloClient({
-  link: httpLink,
-  cache,
-})
-
 export default boot(({ app }) => {
+  const httpLink = createHttpLink({
+    uri: config.resources.gatewayApi.uri,
+  })
+
+  const cache = new InMemoryCache()
+
+  const apolloClient = new ApolloClient({
+    link: httpLink,
+    cache,
+  })
+
   app.setup = () => {
     provide(DefaultApolloClient, apolloClient)
   }
