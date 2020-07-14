@@ -1,122 +1,114 @@
 /* eslint-disable */
-import gql from 'graphql-tag';
-import * as VueApolloComposable from '@vue/apollo-composable';
-import * as VueCompositionApi from '@vue/composition-api';
-export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
-export type ReactiveFunction<TParam> = () => TParam;
+import gql from 'graphql-tag'
+import * as VueApolloComposable from '@vue/apollo-composable'
+import * as VueCompositionApi from '@vue/composition-api'
+export type Maybe<T> = T | null
+export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] }
+export type ReactiveFunction<TParam> = () => TParam
 
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-};
+  ID: string
+  String: string
+  Boolean: boolean
+  Int: number
+  Float: number
+}
 
 export type Query = {
-  __typename?: 'Query';
-  accounts: Array<Account>;
-  account: Account;
-  preferences: Array<Preference>;
-};
-
+  __typename?: 'Query'
+  accounts: Array<Account>
+  account: Account
+  preferences: Array<Preference>
+}
 
 export type QueryAccountArgs = {
-  accountIdentifier: Scalars['String'];
-};
+  accountIdentifier: Scalars['String']
+}
 
 export type Account = {
-  __typename?: 'Account';
-  id: Scalars['Int'];
-  accountIdentifier: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  userName?: Maybe<Scalars['String']>;
-  preference?: Maybe<Preference>;
-};
+  __typename?: 'Account'
+  id: Scalars['Int']
+  accountIdentifier: Scalars['String']
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+  preference?: Maybe<Preference>
+}
 
 export type Preference = {
-  __typename?: 'Preference';
-  id: Scalars['Int'];
-  language: Scalars['String'];
-};
+  __typename?: 'Preference'
+  id: Scalars['Int']
+  language: Scalars['String']
+}
 
 export type Mutation = {
-  __typename?: 'Mutation';
-  addAccount: AccountAddResult;
-  updateAccount: AccountUpdateResult;
-  removeAccount: AccountRemoveResult;
-};
-
+  __typename?: 'Mutation'
+  addAccount: AccountAddResult
+  updateAccount: AccountUpdateResult
+  removeAccount: AccountRemoveResult
+}
 
 export type MutationAddAccountArgs = {
-  options: AccountAddInput;
-};
-
+  options: AccountAddInput
+}
 
 export type MutationUpdateAccountArgs = {
-  input: AccountUpdateInput;
-  accountIdentifier: Scalars['String'];
-};
-
+  input: AccountUpdateInput
+  accountIdentifier: Scalars['String']
+}
 
 export type MutationRemoveAccountArgs = {
-  accountIdentifier: Scalars['String'];
-};
+  accountIdentifier: Scalars['String']
+}
 
-export type AccountAddResult = Account | ExistsAlready;
+export type AccountAddResult = Account | ExistsAlready
 
 export type ExistsAlready = {
-  __typename?: 'ExistsAlready';
-  message: Scalars['String'];
-  account: Account;
-};
+  __typename?: 'ExistsAlready'
+  message: Scalars['String']
+  account: Account
+}
 
 export type AccountAddInput = {
-  accountIdentifier: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  userName?: Maybe<Scalars['String']>;
-};
+  accountIdentifier: Scalars['String']
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+}
 
-export type AccountUpdateResult = Account | NotFound;
+export type AccountUpdateResult = Account | NotFound
 
 export type NotFound = {
-  __typename?: 'NotFound';
-  message: Scalars['String'];
-};
+  __typename?: 'NotFound'
+  message: Scalars['String']
+}
 
 export type AccountUpdateInput = {
-  name?: Maybe<Scalars['String']>;
-  userName?: Maybe<Scalars['String']>;
-};
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+}
 
-export type AccountRemoveResult = Success | NotFound;
+export type AccountRemoveResult = Success | NotFound
 
 export type Success = {
-  __typename?: 'Success';
-  message: Scalars['String'];
-};
+  __typename?: 'Success'
+  message: Scalars['String']
+}
 
-export type AllAccountsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>
 
-
-export type AllAccountsQuery = (
-  { __typename?: 'Query' }
-  & { accounts: Array<(
-    { __typename?: 'Account' }
-    & Pick<Account, 'accountIdentifier'>
-  )> }
-);
-
+export type AllAccountsQuery = { __typename?: 'Query' } & {
+  accounts: Array<
+    { __typename?: 'Account' } & Pick<Account, 'accountIdentifier'>
+  >
+}
 
 export const AllAccountsDocument = gql`
-    query allAccounts {
-  accounts {
-    accountIdentifier
+  query allAccounts {
+    accounts {
+      accountIdentifier
+    }
   }
-}
-    `;
+`
 
 /**
  * __useAllAccountsQuery__
@@ -133,7 +125,32 @@ export const AllAccountsDocument = gql`
  *   }
  * );
  */
-export function useAllAccountsQuery(options: VueApolloComposable.UseQueryOptions<AllAccountsQuery, AllAccountsQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<AllAccountsQuery, AllAccountsQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<AllAccountsQuery, AllAccountsQueryVariables>> = {}) {
-            return VueApolloComposable.useQuery<AllAccountsQuery, undefined>(AllAccountsDocument, undefined, options);
-          }
-export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<AllAccountsQuery, AllAccountsQueryVariables>;
+export function useAllAccountsQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        AllAccountsQuery,
+        AllAccountsQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          AllAccountsQuery,
+          AllAccountsQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          AllAccountsQuery,
+          AllAccountsQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<AllAccountsQuery, undefined>(
+    AllAccountsDocument,
+    undefined,
+    options
+  )
+}
+export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  AllAccountsQuery,
+  AllAccountsQueryVariables
+>
