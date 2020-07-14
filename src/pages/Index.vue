@@ -16,9 +16,9 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useQuery, useResult } from '@vue/apollo-composable'
+import { useResult } from '@vue/apollo-composable'
 import { profile } from 'src/store/graphStore'
-import allAccountsQuery from 'src/graphql/allAccounts.query.graphql'
+import { useAllAccountsQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup() {
@@ -26,16 +26,7 @@ export default defineComponent({
       console.log('clicked ')
     }
 
-    // const { result, loading } = useQuery(allAccounts)
-    // const allAccountsQuery = gql`
-    //   query allAccounts {
-    //     accounts {
-    //       accountIdentifier
-    //     }
-    //   }
-    // `
-
-    const { result, loading } = useQuery(allAccountsQuery)
+    const { result, loading } = useAllAccountsQuery()
     const allAccounts = useResult(result)
 
     return { onClick, profile, allAccounts, loading }

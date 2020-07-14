@@ -180,7 +180,7 @@ module.exports = configure(function (ctx) {
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
-        // protocol: 'myapp://path',
+        // protocol: 'mya-pp://path',
         // Windows only
         // win32metadata: { ... }
       },
