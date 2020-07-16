@@ -70,11 +70,14 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {
-        cfg.module.rules.push({
-          test: /\.(graphql|gql)$/,
-          loader: 'graphql-tag/loader',
-          exclude: /node_modules/,
-        })
+        // only required when importing from .graphql files directly
+        // we now use the graphql code generator and import from the 
+        // generated operations file that is TypeScript compatible
+        // cfg.module.rules.push({
+        //   test: /\.(graphql|gql)$/,
+        //   loader: 'graphql-tag/loader',
+        //   exclude: /node_modules/,
+        // })
 
         // cfg.devtool = 'source-map'
         // cfg.devtool =  'cheap-module-eval-source-map'
