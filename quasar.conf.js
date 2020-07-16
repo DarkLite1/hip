@@ -11,20 +11,14 @@ const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
-    // https://quasar.dev/quasar-cli/cli-documentation/supporting-ts
     supportTS: {
       tsCheckerConfig: { eslint: true },
     },
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
-    // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     // order is important
     boot: ['i18n', 'VueCompositionApi', 'auth', 'apollo', 'router'],
 
-    // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ['app.scss'],
 
-    // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
@@ -38,7 +32,6 @@ module.exports = configure(function (ctx) {
       'material-icons', // optional, you are not bound to it
     ],
 
-    // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
@@ -56,7 +49,6 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature
     // preFetch: true
 
-    // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
@@ -103,12 +95,10 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/options/animations
     animations: [],
 
-    // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
       pwa: false,
     },
 
-    // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
@@ -151,18 +141,15 @@ module.exports = configure(function (ctx) {
       },
     },
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
     cordova: {
       // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
       id: 'org.cordova.quasar.app',
     },
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
       hideSplashscreen: true,
     },
 
-    // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
     electron: {
       bundler: 'packager', // 'packager' or 'builder'
 
