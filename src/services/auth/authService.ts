@@ -92,6 +92,6 @@ export const logout = () => {
   const logoutRequest = {
     account: auth.getAccountByUsername(account.value.username),
   }
-  auth.logout(logoutRequest)
+  void auth.logout(logoutRequest)
   setAccount()
 }

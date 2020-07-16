@@ -45,6 +45,7 @@
         "transpiled",
         "treeshaking",
         "tsmerge",
+        "uncommented",
         "visualstudio",
         "vsmarketplacebadge"
     ],

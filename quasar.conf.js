@@ -7,11 +7,14 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/camelcase */
 const { configure } = require('quasar/wrappers')
 
 module.exports = configure(function (ctx) {
   return {
+    // https://quasar.dev/quasar-cli/cli-documentation/supporting-ts
+    supportTS: {
+      tsCheckerConfig: { eslint: true },
+    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
@@ -39,26 +42,15 @@ module.exports = configure(function (ctx) {
     framework: {
       iconSet: 'material-icons', // Quasar icon set
       lang: 'en-us', // Quasar language pack
+      config: {},
 
       // Possible values for "importStrategy":
-      // * 'auto' - Auto-import needed Quasar components & directives
-      //            (slightly higher compile time; next to minimum bundle size; most convenient)
-      // * false  - Manually specify what to import
-      //            (fastest compile time; minimum bundle size; most tedious)
-      // * true   - Import everything from Quasar
-      //            (not treeshaking Quasar; biggest bundle size; convenient)
+      // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
+      // * 'all'  - Manually specify what to import
       importStrategy: 'auto',
-
-      components: [],
-      directives: [],
 
       // Quasar plugins
       plugins: [],
-    },
-
-    // https://quasar.dev/quasar-cli/cli-documentation/supporting-ts
-    supportTS: {
-      tsCheckerConfig: { eslint: true },
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature
@@ -93,9 +85,6 @@ module.exports = configure(function (ctx) {
             test: /\.(js|vue)$/,
             loader: 'eslint-loader',
             exclude: /node_modules/,
-            options: {
-              formatter: require('eslint').CLIEngine.getFormatter('stylish'),
-            },
           })
         }
       },

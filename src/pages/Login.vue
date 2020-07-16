@@ -14,7 +14,7 @@ export default defineComponent({
   setup(props, context) {
     watch(isAuthenticated, (isAuthenticated) => {
       if (isAuthenticated) {
-        context.root.$router.push('/')
+        void context.root.$router.push('/')
       }
     })
   },

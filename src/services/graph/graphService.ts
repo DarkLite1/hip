@@ -1,8 +1,9 @@
 import config from 'src/app-config.json'
 import axios, { AxiosRequestConfig } from 'axios'
 import { getToken } from 'src/services/auth/authService'
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-types'
 
-const callGraph = (
+const callGraph = <T>(
   url: string,
   token: string,
   axiosConfig?: AxiosRequestConfig
@@ -12,10 +13,10 @@ const callGraph = (
     url: url,
     headers: { Authorization: `Bearer ${token}` },
   }
-  return axios({ ...params, ...axiosConfig })
+  return axios.request<T>({ ...params, ...axiosConfig })
 }
 
-const getGraphDetails = async (
+const getGraphDetails = async <T>(
   uri: string,
   scopes: string[],
   axiosConfig?: AxiosRequestConfig
@@ -23,7 +24,7 @@ const getGraphDetails = async (
   try {
     const response = await getToken(scopes)
     if (response && response.accessToken) {
-      return callGraph(uri, response.accessToken, axiosConfig)
+      return callGraph<T>(uri, response.accessToken, axiosConfig)
     } else {
       throw new Error('We could not get a token because of page redirect')
     }
@@ -34,7 +35,7 @@ const getGraphDetails = async (
 
 export const getGraphProfile = async () => {
   try {
-    return await getGraphDetails(
+    return await getGraphDetails<MicrosoftGraph.User>(
       config.resources.msGraphProfile.uri,
       config.resources.msGraphProfile.scopes
     )
@@ -45,7 +46,7 @@ export const getGraphProfile = async () => {
 
 export const getGraphPhoto = async () => {
   try {
-    const response = await getGraphDetails(
+    const response = await getGraphDetails<string>(
       config.resources.msGraphPhoto.uri,
       config.resources.msGraphPhoto.scopes,
       { responseType: 'arraybuffer' }
@@ -54,6 +55,7 @@ export const getGraphPhoto = async () => {
       return ''
     }
     const imageBase64 = new Buffer(response.data, 'binary').toString('base64')
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return `data:${response.headers['content-type']};base64, ${imageBase64}`
   } catch (error) {
     throw new Error(`Failed retrieving the graph photo: ${error}`)
