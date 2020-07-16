@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0",
-    "graphql-generate": "graphql-codegen --config graphql-codegen.yml"
+    "graphql-generate": "graphql-codegen --config graphql-codegen.yml",
+    "graphql-generate-watch": "graphql-codegen --config graphql-codegen.yml --watch"
   },
   "dependencies": {
     "@azure/msal-browser": "^2.0.0-beta.4",
@@ -29,11 +30,11 @@
   },
   "devDependencies": {
     "@graphql-codegen/add": "^1.17.0",
-    "@graphql-codegen/cli": "1.17.0",
+    "@graphql-codegen/cli": "^1.17.0",
     "@graphql-codegen/fragment-matcher": "1.17.0",
     "@graphql-codegen/introspection": "1.17.0",
-    "@graphql-codegen/typescript": "1.17.0",
-    "@graphql-codegen/typescript-operations": "1.17.0",
+    "@graphql-codegen/typescript": "^1.17.0",
+    "@graphql-codegen/typescript-operations": "^1.17.0",
     "@graphql-codegen/typescript-vue-apollo": "^1.17.0",
     "@microsoft/microsoft-graph-types": "^1.13.0",
     "@quasar/app": "^2.0.5",

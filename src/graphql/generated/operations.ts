@@ -19,7 +19,6 @@ export type Query = {
   __typename?: 'Query'
   accounts: Array<Account>
   account: Account
-  preferences: Array<Preference>
 }
 
 export type QueryAccountArgs = {
