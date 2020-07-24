@@ -1,7 +1,7 @@
 module.exports = {
     client: {
       service: {
-        name: 'my-app',
+        name: 'graphql-backend',
         url: 'http://localhost:5000//graphql',
       },
       // Files processed by the extension
