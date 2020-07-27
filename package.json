@@ -33,8 +33,8 @@
   "devDependencies": {
     "@graphql-codegen/add": "^1.17.0",
     "@graphql-codegen/cli": "^1.17.0",
-    "@graphql-codegen/fragment-matcher": "1.17.4",
-    "@graphql-codegen/introspection": "1.17.4",
+    "@graphql-codegen/fragment-matcher": "1.17.6",
+    "@graphql-codegen/introspection": "1.17.6",
     "@graphql-codegen/typescript": "^1.17.0",
     "@graphql-codegen/typescript-operations": "^1.17.0",
     "@graphql-codegen/typescript-vue-apollo": "^1.17.0",
