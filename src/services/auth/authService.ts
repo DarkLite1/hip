@@ -89,9 +89,6 @@ export const login = async () => {
 }
 
 export const logout = () => {
-  const logoutRequest = {
-    account: auth.getAccountByUsername(account.value.username),
-  }
-  void auth.logout(logoutRequest)
+  void auth.logout()
   setAccount()
 }
