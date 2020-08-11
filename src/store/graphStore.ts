@@ -1,5 +1,6 @@
 import { reactive, computed } from '@vue/composition-api'
 import { getGraphProfile, getGraphPhoto } from 'src/services/graph/graphService'
+import * as MicrosoftGraph from '@microsoft/microsoft-graph-types'
 
 const defaultState = () => {
   return {
@@ -17,7 +18,7 @@ const defaultState = () => {
       userPrincipalName: '',
     },
     photo: '',
-  }
+  } as { profile: MicrosoftGraph.User; photo: string }
 }
 
 const state = reactive(defaultState())
