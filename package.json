@@ -28,7 +28,7 @@
     "graphql": "^15.3.0",
     "graphql-tag": "^2.10.4",
     "quasar": "^1.12.13",
-    "vue-i18n": "^8.18.2"
+    "vue-i18n": "^8.20.0"
   },
   "devDependencies": {
     "@graphql-codegen/add": "^2.0.0",
