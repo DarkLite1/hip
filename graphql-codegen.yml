@@ -1,20 +1,19 @@
 overwrite: true
-schema: "http://localhost:5000/graphql"
-documents: "src/**/*.graphql"
+schema: 'http://localhost:5000/graphql'
+documents: 'src/**/*.graphql'
 hooks:
   afterAllFileWrite:
     - prettier --write
 generates:
   src/graphql/generated/operations.ts:
     plugins:
-    - add: '/* eslint-disable */'
-    - "typescript"
-    - "typescript-operations"
-    - "typescript-vue-apollo"
-
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-vue-apollo'
   src/graphql/generated/fragment-matcher.ts:
-    - "fragment-matcher"
-
+    - 'fragment-matcher'
   ./graphql.schema.json:
     plugins:
-    - "introspection"
+      - 'introspection'
