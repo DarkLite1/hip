@@ -9,6 +9,7 @@
 
       <div v-for="account in allAccounts" :key="account.accountIdentifier">
         {{ account }}
+        {{ account.name }}
       </div>
     </div>
   </q-page>
@@ -28,6 +29,8 @@ export default defineComponent({
 
     const { result, loading } = useAllAccountsQuery()
     const allAccounts = useResult(result)
+
+    console.dir(result)
 
     return { onClick, profile, allAccounts, loading }
     // return { onClick, profile }
