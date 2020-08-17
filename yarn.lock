@@ -7,17 +7,17 @@
   resolved "https://registry.yarnpkg.com/@ardatan/aggregate-error/-/aggregate-error-0.0.1.tgz#1403ac5de10d8ca689fc1f65844c27179ae1d44f"
   integrity sha512-UQ9BequOTIavs0pTHLMwQwKQF8tTV1oezY/H2O9chA+JNPFZSua55xpU5dPSjAU9/jLJ1VwU+HJuTVN8u7S6Fg==
 
-"@azure/msal-browser@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-2.0.1.tgz#ee7bf4d544b959791e61f1585365fd9e142f0e74"
-  integrity sha512-UfrGMThUMdbdYBKU9YP00U6qHvxXE3Hq9hKxTgDmhumtpfHxoNDPjqk48hqX1Q/Wd0MYo/Eo4yTAFVt7w45RuA==
+"@azure/msal-browser@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@azure/msal-browser/-/msal-browser-2.0.2.tgz#dd1e3b50426c59dbf1f5b561aa7011c6d60dddff"
+  integrity sha512-BUxxiikWxkXLaHaHXQiG9EJQtAzGj2TcXy4Bh5RlP+kWVQxHFkPpo3x4U/jzAFoyVadriVK20IWygvsfQdRp5A==
   dependencies:
-    "@azure/msal-common" "^1.1.0"
+    "@azure/msal-common" "^1.1.1"
 
-"@azure/msal-common@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-1.1.0.tgz#6ff32dc7be9b722d56b4d448dbce7cdc4cb2315d"
-  integrity sha512-nPIHUxVNDDKhCKKkDvhh4lxR1nLdJ0tVk1I0UTGkU1IVyUK4854a+npB7h8E+Qj43UsXFcmXobILvceLLpIk5g==
+"@azure/msal-common@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@azure/msal-common/-/msal-common-1.1.1.tgz#9b65f284bb1250302dfa2ef1932059cedc61b4a4"
+  integrity sha512-qZ8DeuG9VFeyoYiVX7nAXZJhxrRsQrOk1KLJ9/xFQchXbM26BvbpROyiWGO5vBkyGyDt0AlOOKdwYQQNkdz/bQ==
   dependencies:
     debug "^4.1.1"
 
