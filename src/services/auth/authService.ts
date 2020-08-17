@@ -33,6 +33,8 @@ export const allScopes = (() => {
 })()
 
 export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
+  console.log('handleResponse called')
+
   if (resp != null) {
     setAccount(resp.account)
   } else {
@@ -89,6 +91,8 @@ export const login = async () => {
 }
 
 export const logout = () => {
-  void auth.logout()
+  const accountObj = auth.getAccountByUsername(account.value.username)
+  void auth.logout(accountObj ? { account: accountObj } : undefined)
+  // void auth.logout()
   setAccount()
 }

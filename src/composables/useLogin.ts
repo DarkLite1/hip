@@ -10,6 +10,8 @@ export const stopLoading = () => {
 
 export const useLogin = () => {
   const login = async () => {
+    console.log('useLogin login called');
+    
     loading.value = true
     try {
       await loginAccount()

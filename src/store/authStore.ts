@@ -8,7 +8,7 @@ const defaultState = () => {
       username: '',
       environment: '',
       tenantId: '',
-    },
+    } as AuthenticationResult['account'],
   }
 }
 

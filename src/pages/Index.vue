@@ -16,8 +16,8 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
-import { useResult } from '@vue/apollo-composable'
 import { profile } from 'src/store/graphStore'
+import { useResult } from '@vue/apollo-composable'
 import { useAllAccountsQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
@@ -30,6 +30,7 @@ export default defineComponent({
     const allAccounts = useResult(result)
 
     return { onClick, profile, allAccounts, loading }
+    // return { onClick, profile }
   },
 })
 </script>
