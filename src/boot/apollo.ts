@@ -13,19 +13,19 @@ import config from 'src/app-config.json'
 export default boot(({ app }) => {
   const httpLink = createHttpLink({ uri: config.resources.gatewayApi.uri })
 
-  // eslint-disable-next-line
   const authMiddleware = setContext(async (req, { headers }) => {
     const token = await getToken(config.resources.gatewayApi.scopes)
 
-    // console.log('token.accessToken: ', token.accessToken)
-    return {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const completeHeader = {
       headers: {
         ...headers,
         authorization:
           token && token.accessToken ? `Bearer ${token.accessToken}` : '',
-      },
+      } as Express.Request & { authorization: string },
     }
+
+    console.log('accessToken: ', completeHeader.headers.authorization)
+    return completeHeader
   })
 
   const logLink = onError((error) => console.error('Apollo Error', error))
