@@ -18,6 +18,7 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query'
+  currentUser: Account
   accounts: Array<Account>
   account: Account
   preferences: Array<Preference>

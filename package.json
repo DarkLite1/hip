@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0",
-    "graphql-generate": "graphql-codegen --config graphql-codegen.yml",
-    "graphql-generate-watch": "graphql-codegen --config graphql-codegen.yml --watch"
+    "graphql-codegen": "graphql-codegen",
+    "graphql-codegen-watch": "graphql-codegen --watch"
   },
   "dependencies": {
     "@azure/msal-browser": "^2.0.2",

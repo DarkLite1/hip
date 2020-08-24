@@ -1,26 +1,30 @@
 # HC IT Portal (hip)
 
-Portal for end users where they can easily request IT assistance
+A front-end website for end users where they can easily request IT services and start automated tasks like scripts.
 
 ## Install the dependencies
+
 ```bash
 yarn
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Start the app in development mode
+
 ```bash
 quasar dev
 ```
 
-### Lint the files
+### Generate code from the graphql schema
+
+1. Add a valid token to the `codegen.js` file
+2. Run the GraphQL code generator
+
 ```bash
-yarn run lint
+yarn graphql-codegen
 ```
 
 ### Build the app for production
+
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
