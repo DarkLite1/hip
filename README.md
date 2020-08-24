@@ -16,7 +16,7 @@ quasar dev
 
 ### Generate code from the graphql schema
 
-1. Add a valid token to the `codegen.js` file
+1. Add a valid token to the `./token.txt` file
 2. Run the GraphQL code generator
 
 ```bash
