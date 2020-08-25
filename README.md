@@ -5,6 +5,7 @@ A front-end website for end users where they can easily request IT services and 
 ## Install the dependencies
 
 ```bash
+yarn global add @quasar/cli
 yarn
 ```
 
