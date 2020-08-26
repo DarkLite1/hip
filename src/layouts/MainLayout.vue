@@ -2,19 +2,23 @@
   <q-layout view="hHh lpR fFf">
     <app-header />
 
-    <app-SidebarNavigationMenu :links="mainNavigationLinks" />
+    <app-SidebarNavigationMenu
+      v-if="isAuthenticated"
+      :links="mainNavigationLinks"
+    />
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <app-footer :links="mainNavigationLinks" />
+    <app-footer v-if="isAuthenticated" :links="mainNavigationLinks" />
   </q-layout>
 </template>
 
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
+import { isAuthenticated } from 'src/store/authStore'
 
 export default defineComponent({
   setup(_, { root }) {
@@ -22,6 +26,7 @@ export default defineComponent({
 
     return {
       mainNavigationLinks,
+      isAuthenticated,
     }
   },
   components: {

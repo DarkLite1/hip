@@ -1,5 +1,4 @@
 {
-  "vetur.validation.template": false,
   "vetur.format.enable": false,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "typescript.tsdk": "node_modules/typescript/lib",
@@ -9,4 +8,5 @@
       "mode": "auto"
     }
   ],
+  "vetur.validation.template": false,
 }
