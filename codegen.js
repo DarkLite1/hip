@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs')
+const config = require('./src/app-config.json')
 
 const token = fs.readFileSync('./token.txt')
 
 module.exports = {
   overwrite: true,
   schema: {
-    'http://localhost:5000/graphql': {
+    [config.resources.gatewayApi.uri]: {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -17,6 +18,9 @@ module.exports = {
     afterAllFileWrite: ['prettier --write'],
   },
   generates: {
+    'src/graphql/generated/schema.json': {
+      plugins: ['introspection'],
+    },
     'src/graphql/generated/operations.ts': {
       plugins: [
         {
@@ -30,8 +34,5 @@ module.exports = {
       ],
     },
     'src/graphql/generated/fragment-matcher.ts': ['fragment-matcher'],
-    './graphql.schema.json': {
-      plugins: ['introspection'],
-    },
   },
 }
