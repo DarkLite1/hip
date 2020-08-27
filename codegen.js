@@ -32,6 +32,7 @@ module.exports = {
         'typescript-operations',
         'typescript-vue-apollo',
       ],
+      config: { withCompositionFunctions: true },
     },
     'src/graphql/generated/fragment-matcher.ts': ['fragment-matcher'],
   },

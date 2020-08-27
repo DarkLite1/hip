@@ -9,8 +9,8 @@
     "dev": "quasar dev",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0",
-    "graphql-codegen": "graphql-codegen",
-    "graphql-codegen-watch": "graphql-codegen --watch"
+    "codegen": "graphql-codegen",
+    "codegen-watch": "graphql-codegen --watch"
   },
   "dependencies": {
     "@azure/msal-browser": "^2.1.0",

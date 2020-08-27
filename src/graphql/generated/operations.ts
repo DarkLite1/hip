@@ -100,7 +100,7 @@ export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>
 
 export type AllAccountsQuery = { __typename?: 'Query' } & {
   accounts: Array<
-    { __typename?: 'Account' } & Pick<Account, 'accountIdentifier'>
+    { __typename?: 'Account' } & Pick<Account, 'accountIdentifier' | 'name'>
   >
 }
 
@@ -108,6 +108,7 @@ export const AllAccountsDocument = gql`
   query allAccounts {
     accounts {
       accountIdentifier
+      name
     }
   }
 `
