@@ -3,6 +3,7 @@
     <p>Welcome {{ profile.givenName }}</p>
     <q-btn color="primary" label="Test" @click="onClick" />
     <h2>All accounts:</h2>
+    <h2 v-if="error">{{ error }}</h2>
     <h2 v-if="loading">Loading...</h2>
     <div v-else>
       Done loading
@@ -26,10 +27,10 @@ export default defineComponent({
       console.log('clicked ')
     }
 
-    const { result, loading } = useAllAccountsQuery()
+    const { result, loading, error } = useAllAccountsQuery()
     const allAccounts = useResult(result)
 
-    return { onClick, profile, allAccounts, loading }
+    return { onClick, profile, allAccounts, loading, error }
   },
 })
 </script>

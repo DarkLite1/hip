@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@azure/msal-browser": "^2.1.0",
-    "@quasar/extras": "^1.9.4",
+    "@quasar/extras": "^1.9.5",
     "@vue/apollo-composable": "^4.0.0-alpha.10",
     "@vue/composition-api": "1.0.0-beta.11",
     "apollo-cache-inmemory": "^1.6.6",
