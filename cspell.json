@@ -26,6 +26,7 @@
     ],
     // words - list of words to be always considered correct
     "words": [
+        "apitoken",
         "arraybuffer",
         "browserslist",
         "camelcase",
@@ -39,7 +40,9 @@
         "mkdirp",
         "Msal",
         "openid",
+        "openshift",
         "Readonly",
+        "redhat",
         "roboto",
         "SSSD",
         "streetsidesoftware",
@@ -48,6 +51,7 @@
         "treeshaking",
         "tsmerge",
         "uncommented",
+        "Untrusted",
         "visualstudio",
         "vsmarketplacebadge"
     ],

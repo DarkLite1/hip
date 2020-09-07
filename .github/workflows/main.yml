@@ -7,10 +7,8 @@ name: CI
 on:
   # trigger the workflow on GitHub via Actions
   workflow_dispatch:
-    branches: [master]
   # trigger the workflow outside of GitHub (PowerShell, ...)
   repository_dispatch:
-    branches: [master]
   push:
     branches: [master]
   pull_request:
@@ -38,11 +36,11 @@ jobs:
         with:
           version: 'latest'
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
-          parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
             'version'
             'get pods'
-            'new-project name'
+        # 'new-project name'
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
