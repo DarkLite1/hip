@@ -2,10 +2,15 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Controls when the action will run. Triggers the workflow 
+# on push or pull request events but only for the master branch
 on:
+  # trigger the workflow on GitHub via Actions
   workflow_dispatch:
+    branches: [master]
+  # trigger the workflow outside of GitHub (PowerShell, ...)
+  repository_dispatch:
+    branches: [master]
   push:
     branches: [master]
   pull_request:
@@ -36,6 +41,8 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
             'version'
+            'get pods'
+            'new-project name'
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
