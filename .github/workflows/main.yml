@@ -34,7 +34,7 @@ jobs:
       - name: OpenShift Action
         uses: redhat-developer/openshift-actions@v2.1.0
         with:
-          version: '3.11.0-0.32.0'
+          version: '3.11.18'
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
