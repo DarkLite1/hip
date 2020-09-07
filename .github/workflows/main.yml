@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. Triggers the workflow 
+# Controls when the action will run. Triggers the workflow
 # on push or pull request events but only for the master branch
 on:
   # trigger the workflow on GitHub via Actions
@@ -34,7 +34,7 @@ jobs:
       - name: OpenShift Action
         uses: redhat-developer/openshift-actions@v2.1.0
         with:
-          version: '3.11.0'
+          version: '3.11.0-0.32.0'
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
