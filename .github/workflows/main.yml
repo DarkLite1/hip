@@ -27,7 +27,7 @@ jobs:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_API_TOKEN }}", "acceptUntrustedCerts": "true"}'
           cmd: |
-            oc project ${PROJECT}
+            oc project hip
             oc start-build quasar-web-app-builder --follow
 
       # Runs a set of commands using the runners shell
