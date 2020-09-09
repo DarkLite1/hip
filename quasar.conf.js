@@ -53,7 +53,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // rtl: false, // https://quasar.dev/options/rtl-support
-      // showProgress: false,
+      showProgress: true,
       // gzip: true,
       // analyze: true,
 
