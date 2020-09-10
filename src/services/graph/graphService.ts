@@ -1,7 +1,7 @@
-import config from 'src/app-config.json'
 import axios, { AxiosRequestConfig } from 'axios'
 import { getToken } from 'src/services/auth/authService'
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-types'
+import { ENVIRONMENT } from 'src/environment'
 
 const callGraph = <T>(
   url: string,
@@ -36,8 +36,8 @@ const getGraphDetails = async <T>(
 export const getGraphProfile = async () => {
   try {
     return await getGraphDetails<MicrosoftGraph.User>(
-      config.resources.msGraphProfile.uri,
-      config.resources.msGraphProfile.scopes
+      ENVIRONMENT.resources.msGraphProfile.uri,
+      ENVIRONMENT.resources.msGraphProfile.scopes
     )
   } catch (error) {
     throw new Error(`Failed retrieving the graph profile: ${error}`)
@@ -47,8 +47,8 @@ export const getGraphProfile = async () => {
 export const getGraphPhoto = async () => {
   try {
     const response = await getGraphDetails<string>(
-      config.resources.msGraphPhoto.uri,
-      config.resources.msGraphPhoto.scopes,
+      ENVIRONMENT.resources.msGraphPhoto.uri,
+      ENVIRONMENT.resources.msGraphPhoto.scopes,
       { responseType: 'arraybuffer' }
     )
     if (!(response && response.data)) {

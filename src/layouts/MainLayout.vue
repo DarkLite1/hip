@@ -24,6 +24,7 @@ import { ENVIRONMENT } from 'src/environment'
 export default defineComponent({
   setup(_, { root }) {
     const { mainNavigationLinks } = useMainNavigationLinks(root)
+    console.dir(ENVIRONMENT)
 
     return {
       mainNavigationLinks,

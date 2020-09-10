@@ -1,20 +1,20 @@
 import * as Msal from '@azure/msal-browser'
-import config from 'src/app-config.json'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { setAccount, account } from 'src/store/authStore'
 import { stopLoading } from 'src/composables/useLogin'
+import { ENVIRONMENT } from 'src/environment'
 
 const MSALConfig: Msal.Configuration = {
   auth: {
-    clientId: config.auth.clientId,
-    authority: config.auth.authority,
-    redirectUri: config.auth.redirectUri,
-    postLogoutRedirectUri: config.auth.postLogoutRedirectUri,
+    clientId: ENVIRONMENT.auth.clientId,
+    authority: ENVIRONMENT.auth.authority,
+    redirectUri: ENVIRONMENT.auth.redirectUri,
+    postLogoutRedirectUri: ENVIRONMENT.auth.postLogoutRedirectUri,
     navigateToLoginRequestUrl: true,
   },
   cache: {
-    cacheLocation: config.cache.cacheLocation,
+    cacheLocation: ENVIRONMENT.cache.cacheLocation,
     storeAuthStateInCookie: isInternetExplorer,
   },
 }
@@ -24,11 +24,11 @@ export const auth = new Msal.PublicClientApplication(MSALConfig)
 export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
 export const allScopes = (() => {
-  const resourceScopes = Object.values(config.resources)
+  const resourceScopes = Object.values(ENVIRONMENT.resources)
     .flatMap((resource) => resource.scopes)
     .filter((scope) => scope)
 
-  const uniqueSet = new Set([...config.scopes.loginRequest, ...resourceScopes])
+  const uniqueSet = new Set([...ENVIRONMENT.scopes.loginRequest, ...resourceScopes])
   return Array.from(uniqueSet)
 })()
 
@@ -79,13 +79,13 @@ export const login = async () => {
   if (isLoginPopup) {
     return auth
       .loginPopup({
-        redirectUri: config.auth.redirectUri,
+        redirectUri: ENVIRONMENT.auth.redirectUri,
         scopes: allScopes,
       })
       .then(handleResponse)
   }
   return auth.loginRedirect({
-    redirectUri: config.auth.redirectUri,
+    redirectUri: ENVIRONMENT.auth.redirectUri,
     scopes: allScopes,
   })
 }

@@ -18,7 +18,7 @@ export const ENVIRONMENT = {
   resources: {
     gatewayApi: {
       uri: process.env.BACKEND_API_URI || '',
-      scopes: [process.env.BACKEND_API_SCOPE],
+      scopes: [process.env.BACKEND_API_SCOPE || ''],
     },
     msGraphProfile: {
       uri: 'https://graph.microsoft.com/v1.0/me',
@@ -31,4 +31,3 @@ export const ENVIRONMENT = {
   },
 }
 
-console.dir(ENVIRONMENT)
