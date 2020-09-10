@@ -24,6 +24,10 @@ export default defineComponent({
   setup(_, { root }) {
     const { mainNavigationLinks } = useMainNavigationLinks(root)
 
+    console.log('process.env.mode', process.env.mode)
+    console.log('process.env.DEV', process.env.DEV)
+    console.log('process.env.PROD', process.env.PROD)
+
     return {
       mainNavigationLinks,
       isAuthenticated,
