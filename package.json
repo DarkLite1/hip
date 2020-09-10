@@ -6,8 +6,10 @@
   "author": "DarkLite1 <BrechtGijbels@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "quasar dev",
-    "build": "quasar build",
+    "dev": "env-cmd -e prod quasar dev",
+    "quasar-clean": "quasar clean",
+    "quasar-build": "quasar build",
+    "build": "run-s quasar-clean quasar-build",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0",
     "codegen": "graphql-codegen",
@@ -26,6 +28,7 @@
     "apollo-link-http": "^1.5.17",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "env-cmd": "^10.1.0",
     "global": "^4.4.0",
     "graphql": "^15.3.0",
     "graphql-tag": "^2.11.0",
@@ -51,6 +54,7 @@
     "eslint-loader": "4.0.2",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.1.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1"
   },
   "engines": {

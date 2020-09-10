@@ -50,6 +50,9 @@ module.exports = configure(function (ctx) {
     // preFetch: true
 
     build: {
+      // add environment variables
+      env: process.env,
+
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // rtl: false, // https://quasar.dev/options/rtl-support
@@ -63,7 +66,7 @@ module.exports = configure(function (ctx) {
       // https://quasar.dev/quasar-cli/handling-webpack
       extendWebpack(cfg) {
         // only required when importing from .graphql files directly
-        // we now use the graphql code generator and import from the 
+        // we now use the graphql code generator and import from the
         // generated operations file that is TypeScript compatible
         // cfg.module.rules.push({
         //   test: /\.(graphql|gql)$/,
