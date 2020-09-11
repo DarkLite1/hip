@@ -24,7 +24,11 @@ import { ENVIRONMENT } from 'src/environment'
 export default defineComponent({
   setup(_, { root }) {
     const { mainNavigationLinks } = useMainNavigationLinks(root)
-    console.dir(ENVIRONMENT)
+    // console.log('ENV')
+    // console.dir(ENVIRONMENT)
+    console.log('ENVIRONMENT', ENVIRONMENT.auth.clientId)
+    console.log('process.env.AZURE_CLIENT_ID', process.env.AZURE_CLIENT_ID)
+    
 
     return {
       mainNavigationLinks,
