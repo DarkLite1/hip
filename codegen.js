@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 const fs = require('fs')
-const config = require('./src/app-config.json')
 
 const token = fs.readFileSync('./token.txt')
 
 module.exports = {
   overwrite: true,
   schema: {
-    [config.resources.gatewayApi.uri]: {
+    [process.env.BACKEND_API_URI]: {
       headers: {
         Authorization: `Bearer ${token}`,
       },

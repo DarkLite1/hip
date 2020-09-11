@@ -6,14 +6,14 @@
   "author": "DarkLite1 <BrechtGijbels@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -e prod quasar dev",
+    "dev": "env-cmd -e dev quasar dev",
     "quasar-clean": "quasar clean",
     "quasar-build": "quasar build",
     "build": "run-s quasar-clean quasar-build",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore ./",
     "test": "echo \"No test specified\" && exit 0",
-    "codegen": "graphql-codegen",
-    "codegen-watch": "graphql-codegen --watch"
+    "codegen": "env-cmd -e dev graphql-codegen",
+    "codegen-watch": "env-cmd -e dev graphql-codegen --watch"
   },
   "dependencies": {
     "@azure/msal-browser": "^2.1.0",
