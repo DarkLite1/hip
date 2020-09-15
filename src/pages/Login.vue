@@ -2,7 +2,7 @@
   <q-page padding>
     <h3>Login</h3>
     <h5>Hi there stranger. Would you mind telling us who you are?</h5>
-    <p>Click on the login button on the to right corner</p>
+    <p>Click on the login button on the top right corner</p>
   </q-page>
 </template>
 
