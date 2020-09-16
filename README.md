@@ -12,7 +12,7 @@ yarn
 ### Start the app in development mode
 
 ```bash
-quasar dev
+yarn dev
 ```
 
 ### Generate code from the graphql schema

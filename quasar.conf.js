@@ -53,6 +53,20 @@ module.exports = configure(function (ctx) {
       // add environment variables
       env: process.env,
 
+      transpileDependencies: [
+        '@vue/composition-api',
+        '@vue/apollo-composable',
+        '@azure/msal-browser',
+        'graphql',
+        'graphql-tag',
+        'apollo-cache-inmemory',
+        'apollo-client',
+        'apollo-link',
+        'apollo-link-context',
+        'apollo-link-error',
+        'apollo-link-http',
+      ],
+
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
       // rtl: false, // https://quasar.dev/options/rtl-support
