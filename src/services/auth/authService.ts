@@ -23,7 +23,7 @@ export const auth = new Msal.PublicClientApplication(MSALConfig)
 
 export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
-export const allScopes = (() => {
+const allScopes = (() => {
   const resourceScopes = Object.values(ENVIRONMENT.resources)
     .flatMap((resource) => resource.scopes)
     .filter((scope) => scope)
