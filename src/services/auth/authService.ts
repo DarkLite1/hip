@@ -84,7 +84,6 @@ export const login = async () => {
       .loginPopup({
         redirectUri: ENVIRONMENT.auth.redirectUri,
         scopes: allScopes,
-        prompt: 'login',
       })
       .then(handleResponse)
   }
