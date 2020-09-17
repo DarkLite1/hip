@@ -28,7 +28,10 @@ const allScopes = (() => {
     .flatMap((resource) => resource.scopes)
     .filter((scope) => scope)
 
-  const uniqueSet = new Set([...ENVIRONMENT.scopes.loginRequest, ...resourceScopes])
+  const uniqueSet = new Set([
+    ...ENVIRONMENT.scopes.loginRequest,
+    ...resourceScopes,
+  ])
   return Array.from(uniqueSet)
 })()
 
@@ -81,6 +84,7 @@ export const login = async () => {
       .loginPopup({
         redirectUri: ENVIRONMENT.auth.redirectUri,
         scopes: allScopes,
+        prompt: 'login',
       })
       .then(handleResponse)
   }

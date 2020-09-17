@@ -24,7 +24,7 @@ export default boot(({ app }) => {
       } as Express.Request & { authorization: string },
     }
 
-    console.log('accessToken: ', completeHeader.headers.authorization)
+    // console.log('accessToken: ', completeHeader.headers.authorization)
     return completeHeader
   })
 
