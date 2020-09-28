@@ -19,7 +19,6 @@
 import { defineComponent } from '@vue/composition-api'
 import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
 import { isAuthenticated } from 'src/store/authStore'
-import { ENVIRONMENT } from 'src/environment'
 
 export default defineComponent({
   setup(_, { root }) {

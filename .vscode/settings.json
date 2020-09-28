@@ -1,7 +1,7 @@
 {
   "vetur.format.enable": false,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "t:\\Test\\Brecht\\Node\\prod\\hip-frontend\\node_modules\\typescript\\lib",
   "vetur.experimental.templateInterpolationService": true,
   "eslint.workingDirectories": [
     {
