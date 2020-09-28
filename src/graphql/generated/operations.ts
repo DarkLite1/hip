@@ -21,7 +21,7 @@ export type Query = {
   currentUser: Account
   accounts: Array<Account>
   account: Account
-  preferences: Array<Preference>
+  viewer: Viewer
 }
 
 export type QueryAccountArgs = {
@@ -43,11 +43,17 @@ export type Preference = {
   language: Scalars['String']
 }
 
+export type Viewer = {
+  __typename?: 'Viewer'
+  preference?: Maybe<Preference>
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
   addAccount: AccountAddResult
   updateAccount: AccountUpdateResult
   removeAccount: AccountRemoveResult
+  setViewerPreference: Preference
 }
 
 export type MutationAddAccountArgs = {
@@ -61,6 +67,10 @@ export type MutationUpdateAccountArgs = {
 
 export type MutationRemoveAccountArgs = {
   accountIdentifier: Scalars['String']
+}
+
+export type MutationSetViewerPreferenceArgs = {
+  options: AddPreferenceInput
 }
 
 export type AccountAddResult = Account | ExistsAlready
@@ -94,6 +104,10 @@ export type AccountRemoveResult = Success | NotFound
 export type Success = {
   __typename?: 'Success'
   message: Scalars['String']
+}
+
+export type AddPreferenceInput = {
+  language?: Maybe<Scalars['String']>
 }
 
 export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>

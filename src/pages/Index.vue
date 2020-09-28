@@ -31,7 +31,6 @@ export default defineComponent({
     const allAccounts = useResult(result, null, (data) => data.accounts)
 
     return { onClick, profile, allAccounts, loading, error }
-    return { onClick, profile }
   },
 })
 </script>
