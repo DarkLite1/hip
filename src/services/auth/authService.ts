@@ -2,7 +2,6 @@ import * as Msal from '@azure/msal-browser'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { setAccount, account } from 'src/store/authStore'
-// import { stopLoading } from 'src/composables/useLogin'
 import { ENVIRONMENT } from 'src/environment'
 import { publish } from '../event/eventService'
 
@@ -37,13 +36,18 @@ const allScopes = (() => {
 })()
 
 export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
-  if (resp != null) {
-    setAccount(resp.account)
-  } else {
+  let account
+  if (resp != null) account = resp.account
+  else {
     const currentAccounts = auth.getAllAccounts()
     if (currentAccounts.length === 1) {
-      setAccount(currentAccounts[0])
+      account = currentAccounts[0]
     }
+  }
+
+  if (account) {
+    setAccount(account)
+    publish('login', account)
   }
 }
 
@@ -51,10 +55,7 @@ auth
   .handleRedirectPromise()
   .then(handleResponse)
   .catch(console.error.bind(console))
-  .finally(() => {
-    console.log('finally')
-    publish('login')
-  })
+
 
 export const getToken = async (scopes: string[]) => {
   const request = {
