@@ -69,6 +69,8 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from '@vue/composition-api'
 import { openURL } from 'quasar'
+import { useSetLanguageMutation } from 'src/graphql/generated/operations'
+// import { useSetViewerPreferenceLanguageMutation } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, context) {
@@ -91,8 +93,18 @@ export default defineComponent({
       window.location.href =
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
     }
+
+    const { mutate, loading, error, onDone } = useSetLanguageMutation({
+      variables: {
+        language: 'ee-ee',
+      },
+    })
+
     watch(language, (newLanguage) => {
       context.root.$i18n.locale = newLanguage
+      console.log('language changed to: ', newLanguage)
+
+      void mutate({ language: newLanguage })
     })
 
     return {

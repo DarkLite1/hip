@@ -110,6 +110,17 @@ export type AddPreferenceInput = {
   language?: Maybe<Scalars['String']>
 }
 
+export type SetLanguageMutationVariables = Exact<{
+  language: Scalars['String']
+}>
+
+export type SetLanguageMutation = { __typename?: 'Mutation' } & {
+  setViewerPreference: { __typename?: 'Preference' } & Pick<
+    Preference,
+    'language'
+  >
+}
+
 export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>
 
 export type AllAccountsQuery = { __typename?: 'Query' } & {
@@ -118,6 +129,63 @@ export type AllAccountsQuery = { __typename?: 'Query' } & {
   >
 }
 
+export type ViewerQueryVariables = Exact<{ [key: string]: never }>
+
+export type ViewerQuery = { __typename?: 'Query' } & {
+  viewer: { __typename?: 'Viewer' } & {
+    preference?: Maybe<
+      { __typename?: 'Preference' } & Pick<Preference, 'language'>
+    >
+  }
+}
+
+export const SetLanguageDocument = gql`
+  mutation setLanguage($language: String!) {
+    setViewerPreference(options: { language: $language }) {
+      language
+    }
+  }
+`
+
+/**
+ * __useSetLanguageMutation__
+ *
+ * To run a mutation, you first call `useSetLanguageMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSetLanguageMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useSetLanguageMutation({
+ *   variables: {
+ *      language: // value for 'language'
+ *   },
+ * });
+ */
+export function useSetLanguageMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        SetLanguageMutation,
+        SetLanguageMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          SetLanguageMutation,
+          SetLanguageMutationVariables
+        >
+      >
+) {
+  return VueApolloComposable.useMutation<
+    SetLanguageMutation,
+    SetLanguageMutationVariables
+  >(SetLanguageDocument, options)
+}
+export type SetLanguageMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SetLanguageMutation,
+  SetLanguageMutationVariables
+>
 export const AllAccountsDocument = gql`
   query allAccounts {
     accounts {
@@ -170,4 +238,49 @@ export function useAllAccountsQuery(
 export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   AllAccountsQuery,
   AllAccountsQueryVariables
+>
+export const ViewerDocument = gql`
+  query viewer {
+    viewer {
+      preference {
+        language
+      }
+    }
+  }
+`
+
+/**
+ * __useViewerQuery__
+ *
+ * To run a query within a Vue component, call `useViewerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useViewerQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useViewerQuery(
+ *   {
+ *   }
+ * );
+ */
+export function useViewerQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<ViewerQuery, ViewerQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<ViewerQuery, ViewerQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<ViewerQuery, ViewerQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useQuery<ViewerQuery, undefined>(
+    ViewerDocument,
+    undefined,
+    options
+  )
+}
+export type ViewerQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  ViewerQuery,
+  ViewerQueryVariables
 >

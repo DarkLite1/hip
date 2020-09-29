@@ -1,0 +1,5 @@
+mutation setLanguage($language: String!) {
+  setViewerPreference(options: { language: $language }) {
+    language
+  }
+}
