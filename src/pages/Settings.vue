@@ -69,7 +69,10 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from '@vue/composition-api'
 import { openURL } from 'quasar'
-import { useSetLanguageMutation } from 'src/graphql/generated/operations'
+import {
+  useSetDarkModeMutation,
+  useSetLanguageMutation,
+} from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, context) {
@@ -93,17 +96,33 @@ export default defineComponent({
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
     }
 
-    const { mutate, loading, error, onDone } = useSetLanguageMutation({
+    const {
+      mutate: setLanguage,
+      // loading,
+      // error,
+      // onDone,
+    } = useSetLanguageMutation({
       variables: {
         language: 'ee-ee',
+      },
+    })
+    const {
+      mutate: setDarkMode,
+      // loading,
+      // error,
+      // onDone,
+    } = useSetDarkModeMutation({
+      variables: {
+        darkMode: false,
       },
     })
 
     watch(language, (newLanguage) => {
       context.root.$i18n.locale = newLanguage
-      console.log('language changed to: ', newLanguage)
-
-      void mutate({ language: newLanguage })
+      void setLanguage({ language: newLanguage })
+    })
+    watch(darkMode, (newDarkMode) => {
+      void setDarkMode({ darkMode: newDarkMode })
     })
 
     return {
