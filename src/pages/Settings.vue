@@ -6,10 +6,10 @@
 
         <q-item tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>Some cool option</q-item-label>
+            <q-item-label>Dark mode</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle v-model="coolOptionActive" color="blue" />
+            <q-toggle v-model="darkMode" color="blue" />
           </q-item-section>
         </q-item>
 
@@ -70,11 +70,10 @@
 import { defineComponent, ref, watch } from '@vue/composition-api'
 import { openURL } from 'quasar'
 import { useSetLanguageMutation } from 'src/graphql/generated/operations'
-// import { useSetViewerPreferenceLanguageMutation } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, context) {
-    const coolOptionActive = ref(true)
+    const darkMode = ref(true)
 
     const languageOptions = [
       { value: 'en-us', label: 'English' },
@@ -108,7 +107,7 @@ export default defineComponent({
     })
 
     return {
-      coolOptionActive,
+      darkMode,
       language,
       languageOptions,
       selfHelp,

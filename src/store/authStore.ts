@@ -17,6 +17,7 @@ const state = reactive(defaultState())
 export const setAccount = (account?: AuthenticationResult['account']) => {
   if (account) state.account = account
   else state.account = defaultState().account
+  console.log('setAccount: ', state.account)
 }
 
 export const account = computed(() => state.account)

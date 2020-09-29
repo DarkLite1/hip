@@ -2,8 +2,9 @@ import * as Msal from '@azure/msal-browser'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { setAccount, account } from 'src/store/authStore'
-import { stopLoading } from 'src/composables/useLogin'
+// import { stopLoading } from 'src/composables/useLogin'
 import { ENVIRONMENT } from 'src/environment'
+import { publish } from '../event/eventService'
 
 const MSALConfig: Msal.Configuration = {
   auth: {
@@ -36,18 +37,11 @@ const allScopes = (() => {
 })()
 
 export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
-  console.log('handleResponse called')
-
   if (resp != null) {
     setAccount(resp.account)
   } else {
     const currentAccounts = auth.getAllAccounts()
-    if (currentAccounts === null) {
-      return
-    } else if (currentAccounts.length > 1) {
-      console.log('handleResponse currentAccounts > 1')
-      // Add choose account code here
-    } else if (currentAccounts.length === 1) {
+    if (currentAccounts.length === 1) {
       setAccount(currentAccounts[0])
     }
   }
@@ -58,7 +52,8 @@ auth
   .then(handleResponse)
   .catch(console.error.bind(console))
   .finally(() => {
-    stopLoading()
+    console.log('finally')
+    publish('login')
   })
 
 export const getToken = async (scopes: string[]) => {
