@@ -14,6 +14,8 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any
 }
 
 export type Query = {
@@ -30,18 +32,23 @@ export type QueryAccountArgs = {
 
 export type Account = {
   __typename?: 'Account'
-  id: Scalars['Int']
+  id: Scalars['ID']
   accountIdentifier: Scalars['String']
   name?: Maybe<Scalars['String']>
   userName?: Maybe<Scalars['String']>
   preference?: Maybe<Preference>
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
 }
 
 export type Preference = {
   __typename?: 'Preference'
-  id: Scalars['Int']
+  id: Scalars['ID']
+  account: Account
   language: Scalars['String']
   darkMode: Scalars['Boolean']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
 }
 
 export type Viewer = {
@@ -119,7 +126,7 @@ export type SetDarkModeMutationVariables = Exact<{
 export type SetDarkModeMutation = { __typename?: 'Mutation' } & {
   setViewerPreference: { __typename?: 'Preference' } & Pick<
     Preference,
-    'darkMode'
+    'id' | 'darkMode'
   >
 }
 
@@ -130,7 +137,19 @@ export type SetLanguageMutationVariables = Exact<{
 export type SetLanguageMutation = { __typename?: 'Mutation' } & {
   setViewerPreference: { __typename?: 'Preference' } & Pick<
     Preference,
-    'language'
+    'id' | 'language'
+  >
+}
+
+export type SetPreferenceDefaultMutationVariables = Exact<{
+  darkMode: Scalars['Boolean']
+  language?: Maybe<Scalars['String']>
+}>
+
+export type SetPreferenceDefaultMutation = { __typename?: 'Mutation' } & {
+  setViewerPreference: { __typename?: 'Preference' } & Pick<
+    Preference,
+    'id' | 'darkMode' | 'language'
   >
 }
 
@@ -147,7 +166,10 @@ export type ViewerQueryVariables = Exact<{ [key: string]: never }>
 export type ViewerQuery = { __typename?: 'Query' } & {
   viewer: { __typename?: 'Viewer' } & {
     preference?: Maybe<
-      { __typename?: 'Preference' } & Pick<Preference, 'language'>
+      { __typename?: 'Preference' } & Pick<
+        Preference,
+        'id' | 'language' | 'darkMode'
+      >
     >
   }
 }
@@ -155,6 +177,7 @@ export type ViewerQuery = { __typename?: 'Query' } & {
 export const SetDarkModeDocument = gql`
   mutation setDarkMode($darkMode: Boolean!) {
     setViewerPreference(options: { darkMode: $darkMode }) {
+      id
       darkMode
     }
   }
@@ -202,6 +225,7 @@ export type SetDarkModeMutationCompositionFunctionResult = VueApolloComposable.U
 export const SetLanguageDocument = gql`
   mutation setLanguage($language: String!) {
     setViewerPreference(options: { language: $language }) {
+      id
       language
     }
   }
@@ -245,6 +269,56 @@ export function useSetLanguageMutation(
 export type SetLanguageMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
   SetLanguageMutation,
   SetLanguageMutationVariables
+>
+export const SetPreferenceDefaultDocument = gql`
+  mutation setPreferenceDefault($darkMode: Boolean!, $language: String) {
+    setViewerPreference(options: { darkMode: $darkMode, language: $language }) {
+      id
+      darkMode
+      language
+    }
+  }
+`
+
+/**
+ * __useSetPreferenceDefaultMutation__
+ *
+ * To run a mutation, you first call `useSetPreferenceDefaultMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSetPreferenceDefaultMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useSetPreferenceDefaultMutation({
+ *   variables: {
+ *      darkMode: // value for 'darkMode'
+ *      language: // value for 'language'
+ *   },
+ * });
+ */
+export function useSetPreferenceDefaultMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        SetPreferenceDefaultMutation,
+        SetPreferenceDefaultMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          SetPreferenceDefaultMutation,
+          SetPreferenceDefaultMutationVariables
+        >
+      >
+) {
+  return VueApolloComposable.useMutation<
+    SetPreferenceDefaultMutation,
+    SetPreferenceDefaultMutationVariables
+  >(SetPreferenceDefaultDocument, options)
+}
+export type SetPreferenceDefaultMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SetPreferenceDefaultMutation,
+  SetPreferenceDefaultMutationVariables
 >
 export const AllAccountsDocument = gql`
   query allAccounts {
@@ -303,7 +377,9 @@ export const ViewerDocument = gql`
   query viewer {
     viewer {
       preference {
+        id
         language
+        darkMode
       }
     }
   }

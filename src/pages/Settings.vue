@@ -67,16 +67,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
+import { useResult } from '@vue/apollo-composable'
+import { defineComponent, ref, watch, watchEffect } from '@vue/composition-api'
 import { openURL } from 'quasar'
 import {
   useSetDarkModeMutation,
   useSetLanguageMutation,
+  useViewerQuery,
 } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, context) {
+    const { result } = useViewerQuery()
+    const preference = useResult(result, null, (data) => data.viewer.preference)
+
+    watchEffect(() => {
+      console.log('Settings preference: ', preference.value)
+      // console.log('Settings preference.value.darkMode: ', preference.value.darkMode)
+    })
+
     const darkMode = ref(true)
+    // const { darkMode } = preference
+    // const darkMode = () => preference!.value!.darkMode
+    // const darkMode = () => preference!.value!.darkMode
 
     const languageOptions = [
       { value: 'en-us', label: 'English' },

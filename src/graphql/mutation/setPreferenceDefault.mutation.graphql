@@ -1,0 +1,7 @@
+mutation setPreferenceDefault($darkMode: Boolean!, $language: String) {
+  setViewerPreference(options: { darkMode: $darkMode, language: $language }) {
+    id
+    darkMode
+    language
+  }
+}

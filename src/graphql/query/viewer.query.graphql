@@ -1,7 +1,9 @@
 query viewer {
   viewer {
     preference {
+      id
       language
+      darkMode
     }
   }
 }

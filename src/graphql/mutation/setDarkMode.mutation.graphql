@@ -1,5 +1,6 @@
 mutation setDarkMode($darkMode: Boolean!) {
   setViewerPreference(options: { darkMode: $darkMode }) {
+    id
     darkMode
   }
 }
