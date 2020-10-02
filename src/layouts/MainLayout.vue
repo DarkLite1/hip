@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { defineComponent, watchEffect } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
 import { isAuthenticated } from 'src/store/authStore'
 import {
@@ -32,9 +32,9 @@ import {
 export default defineComponent({
   setup(_, { root }) {
     const {
-      result: queryResult,
       loading: queryLoading,
       error: queryError,
+      onResult: onQueryResult,
     } = useViewerQuery(() => ({
       enabled: isAuthenticated.value,
     }))
@@ -43,24 +43,15 @@ export default defineComponent({
       mutate: setDefaultPreferences,
       loading: mutationLoading,
       error: mutationError,
-      called: mutationCalled,
     } = useSetPreferenceDefaultMutation({
       variables: {
         language: 'en-us',
         darkMode: false,
       },
-      refetchQueries: ['useViewerQuery'],
     })
 
-    watchEffect(() => {
-      console.log('MainLayout watchEffect')
-      if (
-        isAuthenticated.value &&
-        !queryLoading.value &&
-        !mutationLoading.value &&
-        !queryResult.value?.viewer?.preference &&
-        !mutationCalled.value
-      ) {
+    onQueryResult((result) => {
+      if (!result.data.viewer.preference) {
         console.log('MainLayout SET DEFAULT PREFERENCE')
         void setDefaultPreferences()
       }
