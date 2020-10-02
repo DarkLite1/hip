@@ -1,8 +1,8 @@
 export const ENVIRONMENT = {
-  mode: (() =>
-    process.env.mode === 'production' || process.env.PROD
+  mode:
+    process.env.mode === 'production' || process.env.PROD === 'true'
       ? 'production'
-      : 'development')(),
+      : 'development',
   auth: {
     clientId: process.env.AZURE_CLIENT_ID || '',
     authority: process.env.AZURE_IDENTITY_METADATA || '',
@@ -30,4 +30,3 @@ export const ENVIRONMENT = {
     },
   },
 }
-
