@@ -196,7 +196,7 @@ export const SetDarkModeDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useSetDarkModeMutation({
  *   variables: {
- *      darkMode: // value for 'darkMode'
+ *     darkMode: // value for 'darkMode'
  *   },
  * });
  */
@@ -244,7 +244,7 @@ export const SetLanguageDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useSetLanguageMutation({
  *   variables: {
- *      language: // value for 'language'
+ *     language: // value for 'language'
  *   },
  * });
  */
@@ -293,8 +293,8 @@ export const SetPreferenceDefaultDocument = gql`
  * @example
  * const { mutate, loading, error, onDone } = useSetPreferenceDefaultMutation({
  *   variables: {
- *      darkMode: // value for 'darkMode'
- *      language: // value for 'language'
+ *     darkMode: // value for 'darkMode'
+ *     language: // value for 'language'
  *   },
  * });
  */
@@ -339,10 +339,7 @@ export const AllAccountsDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useAllAccountsQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useAllAccountsQuery();
  */
 export function useAllAccountsQuery(
   options:
@@ -363,11 +360,10 @@ export function useAllAccountsQuery(
         >
       > = {}
 ) {
-  return VueApolloComposable.useQuery<AllAccountsQuery, undefined>(
-    AllAccountsDocument,
-    undefined,
-    options
-  )
+  return VueApolloComposable.useQuery<
+    AllAccountsQuery,
+    AllAccountsQueryVariables
+  >(AllAccountsDocument, {}, options)
 }
 export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   AllAccountsQuery,
@@ -395,10 +391,7 @@ export const ViewerDocument = gql`
  * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
  *
  * @example
- * const { result, loading, error } = useViewerQuery(
- *   {
- *   }
- * );
+ * const { result, loading, error } = useViewerQuery();
  */
 export function useViewerQuery(
   options:
@@ -410,9 +403,9 @@ export function useViewerQuery(
         VueApolloComposable.UseQueryOptions<ViewerQuery, ViewerQueryVariables>
       > = {}
 ) {
-  return VueApolloComposable.useQuery<ViewerQuery, undefined>(
+  return VueApolloComposable.useQuery<ViewerQuery, ViewerQueryVariables>(
     ViewerDocument,
-    undefined,
+    {},
     options
   )
 }
