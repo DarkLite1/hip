@@ -1572,10 +1572,10 @@
     is-promise "4.0.0"
     tslib "~2.0.1"
 
-"@microsoft/microsoft-graph-types@^1.20.0":
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-types/-/microsoft-graph-types-1.22.0.tgz#cf0205933676f169be693c5c641def7f35fef741"
-  integrity sha512-yrMcqhGuET16Nicce//geW1BRjfltGWRqghlwNqVIhv/EHFGryeahLIwCwzclsdJVw+n0pruSzfP+VCdh/HGJw==
+"@microsoft/microsoft-graph-types@^1.26.0":
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/microsoft-graph-types/-/microsoft-graph-types-1.26.0.tgz#fabf17d2811a6400c4f265e639d98ed86ebd879a"
+  integrity sha512-wKWDAVzP2b2xFZzEM96YMFwKO59gBgaDESd0CTi1RT2bt1c+83bFb2Y2wpJLw2o0cm5E6chxNUX5NiUQixxhbQ==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
