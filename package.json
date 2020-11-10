@@ -29,13 +29,13 @@
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "axios": "^0.20.0",
-    "core-js": "^3.6.5",
+    "core-js": "^3.7.0",
     "env-cmd": "^10.1.0",
     "global": "^4.4.0",
-    "graphql": "^15.3.0",
+    "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
     "quasar": "^1.14.3",
-    "vue-i18n": "^8.21.1"
+    "vue-i18n": "^8.22.1"
   },
   "devDependencies": {
     "@graphql-codegen/add": "^2.0.1",
