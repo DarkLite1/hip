@@ -7,7 +7,7 @@ export default {
   },
   navigationMenu: {
     home: "Accueil",
-    tickets: "Mes tickets",
+    applications: "Applications",
     settings: "Paramétrage",
   },
 }

@@ -7,7 +7,10 @@ const routes: RouteConfig[] = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: 'login', component: () => import('pages/Login.vue') },
-      { path: 'tickets', component: () => import('pages/Tickets.vue') },
+      {
+        path: 'applications',
+        component: () => import('pages/Applications.vue'),
+      },
       { path: 'test', component: () => import('pages/Test.vue') },
       { path: 'settings', component: () => import('pages/Settings.vue') },
       { path: 'profile', component: () => import('pages/Profile.vue') },

@@ -9,9 +9,9 @@ export const useMainNavigationLinks = (root: SetupContext['root']) => {
       icon: 'mail_outline',
     },
     {
-      label: computed(() => root.$t('navigationMenu.tickets')),
-      name: 'tickets',
-      to: '/tickets',
+      label: computed(() => root.$t('navigationMenu.applications')),
+      name: 'applications',
+      to: '/applications',
       icon: 'mail_outline',
     },
     {
