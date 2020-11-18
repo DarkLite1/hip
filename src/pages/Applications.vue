@@ -1,8 +1,13 @@
 <template>
   <q-page padding>
     <div class="q-pa-md row items-start q-gutter-md cursor-pointer">
-      <q-card v-ripple class="my-card ripple" clickable @click="GetSapRoster">
-        <q-card-section class="bg-primary text-white">
+      <q-card
+        v-ripple
+        class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable"
+        @click="GetSapRoster"
+      >
+        <span class="q-focus-helper"></span>
+        <q-card-section>
           <div class="text-h6">
             {{ $t('application.sapTruckRoster.name') }}
           </div>
@@ -27,3 +32,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.my-card {
+  border-radius: 32px;
+}
+</style>
