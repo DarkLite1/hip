@@ -7,10 +7,10 @@ import {
   from,
 } from '@apollo/client/core'
 import { provide } from '@vue/composition-api'
-import { onError } from '@apollo/link-error'
-import { setContext } from '@apollo/link-context'
 import { getToken } from 'src/services/auth/authService'
 import { ENVIRONMENT } from 'src/environment'
+import { onError } from '@apollo/client/link/error'
+import { setContext } from '@apollo/client/link/context'
 
 export default boot(({ app }) => {
   const httpLink = new HttpLink({
