@@ -9,7 +9,7 @@
       :breakpoint="600"
       show-if-above
       bordered
-      content-class="bg-grey-3"
+      content-class="bg-grey-3 no-scroll"
     >
       <q-scroll-area class="fit">
         <q-list padding>
