@@ -10,4 +10,11 @@ export default {
     applications: "Anwendungen",
     settings: "Einstellungen",
   },
+  application: {
+    sapTruckRoster: {
+      name: "SAP LKW-Planung",
+      shortDescription: "Holen Sie sich die LKW-Planung",
+      longDescription: "Holen Sie sich die LKW-Planung",
+    },
+  },
 }

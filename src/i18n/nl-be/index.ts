@@ -10,4 +10,11 @@ export default {
     applications: "Applicaties",
     settings: "Instellingen",
   },
+  application: {
+    sapTruckRoster: {
+      name: "SAP cracthwagen planning",
+      shortDescription: "Haal de planning op",
+      longDescription: "",
+    },
+  },
 }
