@@ -28,9 +28,9 @@ export default boot(({ app }) => {
       } as Express.Request & { authorization: string },
     }
 
-    if (ENVIRONMENT.mode !== 'production') {
+    // if (ENVIRONMENT.mode !== 'production') {
       console.log('accessToken: ', completeHeader.headers.authorization)
-    }
+    // }
     return completeHeader
   })
 
