@@ -6,13 +6,13 @@ export const useMainNavigationLinks = (root: SetupContext['root']) => {
       label: computed(() => root.$t('navigationMenu.home')),
       name: 'home',
       to: '/',
-      icon: 'mail_outline',
+      icon: 'home',
     },
     {
       label: computed(() => root.$t('navigationMenu.applications')),
       name: 'applications',
       to: '/applications',
-      icon: 'mail_outline',
+      icon: 'widgets',
     },
     {
       label: computed(() => root.$t('navigationMenu.settings')),
