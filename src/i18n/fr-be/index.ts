@@ -2,13 +2,22 @@ export default {
   general: {
     welcome: "Bienvenue",
   },
-  homePage: {
-    welcomeMessage: "Bienvenue",
-  },
-  navigationMenu: {
-    home: "Accueil",
-    applications: "Applications",
-    settings: "Paramétrage",
+  page: {
+    home: {
+      name: "Accueil",
+      welcomeMessage: "Bienvenue",
+    },
+    applications: {
+      name: "Applications",
+    },
+    settings: {
+      name: "Paramétrage",
+      darkMode: "Mode sombre",
+      language: "Langue",
+      help: "Aide",
+      reportProblem: "Signaler un problème",
+      emailUs: "Envoyez-nous un e-mail",
+    },
   },
   application: {
     sapTruckRoster: {

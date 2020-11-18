@@ -2,13 +2,22 @@ export default {
   general: {
     welcome: "Welkom",
   },
-  homePage: {
-    welcomeMessage: "Welkom {userName}!",
-  },
-  navigationMenu: {
-    home: "Startpagina",
-    applications: "Applicaties",
-    settings: "Instellingen",
+  page: {
+    home: {
+      name: "Startpagina",
+      welcomeMessage: "Welkom {userName}!",
+    },
+    applications: {
+      name: "Applicaties",
+    },
+    settings: {
+      name: "Instellingen",
+      darkMode: "Donkere modus",
+      language: "Taal",
+      help: "Help",
+      reportProblem: "Meld een probleem",
+      emailUs: "Stuur ons een e-mail",
+    },
   },
   application: {
     sapTruckRoster: {

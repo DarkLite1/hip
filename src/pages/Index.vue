@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <p>Welcome {{ profile.givenName }}</p>
+    <p>{{ $t('general.welcome') }} {{ profile.givenName }}</p>
     <q-btn color="primary" label="Test" @click="onClick" />
     <h2>All accounts:</h2>
     <h2 v-if="loading">Loading...</h2>

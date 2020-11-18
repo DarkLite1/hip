@@ -2,11 +2,11 @@
   <q-page padding>
     <div class="q-pa-md">
       <q-list class="q-mb-md" bordered padding>
-        <q-item-label header>{{ $t('navigationMenu.settings') }}</q-item-label>
+        <q-item-label header>{{ $t('page.settings.name') }}</q-item-label>
 
         <q-item tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>Dark mode</q-item-label>
+            <q-item-label>{{ $t('page.settings.darkMode') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-toggle v-model="darkMode" color="blue" />
@@ -15,7 +15,7 @@
 
         <q-item tag="label">
           <q-item-section>
-            <q-item-label>Language</q-item-label>
+            <q-item-label>{{ $t('page.settings.language') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-select
@@ -37,7 +37,7 @@
 
         <q-item to="/settings/help" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>Help</q-item-label>
+            <q-item-label>{{ $t('page.settings.help') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
@@ -46,7 +46,7 @@
 
         <q-item @click="selfHelp" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>Visit the self help</q-item-label>
+            <q-item-label>{{ $t('page.settings.reportProblem') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
@@ -55,7 +55,7 @@
 
         <q-item @click="emailUs" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>E-mail us</q-item-label>
+            <q-item-label>{{ $t('page.settings.emailUs') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
