@@ -1,40 +1,60 @@
 <template>
   <q-page padding>
-    <div class="q-pa-md row items-start q-gutter-md cursor-pointer">
-      <q-card
-        v-ripple
-        class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable"
-        @click="GetSapRoster"
-      >
-        <span class="q-focus-helper"></span>
-        <q-card-section>
-          <div class="text-h6">
-            {{ $t('application.sapTruckRoster.name') }}
-          </div>
-          <div class="text-subtitle2">
-            {{ $t('application.sapTruckRoster.shortDescription') }}
-          </div>
-        </q-card-section>
-      </q-card>
+    <app-application-form
+      v-if="selectedComponent"
+      :applicationName="selectedComponent"
+    />
+
+    <div v-else class="q-pa-md row items-start q-gutter-md cursor-pointer">
+      <app-application-card
+        v-for="card in applicationCards"
+        :key="card.name"
+        :name="card.name"
+        :shortDescription="card.shortDescription"
+        @selected-app="display"
+      />
+
+      <p>selected component: {{ selectedComponent }}</p>
     </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, reactive, ref } from '@vue/composition-api'
 
 export default defineComponent({
-  setup() {
+  setup(_, { root }) {
+    const selectedComponent = ref()
+    const applicationCards = reactive([
+      {
+        name: 'test',
+        shortDescription: 'kiwi is great!',
+      },
+      {
+        name: root.$t('application.sapTruckRoster.name'),
+        shortDescription: root.$t(
+          'application.sapTruckRoster.shortDescription'
+        ),
+      },
+    ])
+
+    const display = (value: string) => {
+      console.log('selected app: ', value)
+      selectedComponent.value = value
+    }
+
     const GetSapRoster = () => {
       console.log('get SAP roster clicked')
     }
-    return { GetSapRoster }
+    return { applicationCards, GetSapRoster, selectedComponent, display }
+  },
+  components: {
+    appApplicationCard: () => import('src/components/ApplicationCard.vue'),
+    appApplicationForm: () => import('src/components/ApplicationForm.vue'),
+    // appApplicationFormTest: () =>
+    //   import('src/components/ApplicationFormTest.vue'),
+    // appApplicationFormSamTruckRoster: () =>
+    //   import('src/components/ApplicationFormSapTruckRoster.vue'),
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.my-card {
-  border-radius: 32px;
-}
-</style>
