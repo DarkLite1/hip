@@ -11,6 +11,12 @@ const routes: RouteConfig[] = [
         path: 'applications',
         component: () => import('pages/Applications.vue'),
       },
+      {
+        path: 'application',
+        name: 'application',
+        component: () => import('pages/Application.vue'),
+        props: true,
+      },
       { path: 'test', component: () => import('pages/Test.vue') },
       { path: 'settings', component: () => import('pages/Settings.vue') },
       { path: 'profile', component: () => import('pages/Profile.vue') },

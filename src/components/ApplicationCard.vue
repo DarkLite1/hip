@@ -2,7 +2,7 @@
   <q-card
     v-ripple
     class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable"
-    @click="$emit('selected-app', name)"
+    @click="applicationSelected(name)"
   >
     <span class="q-focus-helper"></span>
     <q-card-section>
@@ -31,8 +31,14 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
-    return {}
+  setup(_, { root }) {
+    const applicationSelected = async (name: string) => {
+      await root.$router.push({
+        name: 'application',
+        params: { applicationName: name },
+      })
+    }
+    return { applicationSelected }
   },
 })
 </script>

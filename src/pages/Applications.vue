@@ -1,11 +1,6 @@
 <template>
   <q-page padding>
-    <app-application-form
-      v-if="selectedComponent"
-      :applicationName="selectedComponent"
-    />
-
-    <div v-else class="q-pa-md row items-start q-gutter-md cursor-pointer">
+    <div class="q-pa-md row items-start q-gutter-md cursor-pointer">
       <app-application-card
         v-for="card in applicationCards"
         :key="card.name"
@@ -13,8 +8,6 @@
         :shortDescription="card.shortDescription"
         @selected-app="display"
       />
-
-      <p>selected component: {{ selectedComponent }}</p>
     </div>
   </q-page>
 </template>
@@ -50,11 +43,6 @@ export default defineComponent({
   },
   components: {
     appApplicationCard: () => import('src/components/ApplicationCard.vue'),
-    appApplicationForm: () => import('src/components/ApplicationForm.vue'),
-    // appApplicationFormTest: () =>
-    //   import('src/components/ApplicationFormTest.vue'),
-    // appApplicationFormSamTruckRoster: () =>
-    //   import('src/components/ApplicationFormSapTruckRoster.vue'),
   },
 })
 </script>
