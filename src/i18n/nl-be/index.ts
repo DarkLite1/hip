@@ -21,7 +21,7 @@ export default {
   },
   application: {
     sapTruckRoster: {
-      name: "SAP cracthwagen planning",
+      name: "SAP vracthwagen planning",
       shortDescription: "Haal de planning op",
       longDescription: "",
     },
