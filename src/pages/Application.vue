@@ -1,33 +1,24 @@
 <template>
   <div class="q-pa-md">
-    <p>Main form</p>
-    <component :is="selectedForm"> </component>
+    <h6>{{ appName }}</h6>
+    <component :is="formComponentName"> </component>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-  name: 'ApplicationForm',
+  name: 'Application',
   props: {
-    applicationName: {
+    appName: {
       type: String,
       required: true,
     },
-  },
-  setup(props, { root }) {
-    const selectedForm = computed(() => {
-      switch (props.applicationName) {
-        case root.$t('application.sapTruckRoster.name'):
-          return 'appApplicationFormSamTruckRoster'
-        case 'test':
-          return 'appApplicationFormTest'
-        default:
-          return 'Form not registered'
-      }
-    })
-    return { selectedForm }
+    formComponentName: {
+      type: String,
+      required: false,
+    },
   },
   components: {
     appApplicationFormTest: () =>
