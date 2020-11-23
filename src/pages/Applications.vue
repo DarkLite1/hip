@@ -6,7 +6,7 @@
         :key="id"
         :name="card.name"
         :shortDescription="card.shortDescription"
-        :formComponentName="card.formComponentName"
+        :id="id"
       />
     </div>
   </q-page>

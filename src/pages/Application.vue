@@ -1,24 +1,28 @@
 <template>
   <div class="q-pa-md">
-    <h6>{{ appName }}</h6>
-    <component :is="formComponentName"> </component>
+    <!-- appId: {{ appId }} -->
+    <h6>{{ application.name }}</h6>
+    <component :is="application.formComponentName"> </component>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api'
+import { useApplications } from 'src/composables/useApplications'
 
 export default defineComponent({
   name: 'Application',
   props: {
-    appName: {
+    appId: {
       type: String,
       required: true,
     },
-    formComponentName: {
-      type: String,
-      required: false,
-    },
+  },
+  setup(props, { root }) {
+    const { getApplication } = useApplications(root)
+    const application = getApplication(props.appId)
+
+    return { application }
   },
   components: {
     appApplicationFormTest: () =>
