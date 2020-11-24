@@ -28,6 +28,9 @@ export default {
       name: "SAP Truck Roster",
       shortDescription: "Get the truck planning",
       longDescription: "Get the truck planning from SAP",
+      processedDispatchGroupTable: {
+        title: "Available dispatch groups:",
+      },
       question: {
         truckId: "What is your truck ID number?",
         driverId: "What is your driver ID?",
