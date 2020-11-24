@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div>
     <div class="q-gutter-md" style="max-width: 300px">
       <q-input outlined label="Outlined" />
     </div>

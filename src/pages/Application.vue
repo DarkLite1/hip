@@ -1,7 +1,8 @@
 <template>
-  <div v-if="$props.appId" class="q-pa-md">
-    <!-- appId: {{ appId }} -->
-    <h6>{{ application.name }}</h6>
+  <div v-if="$props.appId" class="q-px-md">
+    <div class="text-h6 q-pb-md">
+      {{ application.name }}
+    </div>
     <component
       v-if="application.formComponentName"
       :is="application.formComponentName"

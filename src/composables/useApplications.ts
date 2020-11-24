@@ -24,8 +24,8 @@ export const useApplications = (root: SetupContext['root']) => {
       formComponentName: 'appApplicationFormSamTruckRoster',
     },
     2: {
-      name: ref('test'),
-      shortDescription: ref('test short description'),
+      name: ref('Application 2'),
+      shortDescription: ref('We do some cool stuff'),
       formComponentName: 'appApplicationFormTest',
     },
   })
