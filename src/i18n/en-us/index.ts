@@ -2,6 +2,10 @@ export default {
   general: {
     welcome: "Welcome",
   },
+  button: {
+    submit: "Submit",
+    reset: "Reset",
+  },
   page: {
     home: {
       name: "Home",
@@ -24,6 +28,19 @@ export default {
       name: "SAP Truck Roster",
       shortDescription: "Get the truck planning",
       longDescription: "Get the truck planning from SAP",
+      question: {
+        truckId: "What is your truck ID number?",
+        driverId: "What is your driver ID?",
+        driverIdUnknown: "I don't know my driver ID",
+      },
+      error: {
+        truckId: "10 characters are required",
+        driverId: "At least 3 characters are required",
+      },
+      label: {
+        truckId: "Truck ID",
+        driverId: "Driver ID",
+      },
     },
   },
 }
