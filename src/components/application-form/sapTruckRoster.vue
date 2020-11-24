@@ -1,7 +1,7 @@
 <template>
   <div>
     <available-dispatch-group-names-table />
-    
+
     <q-form @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
         <template v-if="showTruckId">
@@ -12,21 +12,16 @@
             :label="$t('application.sapTruckRoster.label.truckId')"
             v-model="truckId"
             outlined
+            clearable
+            clear-icon="close"
             hide-bottom-space
             lazy-rules
             :rules="[
               (val) =>
-                (val && val.length == 10) ||
+                (val && val.length > 3 && val.length < 13) ||
                 $t('application.sapTruckRoster.error.truckId'),
             ]"
           >
-            <template v-if="truckId" v-slot:append>
-              <q-icon
-                name="close"
-                @click="truckId = ''"
-                class="cursor-pointer"
-              />
-            </template>
           </q-input>
         </template>
 
@@ -38,21 +33,16 @@
             :label="$t('application.sapTruckRoster.label.driverId')"
             v-model="driverId"
             outlined
+            clearable
+            clear-icon="close"
             hide-bottom-space
             lazy-rules
             :rules="[
               (val) =>
-                (val && val.length > 3) ||
+                (val && val.length > 9) ||
                 $t('application.sapTruckRoster.error.driverId'),
             ]"
           >
-            <template v-if="driverId" v-slot:append>
-              <q-icon
-                name="close"
-                @click="driverId = ''"
-                class="cursor-pointer"
-              />
-            </template>
           </q-input>
         </template>
 
