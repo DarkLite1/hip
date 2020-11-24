@@ -1,18 +1,22 @@
 <template>
   <div>
     <div class="q-gutter-md" style="max-width: 300px">
-      <q-input outlined label="Outlined" />
+      <q-input v-if="showTruckId" outlined label="Truck ID" />
+      <q-input v-else outlined label="Driver ID" />
+      <q-checkbox v-model="showTruckId" label="I don't know my driver ID" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 
 export default defineComponent({
   name: 'ApplicationForm',
   setup() {
-    return {}
+    const showTruckId = ref(false)
+
+    return { showTruckId }
   },
 })
 </script>
