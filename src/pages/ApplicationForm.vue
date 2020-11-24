@@ -36,9 +36,9 @@ export default defineComponent({
   },
   components: {
     appApplicationFormTest: () =>
-      import('src/components/ApplicationFormTest.vue'),
+      import('src/components/application-form/test.vue'),
     appApplicationFormSamTruckRoster: () =>
-      import('src/components/ApplicationFormSapTruckRoster.vue'),
+      import('src/components/application-form/sapTruckRoster.vue'),
   },
 })
 </script>
