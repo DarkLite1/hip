@@ -2,12 +2,11 @@
   <div v-if="$props.appId" class="q-pa-md">
     <!-- appId: {{ appId }} -->
     <h6>{{ application.name }}</h6>
-    <template v-if="application.formComponentName">
-      <component :is="application.formComponentName"> </component>
-    </template>
-    <template v-else>
-      <h3>No form available for application id {{ $props.appId }}</h3>
-    </template>
+    <component
+      v-if="application.formComponentName"
+      :is="application.formComponentName"
+    />
+    <h3 v-else>No form available for application id {{ $props.appId }}</h3>
   </div>
 </template>
 
