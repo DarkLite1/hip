@@ -22,6 +22,10 @@ export default defineComponent({
       type: String,
       required: false,
     },
+    formPath: {
+      type: String,
+      required: false,
+    },
   },
   setup(props, { root }) {
     if (!props.appId) {
@@ -35,10 +39,9 @@ export default defineComponent({
     return { application }
   },
   components: {
-    appApplicationFormTest: () =>
-      import('src/components/application-form/test.vue'),
-    appApplicationFormSamTruckRoster: () =>
+    samTruckRoster: () =>
       import('src/components/application-form/sapTruckRoster.vue'),
+    applicationTest: () => import('src/components/application-form/test.vue'),
   },
 })
 </script>

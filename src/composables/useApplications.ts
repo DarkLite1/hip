@@ -21,12 +21,12 @@ export const useApplications = (root: SetupContext['root']) => {
       shortDescription: ref(
         root.$t('application.sapTruckRoster.shortDescription')
       ),
-      formComponentName: 'appApplicationFormSamTruckRoster',
+      formComponentName: 'samTruckRoster',
     },
     2: {
       name: ref('Application 2'),
       shortDescription: ref('We do some cool stuff'),
-      formComponentName: 'appApplicationFormTest',
+      formComponentName: 'applicationTest',
     },
   })
 
