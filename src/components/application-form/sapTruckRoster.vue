@@ -1,6 +1,6 @@
 <template>
-  <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-    <div class="q-gutter-md" style="max-width: 300px">
+  <q-form @submit="onSubmit" @reset="onReset">
+    <div class="q-gutter-sm" style="max-width: 300px">
       <template v-if="showTruckId">
         <p class="text-bold">
           {{ $t('application.sapTruckRoster.question.truckId') }}
@@ -22,6 +22,7 @@
           </template>
         </q-input>
       </template>
+
       <template v-else>
         <p class="text-bold">
           {{ $t('application.sapTruckRoster.question.driverId') }}
@@ -52,16 +53,17 @@
         v-model="showTruckId"
         :label="$t('application.sapTruckRoster.question.driverIdUnknown')"
       />
-    </div>
-    <div>
-      <q-btn :label="$t('button.submit')" type="submit" color="primary" />
-      <q-btn
-        :label="$t('button.reset')"
-        type="reset"
-        color="primary"
-        flat
-        class="q-ml-sm"
-      />
+
+      <div>
+        <q-btn :label="$t('button.submit')" type="submit" color="primary" />
+        <q-btn
+          :label="$t('button.reset')"
+          type="reset"
+          color="primary"
+          flat
+          class="q-ml-sm"
+        />
+      </div>
     </div>
   </q-form>
 </template>
