@@ -2,7 +2,12 @@
   <div v-if="$props.appId" class="q-pa-md">
     <!-- appId: {{ appId }} -->
     <h6>{{ application.name }}</h6>
-    <component :is="application.formComponentName"> </component>
+    <template v-if="application.formComponentName">
+      <component :is="application.formComponentName"> </component>
+    </template>
+    <template v-else>
+      <h3>No form available for application id {{ $props.appId }}</h3>
+    </template>
   </div>
 </template>
 
@@ -21,7 +26,7 @@ export default defineComponent({
   setup(props, { root }) {
     if (!props.appId) {
       console.error('No application ID provided to load the correct form')
-      ;void (async () => await root.$router.push({ path: 'applications' }))()
+      void (async () => await root.$router.push({ path: 'applications' }))()
       return
     }
 
