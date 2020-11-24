@@ -12,9 +12,9 @@ const routes: RouteConfig[] = [
         component: () => import('pages/Applications.vue'),
       },
       {
-        path: 'application',
-        name: 'application',
-        component: () => import('pages/Application.vue'),
+        path: 'applicationForm',
+        name: 'applicationForm',
+        component: () => import('pages/ApplicationForm.vue'),
         props: true,
       },
       { path: 'test', component: () => import('pages/Test.vue') },

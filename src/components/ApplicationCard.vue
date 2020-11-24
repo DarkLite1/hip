@@ -38,7 +38,7 @@ export default defineComponent({
   setup(_, { root }) {
     const applicationSelected = async (id: string) => {
       await root.$router.push({
-        name: 'application',
+        name: 'applicationForm',
         params: { appId: id },
       })
     }
