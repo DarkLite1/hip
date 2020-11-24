@@ -39,7 +39,8 @@
             lazy-rules
             :rules="[
               (val) =>
-                (val && val.length > 9) ||
+                (val && val.length == 10 && 
+                val > 9799999999 && val < 9999999999) ||
                 $t('application.sapTruckRoster.error.driverId'),
             ]"
           >
