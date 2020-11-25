@@ -18,7 +18,10 @@
             lazy-rules
             :rules="[
               (val) =>
-                (val && val.length > 3 && val.length < 13) ||
+                (val &&
+                  val.length > 3 &&
+                  val.length < 13 &&
+                  /[a-zA-Z]/g.test(val)) ||
                 $t('application.sapTruckRoster.error.truckId'),
             ]"
           >
@@ -39,8 +42,10 @@
             lazy-rules
             :rules="[
               (val) =>
-                (val && val.length == 10 && 
-                val > 9799999999 && val < 9999999999) ||
+                (val &&
+                  val.length == 10 &&
+                  val > 9799999999 &&
+                  val < 9999999999) ||
                 $t('application.sapTruckRoster.error.driverId'),
             ]"
           >
