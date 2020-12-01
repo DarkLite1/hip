@@ -340,6 +340,37 @@ export type DriverQuery = { __typename?: 'Query' } & {
     | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
 }
 
+export type RosterQueryVariables = Exact<{
+  fromDate: Scalars['DateTime']
+  truckId: Scalars['String']
+}>
+
+export type RosterQuery = { __typename?: 'Query' } & {
+  roster:
+    | ({ __typename?: 'RosterArray' } & {
+        data?: Maybe<
+          Array<
+            { __typename?: 'Roster' } & Pick<
+              Roster,
+              | 'truckId'
+              | 'radioId'
+              | 'driverId'
+              | 'driverFirstName'
+              | 'driverLastName'
+              | 'startPlantLoadingDateTime'
+              | 'driverEmail'
+              | 'plantId'
+            > & {
+                truck?: Maybe<
+                  { __typename?: 'Truck' } & Pick<Truck, 'id' | 'country'>
+                >
+              }
+          >
+        >
+      })
+    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
+}
+
 export type RosterDispatchGroupQueryVariables = Exact<{
   fromDate: Scalars['DateTime']
 }>
@@ -658,6 +689,73 @@ export function useDriverQuery(
 export type DriverQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   DriverQuery,
   DriverQueryVariables
+>
+export const RosterDocument = gql`
+  query roster($fromDate: DateTime!, $truckId: String!) {
+    roster(fromDate: $fromDate, truckId: $truckId) {
+      ... on ApiError {
+        code
+        message
+      }
+      ... on RosterArray {
+        data {
+          truck {
+            id
+            country
+          }
+          truckId
+          radioId
+          driverId
+          driverFirstName
+          driverLastName
+          startPlantLoadingDateTime
+          driverEmail
+          plantId
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useRosterQuery__
+ *
+ * To run a query within a Vue component, call `useRosterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRosterQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useRosterQuery({
+ *   fromDate: // value for 'fromDate'
+ *   truckId: // value for 'truckId'
+ * });
+ */
+export function useRosterQuery(
+  variables:
+    | RosterQueryVariables
+    | VueCompositionApi.Ref<RosterQueryVariables>
+    | ReactiveFunction<RosterQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useQuery<RosterQuery, RosterQueryVariables>(
+    RosterDocument,
+    variables,
+    options
+  )
+}
+export type RosterQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  RosterQuery,
+  RosterQueryVariables
 >
 export const RosterDispatchGroupDocument = gql`
   query rosterDispatchGroup($fromDate: DateTime!) {

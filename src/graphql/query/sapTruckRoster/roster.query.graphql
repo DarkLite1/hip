@@ -1,0 +1,24 @@
+query roster($fromDate: DateTime!, $truckId: String!) {
+  roster(fromDate: $fromDate, truckId: $truckId) {
+    ... on ApiError {
+      code
+      message
+    }
+    ... on RosterArray {
+      data {
+        truck {
+          id
+          country
+        }
+        truckId
+        radioId
+        driverId
+        driverFirstName
+        driverLastName
+        startPlantLoadingDateTime
+        driverEmail
+        plantId
+      }
+    }
+  }
+}
