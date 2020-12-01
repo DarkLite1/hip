@@ -40,7 +40,9 @@ export default defineComponent({
   },
   components: {
     samTruckRoster: () =>
-      import('src/components/application-form/sapTruckRoster.vue'),
+      import(
+        'src/components/application-form/sapTruckRoster/sapTruckRosterForm.vue'
+      ),
     applicationTest: () => import('src/components/application-form/test.vue'),
   },
 })

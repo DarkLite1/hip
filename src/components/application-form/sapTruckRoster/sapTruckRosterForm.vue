@@ -1,6 +1,6 @@
 <template>
   <div>
-    <available-dispatch-group-names-table />
+    <available-dispatch-groups />
 
     <q-form @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
@@ -92,8 +92,10 @@ export default defineComponent({
     return { showTruckId, onReset, onSubmit, driverId, truckId }
   },
   components: {
-    availableDispatchGroupNamesTable: () =>
-      import('src/components/application-form/sapTruckRosterTable.vue'),
+    availableDispatchGroups: () =>
+      import(
+        'src/components/application-form/sapTruckRoster/availableDispatchGroups.vue'
+      ),
   },
 })
 </script>

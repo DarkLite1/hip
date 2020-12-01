@@ -18,7 +18,6 @@
     </p>
 
     <q-spinner v-if="loading" color="primary" size="3em" />
-
     <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
