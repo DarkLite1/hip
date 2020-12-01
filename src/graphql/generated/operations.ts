@@ -6,6 +6,10 @@ export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> }
 export type ReactiveFunction<TParam> = () => TParam
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -24,10 +28,47 @@ export type Query = {
   accounts: Array<Account>
   account: Account
   viewer: Viewer
+  roster: RosterQueryResult
+  rosterDispatchGroup: RosterDispatchGroupQueryResult
+  plant: PlantQueryResult
+  driver: DriverQueryResult
+  truck: TruckQueryResult
 }
 
 export type QueryAccountArgs = {
   accountIdentifier: Scalars['String']
+}
+
+export type QueryRosterArgs = {
+  truckId?: Maybe<Scalars['String']>
+  dispatchGroup?: Maybe<Scalars['String']>
+  radioId?: Maybe<Scalars['String']>
+  driverId?: Maybe<Scalars['String']>
+  fromDate?: Maybe<Scalars['DateTime']>
+  date?: Maybe<Scalars['DateTime']>
+}
+
+export type QueryRosterDispatchGroupArgs = {
+  fromDate?: Maybe<Scalars['DateTime']>
+  date?: Maybe<Scalars['DateTime']>
+}
+
+export type QueryPlantArgs = {
+  country?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+}
+
+export type QueryDriverArgs = {
+  email?: Maybe<Scalars['String']>
+  dispatchGroup?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
+}
+
+export type QueryTruckArgs = {
+  radioId?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['String']>
 }
 
 export type Account = {
@@ -54,6 +95,125 @@ export type Preference = {
 export type Viewer = {
   __typename?: 'Viewer'
   preference?: Maybe<Preference>
+}
+
+export type RosterQueryResult = RosterArray | ApiError
+
+export type RosterArray = {
+  __typename?: 'RosterArray'
+  data?: Maybe<Array<Roster>>
+}
+
+export type Roster = {
+  __typename?: 'Roster'
+  truckId?: Maybe<Scalars['String']>
+  radioId?: Maybe<Scalars['String']>
+  driverId?: Maybe<Scalars['String']>
+  driverFirstName?: Maybe<Scalars['String']>
+  driverLastName?: Maybe<Scalars['String']>
+  driverEmail?: Maybe<Scalars['String']>
+  despatchGroup?: Maybe<Scalars['String']>
+  plantId: Scalars['ID']
+  plantName?: Maybe<Scalars['String']>
+  plantTimezone?: Maybe<Scalars['String']>
+  plantStreetHouse?: Maybe<Scalars['String']>
+  plantCountry?: Maybe<Scalars['String']>
+  plantCity?: Maybe<Scalars['String']>
+  startPlantLoadingDateTime?: Maybe<Scalars['String']>
+  truck?: Maybe<Truck>
+}
+
+export type Truck = {
+  __typename?: 'Truck'
+  id?: Maybe<Scalars['String']>
+  radioId?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  fleetNr?: Maybe<Scalars['String']>
+  maxLegalWeight?: Maybe<Scalars['Float']>
+  maxCapacity?: Maybe<Scalars['Float']>
+  maxPumpCapacity?: Maybe<Scalars['Float']>
+  tareDate?: Maybe<Scalars['String']>
+  tareTime?: Maybe<Scalars['String']>
+  tareWeight?: Maybe<Scalars['Float']>
+  minLoadSize?: Maybe<Scalars['Float']>
+  emptySpeed?: Maybe<Scalars['Float']>
+  speedUnit?: Maybe<Scalars['String']>
+  loadedSpeed?: Maybe<Scalars['Float']>
+  haulerVendorId?: Maybe<Scalars['String']>
+}
+
+export type ApiError = {
+  __typename?: 'ApiError'
+  message: Scalars['String']
+  code: Scalars['String']
+}
+
+export type RosterDispatchGroupQueryResult = RosterDispatchGroupArray | ApiError
+
+export type RosterDispatchGroupArray = {
+  __typename?: 'RosterDispatchGroupArray'
+  data?: Maybe<Array<RosterDispatchGroup>>
+}
+
+export type RosterDispatchGroup = {
+  __typename?: 'RosterDispatchGroup'
+  date: Scalars['String']
+  dispatchGroup: Array<Scalars['String']>
+}
+
+export type PlantQueryResult = PlantArray | ApiError
+
+export type PlantArray = {
+  __typename?: 'PlantArray'
+  data?: Maybe<Array<Plant>>
+}
+
+export type Plant = {
+  __typename?: 'Plant'
+  id: Scalars['ID']
+  name: Scalars['String']
+  customerNrPlant: Scalars['String']
+  vendorNrPlant: Scalars['String']
+  factoryCalendar: Scalars['String']
+  streetHouse: Scalars['String']
+  country: Scalars['String']
+  postCode: Scalars['String']
+  city: Scalars['String']
+  purchasingOrg: Scalars['String']
+  region: Scalars['String']
+}
+
+export type DriverQueryResult = DriverArray | ApiError
+
+export type DriverArray = {
+  __typename?: 'DriverArray'
+  data?: Maybe<Array<Driver>>
+}
+
+export type Driver = {
+  __typename?: 'Driver'
+  id: Scalars['ID']
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  telephone?: Maybe<Scalars['String']>
+  despatchGroup?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  postCode?: Maybe<Scalars['String']>
+  city?: Maybe<Scalars['String']>
+  streetHouse?: Maybe<Scalars['String']>
+  additionalRefNr?: Maybe<Scalars['String']>
+  specialProp?: Maybe<Scalars['String']>
+  mainWorkPlant?: Maybe<Scalars['String']>
+  createdOn?: Maybe<Scalars['String']>
+  deletionFlag?: Maybe<Scalars['String']>
+}
+
+export type TruckQueryResult = TruckArray | ApiError
+
+export type TruckArray = {
+  __typename?: 'TruckArray'
+  data?: Maybe<Array<Truck>>
 }
 
 export type Mutation = {
@@ -159,6 +319,25 @@ export type AllAccountsQuery = { __typename?: 'Query' } & {
   accounts: Array<
     { __typename?: 'Account' } & Pick<Account, 'accountIdentifier' | 'name'>
   >
+}
+
+export type RosterDispatchGroupQueryVariables = Exact<{
+  fromDate: Scalars['DateTime']
+}>
+
+export type RosterDispatchGroupQuery = { __typename?: 'Query' } & {
+  rosterDispatchGroup:
+    | ({ __typename?: 'RosterDispatchGroupArray' } & {
+        data?: Maybe<
+          Array<
+            { __typename?: 'RosterDispatchGroup' } & Pick<
+              RosterDispatchGroup,
+              'date' | 'dispatchGroup'
+            >
+          >
+        >
+      })
+    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'message'>)
 }
 
 export type ViewerQueryVariables = Exact<{ [key: string]: never }>
@@ -368,6 +547,69 @@ export function useAllAccountsQuery(
 export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   AllAccountsQuery,
   AllAccountsQueryVariables
+>
+export const RosterDispatchGroupDocument = gql`
+  query rosterDispatchGroup($fromDate: DateTime!) {
+    rosterDispatchGroup(fromDate: $fromDate) {
+      ... on ApiError {
+        message
+      }
+      ... on RosterDispatchGroupArray {
+        data {
+          date
+          dispatchGroup
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useRosterDispatchGroupQuery__
+ *
+ * To run a query within a Vue component, call `useRosterDispatchGroupQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRosterDispatchGroupQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useRosterDispatchGroupQuery({
+ *   fromDate: // value for 'fromDate'
+ * });
+ */
+export function useRosterDispatchGroupQuery(
+  variables:
+    | RosterDispatchGroupQueryVariables
+    | VueCompositionApi.Ref<RosterDispatchGroupQueryVariables>
+    | ReactiveFunction<RosterDispatchGroupQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        RosterDispatchGroupQuery,
+        RosterDispatchGroupQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          RosterDispatchGroupQuery,
+          RosterDispatchGroupQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          RosterDispatchGroupQuery,
+          RosterDispatchGroupQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    RosterDispatchGroupQuery,
+    RosterDispatchGroupQueryVariables
+  >(RosterDispatchGroupDocument, variables, options)
+}
+export type RosterDispatchGroupQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  RosterDispatchGroupQuery,
+  RosterDispatchGroupQueryVariables
 >
 export const ViewerDocument = gql`
   query viewer {
