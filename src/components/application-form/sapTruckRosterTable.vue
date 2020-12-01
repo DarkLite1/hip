@@ -11,7 +11,7 @@
         outline
       >
         <q-tooltip
-          >The list is automatically updated every 15 minutes</q-tooltip
+          >The data is automatically updated every 15 minutes</q-tooltip
         >
       </q-btn>
     </p>
@@ -21,6 +21,7 @@
     </div>
 
     <div v-else-if="error">Error: {{ error.message }}</div>
+    <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
     <div v-else-if="dispatchGroups" style="max-width: 500px">
       <div v-for="group of dispatchGroups" :key="group.date" class="q-pb-md">
@@ -86,6 +87,12 @@ export default defineComponent({
       }
     })
 
+    const apiError = useResult(result, null, (data) => {
+      if (data.rosterDispatchGroup.__typename === 'ApiError') {
+        return data.rosterDispatchGroup
+      }
+    })
+
     watch(result, () => {
       console.log('result.value: ', result.value)
     })
@@ -94,7 +101,7 @@ export default defineComponent({
       console.log('dispatchGroups.value: ', dispatchGroups.value)
     })
 
-    return { dispatchGroups, loading, error, convertDate, refetch }
+    return { dispatchGroups, apiError, loading, error, convertDate, refetch }
   },
 })
 </script>
