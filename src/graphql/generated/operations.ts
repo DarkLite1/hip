@@ -321,6 +321,25 @@ export type AllAccountsQuery = { __typename?: 'Query' } & {
   >
 }
 
+export type DriverQueryVariables = Exact<{
+  id: Scalars['String']
+}>
+
+export type DriverQuery = { __typename?: 'Query' } & {
+  driver:
+    | ({ __typename?: 'DriverArray' } & {
+        data?: Maybe<
+          Array<
+            { __typename?: 'Driver' } & Pick<
+              Driver,
+              'id' | 'email' | 'country' | 'firstName' | 'lastName' | 'postCode'
+            >
+          >
+        >
+      })
+    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
+}
+
 export type RosterDispatchGroupQueryVariables = Exact<{
   fromDate: Scalars['DateTime']
 }>
@@ -333,6 +352,37 @@ export type RosterDispatchGroupQuery = { __typename?: 'Query' } & {
             { __typename?: 'RosterDispatchGroup' } & Pick<
               RosterDispatchGroup,
               'date' | 'dispatchGroup'
+            >
+          >
+        >
+      })
+    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
+}
+
+export type TruckQueryVariables = Exact<{
+  id: Scalars['String']
+}>
+
+export type TruckQuery = { __typename?: 'Query' } & {
+  truck:
+    | ({ __typename?: 'TruckArray' } & {
+        data?: Maybe<
+          Array<
+            { __typename?: 'Truck' } & Pick<
+              Truck,
+              | 'id'
+              | 'radioId'
+              | 'country'
+              | 'fleetNr'
+              | 'maxLegalWeight'
+              | 'tareWeight'
+              | 'minLoadSize'
+              | 'maxCapacity'
+              | 'maxPumpCapacity'
+              | 'tareDate'
+              | 'tareTime'
+              | 'emptySpeed'
+              | 'speedUnit'
             >
           >
         >
@@ -548,10 +598,72 @@ export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQ
   AllAccountsQuery,
   AllAccountsQueryVariables
 >
+export const DriverDocument = gql`
+  query driver($id: String!) {
+    driver(id: $id) {
+      ... on ApiError {
+        code
+        message
+      }
+      ... on DriverArray {
+        data {
+          id
+          email
+          country
+          firstName
+          lastName
+          email
+          postCode
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useDriverQuery__
+ *
+ * To run a query within a Vue component, call `useDriverQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDriverQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useDriverQuery({
+ *   id: // value for 'id'
+ * });
+ */
+export function useDriverQuery(
+  variables:
+    | DriverQueryVariables
+    | VueCompositionApi.Ref<DriverQueryVariables>
+    | ReactiveFunction<DriverQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useQuery<DriverQuery, DriverQueryVariables>(
+    DriverDocument,
+    variables,
+    options
+  )
+}
+export type DriverQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  DriverQuery,
+  DriverQueryVariables
+>
 export const RosterDispatchGroupDocument = gql`
   query rosterDispatchGroup($fromDate: DateTime!) {
     rosterDispatchGroup(fromDate: $fromDate) {
       ... on ApiError {
+        code
         message
       }
       ... on RosterDispatchGroupArray {
@@ -610,6 +722,75 @@ export function useRosterDispatchGroupQuery(
 export type RosterDispatchGroupQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   RosterDispatchGroupQuery,
   RosterDispatchGroupQueryVariables
+>
+export const TruckDocument = gql`
+  query truck($id: String!) {
+    truck(id: $id) {
+      ... on ApiError {
+        message
+      }
+      ... on TruckArray {
+        data {
+          id
+          radioId
+          country
+          fleetNr
+          maxLegalWeight
+          tareWeight
+          minLoadSize
+          radioId
+          maxCapacity
+          maxPumpCapacity
+          tareDate
+          tareTime
+          tareWeight
+          minLoadSize
+          emptySpeed
+          speedUnit
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useTruckQuery__
+ *
+ * To run a query within a Vue component, call `useTruckQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTruckQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useTruckQuery({
+ *   id: // value for 'id'
+ * });
+ */
+export function useTruckQuery(
+  variables:
+    | TruckQueryVariables
+    | VueCompositionApi.Ref<TruckQueryVariables>
+    | ReactiveFunction<TruckQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useQuery<TruckQuery, TruckQueryVariables>(
+    TruckDocument,
+    variables,
+    options
+  )
+}
+export type TruckQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  TruckQuery,
+  TruckQueryVariables
 >
 export const ViewerDocument = gql`
   query viewer {

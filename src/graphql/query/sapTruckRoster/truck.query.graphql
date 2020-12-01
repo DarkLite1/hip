@@ -1,0 +1,27 @@
+query truck($id: String!) {
+  truck(id: $id) {
+    ... on ApiError {
+      message
+    }
+    ... on TruckArray {
+      data {
+        id
+        radioId
+        country
+        fleetNr
+        maxLegalWeight
+        tareWeight
+        minLoadSize
+        radioId
+        maxCapacity
+        maxPumpCapacity
+        tareDate
+        tareTime
+        tareWeight
+        minLoadSize
+        emptySpeed
+        speedUnit
+      }
+    }
+  }
+}

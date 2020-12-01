@@ -1,0 +1,19 @@
+query driver($id: String!) {
+  driver(id: $id) {
+    ... on ApiError {
+      code
+      message
+    }
+    ... on DriverArray {
+      data {
+        id
+        email
+        country
+        firstName
+        lastName
+        email
+        postCode
+      }
+    }
+  }
+}

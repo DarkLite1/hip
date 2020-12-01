@@ -1,6 +1,7 @@
 query rosterDispatchGroup($fromDate: DateTime!) {
   rosterDispatchGroup(fromDate: $fromDate) {
     ... on ApiError {
+      code
       message
     }
     ... on RosterDispatchGroupArray {
