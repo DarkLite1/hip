@@ -57,6 +57,7 @@ export default defineComponent({
       },
       {
         pollInterval: 15 * 60 * 1000, // every 15 min
+        fetchPolicy: 'no-cache',
       }
     )
     // const { result, loading, error } = useRosterDispatchGroupQuery(() => {
@@ -79,12 +80,11 @@ export default defineComponent({
       return date.toLocaleDateString(locale, options)
     }
 
-    const dispatchGroups = useResult(
-      result,
-      [],
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      (data) => data.rosterDispatchGroup.data
-    )
+    const dispatchGroups = useResult(result, [], (data) => {
+      if (data.rosterDispatchGroup.__typename === 'RosterDispatchGroupArray') {
+        return data.rosterDispatchGroup.data
+      }
+    })
 
     watch(result, () => {
       console.log('result.value: ', result.value)
