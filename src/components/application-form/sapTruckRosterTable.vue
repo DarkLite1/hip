@@ -7,6 +7,7 @@
         padding="xs sm"
         @click="refetch()"
         :loading="loading"
+        :disable="loading"
         icon="refresh"
         outline
       >
