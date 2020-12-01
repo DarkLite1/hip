@@ -2,6 +2,18 @@
   <div class="q-pb-sm">
     <p class="text-bold">
       {{ $t('application.sapTruckRoster.processedDispatchGroupTable.title') }}
+      <q-btn
+        color="primary"
+        padding="xs sm"
+        @click="refetch()"
+        :loading="loading"
+        icon="refresh"
+        outline
+      >
+        <q-tooltip
+          >The list is automatically updated every 15 minutes</q-tooltip
+        >
+      </q-btn>
     </p>
 
     <div v-if="loading">
@@ -39,9 +51,14 @@ import { useRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 export default defineComponent({
   name: 'ApplicationForm',
   setup(_, context) {
-    const { result, loading, error } = useRosterDispatchGroupQuery(() => {
-      return { fromDate: new Date('2020-10-28') }
-    })
+    const { result, loading, error, refetch } = useRosterDispatchGroupQuery(
+      () => {
+        return { fromDate: new Date('2020-10-28') }
+      },
+      {
+        pollInterval: 15 * 60 * 1000, // every 15 min
+      }
+    )
     // const { result, loading, error } = useRosterDispatchGroupQuery(() => {
     //   return { fromDate: new Date() }
     // })
@@ -77,7 +94,7 @@ export default defineComponent({
       console.log('dispatchGroups.value: ', dispatchGroups.value)
     })
 
-    return { dispatchGroups, loading, error, convertDate }
+    return { dispatchGroups, loading, error, convertDate, refetch }
   },
 })
 </script>
