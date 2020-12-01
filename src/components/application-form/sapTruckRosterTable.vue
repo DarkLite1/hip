@@ -12,7 +12,7 @@
 
     <div v-else-if="dispatchGroups" style="max-width: 500px">
       <div v-for="group of dispatchGroups" :key="group.date" class="q-pb-md">
-        <p>{{ group.date }}</p>
+        <p>{{ convertDate(group.date) }}</p>
         <div class="q-gutter-xs">
           <q-btn
             v-for="name in group.dispatchGroup"
@@ -38,13 +38,29 @@ import { useRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   name: 'ApplicationForm',
-  setup() {
+  setup(_, context) {
     const { result, loading, error } = useRosterDispatchGroupQuery(() => {
       return { fromDate: new Date('2020-10-28') }
     })
     // const { result, loading, error } = useRosterDispatchGroupQuery(() => {
     //   return { fromDate: new Date() }
     // })
+
+    const convertDate = (
+      isoDate: string,
+      locale = context.root.$i18n.locale
+    ) => {
+      const date = new Date(isoDate)
+
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }
+
+      return date.toLocaleDateString(locale, options)
+    }
 
     const dispatchGroups = useResult(
       result,
@@ -61,7 +77,7 @@ export default defineComponent({
       console.log('dispatchGroups.value: ', dispatchGroups.value)
     })
 
-    return { dispatchGroups, loading, error }
+    return { dispatchGroups, loading, error, convertDate }
   },
 })
 </script>
