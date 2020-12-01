@@ -1,4 +1,4 @@
-query driver($id: String!) {
+query sapTruckRosterDriver($id: String!) {
   driver(id: $id) {
     ... on ApiError {
       code

@@ -1,4 +1,4 @@
-query truck($id: String!) {
+query sapTruckRosterTruck($id: String!) {
   truck(id: $id) {
     ... on ApiError {
       message

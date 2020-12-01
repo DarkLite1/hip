@@ -279,6 +279,14 @@ export type AddPreferenceInput = {
   darkMode?: Maybe<Scalars['Boolean']>
 }
 
+export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>
+
+export type AllAccountsQuery = { __typename?: 'Query' } & {
+  accounts: Array<
+    { __typename?: 'Account' } & Pick<Account, 'accountIdentifier' | 'name'>
+  >
+}
+
 export type SetDarkModeMutationVariables = Exact<{
   darkMode: Scalars['Boolean']
 }>
@@ -313,19 +321,24 @@ export type SetPreferenceDefaultMutation = { __typename?: 'Mutation' } & {
   >
 }
 
-export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>
+export type ViewerQueryVariables = Exact<{ [key: string]: never }>
 
-export type AllAccountsQuery = { __typename?: 'Query' } & {
-  accounts: Array<
-    { __typename?: 'Account' } & Pick<Account, 'accountIdentifier' | 'name'>
-  >
+export type ViewerQuery = { __typename?: 'Query' } & {
+  viewer: { __typename?: 'Viewer' } & {
+    preference?: Maybe<
+      { __typename?: 'Preference' } & Pick<
+        Preference,
+        'id' | 'language' | 'darkMode'
+      >
+    >
+  }
 }
 
-export type DriverQueryVariables = Exact<{
+export type SapTruckRosterDriverQueryVariables = Exact<{
   id: Scalars['String']
 }>
 
-export type DriverQuery = { __typename?: 'Query' } & {
+export type SapTruckRosterDriverQuery = { __typename?: 'Query' } & {
   driver:
     | ({ __typename?: 'DriverArray' } & {
         data?: Maybe<
@@ -340,12 +353,12 @@ export type DriverQuery = { __typename?: 'Query' } & {
     | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
 }
 
-export type RosterQueryVariables = Exact<{
+export type SapTruckRosterRosterQueryVariables = Exact<{
   fromDate: Scalars['DateTime']
   truckId: Scalars['String']
 }>
 
-export type RosterQuery = { __typename?: 'Query' } & {
+export type SapTruckRosterRosterQuery = { __typename?: 'Query' } & {
   roster:
     | ({ __typename?: 'RosterArray' } & {
         data?: Maybe<
@@ -371,11 +384,11 @@ export type RosterQuery = { __typename?: 'Query' } & {
     | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
 }
 
-export type RosterDispatchGroupQueryVariables = Exact<{
+export type SapTruckRosterDispatchGroupQueryVariables = Exact<{
   fromDate: Scalars['DateTime']
 }>
 
-export type RosterDispatchGroupQuery = { __typename?: 'Query' } & {
+export type SapTruckRosterDispatchGroupQuery = { __typename?: 'Query' } & {
   rosterDispatchGroup:
     | ({ __typename?: 'RosterDispatchGroupArray' } & {
         data?: Maybe<
@@ -390,11 +403,11 @@ export type RosterDispatchGroupQuery = { __typename?: 'Query' } & {
     | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
 }
 
-export type TruckQueryVariables = Exact<{
+export type SapTruckRosterTruckQueryVariables = Exact<{
   id: Scalars['String']
 }>
 
-export type TruckQuery = { __typename?: 'Query' } & {
+export type SapTruckRosterTruckQuery = { __typename?: 'Query' } & {
   truck:
     | ({ __typename?: 'TruckArray' } & {
         data?: Maybe<
@@ -421,19 +434,55 @@ export type TruckQuery = { __typename?: 'Query' } & {
     | ({ __typename?: 'ApiError' } & Pick<ApiError, 'message'>)
 }
 
-export type ViewerQueryVariables = Exact<{ [key: string]: never }>
-
-export type ViewerQuery = { __typename?: 'Query' } & {
-  viewer: { __typename?: 'Viewer' } & {
-    preference?: Maybe<
-      { __typename?: 'Preference' } & Pick<
-        Preference,
-        'id' | 'language' | 'darkMode'
-      >
-    >
+export const AllAccountsDocument = gql`
+  query allAccounts {
+    accounts {
+      accountIdentifier
+      name
+    }
   }
-}
+`
 
+/**
+ * __useAllAccountsQuery__
+ *
+ * To run a query within a Vue component, call `useAllAccountsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllAccountsQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useAllAccountsQuery();
+ */
+export function useAllAccountsQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        AllAccountsQuery,
+        AllAccountsQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          AllAccountsQuery,
+          AllAccountsQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          AllAccountsQuery,
+          AllAccountsQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    AllAccountsQuery,
+    AllAccountsQueryVariables
+  >(AllAccountsDocument, {}, options)
+}
+export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  AllAccountsQuery,
+  AllAccountsQueryVariables
+>
 export const SetDarkModeDocument = gql`
   mutation setDarkMode($darkMode: Boolean!) {
     setViewerPreference(options: { darkMode: $darkMode }) {
@@ -580,316 +629,6 @@ export type SetPreferenceDefaultMutationCompositionFunctionResult = VueApolloCom
   SetPreferenceDefaultMutation,
   SetPreferenceDefaultMutationVariables
 >
-export const AllAccountsDocument = gql`
-  query allAccounts {
-    accounts {
-      accountIdentifier
-      name
-    }
-  }
-`
-
-/**
- * __useAllAccountsQuery__
- *
- * To run a query within a Vue component, call `useAllAccountsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllAccountsQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useAllAccountsQuery();
- */
-export function useAllAccountsQuery(
-  options:
-    | VueApolloComposable.UseQueryOptions<
-        AllAccountsQuery,
-        AllAccountsQueryVariables
-      >
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<
-          AllAccountsQuery,
-          AllAccountsQueryVariables
-        >
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<
-          AllAccountsQuery,
-          AllAccountsQueryVariables
-        >
-      > = {}
-) {
-  return VueApolloComposable.useQuery<
-    AllAccountsQuery,
-    AllAccountsQueryVariables
-  >(AllAccountsDocument, {}, options)
-}
-export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  AllAccountsQuery,
-  AllAccountsQueryVariables
->
-export const DriverDocument = gql`
-  query driver($id: String!) {
-    driver(id: $id) {
-      ... on ApiError {
-        code
-        message
-      }
-      ... on DriverArray {
-        data {
-          id
-          email
-          country
-          firstName
-          lastName
-          email
-          postCode
-        }
-      }
-    }
-  }
-`
-
-/**
- * __useDriverQuery__
- *
- * To run a query within a Vue component, call `useDriverQuery` and pass it any options that fit your needs.
- * When your component renders, `useDriverQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param variables that will be passed into the query
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useDriverQuery({
- *   id: // value for 'id'
- * });
- */
-export function useDriverQuery(
-  variables:
-    | DriverQueryVariables
-    | VueCompositionApi.Ref<DriverQueryVariables>
-    | ReactiveFunction<DriverQueryVariables>,
-  options:
-    | VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<DriverQuery, DriverQueryVariables>
-      > = {}
-) {
-  return VueApolloComposable.useQuery<DriverQuery, DriverQueryVariables>(
-    DriverDocument,
-    variables,
-    options
-  )
-}
-export type DriverQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  DriverQuery,
-  DriverQueryVariables
->
-export const RosterDocument = gql`
-  query roster($fromDate: DateTime!, $truckId: String!) {
-    roster(fromDate: $fromDate, truckId: $truckId) {
-      ... on ApiError {
-        code
-        message
-      }
-      ... on RosterArray {
-        data {
-          truck {
-            id
-            country
-          }
-          truckId
-          radioId
-          driverId
-          driverFirstName
-          driverLastName
-          startPlantLoadingDateTime
-          driverEmail
-          plantId
-        }
-      }
-    }
-  }
-`
-
-/**
- * __useRosterQuery__
- *
- * To run a query within a Vue component, call `useRosterQuery` and pass it any options that fit your needs.
- * When your component renders, `useRosterQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param variables that will be passed into the query
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useRosterQuery({
- *   fromDate: // value for 'fromDate'
- *   truckId: // value for 'truckId'
- * });
- */
-export function useRosterQuery(
-  variables:
-    | RosterQueryVariables
-    | VueCompositionApi.Ref<RosterQueryVariables>
-    | ReactiveFunction<RosterQueryVariables>,
-  options:
-    | VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<RosterQuery, RosterQueryVariables>
-      > = {}
-) {
-  return VueApolloComposable.useQuery<RosterQuery, RosterQueryVariables>(
-    RosterDocument,
-    variables,
-    options
-  )
-}
-export type RosterQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  RosterQuery,
-  RosterQueryVariables
->
-export const RosterDispatchGroupDocument = gql`
-  query rosterDispatchGroup($fromDate: DateTime!) {
-    rosterDispatchGroup(fromDate: $fromDate) {
-      ... on ApiError {
-        code
-        message
-      }
-      ... on RosterDispatchGroupArray {
-        data {
-          date
-          dispatchGroup
-        }
-      }
-    }
-  }
-`
-
-/**
- * __useRosterDispatchGroupQuery__
- *
- * To run a query within a Vue component, call `useRosterDispatchGroupQuery` and pass it any options that fit your needs.
- * When your component renders, `useRosterDispatchGroupQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param variables that will be passed into the query
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useRosterDispatchGroupQuery({
- *   fromDate: // value for 'fromDate'
- * });
- */
-export function useRosterDispatchGroupQuery(
-  variables:
-    | RosterDispatchGroupQueryVariables
-    | VueCompositionApi.Ref<RosterDispatchGroupQueryVariables>
-    | ReactiveFunction<RosterDispatchGroupQueryVariables>,
-  options:
-    | VueApolloComposable.UseQueryOptions<
-        RosterDispatchGroupQuery,
-        RosterDispatchGroupQueryVariables
-      >
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<
-          RosterDispatchGroupQuery,
-          RosterDispatchGroupQueryVariables
-        >
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<
-          RosterDispatchGroupQuery,
-          RosterDispatchGroupQueryVariables
-        >
-      > = {}
-) {
-  return VueApolloComposable.useQuery<
-    RosterDispatchGroupQuery,
-    RosterDispatchGroupQueryVariables
-  >(RosterDispatchGroupDocument, variables, options)
-}
-export type RosterDispatchGroupQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  RosterDispatchGroupQuery,
-  RosterDispatchGroupQueryVariables
->
-export const TruckDocument = gql`
-  query truck($id: String!) {
-    truck(id: $id) {
-      ... on ApiError {
-        message
-      }
-      ... on TruckArray {
-        data {
-          id
-          radioId
-          country
-          fleetNr
-          maxLegalWeight
-          tareWeight
-          minLoadSize
-          radioId
-          maxCapacity
-          maxPumpCapacity
-          tareDate
-          tareTime
-          tareWeight
-          minLoadSize
-          emptySpeed
-          speedUnit
-        }
-      }
-    }
-  }
-`
-
-/**
- * __useTruckQuery__
- *
- * To run a query within a Vue component, call `useTruckQuery` and pass it any options that fit your needs.
- * When your component renders, `useTruckQuery` returns an object from Apollo Client that contains result, loading and error properties
- * you can use to render your UI.
- *
- * @param variables that will be passed into the query
- * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
- *
- * @example
- * const { result, loading, error } = useTruckQuery({
- *   id: // value for 'id'
- * });
- */
-export function useTruckQuery(
-  variables:
-    | TruckQueryVariables
-    | VueCompositionApi.Ref<TruckQueryVariables>
-    | ReactiveFunction<TruckQueryVariables>,
-  options:
-    | VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
-    | VueCompositionApi.Ref<
-        VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseQueryOptions<TruckQuery, TruckQueryVariables>
-      > = {}
-) {
-  return VueApolloComposable.useQuery<TruckQuery, TruckQueryVariables>(
-    TruckDocument,
-    variables,
-    options
-  )
-}
-export type TruckQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  TruckQuery,
-  TruckQueryVariables
->
 export const ViewerDocument = gql`
   query viewer {
     viewer {
@@ -933,4 +672,289 @@ export function useViewerQuery(
 export type ViewerQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
   ViewerQuery,
   ViewerQueryVariables
+>
+export const SapTruckRosterDriverDocument = gql`
+  query sapTruckRosterDriver($id: String!) {
+    driver(id: $id) {
+      ... on ApiError {
+        code
+        message
+      }
+      ... on DriverArray {
+        data {
+          id
+          email
+          country
+          firstName
+          lastName
+          email
+          postCode
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useSapTruckRosterDriverQuery__
+ *
+ * To run a query within a Vue component, call `useSapTruckRosterDriverQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSapTruckRosterDriverQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useSapTruckRosterDriverQuery({
+ *   id: // value for 'id'
+ * });
+ */
+export function useSapTruckRosterDriverQuery(
+  variables:
+    | SapTruckRosterDriverQueryVariables
+    | VueCompositionApi.Ref<SapTruckRosterDriverQueryVariables>
+    | ReactiveFunction<SapTruckRosterDriverQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        SapTruckRosterDriverQuery,
+        SapTruckRosterDriverQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterDriverQuery,
+          SapTruckRosterDriverQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterDriverQuery,
+          SapTruckRosterDriverQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    SapTruckRosterDriverQuery,
+    SapTruckRosterDriverQueryVariables
+  >(SapTruckRosterDriverDocument, variables, options)
+}
+export type SapTruckRosterDriverQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  SapTruckRosterDriverQuery,
+  SapTruckRosterDriverQueryVariables
+>
+export const SapTruckRosterRosterDocument = gql`
+  query sapTruckRosterRoster($fromDate: DateTime!, $truckId: String!) {
+    roster(fromDate: $fromDate, truckId: $truckId) {
+      ... on ApiError {
+        code
+        message
+      }
+      ... on RosterArray {
+        data {
+          truck {
+            id
+            country
+          }
+          truckId
+          radioId
+          driverId
+          driverFirstName
+          driverLastName
+          startPlantLoadingDateTime
+          driverEmail
+          plantId
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useSapTruckRosterRosterQuery__
+ *
+ * To run a query within a Vue component, call `useSapTruckRosterRosterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSapTruckRosterRosterQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useSapTruckRosterRosterQuery({
+ *   fromDate: // value for 'fromDate'
+ *   truckId: // value for 'truckId'
+ * });
+ */
+export function useSapTruckRosterRosterQuery(
+  variables:
+    | SapTruckRosterRosterQueryVariables
+    | VueCompositionApi.Ref<SapTruckRosterRosterQueryVariables>
+    | ReactiveFunction<SapTruckRosterRosterQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        SapTruckRosterRosterQuery,
+        SapTruckRosterRosterQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterRosterQuery,
+          SapTruckRosterRosterQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterRosterQuery,
+          SapTruckRosterRosterQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    SapTruckRosterRosterQuery,
+    SapTruckRosterRosterQueryVariables
+  >(SapTruckRosterRosterDocument, variables, options)
+}
+export type SapTruckRosterRosterQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  SapTruckRosterRosterQuery,
+  SapTruckRosterRosterQueryVariables
+>
+export const SapTruckRosterDispatchGroupDocument = gql`
+  query sapTruckRosterDispatchGroup($fromDate: DateTime!) {
+    rosterDispatchGroup(fromDate: $fromDate) {
+      ... on ApiError {
+        code
+        message
+      }
+      ... on RosterDispatchGroupArray {
+        data {
+          date
+          dispatchGroup
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useSapTruckRosterDispatchGroupQuery__
+ *
+ * To run a query within a Vue component, call `useSapTruckRosterDispatchGroupQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSapTruckRosterDispatchGroupQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useSapTruckRosterDispatchGroupQuery({
+ *   fromDate: // value for 'fromDate'
+ * });
+ */
+export function useSapTruckRosterDispatchGroupQuery(
+  variables:
+    | SapTruckRosterDispatchGroupQueryVariables
+    | VueCompositionApi.Ref<SapTruckRosterDispatchGroupQueryVariables>
+    | ReactiveFunction<SapTruckRosterDispatchGroupQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        SapTruckRosterDispatchGroupQuery,
+        SapTruckRosterDispatchGroupQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterDispatchGroupQuery,
+          SapTruckRosterDispatchGroupQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterDispatchGroupQuery,
+          SapTruckRosterDispatchGroupQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    SapTruckRosterDispatchGroupQuery,
+    SapTruckRosterDispatchGroupQueryVariables
+  >(SapTruckRosterDispatchGroupDocument, variables, options)
+}
+export type SapTruckRosterDispatchGroupQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  SapTruckRosterDispatchGroupQuery,
+  SapTruckRosterDispatchGroupQueryVariables
+>
+export const SapTruckRosterTruckDocument = gql`
+  query sapTruckRosterTruck($id: String!) {
+    truck(id: $id) {
+      ... on ApiError {
+        message
+      }
+      ... on TruckArray {
+        data {
+          id
+          radioId
+          country
+          fleetNr
+          maxLegalWeight
+          tareWeight
+          minLoadSize
+          radioId
+          maxCapacity
+          maxPumpCapacity
+          tareDate
+          tareTime
+          tareWeight
+          minLoadSize
+          emptySpeed
+          speedUnit
+        }
+      }
+    }
+  }
+`
+
+/**
+ * __useSapTruckRosterTruckQuery__
+ *
+ * To run a query within a Vue component, call `useSapTruckRosterTruckQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSapTruckRosterTruckQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param variables that will be passed into the query
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useSapTruckRosterTruckQuery({
+ *   id: // value for 'id'
+ * });
+ */
+export function useSapTruckRosterTruckQuery(
+  variables:
+    | SapTruckRosterTruckQueryVariables
+    | VueCompositionApi.Ref<SapTruckRosterTruckQueryVariables>
+    | ReactiveFunction<SapTruckRosterTruckQueryVariables>,
+  options:
+    | VueApolloComposable.UseQueryOptions<
+        SapTruckRosterTruckQuery,
+        SapTruckRosterTruckQueryVariables
+      >
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterTruckQuery,
+          SapTruckRosterTruckQueryVariables
+        >
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<
+          SapTruckRosterTruckQuery,
+          SapTruckRosterTruckQueryVariables
+        >
+      > = {}
+) {
+  return VueApolloComposable.useQuery<
+    SapTruckRosterTruckQuery,
+    SapTruckRosterTruckQueryVariables
+  >(SapTruckRosterTruckDocument, variables, options)
+}
+export type SapTruckRosterTruckQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
+  SapTruckRosterTruckQuery,
+  SapTruckRosterTruckQueryVariables
 >

@@ -1,4 +1,4 @@
-query rosterDispatchGroup($fromDate: DateTime!) {
+query sapTruckRosterDispatchGroup($fromDate: DateTime!) {
   rosterDispatchGroup(fromDate: $fromDate) {
     ... on ApiError {
       code

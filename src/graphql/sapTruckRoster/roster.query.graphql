@@ -1,4 +1,4 @@
-query roster($fromDate: DateTime!, $truckId: String!) {
+query sapTruckRosterRoster($fromDate: DateTime!, $truckId: String!) {
   roster(fromDate: $fromDate, truckId: $truckId) {
     ... on ApiError {
       code

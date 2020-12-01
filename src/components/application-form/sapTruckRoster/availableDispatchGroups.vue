@@ -45,12 +45,17 @@
 <script lang="ts">
 import { useResult } from '@vue/apollo-composable'
 import { defineComponent, watch } from '@vue/composition-api'
-import { useRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
+import { useSapTruckRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   name: 'ApplicationForm',
   setup(_, context) {
-    const { result, loading, error, refetch } = useRosterDispatchGroupQuery(
+    const {
+      result,
+      loading,
+      error,
+      refetch,
+    } = useSapTruckRosterDispatchGroupQuery(
       () => {
         return { fromDate: new Date('2020-10-28') }
       },
