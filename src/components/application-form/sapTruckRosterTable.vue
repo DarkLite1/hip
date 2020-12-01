@@ -4,42 +4,64 @@
       {{ $t('application.sapTruckRoster.processedDispatchGroupTable.title') }}
     </p>
 
-    <div class="q-pb-md" style="max-width: 500px">
-      <p>Monday (30 November)</p>
-      <div class="q-gutter-xs">
-        <q-btn color="secondary" label="AAA" v-for="n in 7" :key="`xs-${n}`" />
+    <div v-if="loading">
+      <q-spinner color="primary" size="3em" />
+    </div>
+
+    <div v-else-if="error">Error: {{ error.message }}</div>
+
+    <div v-else-if="dispatchGroups" style="max-width: 500px">
+      <div v-for="group of dispatchGroups" :key="group.date" class="q-pb-md">
+        <p>{{ group.date }}</p>
+        <div class="q-gutter-xs">
+          <q-btn
+            v-for="name in group.dispatchGroup"
+            :key="name"
+            color="secondary"
+            :label="name"
+            rounded
+            padding="xs sm"
+            :ripple="false"
+          />
+        </div>
       </div>
     </div>
+
     <hr />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@vue/composition-api'
+import { useResult } from '@vue/apollo-composable'
+import { defineComponent, watch } from '@vue/composition-api'
+import { useRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   name: 'ApplicationForm',
   setup() {
-    const availableDispatchGroupNames = reactive([
-      {
-        date: '2020-10-28',
-        despatchGroup: 'AAAA',
-      },
-      {
-        date: '2020-11-03',
-        despatchGroup: 'BBBB',
-      },
-      {
-        date: '2020-11-18',
-        despatchGroup: 'CCCC',
-      },
-      {
-        date: '2020-11-24',
-        despatchGroup: 'DDDD',
-      },
-    ])
+    const { result, loading, error } = useRosterDispatchGroupQuery(() => {
+      return { fromDate: new Date('2020-10-28') }
+    })
+    // const { result, loading, error } = useRosterDispatchGroupQuery(() => {
+    //   return { fromDate: new Date() }
+    // })
 
-    return { availableDispatchGroupNames }
+    const dispatchGroups = useResult(
+      result,
+      [],
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      (data) => data.rosterDispatchGroup.data
+    )
+
+    watch(result, () => {
+      console.log('result.value: ', result.value)
+    })
+
+    watch(dispatchGroups, () => {
+      console.log('dispatchGroups.value: ', dispatchGroups.value)
+    })
+
+    return { dispatchGroups, loading, error }
   },
 })
 </script>
