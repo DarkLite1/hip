@@ -17,7 +17,7 @@
             debounce
             hide-bottom-space
             lazy-rules
-            :rules="rules"
+            :rules="answerInputValidationRules"
           >
             <template v-if="answer" v-slot:append>
               <q-icon
@@ -121,7 +121,7 @@ export default defineComponent({
       })
     }
 
-    const rules = computed(() => {
+    const answerInputValidationRules = computed(() => {
       if (showTruckId.value) {
         return [requiredRule, truckRule]
       } else {
@@ -162,7 +162,7 @@ export default defineComponent({
       label,
       qInputRef,
       clearField,
-      rules,
+      answerInputValidationRules,
     }
   },
   components: {
