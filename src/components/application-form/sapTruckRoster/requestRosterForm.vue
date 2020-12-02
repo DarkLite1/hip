@@ -8,9 +8,7 @@
     <q-form v-else @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
         <template>
-          <p class="text-bold">
-            {{ question }}
-          </p>
+          <p class="text-bold">{{ question }}</p>
           <q-input
             :label="placeholder"
             ref="qInputRef"
@@ -19,7 +17,7 @@
             debounce
             hide-bottom-space
             lazy-rules
-            :rules="[rule]"
+            :rules="[required, rule]"
           >
             <template v-if="answer" v-slot:append>
               <q-icon
@@ -95,6 +93,8 @@ export default defineComponent({
   ]"
 */
 
+    const required = (val: string) => !!val || 'Field is required'
+
     const driverRule = (val: string) => {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -167,6 +167,7 @@ export default defineComponent({
       qInputRef,
       clearField,
       rule,
+      required,
     }
   },
   components: {
