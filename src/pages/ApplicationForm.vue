@@ -16,7 +16,6 @@ import { defineComponent } from '@vue/composition-api'
 import { useApplications } from 'src/composables/useApplications'
 
 export default defineComponent({
-  name: 'Application',
   props: {
     appId: {
       type: String,
