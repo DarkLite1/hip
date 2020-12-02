@@ -10,7 +10,7 @@
         <template>
           <p class="text-bold">{{ question }}</p>
           <q-input
-            :label="placeholder"
+            :label="label"
             ref="qInputRef"
             v-model="answer"
             outlined
@@ -59,7 +59,7 @@ export default defineComponent({
     const showTruckId = ref(false)
     const question = ref()
     const answer = ref()
-    const placeholder = ref()
+    const label = ref()
     const qInputRef = ref<QInput>()
 
     const clearField = () => {
@@ -139,14 +139,14 @@ export default defineComponent({
           question.value = root.$t(
             'application.sapTruckRoster.question.truckId'
           )
-          placeholder.value = root.$t(
+          label.value = root.$t(
             'application.sapTruckRoster.label.truckId'
           )
         } else {
           question.value = root.$t(
             'application.sapTruckRoster.question.driverId'
           )
-          placeholder.value = root.$t(
+          label.value = root.$t(
             'application.sapTruckRoster.label.driverId'
           )
         }
@@ -163,7 +163,7 @@ export default defineComponent({
       submitted,
       question,
       answer,
-      placeholder,
+      label,
       qInputRef,
       clearField,
       rule,

@@ -37,7 +37,8 @@ export default {
         driverIdUnknown: "I don't know my driver ID",
       },
       error: {
-        truckId: "A string of 4 to 12 characters is allowed with at least 1 character being a letter",
+        truckId:
+          "A string of 4 to 12 characters is allowed with at least 1 character being a letter",
         driverId: "A number between 9800000000 and 9999999999 is required",
       },
       label: {
