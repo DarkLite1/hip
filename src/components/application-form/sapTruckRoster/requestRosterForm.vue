@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-pb-sm">
     <q-form @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
         <template v-if="showTruckId">

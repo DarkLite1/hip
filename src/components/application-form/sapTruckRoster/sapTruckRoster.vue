@@ -1,8 +1,8 @@
 <template>
   <div>
-    <list-dispatch-groups />
-    <hr />
     <request-roster-form />
+    <hr />
+    <list-dispatch-groups />
   </div>
 </template>
 
