@@ -17,7 +17,7 @@
             debounce
             hide-bottom-space
             lazy-rules
-            :rules="[required, rule]"
+            :rules="rules"
           >
             <template v-if="answer" v-slot:append>
               <q-icon
@@ -121,11 +121,11 @@ export default defineComponent({
       })
     }
 
-    const rule = computed(() => {
+    const rules = computed(() => {
       if (showTruckId.value) {
-        return truckRule
+        return [required, truckRule]
       } else {
-        return driverRule
+        return [required, driverRule]
       }
     })
 
@@ -139,16 +139,12 @@ export default defineComponent({
           question.value = root.$t(
             'application.sapTruckRoster.question.truckId'
           )
-          label.value = root.$t(
-            'application.sapTruckRoster.label.truckId'
-          )
+          label.value = root.$t('application.sapTruckRoster.label.truckId')
         } else {
           question.value = root.$t(
             'application.sapTruckRoster.question.driverId'
           )
-          label.value = root.$t(
-            'application.sapTruckRoster.label.driverId'
-          )
+          label.value = root.$t('application.sapTruckRoster.label.driverId')
         }
       },
       {
@@ -166,7 +162,7 @@ export default defineComponent({
       label,
       qInputRef,
       clearField,
-      rule,
+      rules,
       required,
     }
   },
