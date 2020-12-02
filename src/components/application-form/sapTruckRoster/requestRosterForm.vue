@@ -5,77 +5,29 @@
       :truckId="truckId"
       :driverId="driverId"
     />
-    <q-form v-else @submit="onSubmit" @reset="onReset" ref="form">
+    <q-form v-else @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
-        <template v-if="showTruckId">
+        <template>
           <p class="text-bold">
-            {{ $t('application.sapTruckRoster.question.truckId') }}
+            {{ question }}
           </p>
           <q-input
-            :label="$t('application.sapTruckRoster.label.truckId')"
-            ref="truckIdInput"
-            v-model="truckId"
+            :label="placeholder"
+            ref="qInputRef"
+            v-model="answer"
             outlined
+            debounce
             hide-bottom-space
             lazy-rules
-            :rules="[
-              (val) =>
-                (val &&
-                  val.length > 3 &&
-                  val.length < 13 &&
-                  /[a-zA-Z]/g.test(val)) ||
-                $t('application.sapTruckRoster.error.truckId'),
-            ]"
+            :rules="[rule]"
           >
-            <template v-if="truckId" v-slot:append>
+            <template v-if="answer" v-slot:append>
               <q-icon
                 name="close"
-                @click.stop="clearTruckId()"
+                @click.stop="clearField()"
                 class="cursor-pointer"
               />
             </template>
-          </q-input>
-        </template>
-
-        <template v-else>
-          <p class="text-bold">
-            {{ $t('application.sapTruckRoster.question.driverId') }}
-          </p>
-          <q-input
-            :label="$t('application.sapTruckRoster.label.driverId')"
-            ref="driverIdInput"
-            v-model="driverId"
-            outlined
-            hide-bottom-space
-            lazy-rules
-            :rules="[
-              (val) =>
-                (val && val > 9799999999 && val < 9999999999) ||
-                $t('application.sapTruckRoster.error.driverId'),
-            ]"
-          >
-            <template v-if="driverId" v-slot:append>
-              <q-icon
-                name="close"
-                @click.stop="clearDriverId()"
-                class="cursor-pointer"
-              />
-            </template>
-            <!-- <q-input
-:label="$t('application.sapTruckRoster.label.driverId')"
-v-model="driverId"
-ref="driverIdInput"
-outlined
-clearable
-clear-icon="close"
-hide-bottom-space
-lazy-rules
-:rules="[
-(val) =>
-(val && val > 9799999999 && val < 9999999999) ||
-$t('application.sapTruckRoster.error.driverId'),
-]"
-> -->
           </q-input>
         </template>
 
@@ -100,26 +52,21 @@ $t('application.sapTruckRoster.error.driverId'),
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
-import { QForm, QInput } from 'quasar'
+import { computed, defineComponent, ref, watch } from '@vue/composition-api'
+import { QInput } from 'quasar'
 
 export default defineComponent({
-  setup() {
+  setup(_, { root }) {
     const submitted = ref(false)
     const showTruckId = ref(false)
-    const truckId = ref()
-    const driverId = ref()
-    const form = ref<QForm>()
-    const driverIdInput = ref<QInput>()
-    const truckIdInput = ref<QInput>()
+    const question = ref()
+    const answer = ref()
+    const placeholder = ref()
+    const qInputRef = ref<QInput>()
 
-    const clearDriverId = () => {
-      driverId.value = null
-      driverIdInput.value?.resetValidation()
-    }
-    const clearTruckId = () => {
-      truckId.value = null
-      truckIdInput.value?.resetValidation()
+    const clearField = () => {
+      answer.value = null
+      qInputRef.value?.resetValidation()
     }
 
     const onSubmit = () => {
@@ -128,27 +75,98 @@ export default defineComponent({
     }
     const onReset = () => {
       console.log('form reset')
-      truckId.value = null
-      driverId.value = null
       showTruckId.value = false
+      answer.value = null
     }
 
-    watch(showTruckId, () => {
-      form.value?.resetValidation()
+    /*
+:rules="[
+  (val) =>
+  (val &&
+    val.length > 3 &&
+    val.length < 13 &&
+    /[a-zA-Z]/g.test(val)) ||
+  $t('application.sapTruckRoster.error.truckId'),]
+
+:rules="[
+    (val) =>
+      (val && val > 9799999999 && val < 9999999999) ||
+      $t('application.sapTruckRoster.error.driverId'),
+  ]"
+*/
+
+    const driverRule = (val: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          //  resolve(true)
+          //     --> content is valid
+          //  resolve(false)
+          //     --> content is NOT valid, no error message
+          //  resolve(error_message)
+          //     --> content is NOT valid, we have error message
+          // resolve(`${val} * Required`)
+          resolve(
+            `${val} ${root.$t('application.sapTruckRoster.error.driverId')}`
+          )
+        }, 1000)
+      })
+    }
+    const truckRule = (val: string) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            `${val} ${root.$t('application.sapTruckRoster.error.truckId')}`
+          )
+        }, 1000)
+      })
+    }
+
+    const rule = computed(() => {
+      if (showTruckId.value) {
+        return truckRule
+      } else {
+        return driverRule
+      }
     })
+
+    watch(
+      showTruckId,
+      () => {
+        qInputRef.value?.resetValidation()
+        answer.value = null
+
+        if (showTruckId.value) {
+          question.value = root.$t(
+            'application.sapTruckRoster.question.truckId'
+          )
+          placeholder.value = root.$t(
+            'application.sapTruckRoster.label.truckId'
+          )
+        } else {
+          question.value = root.$t(
+            'application.sapTruckRoster.question.driverId'
+          )
+          placeholder.value = root.$t(
+            'application.sapTruckRoster.label.driverId'
+          )
+        }
+      },
+      {
+        immediate: true,
+      }
+    )
 
     return {
       showTruckId,
       onReset,
       onSubmit,
-      driverId,
-      truckId,
       submitted,
-      form,
-      clearDriverId,
-      clearTruckId,
-      driverIdInput,
-      truckIdInput,
+      question,
+      answer,
+      placeholder,
+      qInputRef,
+      clearField,
+      rule,
     }
   },
   components: {
