@@ -355,7 +355,8 @@ export type SapTruckRosterDriverQuery = { __typename?: 'Query' } & {
 
 export type SapTruckRosterRosterQueryVariables = Exact<{
   fromDate: Scalars['DateTime']
-  truckId: Scalars['String']
+  truckId?: Maybe<Scalars['String']>
+  driverId?: Maybe<Scalars['String']>
 }>
 
 export type SapTruckRosterRosterQuery = { __typename?: 'Query' } & {
@@ -743,8 +744,12 @@ export type SapTruckRosterDriverQueryCompositionFunctionResult = VueApolloCompos
   SapTruckRosterDriverQueryVariables
 >
 export const SapTruckRosterRosterDocument = gql`
-  query sapTruckRosterRoster($fromDate: DateTime!, $truckId: String!) {
-    roster(fromDate: $fromDate, truckId: $truckId) {
+  query sapTruckRosterRoster(
+    $fromDate: DateTime!
+    $truckId: String
+    $driverId: String
+  ) {
+    roster(fromDate: $fromDate, truckId: $truckId, driverId: $driverId) {
       ... on ApiError {
         code
         message
@@ -783,6 +788,7 @@ export const SapTruckRosterRosterDocument = gql`
  * const { result, loading, error } = useSapTruckRosterRosterQuery({
  *   fromDate: // value for 'fromDate'
  *   truckId: // value for 'truckId'
+ *   driverId: // value for 'driverId'
  * });
  */
 export function useSapTruckRosterRosterQuery(
