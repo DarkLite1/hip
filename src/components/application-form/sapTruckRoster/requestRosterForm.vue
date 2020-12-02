@@ -93,7 +93,7 @@ export default defineComponent({
   ]"
 */
 
-    const required = (val: string) => !!val || 'Field is required'
+    const requiredRule = (val: string) => !!val || 'Field is required'
 
     const driverRule = (val: string) => {
       return new Promise((resolve) => {
@@ -123,9 +123,9 @@ export default defineComponent({
 
     const rules = computed(() => {
       if (showTruckId.value) {
-        return [required, truckRule]
+        return [requiredRule, truckRule]
       } else {
-        return [required, driverRule]
+        return [requiredRule, driverRule]
       }
     })
 
@@ -163,7 +163,6 @@ export default defineComponent({
       qInputRef,
       clearField,
       rules,
-      required,
     }
   },
   components: {
