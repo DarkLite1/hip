@@ -2,11 +2,11 @@
   <q-page padding>
     <div class="q-pa-md">
       <q-list class="q-mb-md" bordered padding>
-        <q-item-label header>{{ $t('page.settings.name') }}</q-item-label>
+        <q-item-label header>{{ t('page.settings.name') }}</q-item-label>
 
         <q-item tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>{{ $t('page.settings.darkMode') }}</q-item-label>
+            <q-item-label>{{ t('page.settings.darkMode') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-toggle v-model="darkMode" color="blue" />
@@ -15,7 +15,7 @@
 
         <q-item tag="label">
           <q-item-section>
-            <q-item-label>{{ $t('page.settings.language') }}</q-item-label>
+            <q-item-label>{{ t('page.settings.language') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-select
@@ -37,7 +37,7 @@
 
         <q-item to="/settings/help" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>{{ $t('page.settings.help') }}</q-item-label>
+            <q-item-label>{{ t('page.settings.help') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
@@ -46,7 +46,7 @@
 
         <q-item @click="selfHelp" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>{{ $t('page.settings.reportProblem') }}</q-item-label>
+            <q-item-label>{{ t('page.settings.reportProblem') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
@@ -55,7 +55,7 @@
 
         <q-item @click="emailUs" tag="label" v-ripple>
           <q-item-section>
-            <q-item-label>{{ $t('page.settings.emailUs') }}</q-item-label>
+            <q-item-label>{{ t('page.settings.emailUs') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon name="chevron_right"></q-icon>
@@ -75,21 +75,19 @@ import {
   useSetLanguageMutation,
   useViewerQuery,
 } from 'src/graphql/generated/operations'
+import { useI18n } from 'vue-i18n-composable'
 
 export default defineComponent({
-  setup(_, context) {
+  setup() {
+    const { locale } = useI18n()
     const { result } = useViewerQuery()
     const preference = useResult(result, null, (data) => data.viewer.preference)
 
     watchEffect(() => {
       console.log('Settings preference: ', preference.value)
-      // console.log('Settings preference.value.darkMode: ', preference.value.darkMode)
     })
 
     const darkMode = ref(true)
-    // const { darkMode } = preference
-    // const darkMode = () => preference!.value!.darkMode
-    // const darkMode = () => preference!.value!.darkMode
 
     const languageOptions = [
       { value: 'en-us', label: 'English' },
@@ -97,7 +95,8 @@ export default defineComponent({
       { value: 'nl-be', label: 'Nederlands' },
       { value: 'fr-be', label: 'Français' },
     ]
-    const language = ref(context.root.$i18n.locale)
+    const language = locale
+    // const language = ref(context.root.$i18n.locale)
 
     const selfHelp = () => {
       openURL(
@@ -109,33 +108,25 @@ export default defineComponent({
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
     }
 
-    const {
-      mutate: setLanguage,
-      // loading,
-      // error,
-      // onDone,
-    } = useSetLanguageMutation({
+    const { mutate: setLanguage } = useSetLanguageMutation(() => ({
       variables: {
-        language: 'ee-ee',
+        language: language.value,
       },
-    })
-    const {
-      mutate: setDarkMode,
-      // loading,
-      // error,
-      // onDone,
-    } = useSetDarkModeMutation({
+    }))
+
+    const { mutate: setDarkMode } = useSetDarkModeMutation(() => ({
       variables: {
-        darkMode: false,
+        darkMode: darkMode.value,
       },
-    })
+    }))
 
     watch(language, (newLanguage) => {
-      context.root.$i18n.locale = newLanguage
-      void setLanguage({ language: newLanguage })
+      locale.value = newLanguage
+      void setLanguage()
     })
     watch(darkMode, (newDarkMode) => {
-      void setDarkMode({ darkMode: newDarkMode })
+      console.log('darkMode: ', newDarkMode)
+      void setDarkMode()
     })
 
     return {
@@ -144,6 +135,7 @@ export default defineComponent({
       languageOptions,
       selfHelp,
       emailUs,
+      ...useI18n(),
     }
   },
 })
