@@ -1,21 +1,23 @@
-import { computed, reactive, SetupContext } from '@vue/composition-api'
+import { computed, reactive } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n-composable'
 
-export const useMainNavigationLinks = (root: SetupContext['root']) => {
+export const useMainNavigationLinks = () => {
+  const { t } = useI18n()
   const mainNavigation = reactive([
     {
-      label: computed(() => root.$t('page.home.name')),
+      label: computed(() => t('page.home.name')),
       name: 'home',
       to: '/',
       icon: 'home',
     },
     {
-      label: computed(() => root.$t('page.applications.name')),
+      label: computed(() => t('page.applications.name')),
       name: 'applications',
       to: '/applications',
       icon: 'widgets',
     },
     {
-      label: computed(() => root.$t('page.settings.name')),
+      label: computed(() => t('page.settings.name')),
       name: 'settings',
       to: '/settings',
       icon: 'settings',
@@ -23,7 +25,7 @@ export const useMainNavigationLinks = (root: SetupContext['root']) => {
   ])
 
   // mainNavigation.push({
-  //   label: computed(() => root.$t('page.settings')),
+  //   label: computed(() => t('page.settings')),
   //   name: 'kiwi',
   //   to: '/settings',
   //   icon: 'settings',

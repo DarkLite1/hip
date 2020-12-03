@@ -30,7 +30,7 @@ import {
 } from 'src/graphql/generated/operations'
 
 export default defineComponent({
-  setup(_, { root }) {
+  setup() {
     const {
       loading: queryLoading,
       error: queryError,
@@ -57,7 +57,7 @@ export default defineComponent({
       }
     })
 
-    const { mainNavigationLinks } = useMainNavigationLinks(root)
+    const { mainNavigationLinks } = useMainNavigationLinks()
 
     return {
       mainNavigationLinks,
