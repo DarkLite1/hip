@@ -1,7 +1,7 @@
 <template>
   <div class="q-pb-sm">
     <q-spinner v-if="loading" color="primary" size="3em" />
-    <div v-else-if="error">Error: {{ error.message }}</div>
+    <!-- <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
     <div v-else-if="dispatchGroups" style="max-width: 500px">
@@ -18,8 +18,8 @@
             :ripple="false"
           />
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> -->
   </div>
 </template>
 

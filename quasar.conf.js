@@ -15,7 +15,7 @@ module.exports = configure(function (ctx) {
       tsCheckerConfig: { eslint: true },
     },
     // order is important
-    boot: ['i18n', 'VueCompositionApi', 'auth', 'apollo', 'router'],
+    boot: ['VueCompositionApi', 'i18n', 'auth', 'apollo', 'router'],
 
     css: ['app.scss'],
 
