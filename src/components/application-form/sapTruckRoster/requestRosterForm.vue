@@ -31,13 +31,13 @@
 
         <q-checkbox
           v-model="showTruckId"
-          :label="$t('application.sapTruckRoster.question.driverIdUnknown')"
+          :label="t('application.sapTruckRoster.question.driverIdUnknown')"
         />
 
         <div>
-          <q-btn :label="$t('button.submit')" type="submit" color="primary" />
+          <q-btn :label="t('button.submit')" type="submit" color="primary" />
           <q-btn
-            :label="$t('button.reset')"
+            :label="t('button.reset')"
             type="reset"
             color="primary"
             flat
@@ -50,11 +50,10 @@
 </template>
 
 <script lang="ts">
+import { useI18n } from 'vue-i18n-composable'
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
-
-import { useI18n } from 'vue-i18n-composable'
 
 export default defineComponent({
   setup() {
@@ -89,12 +88,12 @@ export default defineComponent({
     val.length > 3 &&
     val.length < 13 &&
     /[a-zA-Z]/g.test(val)) ||
-  $t('application.sapTruckRoster.error.truckId'),]
+  t('application.sapTruckRoster.error.truckId'),]
 
 :rules="[
     (val) =>
       (val && val > 9799999999 && val < 9999999999) ||
-      $t('application.sapTruckRoster.error.driverId'),
+      t('application.sapTruckRoster.error.driverId'),
   ]"
 */
 
@@ -148,6 +147,7 @@ export default defineComponent({
     )
 
     return {
+      ...useI18n(),
       showTruckId,
       onReset,
       onSubmit,

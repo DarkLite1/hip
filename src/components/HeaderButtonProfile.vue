@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-chip clickable @click="goToProfilePage" class="absolute-right">
-      {{ profile.givenName || $t('general.welcome') }}
+      {{ profile.givenName || t('general.welcome') }}
       <q-avatar class="q-avatar--right">
         <q-img
           :src="photo"
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import { useI18n } from 'vue-i18n-composable'
 import { defineComponent } from '@vue/composition-api'
 import {
   setGraphProfile,
@@ -36,6 +37,7 @@ export default defineComponent({
       })
     }
     return {
+      ...useI18n(),
       goToProfilePage,
       photo,
       profile,

@@ -1,7 +1,7 @@
 <template>
   <div class="q-pb-sm">
     <p class="text-bold">
-      {{ $t('application.sapTruckRoster.processedDispatchGroupTable.title') }}
+      {{ t('application.sapTruckRoster.processedDispatchGroupTable.title') }}
       <q-btn
         color="primary"
         padding="xs sm"
@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts">
+import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
 import { defineComponent, watch } from '@vue/composition-api'
 import { useSapTruckRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
@@ -102,7 +103,15 @@ export default defineComponent({
       console.log('dispatchGroups.value: ', dispatchGroups.value)
     })
 
-    return { dispatchGroups, apiError, loading, error, convertDate, refetch }
+    return {
+      ...useI18n(),
+      dispatchGroups,
+      apiError,
+      loading,
+      error,
+      convertDate,
+      refetch,
+    }
   },
 })
 </script>
