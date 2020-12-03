@@ -52,6 +52,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
+import { requiredRule } from 'src/components/application-form/shared/validation-rules'
 
 export default defineComponent({
   setup(_, { root }) {
@@ -92,8 +93,6 @@ export default defineComponent({
       $t('application.sapTruckRoster.error.driverId'),
   ]"
 */
-
-    const requiredRule = (val: string) => !!val || 'Field is required'
 
     const driverRule = (val: string) => {
       return new Promise((resolve) => {
