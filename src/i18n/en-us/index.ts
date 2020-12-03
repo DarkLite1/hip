@@ -46,8 +46,8 @@ export default {
         driverId: "Driver ID",
       },
     },
-    validationRules: {
-      requiredField: "Field is required",
-    },
+  },
+  validationRules: {
+    requiredField: "Field is required",
   },
 }

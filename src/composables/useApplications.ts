@@ -1,10 +1,6 @@
-import {
-  computed,
-  reactive,
-  SetupContext,
-  ref,
-  Ref,
-} from '@vue/composition-api'
+import { useI18n } from 'vue-i18n-composable'
+
+import { computed, reactive, ref, Ref } from '@vue/composition-api'
 
 interface IApplication {
   [key: string]: {
@@ -14,13 +10,13 @@ interface IApplication {
   }
 }
 
-export const useApplications = (root: SetupContext['root']) => {
+export const useApplications = () => {
+  const { t } = useI18n()
+
   const applications = reactive<IApplication>({
     1: {
-      name: ref(root.$t('application.sapTruckRoster.name')),
-      shortDescription: ref(
-        root.$t('application.sapTruckRoster.shortDescription')
-      ),
+      name: ref(t('application.sapTruckRoster.name')),
+      shortDescription: ref(t('application.sapTruckRoster.shortDescription')),
       formComponentName: 'samTruckRoster',
     },
     2: {

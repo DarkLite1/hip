@@ -52,10 +52,14 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
-import { requiredRule } from 'src/components/application-form/shared/validation-rules'
+import { useValidationRules } from 'src/composables/useValidationRules'
+
+import { useI18n } from 'vue-i18n-composable'
 
 export default defineComponent({
-  setup(_, { root }) {
+  setup() {
+    const { t } = useI18n()
+    const { requiredRule } = useValidationRules()
     const submitted = ref(false)
     const showTruckId = ref(false)
     const question = ref()
@@ -104,18 +108,14 @@ export default defineComponent({
           //  resolve(error_message)
           //     --> content is NOT valid, we have error message
           // resolve(`${val} * Required`)
-          resolve(
-            `${val} ${root.$t('application.sapTruckRoster.error.driverId')}`
-          )
+          resolve(`${val} ${t('application.sapTruckRoster.error.driverId')}`)
         }, 1000)
       })
     }
     const truckRule = (val: string) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve(
-            `${val} ${root.$t('application.sapTruckRoster.error.truckId')}`
-          )
+          resolve(`${val} ${t('application.sapTruckRoster.error.truckId')}`)
         }, 1000)
       })
     }
@@ -135,15 +135,11 @@ export default defineComponent({
         answer.value = null
 
         if (showTruckId.value) {
-          question.value = root.$t(
-            'application.sapTruckRoster.question.truckId'
-          )
-          label.value = root.$t('application.sapTruckRoster.label.truckId')
+          question.value = t('application.sapTruckRoster.question.truckId')
+          label.value = t('application.sapTruckRoster.label.truckId')
         } else {
-          question.value = root.$t(
-            'application.sapTruckRoster.question.driverId'
-          )
-          label.value = root.$t('application.sapTruckRoster.label.driverId')
+          question.value = t('application.sapTruckRoster.question.driverId')
+          label.value = t('application.sapTruckRoster.label.driverId')
         }
       },
       {

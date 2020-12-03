@@ -17,8 +17,8 @@ import { defineComponent } from '@vue/composition-api'
 import { useApplications } from 'src/composables/useApplications'
 
 export default defineComponent({
-  setup(_, { root }) {
-    const { applications: applicationCards } = useApplications(root)
+  setup() {
+    const { applications: applicationCards } = useApplications()
 
     return { applicationCards }
   },

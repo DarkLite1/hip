@@ -33,7 +33,7 @@ export default defineComponent({
       return
     }
 
-    const { getApplication } = useApplications(root)
+    const { getApplication } = useApplications()
     const application = getApplication(props.appId)
     return { application }
   },
