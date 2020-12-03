@@ -18,7 +18,7 @@
     "codegen-watch": "env-cmd -e dev graphql-codegen --watch"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.2",
+    "@apollo/client": "^3.3.3",
     "@azure/msal-browser": "2.7.0",
     "@quasar/extras": "^1.9.10",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
@@ -29,7 +29,7 @@
     "global": "^4.4.0",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
-    "quasar": "^1.14.5",
+    "quasar": "^1.14.6",
     "vue-apollo": "^3.0.5",
     "vue-i18n": "^8.22.2",
     "vue-i18n-composable": "^0.2.0"
@@ -43,7 +43,7 @@
     "@graphql-codegen/typescript-operations": "^1.17.12",
     "@graphql-codegen/typescript-vue-apollo": "^2.3.1",
     "@microsoft/microsoft-graph-types": "^1.27.0",
-    "@quasar/app": "^2.1.8",
+    "@quasar/app": "^2.1.9",
     "@types/node": "14.14.10",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
@@ -51,7 +51,7 @@
     "eslint": "7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-loader": "4.0.2",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-prettier": "^3.2.0",
     "eslint-plugin-vue": "^7.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
