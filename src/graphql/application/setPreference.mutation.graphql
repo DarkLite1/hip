@@ -1,4 +1,4 @@
-mutation setPreferenceDefault($darkMode: Boolean!, $language: String) {
+mutation setAppPreference($darkMode: Boolean, $language: String) {
   setViewerPreference(options: { darkMode: $darkMode, language: $language }) {
     id
     darkMode

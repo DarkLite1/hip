@@ -287,34 +287,12 @@ export type AllAccountsQuery = { __typename?: 'Query' } & {
   >
 }
 
-export type SetDarkModeMutationVariables = Exact<{
-  darkMode: Scalars['Boolean']
-}>
-
-export type SetDarkModeMutation = { __typename?: 'Mutation' } & {
-  setViewerPreference: { __typename?: 'Preference' } & Pick<
-    Preference,
-    'id' | 'darkMode'
-  >
-}
-
-export type SetLanguageMutationVariables = Exact<{
-  language: Scalars['String']
-}>
-
-export type SetLanguageMutation = { __typename?: 'Mutation' } & {
-  setViewerPreference: { __typename?: 'Preference' } & Pick<
-    Preference,
-    'id' | 'language'
-  >
-}
-
-export type SetPreferenceDefaultMutationVariables = Exact<{
-  darkMode: Scalars['Boolean']
+export type SetAppPreferenceMutationVariables = Exact<{
+  darkMode?: Maybe<Scalars['Boolean']>
   language?: Maybe<Scalars['String']>
 }>
 
-export type SetPreferenceDefaultMutation = { __typename?: 'Mutation' } & {
+export type SetAppPreferenceMutation = { __typename?: 'Mutation' } & {
   setViewerPreference: { __typename?: 'Preference' } & Pick<
     Preference,
     'id' | 'darkMode' | 'language'
@@ -484,104 +462,8 @@ export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQ
   AllAccountsQuery,
   AllAccountsQueryVariables
 >
-export const SetDarkModeDocument = gql`
-  mutation setDarkMode($darkMode: Boolean!) {
-    setViewerPreference(options: { darkMode: $darkMode }) {
-      id
-      darkMode
-    }
-  }
-`
-
-/**
- * __useSetDarkModeMutation__
- *
- * To run a mutation, you first call `useSetDarkModeMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useSetDarkModeMutation` returns an object that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
- *
- * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
- *
- * @example
- * const { mutate, loading, error, onDone } = useSetDarkModeMutation({
- *   variables: {
- *     darkMode: // value for 'darkMode'
- *   },
- * });
- */
-export function useSetDarkModeMutation(
-  options:
-    | VueApolloComposable.UseMutationOptions<
-        SetDarkModeMutation,
-        SetDarkModeMutationVariables
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseMutationOptions<
-          SetDarkModeMutation,
-          SetDarkModeMutationVariables
-        >
-      >
-) {
-  return VueApolloComposable.useMutation<
-    SetDarkModeMutation,
-    SetDarkModeMutationVariables
-  >(SetDarkModeDocument, options)
-}
-export type SetDarkModeMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SetDarkModeMutation,
-  SetDarkModeMutationVariables
->
-export const SetLanguageDocument = gql`
-  mutation setLanguage($language: String!) {
-    setViewerPreference(options: { language: $language }) {
-      id
-      language
-    }
-  }
-`
-
-/**
- * __useSetLanguageMutation__
- *
- * To run a mutation, you first call `useSetLanguageMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useSetLanguageMutation` returns an object that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
- *
- * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
- *
- * @example
- * const { mutate, loading, error, onDone } = useSetLanguageMutation({
- *   variables: {
- *     language: // value for 'language'
- *   },
- * });
- */
-export function useSetLanguageMutation(
-  options:
-    | VueApolloComposable.UseMutationOptions<
-        SetLanguageMutation,
-        SetLanguageMutationVariables
-      >
-    | ReactiveFunction<
-        VueApolloComposable.UseMutationOptions<
-          SetLanguageMutation,
-          SetLanguageMutationVariables
-        >
-      >
-) {
-  return VueApolloComposable.useMutation<
-    SetLanguageMutation,
-    SetLanguageMutationVariables
-  >(SetLanguageDocument, options)
-}
-export type SetLanguageMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SetLanguageMutation,
-  SetLanguageMutationVariables
->
-export const SetPreferenceDefaultDocument = gql`
-  mutation setPreferenceDefault($darkMode: Boolean!, $language: String) {
+export const SetAppPreferenceDocument = gql`
+  mutation setAppPreference($darkMode: Boolean, $language: String) {
     setViewerPreference(options: { darkMode: $darkMode, language: $language }) {
       id
       darkMode
@@ -591,44 +473,44 @@ export const SetPreferenceDefaultDocument = gql`
 `
 
 /**
- * __useSetPreferenceDefaultMutation__
+ * __useSetAppPreferenceMutation__
  *
- * To run a mutation, you first call `useSetPreferenceDefaultMutation` within a Vue component and pass it any options that fit your needs.
- * When your component renders, `useSetPreferenceDefaultMutation` returns an object that includes:
+ * To run a mutation, you first call `useSetAppPreferenceMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useSetAppPreferenceMutation` returns an object that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
  *
  * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
  *
  * @example
- * const { mutate, loading, error, onDone } = useSetPreferenceDefaultMutation({
+ * const { mutate, loading, error, onDone } = useSetAppPreferenceMutation({
  *   variables: {
  *     darkMode: // value for 'darkMode'
  *     language: // value for 'language'
  *   },
  * });
  */
-export function useSetPreferenceDefaultMutation(
+export function useSetAppPreferenceMutation(
   options:
     | VueApolloComposable.UseMutationOptions<
-        SetPreferenceDefaultMutation,
-        SetPreferenceDefaultMutationVariables
+        SetAppPreferenceMutation,
+        SetAppPreferenceMutationVariables
       >
     | ReactiveFunction<
         VueApolloComposable.UseMutationOptions<
-          SetPreferenceDefaultMutation,
-          SetPreferenceDefaultMutationVariables
+          SetAppPreferenceMutation,
+          SetAppPreferenceMutationVariables
         >
-      >
+      > = {}
 ) {
   return VueApolloComposable.useMutation<
-    SetPreferenceDefaultMutation,
-    SetPreferenceDefaultMutationVariables
-  >(SetPreferenceDefaultDocument, options)
+    SetAppPreferenceMutation,
+    SetAppPreferenceMutationVariables
+  >(SetAppPreferenceDocument, options)
 }
-export type SetPreferenceDefaultMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SetPreferenceDefaultMutation,
-  SetPreferenceDefaultMutationVariables
+export type SetAppPreferenceMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
+  SetAppPreferenceMutation,
+  SetAppPreferenceMutationVariables
 >
 export const ViewerDocument = gql`
   query viewer {
