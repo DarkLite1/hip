@@ -22,6 +22,11 @@ export const useApplicationPreferences = () => {
     },
   }))
 
+  const setDefaultPreferences = async () => {
+    await languageMutation()
+    await darkModeMutation()
+  }
+
   const startWatch = () => {
     watch(darkMode, async (newDarkMode, oldDarkMode) => {
       try {
@@ -46,5 +51,6 @@ export const useApplicationPreferences = () => {
     darkMode,
     language,
     startWatch,
+    setDefaultPreferences,
   }
 }

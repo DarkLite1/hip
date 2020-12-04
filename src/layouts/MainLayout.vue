@@ -30,7 +30,12 @@ import { useViewerQuery } from 'src/graphql/generated/operations'
 export default defineComponent({
   setup() {
     const { mainNavigationLinks } = useMainNavigationLinks()
-    const { startWatch, darkMode, language } = useApplicationPreferences()
+    const {
+      startWatch,
+      darkMode,
+      language,
+      setDefaultPreferences,
+    } = useApplicationPreferences()
     startWatch()
 
     const { onResult, onError } = useViewerQuery(() => ({
@@ -43,8 +48,13 @@ export default defineComponent({
         'useApplicationPreferences onResult: ',
         result.data.viewer.preference
       )
-      darkMode.value = result.data.viewer.preference.darkMode
-      language.value = result.data.viewer.preference.language
+
+      if (result.data.viewer.preference) {
+        darkMode.value = result.data.viewer.preference.darkMode
+        language.value = result.data.viewer.preference.language
+      } else {
+        void setDefaultPreferences()
+      }
     })
 
     onError((error) => {
