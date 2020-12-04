@@ -3,8 +3,10 @@ import { useSetAppPreferenceMutation } from 'src/graphql/generated/operations'
 import { useI18n } from 'vue-i18n-composable'
 
 const defaultState = () => ({
-  darkMode: false,
-  language: 'en-us',
+  preference: {
+    darkMode: false,
+    language: 'en-us',
+  },
 })
 
 const state = reactive(defaultState())
@@ -16,39 +18,39 @@ export const useApplicationPreferences = () => {
 
   const setDefaultPreferences = async () => {
     await setAppPreference({
-      darkMode: defaultState().darkMode,
-      language: defaultState().language,
+      ...defaultState().preference,
     })
+    state.preference = defaultState().preference
   }
 
   const startWatch = () => {
     watch(
-      () => state.darkMode,
+      () => state.preference.darkMode,
       async (newDarkMode, oldDarkMode) => {
         try {
           await setAppPreference({ darkMode: newDarkMode })
         } catch (error) {
           console.error('Failed setting darkMode: ', error)
-          state.darkMode = oldDarkMode
+          state.preference.darkMode = oldDarkMode
         }
       }
     )
     watch(
-      () => state.language,
+      () => state.preference.language,
       async (newLanguage, oldLanguage) => {
         try {
           await setAppPreference({ language: newLanguage })
           locale.value = newLanguage
         } catch (error) {
           console.error('Failed setting language: ', error)
-          state.language = oldLanguage
+          state.preference.language = oldLanguage
         }
       }
     )
   }
 
   return {
-    ...toRefs(state),
+    ...toRefs(state.preference),
     startWatch,
     setDefaultPreferences,
   }
