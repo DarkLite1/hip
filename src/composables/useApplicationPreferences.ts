@@ -1,9 +1,13 @@
-import { ref, watch } from '@vue/composition-api'
+import { watch, reactive, toRefs } from '@vue/composition-api'
 import { useSetAppPreferenceMutation } from 'src/graphql/generated/operations'
 import { useI18n } from 'vue-i18n-composable'
 
-const darkMode = ref(false)
-const language = ref('en-us')
+const defaultState = () => ({
+  darkMode: false,
+  language: 'en-us',
+})
+
+const state = reactive(defaultState())
 
 export const useApplicationPreferences = () => {
   const { locale } = useI18n()
@@ -12,34 +16,39 @@ export const useApplicationPreferences = () => {
 
   const setDefaultPreferences = async () => {
     await setAppPreference({
-      darkMode: darkMode.value,
-      language: language.value,
+      darkMode: defaultState().darkMode,
+      language: defaultState().language,
     })
   }
 
   const startWatch = () => {
-    watch(darkMode, async (newDarkMode, oldDarkMode) => {
-      try {
-        await setAppPreference({ darkMode: newDarkMode })
-      } catch (error) {
-        console.error('Failed setting darkMode: ', error)
-        darkMode.value = oldDarkMode
+    watch(
+      () => state.darkMode,
+      async (newDarkMode, oldDarkMode) => {
+        try {
+          await setAppPreference({ darkMode: newDarkMode })
+        } catch (error) {
+          console.error('Failed setting darkMode: ', error)
+          state.darkMode = oldDarkMode
+        }
       }
-    })
-    watch(language, async (newLanguage, oldLanguage) => {
-      try {
-        await setAppPreference({ language: newLanguage })
-        locale.value = newLanguage
-      } catch (error) {
-        console.error('Failed setting language: ', error)
-        language.value = oldLanguage
+    )
+    watch(
+      () => state.language,
+      async (newLanguage, oldLanguage) => {
+        try {
+          await setAppPreference({ language: newLanguage })
+          locale.value = newLanguage
+        } catch (error) {
+          console.error('Failed setting language: ', error)
+          state.language = oldLanguage
+        }
       }
-    })
+    )
   }
 
   return {
-    darkMode,
-    language,
+    ...toRefs(state),
     startWatch,
     setDefaultPreferences,
   }
