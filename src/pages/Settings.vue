@@ -67,27 +67,14 @@
 </template>
 
 <script lang="ts">
-// import { useResult } from '@vue/apollo-composable'
 import { defineComponent } from '@vue/composition-api'
 import { openURL } from 'quasar'
-// import {
-//   // useSetDarkModeMutation,
-//   useSetLanguageMutation,
-//   useViewerQuery,
-// } from 'src/graphql/generated/operations'
 import { useI18n } from 'vue-i18n-composable'
 import { useApplicationPreferences } from 'src/composables/useApplicationPreferences'
 
 export default defineComponent({
   setup() {
     const { darkMode, language } = useApplicationPreferences()
-    // const { locale } = useI18n()
-    // const { result } = useViewerQuery()
-    // const preference = useResult(result, null, (data) => data.viewer.preference)
-
-    // watchEffect(() => {
-    //   console.log('Settings preference: ', preference.value)
-    // })
 
     const languageOptions = [
       { value: 'en-us', label: 'English' },
@@ -95,8 +82,6 @@ export default defineComponent({
       { value: 'nl-be', label: 'Nederlands' },
       { value: 'fr-be', label: 'Français' },
     ]
-    // const language = locale
-    // const language = ref(context.root.$i18n.locale)
 
     const selfHelp = () => {
       openURL(
@@ -107,27 +92,6 @@ export default defineComponent({
       window.location.href =
         'mailto:BNL.ServicDesk@heidelbergcement.com?subject=HIP - HC IT Portal'
     }
-
-    // const { mutate: setLanguage } = useSetLanguageMutation(() => ({
-    //   variables: {
-    //     language: language.value,
-    //   },
-    // }))
-
-    // const { mutate: setDarkMode } = useSetDarkModeMutation(() => ({
-    //   variables: {
-    //     darkMode: darkMode.value,
-    //   },
-    // }))
-
-    // watch(language, (newLanguage) => {
-    //   locale.value = newLanguage
-    //   void setLanguage()
-    // })
-    // watch(darkMode, (newDarkMode) => {
-    //   console.log('darkMode: ', newDarkMode)
-    //   void setDarkMode(newDarkMode)
-    // })
 
     return {
       darkMode,

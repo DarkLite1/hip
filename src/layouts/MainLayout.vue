@@ -29,11 +29,11 @@ import { useViewerQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup() {
-    console.log('MainLayout')
+    const { mainNavigationLinks } = useMainNavigationLinks()
     const { startWatch, darkMode, language } = useApplicationPreferences()
     startWatch()
 
-    const { onResult } = useViewerQuery(() => ({
+    const { onResult, onError } = useViewerQuery(() => ({
       fetchPolicy: 'no-cache',
       enabled: isAuthenticated.value,
     }))
@@ -47,7 +47,9 @@ export default defineComponent({
       language.value = result.data.viewer.preference.language
     })
 
-    const { mainNavigationLinks } = useMainNavigationLinks()
+    onError((error) => {
+      console.error('error retrieving viewer preferences: ', error)
+    })
 
     return {
       mainNavigationLinks,

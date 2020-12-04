@@ -9,9 +9,9 @@ const darkMode = ref(false)
 const language = ref('en-us')
 
 export const useApplicationPreferences = () => {
-    const { locale } = useI18n()
+  const { locale } = useI18n()
 
-    const { mutate: darkModeMutation } = useSetDarkModeMutation(() => ({
+  const { mutate: darkModeMutation } = useSetDarkModeMutation(() => ({
     variables: {
       darkMode: darkMode.value,
     },
@@ -24,7 +24,6 @@ export const useApplicationPreferences = () => {
 
   const startWatch = () => {
     watch(darkMode, async (newDarkMode, oldDarkMode) => {
-      console.log('darkMode: ', newDarkMode)
       try {
         await darkModeMutation()
       } catch (error) {
@@ -33,8 +32,6 @@ export const useApplicationPreferences = () => {
       }
     })
     watch(language, async (newLanguage, oldLanguage) => {
-      console.log('language: ', newLanguage)
-      console.log('locale: ', locale.value)
       try {
         await languageMutation()
         locale.value = newLanguage
