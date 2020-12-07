@@ -13,32 +13,32 @@
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
     <div v-else-if="trips" style="max-width: 500px">
-      <table
-        v-for="trip of trips"
-        :key="trip.startPlantLoadingDateTime"
-        class="q-pb-md"
-      >
-        <tr>
-          <th>Date</th>
-          <td>{{ trip.date }}</td>
-        </tr>
-        <tr>
-          <th>Time</th>
-          <td>{{ trip.time }}</td>
-        </tr>
-        <tr>
-          <th>DriverId</th>
-          <td>{{ trip.driverId }}</td>
-        </tr>
-        <tr>
-          <th>TruckId</th>
-          <td>{{ trip.truckId }}</td>
-        </tr>
-        <tr>
-          <th>Plant name</th>
-          <td>{{ trip.plantName }}</td>
-        </tr>
-      </table>
+      <div v-for="(value, name) in trips" :key="value">
+        <p class="text-bold">{{ name }}</p>
+
+        <table
+          v-for="trip of value"
+          :key="trip.startPlantLoadingDateTime"
+          class="q-pb-md"
+        >
+          <tr>
+            <th>Time</th>
+            <td>{{ trip.time }}</td>
+          </tr>
+          <tr>
+            <th>DriverId</th>
+            <td>{{ trip.driverId }}</td>
+          </tr>
+          <tr>
+            <th>TruckId</th>
+            <td>{{ trip.truckId }}</td>
+          </tr>
+          <tr>
+            <th>Plant name</th>
+            <td>{{ trip.plantName }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent, watchEffect } from '@vue/composition-api'
 import {
   Roster,
   useSapTruckRosterRosterQuery,
@@ -87,6 +87,18 @@ export default defineComponent({
       if (data.roster.__typename === 'RosterArray') return data.roster.data
     })
 
+    // const groupBy = <TItem>(
+    //   items: TItem[],
+    //   key: string
+    // ): { [key: string]: TItem[] } =>
+    //   items.reduce(
+    //     (result, item) => ({
+    //       ...result,
+    //       [item[key]]: [...(result[item[key]] || []), item],
+    //     }),
+    //     {}
+    //   )
+
     const trips = computed(() => {
       if (!rosterQueryResult.value) return []
 
@@ -104,7 +116,19 @@ export default defineComponent({
         })(),
       }))
 
-      return trips
+      const tripsGroupedByDate = trips.reduce(
+        (groups, item) => ({
+          ...groups,
+          [item.date as string]: [...((groups[item.date] || []) as []), item],
+        }),
+        {}
+      )
+
+      return tripsGroupedByDate
+    })
+
+    watchEffect(() => {
+      console.log('trips grouped: ', trips.value)
     })
 
     const apiError = useResult(result, null, (data) => {
