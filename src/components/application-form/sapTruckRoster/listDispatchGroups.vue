@@ -55,17 +55,15 @@ export default defineComponent({
       error,
       refetch,
     } = useSapTruckRosterDispatchGroupQuery(
-      () => {
-        return { fromDate: new Date('2020-10-28') }
-      },
+      () => ({
+        fromDate: new Date('2020-10-28'),
+        // fromDate: new Date()
+      }),
       {
         pollInterval: 15 * 60 * 1000, // every 15 min
         fetchPolicy: 'no-cache',
       }
     )
-    // const { result, loading, error } = useRosterDispatchGroupQuery(() => {
-    //   return { fromDate: new Date() }
-    // })
 
     const convertDate = (
       isoDate: string,
@@ -93,14 +91,6 @@ export default defineComponent({
       if (data.rosterDispatchGroup.__typename === 'ApiError') {
         return data.rosterDispatchGroup
       }
-    })
-
-    watch(result, () => {
-      console.log('result.value: ', result.value)
-    })
-
-    watch(dispatchGroups, () => {
-      console.log('dispatchGroups.value: ', dispatchGroups.value)
     })
 
     return {
