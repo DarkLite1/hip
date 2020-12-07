@@ -44,7 +44,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item @click="selfHelp" tag="label" v-ripple>
+        <q-item @click="reportProblemUrl" tag="label" v-ripple>
           <q-item-section>
             <q-item-label>{{ t('page.settings.reportProblem') }}</q-item-label>
           </q-item-section>
@@ -83,9 +83,9 @@ export default defineComponent({
       { value: 'fr-be', label: 'Français' },
     ]
 
-    const selfHelp = () => {
+    const reportProblemUrl = () => {
       openURL(
-        'http://unite.grouphc.net/benelux/staffdepartments/it_bene/selfhelp/Pages/BNL_SelfHelp.aspx'
+        'https://github.com/DarkLite1/hip/issues'
       )
     }
     const emailUs = () => {
@@ -97,7 +97,7 @@ export default defineComponent({
       darkMode,
       language,
       languageOptions,
-      selfHelp,
+      reportProblemUrl,
       emailUs,
       ...useI18n(),
     }
