@@ -10,18 +10,20 @@ query sapTruckRosterRoster(
     }
     ... on RosterArray {
       data {
-        truck {
-          id
-          country
-        }
         truckId
         radioId
         driverId
+        driverEmail
         driverFirstName
         driverLastName
-        startPlantLoadingDateTime
-        driverEmail
+        dispatchGroup
         plantId
+        plantName
+        plantTimezone
+        plantCity
+        plantCountry
+        plantStreetHouse
+        startPlantLoadingDateTime
       }
     }
   }

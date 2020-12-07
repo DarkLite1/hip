@@ -112,7 +112,7 @@ export type Roster = {
   driverFirstName?: Maybe<Scalars['String']>
   driverLastName?: Maybe<Scalars['String']>
   driverEmail?: Maybe<Scalars['String']>
-  despatchGroup?: Maybe<Scalars['String']>
+  dispatchGroup?: Maybe<Scalars['String']>
   plantId: Scalars['ID']
   plantName?: Maybe<Scalars['String']>
   plantTimezone?: Maybe<Scalars['String']>
@@ -347,16 +347,18 @@ export type SapTruckRosterRosterQuery = { __typename?: 'Query' } & {
               | 'truckId'
               | 'radioId'
               | 'driverId'
+              | 'driverEmail'
               | 'driverFirstName'
               | 'driverLastName'
-              | 'startPlantLoadingDateTime'
-              | 'driverEmail'
+              | 'dispatchGroup'
               | 'plantId'
-            > & {
-                truck?: Maybe<
-                  { __typename?: 'Truck' } & Pick<Truck, 'id' | 'country'>
-                >
-              }
+              | 'plantName'
+              | 'plantTimezone'
+              | 'plantCity'
+              | 'plantCountry'
+              | 'plantStreetHouse'
+              | 'startPlantLoadingDateTime'
+            >
           >
         >
       })
@@ -638,18 +640,20 @@ export const SapTruckRosterRosterDocument = gql`
       }
       ... on RosterArray {
         data {
-          truck {
-            id
-            country
-          }
           truckId
           radioId
           driverId
+          driverEmail
           driverFirstName
           driverLastName
-          startPlantLoadingDateTime
-          driverEmail
+          dispatchGroup
           plantId
+          plantName
+          plantTimezone
+          plantCity
+          plantCountry
+          plantStreetHouse
+          startPlantLoadingDateTime
         }
       }
     }

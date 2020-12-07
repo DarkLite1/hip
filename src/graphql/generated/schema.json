@@ -772,7 +772,7 @@
             "deprecationReason": null
           },
           {
-            "name": "despatchGroup",
+            "name": "dispatchGroup",
             "description": null,
             "args": [],
             "type": {
