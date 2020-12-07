@@ -19,7 +19,7 @@ export default {
       darkMode: "Dark mode",
       language: "Language",
       help: "Help",
-      reportProblem: "Report a problem",
+      reportProblem: "Report an issue",
       emailUs: "Send us an e-mail",
     },
   },

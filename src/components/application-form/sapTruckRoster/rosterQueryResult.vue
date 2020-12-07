@@ -8,31 +8,37 @@
     <p>driverId: {{ driverId }}</p>
     <p>truckId: {{ truckId }}</p>
 
-    <ul>
-      <li>one</li>
-      <li>two</li>
-    </ul>
-
     <q-spinner v-if="loading" color="primary" size="3em" />
     <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
     <div v-else-if="trips" style="max-width: 500px">
-      <div
+      <table
         v-for="trip of trips"
         :key="trip.startPlantLoadingDateTime"
         class="q-pb-md"
       >
-        <p>Date: {{ trip.date }}</p>
-        <p>Time: {{ trip.time }}</p>
-        <!-- <p>Date: {{ trip.date() }}</p> -->
-        <!-- <p>Date: {{ trip.date(trip) }}</p> -->
-        <p>startPlantLoadingDateTime: {{ trip.startPlantLoadingDateTime }}</p>
-        <p>driverId: {{ trip.driverId }}</p>
-        <p>truckId: {{ trip.truckId }}</p>
-        <p>plantId: {{ trip.plantId }}</p>
-        <p>plantName: {{ trip.plantName }}</p>
-      </div>
+        <tr>
+          <th>Date</th>
+          <td>{{ trip.date }}</td>
+        </tr>
+        <tr>
+          <th>Time</th>
+          <td>{{ trip.time }}</td>
+        </tr>
+        <tr>
+          <th>DriverId</th>
+          <td>{{ trip.driverId }}</td>
+        </tr>
+        <tr>
+          <th>TruckId</th>
+          <td>{{ trip.truckId }}</td>
+        </tr>
+        <tr>
+          <th>Plant name</th>
+          <td>{{ trip.plantName }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -84,7 +90,7 @@ export default defineComponent({
     const trips = computed(() => {
       if (!rosterQueryResult.value) return []
 
-      return (rosterQueryResult.value as Roster[]).map((obj) => ({
+      const trips = (rosterQueryResult.value as Roster[]).map((obj) => ({
         ...obj,
         date: (() => {
           if (obj.startPlantLoadingDateTime) {
@@ -97,6 +103,8 @@ export default defineComponent({
           }
         })(),
       }))
+
+      return trips
     })
 
     const apiError = useResult(result, null, (data) => {
@@ -118,3 +126,11 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+table {
+  th {
+    text-align: left;
+  }
+}
+</style>
