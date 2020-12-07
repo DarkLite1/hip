@@ -23,7 +23,7 @@
 
     <div v-else-if="dispatchGroups" style="max-width: 500px">
       <div v-for="group of dispatchGroups" :key="group.date" class="q-pb-md">
-        <p>{{ convertDate(group.date, locale) }}</p>
+        <p>{{ convertToDate(group.date, locale) }}</p>
         <div class="q-gutter-xs">
           <q-btn
             v-for="name in group.dispatchGroup"
@@ -45,6 +45,7 @@ import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
 import { defineComponent } from '@vue/composition-api'
 import { useSapTruckRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
+import { convertToDate } from 'src/services/utils/utilsService'
 
 export default defineComponent({
   name: 'ApplicationForm',
@@ -65,19 +66,6 @@ export default defineComponent({
       }
     )
 
-    const convertDate = (isoDate: string, locale: string) => {
-      const date = new Date(isoDate)
-
-      const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-
-      return date.toLocaleDateString(locale, options)
-    }
-
     const dispatchGroups = useResult(result, [], (data) => {
       if (data.rosterDispatchGroup.__typename === 'RosterDispatchGroupArray') {
         return data.rosterDispatchGroup.data
@@ -96,7 +84,7 @@ export default defineComponent({
       apiError,
       loading,
       error,
-      convertDate,
+      convertToDate,
       refetch,
     }
   },

@@ -31,6 +31,9 @@ export default {
       processedDispatchGroupTable: {
         title: "Available dispatch groups:",
       },
+      rosterQueryResult: {
+        title: "Planned trips:",
+      },
       question: {
         truckId: "What is your truck ID number?",
         driverId: "What is your driver ID?",

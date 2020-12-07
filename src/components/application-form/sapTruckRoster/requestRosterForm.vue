@@ -126,7 +126,8 @@ export default defineComponent({
       if (showTruckId.value) {
         return [requiredRule, truckRule]
       } else {
-        return [requiredRule, driverRule]
+        // return [requiredRule, driverRule]
+        return []
       }
     })
 
