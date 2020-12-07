@@ -4,6 +4,7 @@
       v-if="submitted"
       :truckId="truckId"
       :driverId="driverId"
+      :fromDate="new Date('2020-10-24')"
     />
     <q-form v-else @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
@@ -62,12 +63,12 @@ export default defineComponent({
     const submitted = ref(false)
     const showTruckId = ref(false)
     const question = ref()
-    const answer = ref()
+    const answer = ref<string>()
     const label = ref()
     const qInputRef = ref<QInput>()
 
     const clearField = () => {
-      answer.value = null
+      answer.value = ''
       qInputRef.value?.resetValidation()
     }
 
@@ -78,7 +79,7 @@ export default defineComponent({
     const onReset = () => {
       console.log('form reset')
       showTruckId.value = false
-      answer.value = null
+      answer.value = ''
     }
 
     /*
@@ -100,14 +101,16 @@ export default defineComponent({
     const driverRule = (val: string) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          //  resolve(true)
+          console.log(`driverRule val: ${val}`)
+
+          resolve(true)
           //     --> content is valid
           //  resolve(false)
           //     --> content is NOT valid, no error message
           //  resolve(error_message)
           //     --> content is NOT valid, we have error message
           // resolve(`${val} * Required`)
-          resolve(`${val} ${t('application.sapTruckRoster.error.driverId')}`)
+          // resolve(`${val} ${t('application.sapTruckRoster.error.driverId')}`)
         }, 1000)
       })
     }
@@ -127,11 +130,14 @@ export default defineComponent({
       }
     })
 
+    const truckId = computed(() => (showTruckId.value ? answer.value : ''))
+    const driverId = computed(() => (!showTruckId.value ? answer.value : ''))
+
     watch(
       showTruckId,
       () => {
         qInputRef.value?.resetValidation()
-        answer.value = null
+        answer.value = ''
 
         if (showTruckId.value) {
           question.value = t('application.sapTruckRoster.question.truckId')
@@ -158,6 +164,8 @@ export default defineComponent({
       qInputRef,
       clearField,
       answerInputValidationRules,
+      driverId,
+      truckId,
     }
   },
   components: {
