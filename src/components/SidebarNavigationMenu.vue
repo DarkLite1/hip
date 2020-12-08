@@ -9,10 +9,10 @@
       :breakpoint="600"
       show-if-above
       bordered
-      content-class="bg-grey-3 no-scroll"
+      content-class="no-scroll"
     >
       <q-scroll-area class="fit">
-        <q-list padding>
+        <q-list v-if="links" padding>
           <q-item
             v-for="link in links"
             :key="link.name"
