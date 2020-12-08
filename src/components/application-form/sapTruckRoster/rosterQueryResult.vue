@@ -12,9 +12,11 @@
       <q-list
         v-for="(value, name) in trips"
         :key="name"
-        class="bg-grey-10 text-white shadow-2 rounded-borders"
+        class="shadow-2 rounded-borders"
         style="max-width: 300px; width: 100%"
+        bordered
       >
+        <!-- class="bg-grey-10 text-white shadow-2 rounded-borders" -->
         <q-item class="q-pt-md">
           <q-tooltip>{{
             t('application.sapTruckRoster.label.date')
@@ -27,7 +29,7 @@
 
         <q-item v-for="trip of value" :key="trip.startPlantLoadingDateTime">
           <q-item-section>
-            <q-separator dark inset class="q-mb-md" />
+            <q-separator inset class="q-mb-md" />
             <table>
               <tr>
                 <q-tooltip>{{
