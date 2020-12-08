@@ -13,37 +13,38 @@
         v-for="(value, name) in trips"
         :key="name"
         class="bg-grey-10 text-white shadow-2 rounded-borders"
-        style="max-width: 350px; width: 100%"
+        style="max-width: 300px; width: 100%"
       >
-        <q-item>
+        <q-item class="q-pt-md">
+          <q-tooltip>Date</q-tooltip>
           <q-item-section avatar>
             <q-icon name="today" size="md" />
           </q-item-section>
-          <q-item-section> {{ name }} </q-item-section>
+          <q-item-section class="text-bold"> {{ name }} </q-item-section>
         </q-item>
 
-        <q-separator inset dark />
-
         <q-item v-for="trip of value" :key="trip.startPlantLoadingDateTime">
-          <q-item-section avatar>
-            <q-icon name="label_important" size="md" />
-          </q-item-section>
           <q-item-section>
+            <q-separator dark inset class="q-mb-md" />
             <table>
               <tr>
-                <th>Time</th>
+                <q-tooltip>Time</q-tooltip>
+                <q-icon name="schedule" size="xs" />
                 <td>{{ trip.time }}</td>
               </tr>
               <tr>
-                <th>DriverId</th>
+                <q-tooltip>Driver ID</q-tooltip>
+                <q-icon name="person" size="xs" />
                 <td>{{ trip.driverId }}</td>
               </tr>
               <tr>
-                <th>TruckId</th>
+                <q-tooltip>Truck ID</q-tooltip>
+                <q-icon name="local_shipping" size="xs" />
                 <td>{{ trip.truckId }}</td>
               </tr>
               <tr>
-                <th>Plant name</th>
+                <q-tooltip>Plant name</q-tooltip>
+                <q-icon name="local_parking" size="xs" />
                 <td>{{ trip.plantName }}</td>
               </tr>
             </table>
