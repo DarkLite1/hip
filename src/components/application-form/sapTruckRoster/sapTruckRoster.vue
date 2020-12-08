@@ -1,6 +1,6 @@
 <template>
   <div>
-    <request-roster-form />
+    <request-roster-form class="q-pb-sm" />
     <hr />
     <list-dispatch-groups />
   </div>

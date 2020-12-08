@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pb-sm">
+  <div>
     <roster-query-result
       v-if="submitted"
       :truckId="truckId"

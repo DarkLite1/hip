@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pb-md">
+  <div>
     <p class="text-bold">
       {{ t('application.sapTruckRoster.rosterQueryResult.title') }}
     </p>

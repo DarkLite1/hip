@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pb-sm">
+  <div>
     <p class="text-bold">
       {{ t('application.sapTruckRoster.processedDispatchGroupTable.title') }}
       <q-btn

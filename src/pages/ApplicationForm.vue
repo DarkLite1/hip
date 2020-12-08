@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$props.appId" class="q-px-md">
+  <div v-if="$props.appId" class="q-pa-md">
     <div class="text-h6 q-pb-md">
       {{ application.name }}
     </div>
