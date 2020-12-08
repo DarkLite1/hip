@@ -1,5 +1,4 @@
 <template>
-  <!-- class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable" -->
   <q-card
     v-ripple
     bordered
@@ -52,10 +51,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .my-card {
   border-radius: 32px;
-}
-.body--dark {
-  background: blue;
-  background-color: blue;
-  color: blue;
 }
 </style>
