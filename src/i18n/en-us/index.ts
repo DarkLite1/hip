@@ -47,6 +47,9 @@ export default {
       label: {
         truckId: "Truck ID",
         driverId: "Driver ID",
+        plantName: "Plant name",
+        date: "Date",
+        time: "Time",
       },
     },
   },

@@ -28,22 +28,30 @@
             <q-separator dark inset class="q-mb-md" />
             <table>
               <tr>
-                <q-tooltip>Time</q-tooltip>
+                <q-tooltip>{{
+                  t('application.sapTruckRoster.label.time')
+                }}</q-tooltip>
                 <q-icon name="schedule" size="xs" />
                 <td>{{ trip.time }}</td>
               </tr>
               <tr>
-                <q-tooltip>Driver ID</q-tooltip>
+                <q-tooltip>{{
+                  t('application.sapTruckRoster.label.driverId')
+                }}</q-tooltip>
                 <q-icon name="person" size="xs" />
                 <td>{{ trip.driverId }}</td>
               </tr>
               <tr>
-                <q-tooltip>Truck ID</q-tooltip>
+                <q-tooltip>{{
+                  t('application.sapTruckRoster.label.truckId')
+                }}</q-tooltip>
                 <q-icon name="local_shipping" size="xs" />
                 <td>{{ trip.truckId }}</td>
               </tr>
               <tr>
-                <q-tooltip>Plant name</q-tooltip>
+                <q-tooltip>{{
+                  t('application.sapTruckRoster.label.plantName')
+                }}</q-tooltip>
                 <q-icon name="local_parking" size="xs" />
                 <td>{{ trip.plantName }}</td>
               </tr>
