@@ -1,44 +1,55 @@
 <template>
-  <div class="q-pb-sm">
+  <div class="q-pb-md">
     <p class="text-bold">
       {{ t('application.sapTruckRoster.rosterQueryResult.title') }}
     </p>
-
-    <p>fromDate: {{ convertToDate(fromDate, locale) }}</p>
-    <p>driverId: {{ driverId }}</p>
-    <p>truckId: {{ truckId }}</p>
 
     <q-spinner v-if="loading" color="primary" size="3em" />
     <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
-    <div v-else-if="trips" style="max-width: 500px">
-      <div v-for="(value, name) in trips" :key="name">
-        <p class="text-bold">{{ name }}</p>
+    <div v-else-if="trips" class="q-gutter-md row items-start">
+      <q-list
+        v-for="(value, name) in trips"
+        :key="name"
+        class="bg-grey-10 text-white shadow-2 rounded-borders"
+        style="max-width: 350px; width: 100%"
+      >
+        <q-item>
+          <q-item-section avatar>
+            <q-icon name="today" size="md" />
+          </q-item-section>
+          <q-item-section> {{ name }} </q-item-section>
+        </q-item>
 
-        <table
-          v-for="trip of value"
-          :key="trip.startPlantLoadingDateTime"
-          class="q-pb-md"
-        >
-          <tr>
-            <th>Time</th>
-            <td>{{ trip.time }}</td>
-          </tr>
-          <tr>
-            <th>DriverId</th>
-            <td>{{ trip.driverId }}</td>
-          </tr>
-          <tr>
-            <th>TruckId</th>
-            <td>{{ trip.truckId }}</td>
-          </tr>
-          <tr>
-            <th>Plant name</th>
-            <td>{{ trip.plantName }}</td>
-          </tr>
-        </table>
-      </div>
+        <q-separator inset dark />
+
+        <q-item v-for="trip of value" :key="trip.startPlantLoadingDateTime">
+          <q-item-section avatar>
+            <q-icon name="label_important" size="md" />
+          </q-item-section>
+          <q-item-section>
+            <table>
+              <tr>
+                <th>Time</th>
+                <td>{{ trip.time }}</td>
+              </tr>
+              <tr>
+                <th>DriverId</th>
+                <td>{{ trip.driverId }}</td>
+              </tr>
+              <tr>
+                <th>TruckId</th>
+                <td>{{ trip.truckId }}</td>
+              </tr>
+              <tr>
+                <th>Plant name</th>
+                <td>{{ trip.plantName }}</td>
+              </tr>
+            </table>
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
   </div>
 </template>
@@ -142,6 +153,7 @@ export default defineComponent({
 table {
   th {
     text-align: left;
+    // min-width: 120px;
   }
 }
 </style>
