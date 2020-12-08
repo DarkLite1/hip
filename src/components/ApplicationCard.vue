@@ -2,6 +2,7 @@
   <!-- class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable" -->
   <q-card
     v-ripple
+    bordered
     class="my-card cursor-pointer q-hoverable non-selectable"
     @click="applicationSelected(id)"
   >
