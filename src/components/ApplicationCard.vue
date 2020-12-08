@@ -1,7 +1,8 @@
 <template>
+  <!-- class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable" -->
   <q-card
     v-ripple
-    class="my-card bg-grey-3 cursor-pointer q-hoverable non-selectable"
+    class="my-card cursor-pointer q-hoverable non-selectable"
     @click="applicationSelected(id)"
   >
     <span class="q-focus-helper"></span>
@@ -50,5 +51,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .my-card {
   border-radius: 32px;
+}
+.body--dark {
+  background: blue;
+  background-color: blue;
+  color: blue;
 }
 </style>

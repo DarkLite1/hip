@@ -12,7 +12,7 @@
       content-class="no-scroll"
     >
       <q-scroll-area class="fit">
-        <q-list v-if="links" padding>
+        <q-list padding>
           <q-item
             v-for="link in links"
             :key="link.name"
@@ -34,14 +34,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@vue/composition-api'
+import {
+  defineComponent,
+  ref,
+  watch,
+  PropType,
+  ComputedRef,
+} from '@vue/composition-api'
+import { TranslateResult } from 'vue-i18n'
+
+interface InterfaceLinks {
+  label: ComputedRef<TranslateResult>
+  name: string
+  to: string
+  icon: string
+}
 
 export default defineComponent({
   name: 'SidebarNavigationMenu',
   props: {
     links: {
-      type: Array,
-      required: false,
+      type: (Array as unknown) as PropType<InterfaceLinks[]>,
+      default: () => [],
     },
   },
   setup(props, context) {

@@ -164,7 +164,6 @@ export default defineComponent({
 table {
   th {
     text-align: left;
-    // min-width: 120px;
   }
 }
 </style>
