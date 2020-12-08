@@ -70,7 +70,7 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
-import { computed, defineComponent, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent } from '@vue/composition-api'
 import {
   Roster,
   useSapTruckRosterRosterQuery,
@@ -86,7 +86,7 @@ export default defineComponent({
     fromDate: {
       type: Date,
       required: false,
-      default: new Date(),
+      default: () => new Date(),
     },
     truckId: {
       type: String,
@@ -139,9 +139,7 @@ export default defineComponent({
       return tripsGroupedByDate
     })
 
-    watchEffect(() => {
-      console.log('trips grouped: ', trips.value)
-    })
+    // const search
 
     const apiError = useResult(result, null, (data) => {
       if (data.roster.__typename === 'ApiError') {
