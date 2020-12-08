@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n-composable'
 
 const defaultState = () => ({
   preference: {
-    darkMode: false,
+    darkMode: true,
     language: 'en-us',
   },
 })
