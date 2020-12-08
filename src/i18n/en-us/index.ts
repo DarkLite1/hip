@@ -5,6 +5,7 @@ export default {
   button: {
     submit: "Submit",
     reset: "Reset",
+    back: "Back",
   },
   page: {
     home: {
