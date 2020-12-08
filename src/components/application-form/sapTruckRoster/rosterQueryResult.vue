@@ -16,7 +16,9 @@
         style="max-width: 300px; width: 100%"
       >
         <q-item class="q-pt-md">
-          <q-tooltip>Date</q-tooltip>
+          <q-tooltip>{{
+            t('application.sapTruckRoster.label.date')
+          }}</q-tooltip>
           <q-item-section avatar>
             <q-icon name="today" size="md" />
           </q-item-section>
