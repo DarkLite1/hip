@@ -1,12 +1,6 @@
 <template>
   <div>
-    <roster-query-result
-      v-if="submitted"
-      :truckId="truckId"
-      :driverId="driverId"
-      :fromDate="new Date('2020-10-24')"
-    />
-    <q-form v-else @submit="onSubmit" @reset="onReset">
+    <q-form @submit="onSubmit" @reset="onReset">
       <div class="q-gutter-sm" style="max-width: 300px">
         <template>
           <p class="text-bold">{{ question }}</p>
@@ -57,7 +51,7 @@ import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
 
 export default defineComponent({
-  setup() {
+  setup(_, { emit }) {
     const { t } = useI18n()
     const { requiredRule } = useValidationRules()
     const submitted = ref(false)
@@ -75,6 +69,10 @@ export default defineComponent({
     const onSubmit = () => {
       console.log('form submitted')
       submitted.value = true
+      emit('form-submitted', {
+        driverId: driverId.value,
+        truckId: truckId.value,
+      })
     }
     const onReset = () => {
       console.log('form reset')
@@ -168,12 +166,6 @@ export default defineComponent({
       driverId,
       truckId,
     }
-  },
-  components: {
-    rosterQueryResult: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/rosterQueryResult.vue'
-      ),
   },
 })
 </script>
