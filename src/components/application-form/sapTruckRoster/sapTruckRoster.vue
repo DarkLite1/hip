@@ -1,11 +1,7 @@
 <template>
   <div>
     <template v-if="showFormSubmitResult">
-      <roster-query-result
-        :truckId="truckId"
-        :driverId="driverId"
-        :fromDate="new Date('2020-10-24')"
-      />
+      <roster-query-result :truckId="truckId" :driverId="driverId" />
     </template>
     <template v-else>
       <request-roster-form class="q-pb-sm" @form-submitted="formSubmitted" />
@@ -28,9 +24,6 @@ export default defineComponent({
       truckId: string
       driverId: string
     }) => {
-      console.log('form driver id: ', formResponse.driverId)
-      console.log('form truck id: ', formResponse.truckId)
-
       driverId.value = formResponse.driverId
       truckId.value = formResponse.truckId
       showFormSubmitResult.value = true
