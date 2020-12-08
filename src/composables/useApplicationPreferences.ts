@@ -1,4 +1,5 @@
 import { watch, reactive, toRefs } from '@vue/composition-api'
+import { Dark } from 'quasar'
 import { useSetAppPreferenceMutation } from 'src/graphql/generated/operations'
 import { useI18n } from 'vue-i18n-composable'
 
@@ -29,6 +30,7 @@ export const useApplicationPreferences = () => {
       async (newDarkMode, oldDarkMode) => {
         try {
           await setAppPreference({ darkMode: newDarkMode })
+          Dark.set(newDarkMode)
         } catch (error) {
           console.error('Failed setting darkMode: ', error)
           state.preference.darkMode = oldDarkMode
