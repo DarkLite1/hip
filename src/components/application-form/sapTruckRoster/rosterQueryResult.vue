@@ -51,7 +51,11 @@ import {
   Roster,
   useSapTruckRosterRosterQuery,
 } from 'src/graphql/generated/operations'
-import { convertToDate, convertToTime } from 'src/services/utils/utilsService'
+import {
+  convertToDate,
+  convertToTime,
+  groupBy,
+} from 'src/services/utils/utilsService'
 
 export default defineComponent({
   props: {
@@ -87,18 +91,6 @@ export default defineComponent({
       if (data.roster.__typename === 'RosterArray') return data.roster.data
     })
 
-    // const groupBy = <TItem>(
-    //   items: TItem[],
-    //   key: string
-    // ): { [key: string]: TItem[] } =>
-    //   items.reduce(
-    //     (result, item) => ({
-    //       ...result,
-    //       [item[key]]: [...(result[item[key]] || []), item],
-    //     }),
-    //     {}
-    //   )
-
     const trips = computed(() => {
       if (!rosterQueryResult.value) return []
 
@@ -108,21 +100,17 @@ export default defineComponent({
           if (obj.startPlantLoadingDateTime) {
             return convertToDate(obj.startPlantLoadingDateTime, locale.value)
           }
+          return 'NA'
         })(),
         time: (() => {
           if (obj.startPlantLoadingDateTime) {
             return convertToTime(obj.startPlantLoadingDateTime, locale.value)
           }
+          return 'NA'
         })(),
       }))
 
-      const tripsGroupedByDate = trips.reduce(
-        (groups, item) => ({
-          ...groups,
-          [item.date as string]: [...((groups[item.date] || []) as []), item],
-        }),
-        {}
-      )
+      const tripsGroupedByDate = groupBy(trips, 'date')
 
       return tripsGroupedByDate
     })
