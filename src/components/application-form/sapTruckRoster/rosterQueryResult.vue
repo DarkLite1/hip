@@ -13,7 +13,7 @@
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
     <div v-else-if="trips" style="max-width: 500px">
-      <div v-for="(value, name) in trips" :key="value">
+      <div v-for="(value, name) in trips" :key="name">
         <p class="text-bold">{{ name }}</p>
 
         <table
@@ -130,7 +130,6 @@ export default defineComponent({
       convertToDate,
       convertToTime,
       apiError,
-      // RosterQueryResult,
       trips,
       error,
       loading,
