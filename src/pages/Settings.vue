@@ -9,7 +9,7 @@
             <q-item-label>{{ t('page.settings.darkMode') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle v-model="darkMode" color="blue" />
+            <q-toggle v-model="darkModeToggle" color="blue" />
           </q-item-section>
         </q-item>
 
@@ -22,7 +22,7 @@
               rounded
               outlined
               dense
-              v-model="language"
+              v-model="languageSelector"
               :options="languageOptions"
               emit-value
               map-options
@@ -67,14 +67,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from '@vue/composition-api'
 import { openURL } from 'quasar'
 import { useI18n } from 'vue-i18n-composable'
 import { useApplicationPreferences } from 'src/composables/useApplicationPreferences'
 
 export default defineComponent({
   setup() {
-    const { darkMode, language } = useApplicationPreferences()
+    const { darkMode, language, setPreference } = useApplicationPreferences()
+
+    const darkModeToggle = computed({
+      get: () => darkMode.value,
+      set: async (value) => {
+        await setPreference({ darkMode: value }, { saveToBackend: true })
+      },
+    })
+
+    const languageSelector = computed({
+      get: () => language.value,
+      set: async (value) => {
+        await setPreference({ language: value }, { saveToBackend: true })
+      },
+    })
 
     const languageOptions = [
       { value: 'en-us', label: 'English' },
@@ -84,9 +98,7 @@ export default defineComponent({
     ]
 
     const reportProblemUrl = () => {
-      openURL(
-        'https://github.com/DarkLite1/hip/issues'
-      )
+      openURL('https://github.com/DarkLite1/hip/issues')
     }
     const emailUs = () => {
       window.location.href =
@@ -94,8 +106,8 @@ export default defineComponent({
     }
 
     return {
-      darkMode,
-      language,
+      darkModeToggle,
+      languageSelector,
       languageOptions,
       reportProblemUrl,
       emailUs,

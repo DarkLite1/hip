@@ -1,4 +1,4 @@
-import { watch, reactive, toRefs } from '@vue/composition-api'
+import { reactive, computed } from '@vue/composition-api'
 import { Dark } from 'quasar'
 import { useSetAppPreferenceMutation } from 'src/graphql/generated/operations'
 import { useI18n } from 'vue-i18n-composable'
@@ -15,45 +15,45 @@ const state = reactive(defaultState())
 export const useApplicationPreferences = () => {
   const { locale } = useI18n()
 
-  const { mutate: setAppPreference } = useSetAppPreferenceMutation()
+  const { mutate } = useSetAppPreferenceMutation()
 
-  const setDefaultPreferences = async () => {
-    await setAppPreference({
-      ...defaultState().preference,
-    })
-    state.preference = defaultState().preference
+  const setPreference = async (
+    preference: {
+      darkMode?: boolean
+      language?: string
+    },
+    option?: { saveToBackend?: boolean }
+  ) => {
+    if (preference.darkMode != null) {
+      console.log('set darkMode: ', preference.darkMode)
+      Dark.set(preference.darkMode)
+      state.preference.darkMode = preference.darkMode
+    }
+    if (preference.language) {
+      console.log('set language: ', preference.language)
+      locale.value = preference.language
+      state.preference.language = preference.language
+    }
+
+    if (option?.saveToBackend) {
+      console.log('save to backend: ', preference)
+      await mutate({
+        ...preference,
+      })
+    }
   }
 
-  const startWatch = () => {
-    watch(
-      () => state.preference.darkMode,
-      async (newDarkMode, oldDarkMode) => {
-        try {
-          await setAppPreference({ darkMode: newDarkMode })
-          Dark.set(newDarkMode)
-        } catch (error) {
-          console.error('Failed setting darkMode: ', error)
-          state.preference.darkMode = oldDarkMode
-        }
-      }
-    )
-    watch(
-      () => state.preference.language,
-      async (newLanguage, oldLanguage) => {
-        try {
-          await setAppPreference({ language: newLanguage })
-          locale.value = newLanguage
-        } catch (error) {
-          console.error('Failed setting language: ', error)
-          state.preference.language = oldLanguage
-        }
-      }
+  const setDefaultPreferences = async () => {
+    await setPreference(
+      { ...defaultState().preference },
+      { saveToBackend: true }
     )
   }
 
   return {
-    ...toRefs(state.preference),
-    startWatch,
+    darkMode: computed(() => state.preference.darkMode),
+    language: computed(() => state.preference.language),
     setDefaultPreferences,
+    setPreference,
   }
 }
