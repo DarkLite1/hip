@@ -44,7 +44,7 @@ export default defineComponent({
       )
 
       if (result.data.viewer.preference) {
-        void setPreference({ ...result.data.viewer.preference })
+        void setPreference({ ...result.data.viewer.preference }, false)
       } else {
         void setDefaultPreferences()
       }

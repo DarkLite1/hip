@@ -9,7 +9,7 @@
             <q-item-label>{{ t('page.settings.darkMode') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle v-model="darkModeToggle" color="blue" />
+            <q-toggle v-model="darkMode" color="blue" />
           </q-item-section>
         </q-item>
 
@@ -22,7 +22,7 @@
               rounded
               outlined
               dense
-              v-model="languageSelector"
+              v-model="language"
               :options="languageOptions"
               emit-value
               map-options
@@ -74,19 +74,23 @@ import { useApplicationPreferences } from 'src/composables/useApplicationPrefere
 
 export default defineComponent({
   setup() {
-    const { darkMode, language, setPreference } = useApplicationPreferences()
+    const {
+      darkMode: savedDarkMode,
+      language: savedLanguage,
+      setPreference,
+    } = useApplicationPreferences()
 
-    const darkModeToggle = computed({
-      get: () => darkMode.value,
+    const darkMode = computed({
+      get: () => savedDarkMode.value,
       set: async (value) => {
-        await setPreference({ darkMode: value }, { saveToBackend: true })
+        await setPreference({ darkMode: value })
       },
     })
 
-    const languageSelector = computed({
-      get: () => language.value,
+    const language = computed({
+      get: () => savedLanguage.value,
       set: async (value) => {
-        await setPreference({ language: value }, { saveToBackend: true })
+        await setPreference({ language: value })
       },
     })
 
@@ -106,8 +110,8 @@ export default defineComponent({
     }
 
     return {
-      darkModeToggle,
-      languageSelector,
+      darkMode,
+      language,
       languageOptions,
       reportProblemUrl,
       emailUs,

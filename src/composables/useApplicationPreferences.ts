@@ -22,21 +22,18 @@ export const useApplicationPreferences = () => {
       darkMode?: boolean
       language?: string
     },
-    option?: { saveToBackend?: boolean }
+    saveToBackend = true
   ) => {
     if (preference.darkMode != null) {
-      console.log('set darkMode: ', preference.darkMode)
       Dark.set(preference.darkMode)
       state.preference.darkMode = preference.darkMode
     }
     if (preference.language) {
-      console.log('set language: ', preference.language)
       locale.value = preference.language
       state.preference.language = preference.language
     }
 
-    if (option?.saveToBackend) {
-      console.log('save to backend: ', preference)
+    if (saveToBackend) {
       await mutate({
         ...preference,
       })
@@ -44,10 +41,7 @@ export const useApplicationPreferences = () => {
   }
 
   const setDefaultPreferences = async () => {
-    await setPreference(
-      { ...defaultState().preference },
-      { saveToBackend: true }
-    )
+    await setPreference({ ...defaultState().preference })
   }
 
   return {
