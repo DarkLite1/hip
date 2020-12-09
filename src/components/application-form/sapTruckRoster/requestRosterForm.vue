@@ -48,7 +48,9 @@
 import { useI18n } from 'vue-i18n-composable'
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
+import { useResult } from '@vue/apollo-composable'
 import { useValidationRules } from 'src/composables/useValidationRules'
+import { useSapTruckRosterDriverQuery } from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, { emit }) {
@@ -57,61 +59,26 @@ export default defineComponent({
     const submitted = ref(false)
     const showTruckId = ref(false)
     const question = ref()
-    const answer = ref<string>()
+    const answer = ref<string>('')
     const label = ref()
     const qInputRef = ref<QInput>()
 
-    const clearField = () => {
-      answer.value = ''
-      qInputRef.value?.resetValidation()
+    const truckId = computed(() => (showTruckId.value ? answer.value : ''))
+    const driverId = computed(() => (!showTruckId.value ? answer.value : ''))
+
+    const queryDriverId = ref(false)
+
+    const { refetch: getDriverQuery } = useSapTruckRosterDriverQuery(
+      () => ({ id: driverId.value }),
+      () => ({ enabled: queryDriverId.value })
+    )
+
+    const driverRule = async (val: string) => {
+      queryDriverId.value = true
+      const result = await getDriverQuery({ id: val })
+      console.log('refetch result: ', result)
     }
 
-    const onSubmit = () => {
-      console.log('form submitted')
-      submitted.value = true
-      emit('form-submitted', {
-        driverId: driverId.value,
-        truckId: truckId.value,
-      })
-    }
-    const onReset = () => {
-      console.log('form reset')
-      showTruckId.value = false
-      answer.value = ''
-    }
-
-    /*
-:rules="[
-  (val) =>
-  (val &&
-    val.length > 3 &&
-    val.length < 13 &&
-    /[a-zA-Z]/g.test(val)) ||
-  t('application.sapTruckRoster.error.truckId'),]
-
-:rules="[
-    (val) =>
-      (val && val > 9799999999 && val < 9999999999) ||
-      t('application.sapTruckRoster.error.driverId'),
-  ]"
-*/
-
-    const driverRule = (val: string) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log(`driverRule val: ${val}`)
-
-          resolve(true)
-          //     --> content is valid
-          //  resolve(false)
-          //     --> content is NOT valid, no error message
-          //  resolve(error_message)
-          //     --> content is NOT valid, we have error message
-          // resolve(`${val} * Required`)
-          // resolve(`${val} ${t('application.sapTruckRoster.error.driverId')}`)
-        }, 1000)
-      })
-    }
     const truckRule = (val: string) => {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -124,13 +91,26 @@ export default defineComponent({
       if (showTruckId.value) {
         return [requiredRule, truckRule]
       } else {
-        // return [requiredRule, driverRule]
-        return []
+        return [requiredRule, driverRule]
+        // return []
       }
     })
 
-    const truckId = computed(() => (showTruckId.value ? answer.value : ''))
-    const driverId = computed(() => (!showTruckId.value ? answer.value : ''))
+    const clearField = () => {
+      answer.value = ''
+      qInputRef.value?.resetValidation()
+    }
+    const onSubmit = () => {
+      submitted.value = true
+      emit('form-submitted', {
+        driverId: driverId.value,
+        truckId: truckId.value,
+      })
+    }
+    const onReset = () => {
+      showTruckId.value = false
+      answer.value = ''
+    }
 
     watch(
       showTruckId,
