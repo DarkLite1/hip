@@ -48,7 +48,6 @@
 import { useI18n } from 'vue-i18n-composable'
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
-import { useResult } from '@vue/apollo-composable'
 import { useValidationRules } from 'src/composables/useValidationRules'
 import { useSapTruckRosterDriverQuery } from 'src/graphql/generated/operations'
 
@@ -76,7 +75,12 @@ export default defineComponent({
     const driverRule = async (val: string) => {
       queryDriverId.value = true
       const result = await getDriverQuery({ id: val })
-      console.log('refetch result: ', result)
+
+      if (result.data.driver.__typename === 'DriverArray') {
+        return result.data.driver.data?.length
+          ? true
+          : t('application.sapTruckRoster.error.driverId')
+      }
     }
 
     const truckRule = (val: string) => {
