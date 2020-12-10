@@ -9,8 +9,8 @@
             ref="qInputRef"
             v-model="answer"
             outlined
-            debounce
             hide-bottom-space
+            debounce
             lazy-rules
             :rules="answerInputValidationRules"
           >
@@ -49,7 +49,10 @@ import { useI18n } from 'vue-i18n-composable'
 import { computed, defineComponent, ref, watch } from '@vue/composition-api'
 import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
-import { useSapTruckRosterDriverQuery } from 'src/graphql/generated/operations'
+import {
+  useSapTruckRosterDriverQuery,
+  useSapTruckRosterTruckQuery,
+} from 'src/graphql/generated/operations'
 
 export default defineComponent({
   setup(_, { emit }) {
@@ -64,31 +67,40 @@ export default defineComponent({
 
     const truckId = computed(() => (showTruckId.value ? answer.value : ''))
     const driverId = computed(() => (!showTruckId.value ? answer.value : ''))
-
-    const queryDriverId = ref(false)
+    const queryEnabled = ref<'driver' | 'truck'>()
 
     const { refetch: getDriverQuery } = useSapTruckRosterDriverQuery(
       () => ({ id: driverId.value }),
-      () => ({ enabled: queryDriverId.value })
+      () => ({ enabled: queryEnabled.value === 'driver' && !!driverId.value })
     )
 
-    const driverRule = async (val: string) => {
-      queryDriverId.value = true
-      const result = await getDriverQuery({ id: val })
+    const { refetch: getTruckQuery } = useSapTruckRosterTruckQuery(
+      () => ({ id: truckId.value }),
+      () => ({ enabled: queryEnabled.value === 'truck' && !!truckId.value })
+    )
+
+    const driverRule = async (value: string) => {
+      const result = await getDriverQuery({ id: value })
 
       if (result.data.driver.__typename === 'DriverArray') {
+        console.log('driverRule result: ', result.data.driver.data)
         return result.data.driver.data?.length
           ? true
           : t('application.sapTruckRoster.error.driverId')
       }
     }
 
-    const truckRule = (val: string) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(`${val} ${t('application.sapTruckRoster.error.truckId')}`)
-        }, 1000)
-      })
+    const truckRule = async (value: string) => {
+      const result = await getTruckQuery({ id: value })
+
+      console.log('truckRule result: ', result)
+
+      if (result.data.truck.__typename === 'TruckArray') {
+        console.log('driverRule result: ', result.data.truck.data)
+        return result.data.truck.data?.length
+          ? true
+          : t('application.sapTruckRoster.error.truckId')
+      }
     }
 
     const answerInputValidationRules = computed(() => {
@@ -123,9 +135,11 @@ export default defineComponent({
         answer.value = ''
 
         if (showTruckId.value) {
+          queryEnabled.value = 'truck'
           question.value = t('application.sapTruckRoster.question.truckId')
           label.value = t('application.sapTruckRoster.label.truckId')
         } else {
+          queryEnabled.value = 'driver'
           question.value = t('application.sapTruckRoster.question.driverId')
           label.value = t('application.sapTruckRoster.label.driverId')
         }
