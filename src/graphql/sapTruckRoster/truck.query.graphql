@@ -1,6 +1,7 @@
 query sapTruckRosterTruck($id: String!) {
   truck(id: $id) {
     ... on ApiError {
+      code
       message
     }
     ... on TruckArray {

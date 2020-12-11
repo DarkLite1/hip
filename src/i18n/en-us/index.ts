@@ -1,6 +1,7 @@
 export default {
   general: {
     welcome: "Welcome",
+    errorMessage: "Error message: {message}",
   },
   button: {
     submit: "Submit",
@@ -55,5 +56,6 @@ export default {
   },
   validationRules: {
     requiredField: "Field is required",
+    minimumStringCharacters: "Minimal {number} characters are required",
   },
 }

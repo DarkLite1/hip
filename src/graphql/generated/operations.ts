@@ -113,7 +113,7 @@ export type Roster = {
   driverLastName?: Maybe<Scalars['String']>
   driverEmail?: Maybe<Scalars['String']>
   dispatchGroup?: Maybe<Scalars['String']>
-  plantId: Scalars['ID']
+  plantId?: Maybe<Scalars['String']>
   plantName?: Maybe<Scalars['String']>
   plantTimezone?: Maybe<Scalars['String']>
   plantStreetHouse?: Maybe<Scalars['String']>
@@ -170,17 +170,17 @@ export type PlantArray = {
 
 export type Plant = {
   __typename?: 'Plant'
-  id: Scalars['ID']
-  name: Scalars['String']
-  customerNrPlant: Scalars['String']
-  vendorNrPlant: Scalars['String']
-  factoryCalendar: Scalars['String']
-  streetHouse: Scalars['String']
-  country: Scalars['String']
-  postCode: Scalars['String']
-  city: Scalars['String']
-  purchasingOrg: Scalars['String']
-  region: Scalars['String']
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  customerNrPlant?: Maybe<Scalars['String']>
+  vendorNrPlant?: Maybe<Scalars['String']>
+  factoryCalendar?: Maybe<Scalars['String']>
+  streetHouse?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  postCode?: Maybe<Scalars['String']>
+  city?: Maybe<Scalars['String']>
+  purchasingOrg?: Maybe<Scalars['String']>
+  region?: Maybe<Scalars['String']>
 }
 
 export type DriverQueryResult = DriverArray | ApiError
@@ -192,7 +192,7 @@ export type DriverArray = {
 
 export type Driver = {
   __typename?: 'Driver'
-  id: Scalars['ID']
+  id?: Maybe<Scalars['String']>
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   email?: Maybe<Scalars['String']>
@@ -412,7 +412,7 @@ export type SapTruckRosterTruckQuery = { __typename?: 'Query' } & {
           >
         >
       })
-    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'message'>)
+    | ({ __typename?: 'ApiError' } & Pick<ApiError, 'code' | 'message'>)
 }
 
 export const AllAccountsDocument = gql`
@@ -777,6 +777,7 @@ export const SapTruckRosterTruckDocument = gql`
   query sapTruckRosterTruck($id: String!) {
     truck(id: $id) {
       ... on ApiError {
+        code
         message
       }
       ... on TruckArray {
