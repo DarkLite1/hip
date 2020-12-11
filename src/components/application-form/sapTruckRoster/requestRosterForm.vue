@@ -57,7 +57,10 @@ import {
 export default defineComponent({
   setup(_, { emit }) {
     const { t } = useI18n()
-    const { requiredRule } = useValidationRules()
+    const {
+      requiredFieldRule,
+      minimumStringCharactersRule,
+    } = useValidationRules()
     const submitted = ref(false)
     const showTruckId = ref(false)
     const question = ref()
@@ -70,16 +73,18 @@ export default defineComponent({
     const queryEnabled = ref<'driver' | 'truck'>()
 
     const { refetch: getDriverQuery } = useSapTruckRosterDriverQuery(
-      () => ({ id: driverId.value }),
+      () => ({ id: 'initialDriverQueryActivationCall' }),
       () => ({ enabled: queryEnabled.value === 'driver' && !!driverId.value })
     )
 
     const { refetch: getTruckQuery } = useSapTruckRosterTruckQuery(
-      () => ({ id: truckId.value }),
+      () => ({ id: 'initialTruckQueryActivationCall' }),
       () => ({ enabled: queryEnabled.value === 'truck' && !!truckId.value })
     )
 
     const driverRule = async (value: string) => {
+      console.log('driverRule :', value)
+
       const result = await getDriverQuery({ id: value })
 
       if (result.data.driver.__typename === 'DriverArray') {
@@ -87,6 +92,11 @@ export default defineComponent({
         return result.data.driver.data?.length
           ? true
           : t('application.sapTruckRoster.error.driverId')
+      }
+      if (result.data.driver.__typename === 'ApiError') {
+        return t('general.errorMessage', {
+          message: `SAP API error code '(${result.data.driver.code})' message '${result.data.driver.message}'`,
+        })
       }
     }
 
@@ -101,13 +111,26 @@ export default defineComponent({
           ? true
           : t('application.sapTruckRoster.error.truckId')
       }
+      if (result.data.truck.__typename === 'ApiError') {
+        return t('general.errorMessage', {
+          message: `SAP API error code '(${result.data.truck.code})' message '${result.data.truck.message}'`,
+        })
+      }
     }
 
     const answerInputValidationRules = computed(() => {
       if (showTruckId.value) {
-        return [requiredRule, truckRule]
+        return [
+          requiredFieldRule,
+          (value: string) => minimumStringCharactersRule(value, 3),
+          truckRule,
+        ]
       } else {
-        return [requiredRule, driverRule]
+        return [
+          requiredFieldRule,
+          (value: string) => minimumStringCharactersRule(value, 10),
+          driverRule,
+        ] as QInput['rules']
         // return []
       }
     })
