@@ -37,25 +37,30 @@ export default {
         title: "Planned trips:",
       },
       question: {
-        truckId: "What is your truck ID number?",
         driverId: "What is your driver ID?",
+        truckId: "What is your truck ID number?",
         driverIdUnknown: "I don't know my driver ID",
       },
       error: {
-        truckId: "Truck ID does not exist",
         driverId: "Driver ID does not exist",
+        truckId: "Truck ID does not exist",
       },
       label: {
-        truckId: "Truck ID",
         driverId: "Driver ID",
+        truckId: "Truck ID",
         plantName: "Plant name",
         date: "Date",
         time: "Time",
+      },
+      hint: {
+        driverId: "Example: 9800000000, ...",
+        truckId: "Example: BU54EAP, ...",
       },
     },
   },
   validationRules: {
     requiredField: "Field is required",
-    minimumStringCharacters: "Minimal {number} characters are required",
+    minimumStringLength: "Minimal {number} characters are required",
+    exactStringLength: "Exactly {number} characters are required",
   },
 }

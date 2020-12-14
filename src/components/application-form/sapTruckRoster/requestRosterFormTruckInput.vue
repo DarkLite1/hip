@@ -9,15 +9,12 @@
       v-model="truckId"
       outlined
       hide-bottom-space
+      :hint="t('application.sapTruckRoster.hint.truckId')"
       debounce
       lazy-rules="ondemand"
       :rules="validationRules"
       @click="resetValidation"
     >
-      <!-- filled -->
-      <!-- mask="##########"
-            fill-mask -->
-      <!-- placeholder="9800000000" -->
       <template v-if="truckId" v-slot:append>
         <q-icon
           name="close"
@@ -31,13 +28,7 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import {
-  computed,
-  defineComponent,
-  onUnmounted,
-  ref,
-  watchEffect,
-} from '@vue/composition-api'
+import { computed, defineComponent, ref } from '@vue/composition-api'
 import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
 import { useSapTruckRosterTruckQuery } from 'src/graphql/generated/operations'
@@ -46,26 +37,27 @@ export default defineComponent({
   props: {
     queryEnabled: {
       type: Boolean,
-      default: false,
+    },
+    id: {
+      type: String,
     },
   },
   setup(props, { emit }) {
     const { t } = useI18n()
     const {
       requiredFieldRule,
-      minimumStringCharactersRule,
+      minimumStringLengthRule,
     } = useValidationRules()
 
-    const truckId = ref()
-    const question = ref()
     const qInputRef = ref<QInput>()
 
-    watchEffect(() => {
-      emit('update:truckId', truckId.value)
-    })
-
-    onUnmounted(() => {
-      emit('update:truckId', '')
+    const truckId = computed({
+      get: () => {
+        return props.id
+      },
+      set: (value) => {
+        emit('update:truck-id', value)
+      },
     })
 
     const { refetch } = useSapTruckRosterTruckQuery(
@@ -91,7 +83,7 @@ export default defineComponent({
     const validationRules = computed(() => {
       return [
         requiredFieldRule,
-        (value: string) => minimumStringCharactersRule(value, 3),
+        (value: string) => minimumStringLengthRule(value, 3),
         truckRule,
       ]
     })
@@ -107,7 +99,6 @@ export default defineComponent({
     return {
       ...useI18n(),
       resetValidation,
-      question,
       qInputRef,
       clearField,
       validationRules,

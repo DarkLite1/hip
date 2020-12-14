@@ -1,12 +1,14 @@
 <template>
   <div>
-    <p class="text-bold">
+    <p class="text-bold" key="text">
       {{ t('application.sapTruckRoster.question.driverId') }}
     </p>
     <q-input
       :label="t('application.sapTruckRoster.label.driverId')"
       ref="qInputRef"
+      mask="##########"
       v-model="driverId"
+      :hint="t('application.sapTruckRoster.hint.driverId')"
       outlined
       hide-bottom-space
       debounce
@@ -14,10 +16,6 @@
       :rules="validationRules"
       @click="resetValidation"
     >
-      <!-- filled -->
-      <!-- mask="##########"
-            fill-mask -->
-      <!-- placeholder="9800000000" -->
       <template v-if="driverId" v-slot:append>
         <q-icon
           name="close"
@@ -31,13 +29,7 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import {
-  computed,
-  defineComponent,
-  onUnmounted,
-  ref,
-  watchEffect,
-} from '@vue/composition-api'
+import { computed, defineComponent, ref } from '@vue/composition-api'
 import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
 import { useSapTruckRosterDriverQuery } from 'src/graphql/generated/operations'
@@ -46,27 +38,24 @@ export default defineComponent({
   props: {
     queryEnabled: {
       type: Boolean,
-      default: false,
+    },
+    id: {
+      type: String,
     },
   },
   setup(props, { emit }) {
     const { t } = useI18n()
-    const {
-      requiredFieldRule,
-      minimumStringCharactersRule,
-    } = useValidationRules()
+    const { requiredFieldRule, exactStringLengthRule } = useValidationRules()
 
-    const driverId = ref()
-    const question = ref()
+    const driverId = computed({
+      get: () => {
+        return props.id
+      },
+      set: (value) => {
+        emit('update:driver-id', value)
+      },
+    })
     const qInputRef = ref<QInput>()
-
-    watchEffect(() => {
-      emit('update:driver-id', driverId.value)
-    })
-
-    onUnmounted(() => {
-      emit('update:driver-id', '')
-    })
 
     const { refetch } = useSapTruckRosterDriverQuery(
       () => ({ id: 'initialDriverQueryActivationCall' }),
@@ -91,7 +80,7 @@ export default defineComponent({
     const validationRules = computed(() => {
       return [
         requiredFieldRule,
-        (value: string) => minimumStringCharactersRule(value, 10),
+        (value: string) => exactStringLengthRule(value, 10),
         driverRule,
       ]
     })
@@ -107,7 +96,6 @@ export default defineComponent({
     return {
       ...useI18n(),
       resetValidation,
-      question,
       qInputRef,
       clearField,
       validationRules,

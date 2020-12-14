@@ -6,10 +6,15 @@ export const useValidationRules = () => {
   const requiredFieldRule = (value: string) =>
     !!value || t('validationRules.requiredField')
 
-  const minimumStringCharactersRule = (value: string, count = 5) =>
+  const minimumStringLengthRule = (value: string, count = 5) =>
     value.length >= count
       ? true
-      : t('validationRules.minimumStringCharacters', { number: count })
+      : t('validationRules.minimumStringLength', { number: count })
 
-  return { requiredFieldRule, minimumStringCharactersRule }
+  const exactStringLengthRule = (value: string, count = 5) =>
+    value.length === count
+      ? true
+      : t('validationRules.exactStringLength', { number: count })
+
+  return { requiredFieldRule, minimumStringLengthRule, exactStringLengthRule }
 }
