@@ -35,28 +35,29 @@
                 <q-tooltip>{{
                   t('application.sapTruckRoster.label.time')
                 }}</q-tooltip>
-                <q-icon name="schedule" size="xs" />
+                <th><q-icon name="schedule" size="xs" /></th>
                 <td>{{ trip.time }}</td>
               </tr>
+
               <tr>
                 <q-tooltip>{{
                   t('application.sapTruckRoster.label.driverId')
                 }}</q-tooltip>
-                <q-icon name="person" size="xs" />
+                <th><q-icon name="person" size="xs" /></th>
                 <td>{{ trip.driverId }}</td>
               </tr>
               <tr>
                 <q-tooltip>{{
                   t('application.sapTruckRoster.label.truckId')
                 }}</q-tooltip>
-                <q-icon name="local_shipping" size="xs" />
+                <th><q-icon name="local_shipping" size="xs" /></th>
                 <td>{{ trip.truckId }}</td>
               </tr>
               <tr>
                 <q-tooltip>{{
                   t('application.sapTruckRoster.label.plantName')
                 }}</q-tooltip>
-                <q-icon name="local_parking" size="xs" />
+                <th><q-icon name="local_parking" size="xs" /></th>
                 <td>{{ trip.plantName }}</td>
               </tr>
             </table>
@@ -139,8 +140,6 @@ export default defineComponent({
       return tripsGroupedByDate
     })
 
-    // const search
-
     const apiError = useResult(result, null, (data) => {
       if (data.roster.__typename === 'ApiError') {
         return data.roster
@@ -163,7 +162,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 table {
   th {
-    text-align: left;
+    text-align: center;
+    width: 30px;
   }
 }
 </style>
