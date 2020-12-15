@@ -40,13 +40,7 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import {
-  defineComponent,
-  reactive,
-  ref,
-  watch,
-  watchEffect,
-} from '@vue/composition-api'
+import { defineComponent, reactive, ref, watch } from '@vue/composition-api'
 
 export default defineComponent({
   setup(_, { emit }) {
@@ -56,12 +50,12 @@ export default defineComponent({
     const truckId = ref('')
     const queryEnabled = reactive({ driver: false, truck: false })
 
-    watchEffect(() => {
-      console.log('truckId: ', truckId.value)
-      console.log('driverId: ', driverId.value)
-      console.log('queryEnabled driver: ', queryEnabled.driver)
-      console.log('queryEnabled truck: ', queryEnabled.truck)
-    })
+    // watchEffect(() => {
+    //   console.log('truckId: ', truckId.value)
+    //   console.log('driverId: ', driverId.value)
+    //   console.log('queryEnabled driver: ', queryEnabled.driver)
+    //   console.log('queryEnabled truck: ', queryEnabled.truck)
+    // })
 
     watch(showTruckId, () => {
       truckId.value = ''
@@ -78,6 +72,8 @@ export default defineComponent({
 
       submitted.value = true
       emit('form-submitted', {
+        // fromDate: new Date(),
+        fromDate: new Date('2020-10-24'),
         driverId: driverId.value,
         truckId: truckId.value,
       })

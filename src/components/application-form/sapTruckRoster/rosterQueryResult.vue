@@ -87,7 +87,7 @@ export default defineComponent({
     fromDate: {
       type: Date,
       required: false,
-      default: () => new Date('2020-10-24'),
+      default: () => new Date(),
     },
     truckId: {
       type: String,
