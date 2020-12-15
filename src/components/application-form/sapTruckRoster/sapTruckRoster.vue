@@ -1,13 +1,38 @@
 <template>
   <div>
     <template v-if="showFormSubmitResult">
-      <q-btn
-        outline
-        color="primary"
-        :label="t('button.back')"
-        icon="arrow_back_ios"
-        @click="showFormSubmitResult = false"
-      />
+      <div class="row justify-left q-col-gutter-md">
+        <div class="col-12 col-sm-auto">
+          <q-btn
+            outline
+            color="primary"
+            :label="t('button.back')"
+            icon="arrow_back_ios"
+            @click="showFormSubmitResult = false"
+          />
+        </div>
+        <div class="col-auto">
+          <div class="row q-col-gutter-x-sm">
+            <div class="col-sm-3 col-xs-12">Start date:</div>
+            <div class="col">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+          </div>
+
+          <div class="row q-col-gutter-x-sm">
+            <div class="col-sm-3 col-xs-12">
+              {{ t('application.sapTruckRoster.label.driverId') }}
+            </div>
+            <div class="col-auto">{{ driverId }}</div>
+          </div>
+
+          <div class="row q-col-gutter-x-sm">
+            <div class="col-sm-3 col-xs-12">
+              {{ t('application.sapTruckRoster.label.truckId') }}
+            </div>
+            <div class="col-auto">{{ truckId }}</div>
+          </div>
+        </div>
+      </div>
+
       <roster-query-result
         :truckId="truckId"
         :driverId="driverId"

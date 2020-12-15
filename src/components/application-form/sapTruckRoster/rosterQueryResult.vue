@@ -4,7 +4,7 @@
       {{ t('application.sapTruckRoster.rosterQueryResult.title') }}
     </p>
 
-    <q-spinner v-if="loading" color="primary" size="3em" />
+    <q-spinner v-if="loading" color="primary" size="9em" />
     <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">Error: {{ apiError.message }}</div>
 
