@@ -44,7 +44,10 @@
                   t('application.sapTruckRoster.label.driverId')
                 }}</q-tooltip>
                 <th><q-icon name="person" size="xs" /></th>
-                <td>{{ trip.driverId }}</td>
+                <td>
+                  {{ trip.driverId }} - {{ trip.driverFirstName }}
+                  {{ trip.driverLastName }}
+                </td>
               </tr>
               <tr>
                 <q-tooltip>{{

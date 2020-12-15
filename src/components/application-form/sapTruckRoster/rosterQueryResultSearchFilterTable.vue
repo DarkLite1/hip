@@ -53,10 +53,7 @@ export default defineComponent({
     const { locale } = useI18n()
 
     const date = computed(() => {
-      if (props.fromDate) {
-        return convertToDate(props.fromDate, locale.value)
-      }
-      return 'NA'
+      if (props.fromDate) return convertToDate(props.fromDate, locale.value)
     })
 
     return {
