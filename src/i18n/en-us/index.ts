@@ -2,6 +2,7 @@ export default {
   general: {
     welcome: "Welcome",
     errorMessage: "Error message: {message}",
+    fromDate: "From date",
   },
   button: {
     submit: "Submit",
