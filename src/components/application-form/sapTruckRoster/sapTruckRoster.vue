@@ -5,6 +5,7 @@
         :fromDate="fromDate"
         :driverId="driverId"
         :truckId="truckId"
+        :drivers="driverIdQueryResult"
         @navigate-back="showFormSubmitResult = false"
       />
       <roster-query-result
@@ -15,7 +16,11 @@
       />
     </template>
     <template v-else>
-      <request-roster-form class="q-pb-sm" @form-submitted="formSubmitted" />
+      <request-roster-form
+        class="q-pb-sm"
+        @form-submitted="formSubmitted"
+        @driver-id-query-result="driverIdQueryResult = $event"
+      />
       <hr />
       <list-dispatch-groups />
     </template>
@@ -32,6 +37,7 @@ export default defineComponent({
     const driverId = ref()
     const truckId = ref()
     const fromDate = ref()
+    const driverIdQueryResult = ref()
 
     const formSubmitted = (formResponse: {
       fromDate: Date
@@ -51,6 +57,7 @@ export default defineComponent({
       truckId,
       driverId,
       fromDate,
+      driverIdQueryResult,
     }
   },
   components: {

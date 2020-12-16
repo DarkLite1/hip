@@ -65,6 +65,9 @@ export default defineComponent({
     const driverRule = async (value: string) => {
       const result = await refetch({ id: value })
       if (result.data.driver.__typename === 'DriverArray') {
+        if (result.data.driver.data?.length) {
+          emit('driver-id-query-result', result.data.driver.data)
+        }
         return (
           result.data.driver.data?.length ||
           t('application.sapTruckRoster.error.driverId')

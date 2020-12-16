@@ -27,13 +27,28 @@
         <div class="col-12 col-sm-8">{{ truckId }}</div>
       </div>
     </div>
+    <template v-if="drivers">
+      <div
+        v-for="(driver, index) in drivers"
+        :key="index"
+        class="row q-col-gutter-x-sm"
+      >
+        <div class="col-12 col-sm-4">
+          {{ t('application.sapTruckRoster.label.driverId') }}:
+        </div>
+        <div class="col-12 col-sm-8">
+          {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed, PropType } from '@vue/composition-api'
 import { convertToDate } from 'src/services/utils/utilsService'
+import { Driver } from 'src/graphql/generated/operations'
 export default defineComponent({
   props: {
     fromDate: {
@@ -46,6 +61,10 @@ export default defineComponent({
     },
     truckId: {
       type: String,
+      required: false,
+    },
+    drivers: {
+      type: (Array as unknown) as PropType<Driver[]>,
       required: false,
     },
   },

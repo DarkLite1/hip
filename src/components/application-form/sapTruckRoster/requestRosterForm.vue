@@ -10,6 +10,7 @@
       <request-roster-form-driver-input
         v-else
         @update:driver-id="driverId = $event"
+        @driver-id-query-result="$emit('driver-id-query-result', $event)"
         :queryEnabled="queryEnabled.driver"
         :id="driverId"
       />
