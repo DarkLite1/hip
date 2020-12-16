@@ -42,7 +42,7 @@ export default defineComponent({
   props: {
     links: {
       type: (Array as unknown) as PropType<InterfaceMainNavigationLinks[]>,
-      default: () => [],
+      required: true,
     },
   },
   setup(props, context) {

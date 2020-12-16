@@ -14,14 +14,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent,  PropType } from '@vue/composition-api'
+import { defineComponent, PropType } from '@vue/composition-api'
 import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
 
 export default defineComponent({
   props: {
     links: {
       type: (Array as unknown) as PropType<InterfaceMainNavigationLinks[]>,
-      default: () => [],
+      required: true,
     },
   },
 })
