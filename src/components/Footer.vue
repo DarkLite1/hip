@@ -1,5 +1,5 @@
 <template>
-  <q-footer elevated class="bg-priary text-light q-pr-md">
+  <q-footer elevated class="bg-primary text-light q-pr-md">
     <q-tabs class="lt-sm">
       <q-route-tab
         v-for="link in links"
