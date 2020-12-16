@@ -25,14 +25,12 @@
       <div v-for="group of dispatchGroups" :key="group.date" class="q-pb-md">
         <p>{{ convertToDate(group.date, locale) }}</p>
         <div class="q-gutter-xs">
-          <q-btn
+          <q-chip
             v-for="name in group.dispatchGroup"
             :key="name"
-            color="secondary"
+            text-color="white"
+            icon="group"
             :label="name"
-            rounded
-            padding="xs sm"
-            :ripple="false"
           />
         </div>
       </div>
@@ -90,3 +88,17 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.body--dark {
+  .q-chip {
+    background: $grey-9;
+  }
+}
+.body--light {
+  .q-chip {
+    background: $teal-9;
+    color: white;
+  }
+}
+</style>

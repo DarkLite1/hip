@@ -16,7 +16,6 @@
         style="max-width: 300px; width: 100%"
         bordered
       >
-        <!-- class="bg-grey-10 text-white shadow-2 rounded-borders" -->
         <q-item class="q-pt-md">
           <q-tooltip>{{
             t('application.sapTruckRoster.label.date')
@@ -167,6 +166,20 @@ table {
   th {
     text-align: center;
     width: 30px;
+  }
+}
+.body--dark {
+  .q-list {
+    background: $grey-9;
+  }
+}
+.body--light {
+  .q-list {
+    background: $teal-9;
+    color: white;
+    .q-separator {
+      background: white;
+    }
   }
 }
 </style>

@@ -120,3 +120,17 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.body--dark {
+  .q-card {
+    background: $grey-10;
+  }
+}
+.body--light {
+  .q-card {
+    background: $teal-9;
+    color: white;
+  }
+}
+</style>
