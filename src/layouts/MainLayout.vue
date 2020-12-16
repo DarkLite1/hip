@@ -54,3 +54,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+.body--light {
+  background: $grey-4;
+}
+</style>

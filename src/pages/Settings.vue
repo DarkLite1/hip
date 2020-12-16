@@ -123,14 +123,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .body--dark {
-  .q-card {
+  .q-list {
     background: $grey-10;
   }
 }
 .body--light {
-  .q-card {
-    background: $teal-9;
-    color: white;
+  .q-list {
+    background: white;
+    // color: white;
   }
 }
 </style>
