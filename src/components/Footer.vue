@@ -13,13 +13,16 @@
   </q-footer>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent,  PropType } from '@vue/composition-api'
+import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
+
+export default defineComponent({
   props: {
     links: {
-      type: Array,
-      required: false
-    }
-  }
-}
+      type: (Array as unknown) as PropType<InterfaceMainNavigationLinks[]>,
+      default: () => [],
+    },
+  },
+})
 </script>

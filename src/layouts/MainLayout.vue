@@ -1,21 +1,13 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <div v-if="isAuthenticated">
-      <!-- <div v-if="loading">Loading preferences...</div>
-      <div v-if="error">{{ error }}</div>
-      <div v-else>done</div> -->
-    </div>
     <app-header />
-
     <app-SidebarNavigationMenu
       v-if="isAuthenticated"
       :links="mainNavigationLinks"
     />
-
     <q-page-container>
       <router-view />
     </q-page-container>
-
     <app-footer v-if="isAuthenticated" :links="mainNavigationLinks" />
   </q-layout>
 </template>
