@@ -1,7 +1,7 @@
 <template>
   <q-header elevated class="bg-primary text-white">
     <q-toolbar>
-      <q-toolbar-title class="absolute-center">HC IT Portal</q-toolbar-title>
+      <q-toolbar-title class="absolute-center">HIP</q-toolbar-title>
       <app-header-button />
     </q-toolbar>
   </q-header>
