@@ -122,9 +122,8 @@ module.exports = configure(function (ctx) {
       workboxOptions: {}, // only for GenerateSW
       manifest: {
         name: 'HC IT Portal',
-        short_name: 'HC IT Portal',
-        description:
-          'Portal for end users where they can easily request IT assistance',
+        short_name: 'HIP',
+        description: 'Web portal for launching IT applications',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
