@@ -38,11 +38,6 @@ export default defineComponent({
     }))
 
     onResult((result) => {
-      console.log(
-        'useApplicationPreferences onResult: ',
-        result.data.viewer.preference
-      )
-
       if (result.data.viewer.preference) {
         void setPreference({ ...result.data.viewer.preference }, false)
       } else {

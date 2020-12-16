@@ -14,12 +14,10 @@
         :queryEnabled="query.driver.enabled"
         :id="driverId"
       />
-
       <q-checkbox
         v-model="showTruckId"
         :label="t('application.sapTruckRoster.question.driverIdUnknown')"
       />
-
       <div>
         <q-btn
           :label="t('button.submit')"
@@ -49,17 +47,10 @@ export default defineComponent({
     const showTruckId = ref(false)
     const driverId = ref('')
     const truckId = ref('')
-
     const query = reactive({
       driver: { enabled: false, result: null },
       truck: { enabled: false, result: null },
     })
-    // watchEffect(() => {
-    //   console.log('truckId: ', truckId.value)
-    //   console.log('driverId: ', driverId.value)
-    //   console.log('queryEnabled driver: ', query.driver.enabled)
-    //   console.log('queryEnabled truck: ', query.truck.enabled)
-    // })
 
     watch(showTruckId, () => {
       truckId.value = ''
@@ -72,7 +63,6 @@ export default defineComponent({
     }
 
     const onSubmit = () => {
-      console.log('form submit')
       submitted.value = true
 
       if (truckId.value) query.driver.result = null
