@@ -10,31 +10,33 @@
       />
     </div>
     <div class="col-12 col-sm-8 col-md-6 col-lg-5">
-      <div v-if="fromDate" class="row q-col-gutter-x-sm">
-        <div class="col-12 col-sm-4">{{ t('general.fromDate') }}:</div>
-        <div class="col-12 col-sm-8">{{ date }}</div>
-      </div>
-      <template v-if="drivers">
-        <div
-          v-for="(driver, index) in drivers"
-          :key="index"
-          class="row q-col-gutter-x-sm"
-        >
-          <div class="col-12 col-sm-4">
-            {{ t('application.sapTruckRoster.label.driverId') }}:
-          </div>
-          <div class="col-12 col-sm-8">
-            {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
-          </div>
-        </div>
-      </template>
-
-      <div v-if="truckId" class="row q-col-gutter-x-sm">
-        <div class="col-12 col-sm-4">
-          {{ t('application.sapTruckRoster.label.truckId') }}:
-        </div>
-        <div class="col-12 col-sm-8">{{ truckId }}</div>
-      </div>
+      <table>
+        <tr v-if="fromDate">
+          <q-tooltip>{{
+            t('application.sapTruckRoster.label.time')
+          }}</q-tooltip>
+          <th><q-icon name="schedule" size="xs" /></th>
+          <td>{{ date }}</td>
+        </tr>
+        <template v-if="drivers">
+          <tr v-for="(driver, index) in drivers" :key="index">
+            <q-tooltip>{{
+              t('application.sapTruckRoster.label.driverId')
+            }}</q-tooltip>
+            <th><q-icon name="person" size="xs" /></th>
+            <td>
+              {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
+            </td>
+          </tr>
+        </template>
+        <tr v-if="truckId">
+          <q-tooltip>{{
+            t('application.sapTruckRoster.label.truckId')
+          }}</q-tooltip>
+          <th><q-icon name="local_shipping" size="xs" /></th>
+          <td>{{ truckId }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -73,3 +75,12 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+table {
+  th {
+    text-align: center;
+    width: 30px;
+  }
+}
+</style>
