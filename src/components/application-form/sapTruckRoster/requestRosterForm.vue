@@ -4,14 +4,14 @@
       <request-roster-form-truck-input
         v-if="showTruckId"
         @update:truck-id="truckId = $event"
-        :queryEnabled="queryEnabled.truck"
+        :queryEnabled="query.truck.enabled"
         :id="truckId"
       />
       <request-roster-form-driver-input
         v-else
         @update:driver-id="driverId = $event"
-        @driver-id-query-result="queryResult.driver = $event"
-        :queryEnabled="queryEnabled.driver"
+        @driver-id-query-result="query.driver.result = $event"
+        :queryEnabled="query.driver.enabled"
         :id="driverId"
       />
 
@@ -49,14 +49,16 @@ export default defineComponent({
     const showTruckId = ref(false)
     const driverId = ref('')
     const truckId = ref('')
-    const queryEnabled = reactive({ driver: false, truck: false })
-    const queryResult = reactive({ driver: null, truck: false })
 
+    const query = reactive({
+      driver: { enabled: false, result: null },
+      truck: { enabled: false, result: null },
+    })
     // watchEffect(() => {
     //   console.log('truckId: ', truckId.value)
     //   console.log('driverId: ', driverId.value)
-    //   console.log('queryEnabled driver: ', queryEnabled.driver)
-    //   console.log('queryEnabled truck: ', queryEnabled.truck)
+    //   console.log('queryEnabled driver: ', query.driver.enabled)
+    //   console.log('queryEnabled truck: ', query.truck.enabled)
     // })
 
     watch(showTruckId, () => {
@@ -65,17 +67,16 @@ export default defineComponent({
     })
 
     const enableQuery = () => {
-      if (showTruckId.value) queryEnabled.truck = true
-      if (!showTruckId.value) queryEnabled.driver = true
+      if (showTruckId.value) query.truck.enabled = true
+      if (!showTruckId.value) query.driver.enabled = true
     }
 
     const onSubmit = () => {
       console.log('form submit')
       submitted.value = true
 
-      if (truckId.value) queryResult.driver = null
-
-      emit('driver-id-query-result', queryResult.driver)
+      if (truckId.value) query.driver.result = null
+      emit('driver-id-query-result', query.driver.result)
 
       emit('form-submitted', {
         // fromDate: new Date(),
@@ -99,8 +100,7 @@ export default defineComponent({
       driverId,
       truckId,
       enableQuery,
-      queryEnabled,
-      queryResult,
+      query,
     }
   },
   components: {
