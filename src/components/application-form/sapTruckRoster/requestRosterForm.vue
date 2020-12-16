@@ -10,7 +10,7 @@
       <request-roster-form-driver-input
         v-else
         @update:driver-id="driverId = $event"
-        @driver-id-query-result="$emit('driver-id-query-result', $event)"
+        @driver-id-query-result="queryResult.driver = $event"
         :queryEnabled="queryEnabled.driver"
         :id="driverId"
       />
@@ -50,6 +50,7 @@ export default defineComponent({
     const driverId = ref('')
     const truckId = ref('')
     const queryEnabled = reactive({ driver: false, truck: false })
+    const queryResult = reactive({ driver: null, truck: false })
 
     // watchEffect(() => {
     //   console.log('truckId: ', truckId.value)
@@ -70,8 +71,12 @@ export default defineComponent({
 
     const onSubmit = () => {
       console.log('form submit')
-
       submitted.value = true
+
+      if (truckId.value) queryResult.driver = null
+
+      emit('driver-id-query-result', queryResult.driver)
+
       emit('form-submitted', {
         // fromDate: new Date(),
         fromDate: new Date('2020-10-24'),
@@ -95,6 +100,7 @@ export default defineComponent({
       truckId,
       enableQuery,
       queryEnabled,
+      queryResult,
     }
   },
   components: {

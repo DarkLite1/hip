@@ -14,12 +14,21 @@
         <div class="col-12 col-sm-4">{{ t('general.fromDate') }}:</div>
         <div class="col-12 col-sm-8">{{ date }}</div>
       </div>
-      <div v-if="driverId" class="row q-col-gutter-x-sm">
-        <div class="col-12 col-sm-4">
-          {{ t('application.sapTruckRoster.label.driverId') }}:
+      <template v-if="drivers">
+        <div
+          v-for="(driver, index) in drivers"
+          :key="index"
+          class="row q-col-gutter-x-sm"
+        >
+          <div class="col-12 col-sm-4">
+            {{ t('application.sapTruckRoster.label.driverId') }}:
+          </div>
+          <div class="col-12 col-sm-8">
+            {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
+          </div>
         </div>
-        <div class="col-12 col-sm-8">{{ driverId }}</div>
-      </div>
+      </template>
+
       <div v-if="truckId" class="row q-col-gutter-x-sm">
         <div class="col-12 col-sm-4">
           {{ t('application.sapTruckRoster.label.truckId') }}:
@@ -27,20 +36,6 @@
         <div class="col-12 col-sm-8">{{ truckId }}</div>
       </div>
     </div>
-    <template v-if="drivers">
-      <div
-        v-for="(driver, index) in drivers"
-        :key="index"
-        class="row q-col-gutter-x-sm"
-      >
-        <div class="col-12 col-sm-4">
-          {{ t('application.sapTruckRoster.label.driverId') }}:
-        </div>
-        <div class="col-12 col-sm-8">
-          {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
-        </div>
-      </div>
-    </template>
   </div>
 </template>
 
@@ -53,10 +48,6 @@ export default defineComponent({
   props: {
     fromDate: {
       type: Date,
-      required: false,
-    },
-    driverId: {
-      type: String,
       required: false,
     },
     truckId: {

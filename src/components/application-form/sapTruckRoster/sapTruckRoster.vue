@@ -3,9 +3,8 @@
     <template v-if="showFormSubmitResult">
       <roster-query-result-search-filter-table
         :fromDate="fromDate"
-        :driverId="driverId"
-        :truckId="truckId"
         :drivers="driverIdQueryResult"
+        :truckId="truckId"
         @navigate-back="showFormSubmitResult = false"
       />
       <roster-query-result
