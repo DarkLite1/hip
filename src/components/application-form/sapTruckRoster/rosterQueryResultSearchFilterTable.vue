@@ -25,7 +25,13 @@
             }}</q-tooltip>
             <th><q-icon name="person" size="xs" /></th>
             <td>
-              {{ driver.id }} - {{ driver.firstName }} {{ driver.lastName }}
+              {{
+                convertToDriverFullName({
+                  id: driver.id,
+                  firstName: driver.firstName,
+                  lastName: driver.lastName,
+                })
+              }}
             </td>
           </tr>
         </template>
@@ -46,6 +52,8 @@ import { useI18n } from 'vue-i18n-composable'
 import { defineComponent, computed, PropType } from '@vue/composition-api'
 import { convertToDate } from 'src/services/utils/utilsService'
 import { Driver } from 'src/graphql/generated/operations'
+import { convertToDriverFullName } from 'src/components/application-form/sapTruckRoster/utils'
+
 export default defineComponent({
   props: {
     fromDate: {
@@ -70,6 +78,7 @@ export default defineComponent({
 
     return {
       ...useI18n(),
+      convertToDriverFullName,
       date,
     }
   },
