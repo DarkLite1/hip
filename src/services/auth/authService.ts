@@ -51,11 +51,14 @@ export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
   }
 }
 
-auth
-  .handleRedirectPromise()
-  .then(handleResponse)
-  .catch(console.error.bind(console))
-
+export const loadAuthModule = async (): Promise<void> => {
+  try {
+    const response = await auth.handleRedirectPromise()
+    handleResponse(response)
+  } catch (error) {
+    console.error.bind(console)
+  }
+}
 
 export const getToken = async (scopes: string[]) => {
   const request = {

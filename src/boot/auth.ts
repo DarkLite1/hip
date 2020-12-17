@@ -1,3 +1,4 @@
-import 'src/services/auth/authService'
-// load the msal library first
-// required for page refresh to stay on the same page when authenticated
+import { loadAuthModule } from 'src/services/auth/authService'
+
+// Load auth module when browser window loads. Only required for redirect flows.
+void loadAuthModule()
