@@ -10,8 +10,8 @@
 
     <div v-else-if="trips" class="q-gutter-md row items-start">
       <q-list
-        v-for="(value, name) in trips"
-        :key="name"
+        v-for="(dateCollection, date) in trips"
+        :key="date"
         class="shadow-2 rounded-borders"
         style="max-width: 300px; width: 100%"
         bordered
@@ -23,10 +23,13 @@
           <q-item-section avatar>
             <q-icon name="today" size="md" />
           </q-item-section>
-          <q-item-section class="text-bold"> {{ name }} </q-item-section>
+          <q-item-section class="text-bold"> {{ date }} </q-item-section>
         </q-item>
 
-        <q-item v-for="trip of value" :key="trip.startPlantLoadingDateTime">
+        <q-item
+          v-for="trip of dateCollection"
+          :key="trip.startPlantLoadingDateTime"
+        >
           <q-item-section>
             <q-separator inset class="q-mb-md" />
             <table>
