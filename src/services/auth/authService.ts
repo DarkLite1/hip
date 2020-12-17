@@ -1,11 +1,16 @@
-import * as Msal from '@azure/msal-browser'
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
 import { setAccount, account } from 'src/store/authStore'
 import { ENVIRONMENT } from 'src/environment'
 import { publish } from '../event/eventService'
+import {
+  PublicClientApplication,
+  AccountInfo,
+  Configuration,
+  AuthenticationResult,
+} from '@azure/msal-browser'
 
-const MSALConfig: Msal.Configuration = {
+const MSALConfig: Configuration = {
   auth: {
     clientId: ENVIRONMENT.auth.clientId,
     authority: ENVIRONMENT.auth.authority,
@@ -19,7 +24,7 @@ const MSALConfig: Msal.Configuration = {
   },
 }
 
-export const auth = new Msal.PublicClientApplication(MSALConfig)
+export const auth = new PublicClientApplication(MSALConfig)
 
 export const isLoginPopup = Screen.lt.sm || isInternetExplorer ? false : true
 
@@ -35,15 +40,25 @@ const allScopes = (() => {
   return Array.from(uniqueSet)
 })()
 
-export const handleResponse = (resp: Msal.AuthenticationResult | null) => {
-  let account
-  if (resp != null) account = resp.account
-  else {
-    const currentAccounts = auth.getAllAccounts()
-    if (currentAccounts.length === 1) {
-      account = currentAccounts[0]
-    }
+const getAccount = (): AccountInfo | undefined => {
+  const currentAccounts = auth.getAllAccounts()
+  if (currentAccounts === null) {
+    console.log('No accounts detected')
+    return
   }
+  if (currentAccounts.length > 1) {
+    // Add choose account code here
+    console.log('Multiple accounts detected, need to add choose account code.')
+    return currentAccounts[0]
+  } else if (currentAccounts.length === 1) {
+    return currentAccounts[0]
+  }
+}
+
+export const handleResponse = (response: AuthenticationResult | null) => {
+  let account
+  if (response != null) account = response.account
+  else account = getAccount()
 
   if (account) {
     setAccount(account)
