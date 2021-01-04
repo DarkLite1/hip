@@ -1,5 +1,5 @@
 import { computed, reactive } from '@vue/composition-api'
-import { AuthenticationResult } from '@azure/msal-browser'
+import { AccountInfo } from '@azure/msal-browser'
 
 const defaultState = () => {
   return {
@@ -8,13 +8,13 @@ const defaultState = () => {
       username: '',
       environment: '',
       tenantId: '',
-    } as AuthenticationResult['account'],
+    } as AccountInfo,
   }
 }
 
 const state = reactive(defaultState())
 
-export const setAccount = (account?: AuthenticationResult['account']) => {
+export const setAccount = (account?: AccountInfo) => {
   if (account) state.account = account
   else state.account = defaultState().account
 }
