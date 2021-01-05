@@ -8,6 +8,7 @@ import {
   AccountInfo,
   Configuration,
   AuthenticationResult,
+  InteractionRequiredAuthError,
 } from '@azure/msal-browser'
 
 const MSALConfig: Configuration = {
@@ -75,20 +76,31 @@ export const loadAuthModule = async (): Promise<void> => {
   }
 }
 
-export const getToken = async (scopes: string[]) => {
+export const getToken = async (
+  scopes: string[]
+): Promise<string | undefined> => {
   const request = {
     scopes: scopes,
     account: account.value,
+    forceRefresh: false,
   }
   try {
-    return await auth.acquireTokenSilent(request)
-  } catch {
-    if (isLoginPopup) {
-      const res = await auth.acquireTokenPopup(request)
-      setAccount(res.account)
-      return res
+    const response = await auth.acquireTokenSilent(request)
+    return response.accessToken
+  } catch (e) {
+    console.log('silent token acquisition failed')
+    if (e instanceof InteractionRequiredAuthError) {
+      if (isLoginPopup) {
+        console.log('acquiring token using popup')
+        const response = await auth.acquireTokenPopup(request)
+        setAccount(response.account)
+        return response.accessToken
+      }
+      console.log('acquiring token using redirect')
+      auth.acquireTokenRedirect(request).catch(console.error)
+    } else {
+      console.error(e)
     }
-    return auth.acquireTokenRedirect(request)
   }
 }
 
@@ -107,9 +119,34 @@ export const login = async () => {
   })
 }
 
-export const logout = () => {
-  const accountObj = auth.getAccountByUsername(account.value.username)
-  void auth.logout(accountObj ? { account: accountObj } : undefined)
-  // void auth.logout()
+export const logout = async () => {
+  await auth.logout(account ? { account: account.value } : undefined)
   setAccount()
 }
+
+// export const attemptSsoSilent = async () => {
+//   console.log('attemptSsoSilent')
+//   const preferredUsername: string =
+//     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+//     account.value.idTokenClaims?.preferred_username as string
+
+//   if (!preferredUsername) await login()
+//   else {
+//     try {
+//       console.log('attemptSsoSilent try')
+
+//       await auth.ssoSilent({
+//         loginHint: preferredUsername,
+//       })
+//       const account = getAccount()
+//       setAccount(account)
+//       console.log('attemptSsoSilent try done')
+//     } catch (error) {
+//       console.log('attemptSsoSilent catch error', error)
+//       console.error('Silent Error: ', error)
+//       if (error instanceof InteractionRequiredAuthError) {
+//         await login()
+//       }
+//     }
+//   }
+// }

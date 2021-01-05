@@ -22,9 +22,9 @@ const getGraphDetails = async <T>(
   axiosConfig?: AxiosRequestConfig
 ) => {
   try {
-    const response = await getToken(scopes)
-    if (response && response.accessToken) {
-      return callGraph<T>(uri, response.accessToken, axiosConfig)
+    const token = await getToken(scopes)
+    if (token) {
+      return callGraph<T>(uri, token, axiosConfig)
     } else {
       throw new Error('We could not get a token because of page redirect')
     }

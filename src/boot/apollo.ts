@@ -23,8 +23,7 @@ export default boot(({ app }) => {
     const completeHeader = {
       headers: {
         ...headers,
-        authorization:
-          token && token.accessToken ? `Bearer ${token.accessToken}` : '',
+        authorization: token ? `Bearer ${token}` : '',
       } as Express.Request & { authorization: string },
     }
 

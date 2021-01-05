@@ -3,18 +3,14 @@ import { AccountInfo } from '@azure/msal-browser'
 
 const defaultState = () => {
   return {
-    account: {
-      homeAccountId: '',
-      username: '',
-      environment: '',
-      tenantId: '',
-    } as AccountInfo,
+    account: {} as AccountInfo,
   }
 }
 
 const state = reactive(defaultState())
 
-export const setAccount = (account?: AccountInfo) => {
+export const setAccount = (account?: AccountInfo | null) => {
+  // console.log('setAccount: ', account)
   if (account) state.account = account
   else state.account = defaultState().account
 }
