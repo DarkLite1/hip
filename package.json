@@ -22,7 +22,7 @@
     "@azure/msal-browser": "2.8.0",
     "@quasar/extras": "^1.9.12",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
-    "@vue/composition-api": "1.0.0-beta.21",
+    "@vue/composition-api": "1.0.0-beta.22",
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
     "env-cmd": "^10.1.0",
