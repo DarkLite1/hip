@@ -6,7 +6,9 @@
 
     <q-spinner v-if="loading" color="primary" size="9em" />
     <div v-else-if="error">Error: {{ error.message }}</div>
-    <div v-else-if="apiError">Error: {{ apiError.message }}</div>
+    <div v-else-if="apiError">
+      Error: {{ apiError.code }} {{ apiError.message }}
+    </div>
 
     <div v-else-if="trips" class="q-gutter-md row items-start">
       <q-list
