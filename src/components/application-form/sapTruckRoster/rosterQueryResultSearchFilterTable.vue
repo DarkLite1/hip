@@ -52,7 +52,6 @@ import { useI18n } from 'vue-i18n-composable'
 import { defineComponent, computed, PropType } from '@vue/composition-api'
 import { convertToDate } from 'src/services/utils/utilsService'
 import { Driver } from 'src/graphql/generated/operations'
-import { convertToDriverFullName } from 'src/components/application-form/sapTruckRoster/utils'
 
 export default defineComponent({
   props: {
@@ -75,6 +74,21 @@ export default defineComponent({
     const date = computed(() => {
       if (props.fromDate) return convertToDate(props.fromDate, locale.value)
     })
+
+    const convertToDriverFullName = ({
+      id,
+      firstName,
+      lastName,
+    }: {
+      id?: string
+      firstName?: string
+      lastName?: string
+    }) => {
+      const fullName = [firstName, lastName].join(' ').trim()
+      if (id && fullName) return [id, fullName].join(' - ')
+      if (id) return id
+      if (fullName) return fullName
+    }
 
     return {
       ...useI18n(),

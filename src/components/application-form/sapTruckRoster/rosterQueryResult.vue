@@ -45,15 +45,7 @@
                   t('application.sapTruckRoster.label.driverId')
                 }}</q-tooltip>
                 <th><q-icon name="person" size="xs" /></th>
-                <td>
-                  {{
-                    convertToDriverFullName({
-                      id: trip.driverId,
-                      firstName: trip.driverFirstName,
-                      lastName: trip.driverLastName,
-                    })
-                  }}
-                </td>
+                <td>{{ trip.driverFirstName }} {{ trip.driverLastName,}}</td>
               </tr>
               <tr>
                 <q-tooltip>{{
@@ -90,7 +82,6 @@ import {
   convertToTime,
   groupBy,
 } from 'src/services/utils/utilsService'
-import { convertToDriverFullName } from 'src/components/application-form/sapTruckRoster/utils'
 
 export default defineComponent({
   props: {
@@ -158,7 +149,6 @@ export default defineComponent({
 
     return {
       ...useI18n(),
-      convertToDriverFullName,
       convertToDate,
       convertToTime,
       apiError,
