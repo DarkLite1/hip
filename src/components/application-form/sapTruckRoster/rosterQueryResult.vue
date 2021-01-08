@@ -9,7 +9,6 @@
     <div v-else-if="apiError">
       Error: {{ apiError.code }} {{ apiError.message }}
     </div>
-
     <div v-else-if="trips" class="q-gutter-md row items-start">
       <q-list
         v-for="(dateCollection, date) in trips"
@@ -66,13 +65,14 @@
         </q-item>
       </q-list>
     </div>
+    <div v-else>No trips planned</div>
   </div>
 </template>
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
-import { computed, defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
 import {
   Roster,
   useSapTruckRosterRosterQuery,
@@ -113,32 +113,23 @@ export default defineComponent({
       }
     )
 
-    const rosterQueryResult = useResult(result, [], (data) => {
-      if (data.roster.__typename === 'RosterArray') return data.roster.data
-    })
-
-    const trips = computed(() => {
-      if (!rosterQueryResult.value) return []
-
-      const trips = (rosterQueryResult.value as Roster[]).map((obj) => ({
-        ...obj,
-        date: (() => {
-          if (obj.startPlantLoadingDateTime) {
+    const trips = useResult(result, null, (data) => {
+      if (data.roster.__typename === 'RosterArray') {
+        if (!data.roster.data?.length) return null
+        const trips = (data.roster.data as Roster[]).map((obj) => ({
+          ...obj,
+          date: (() => {
+            if (!obj.startPlantLoadingDateTime) return 'NA'
             return convertToDate(obj.startPlantLoadingDateTime, locale.value)
-          }
-          return 'NA'
-        })(),
-        time: (() => {
-          if (obj.startPlantLoadingDateTime) {
+          })(),
+          time: (() => {
+            if (!obj.startPlantLoadingDateTime) return 'NA'
             return convertToTime(obj.startPlantLoadingDateTime, locale.value)
-          }
-          return 'NA'
-        })(),
-      }))
+          })(),
+        }))
 
-      const tripsGroupedByDate = groupBy(trips, 'date')
-
-      return tripsGroupedByDate
+        return groupBy(trips, 'date')
+      }
     })
 
     const apiError = useResult(result, null, (data) => {
