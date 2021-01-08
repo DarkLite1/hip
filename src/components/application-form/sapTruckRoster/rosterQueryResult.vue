@@ -28,10 +28,7 @@
           <q-item-section class="text-bold"> {{ date }} </q-item-section>
         </q-item>
 
-        <q-item
-          v-for="trip of dateCollection"
-          :key="trip.startPlantLoadingDateTime"
-        >
+        <q-item v-for="(trip, index) of dateCollection" :key="index">
           <q-item-section>
             <q-separator inset class="q-mb-md" />
             <table>
@@ -83,7 +80,7 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent, watchEffect } from '@vue/composition-api'
 import {
   Roster,
   useSapTruckRosterRosterQuery,
@@ -127,6 +124,10 @@ export default defineComponent({
 
     const rosterQueryResult = useResult(result, [], (data) => {
       if (data.roster.__typename === 'RosterArray') return data.roster.data
+    })
+
+    watchEffect(() => {
+      console.log('rosterQueryResult: ', rosterQueryResult)
     })
 
     const trips = computed(() => {
