@@ -80,7 +80,7 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
-import { computed, defineComponent, watchEffect } from '@vue/composition-api'
+import { computed, defineComponent } from '@vue/composition-api'
 import {
   Roster,
   useSapTruckRosterRosterQuery,
@@ -114,8 +114,8 @@ export default defineComponent({
     const { result, error, loading } = useSapTruckRosterRosterQuery(
       () => ({
         fromDate: props.fromDate,
-        // truckId: props.truckId,
-        // driverId: props.driverId,
+        truckId: props.truckId,
+        driverId: props.driverId,
       }),
       {
         fetchPolicy: 'no-cache',
@@ -124,10 +124,6 @@ export default defineComponent({
 
     const rosterQueryResult = useResult(result, [], (data) => {
       if (data.roster.__typename === 'RosterArray') return data.roster.data
-    })
-
-    watchEffect(() => {
-      console.log('rosterQueryResult: ', rosterQueryResult)
     })
 
     const trips = computed(() => {

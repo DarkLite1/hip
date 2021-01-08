@@ -78,7 +78,7 @@ export default defineComponent({
         Notify.create({
           type: 'negative',
           icon: 'error_outline',
-          message: t('general.errorMessage') as string,
+          message: t('application.sapTruckRoster.error.sapDown') as string,
           timeout: 0,
           actions: [
             {

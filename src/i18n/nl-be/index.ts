@@ -21,7 +21,7 @@ export default {
   },
   application: {
     sapTruckRoster: {
-      name: "SAP vracthwagen planning",
+      name: "SAP vrachtwagen planning",
       shortDescription: "Haal de planning op",
       longDescription: "",
       processedDispatchGroupTable: {
@@ -36,6 +36,7 @@ export default {
         truckId:
           "Een string van 4 tot 12 karakters is toegestaan met minmimum 1 alfabetisch karakter",
         driverId: "Een nummer tusen 9800000000 en 9999999999 is vereist",
+        sapDown: "SAP down probeer het later nog eens of contacteer de service desk",
       },
       label: {
         truckId: "Vrachtwagen ID",

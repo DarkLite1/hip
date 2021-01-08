@@ -46,6 +46,7 @@ export default {
       error: {
         driverId: "Driver ID does not exist",
         truckId: "Truck ID does not exist",
+        sapDown: "SAP down please try again later or contact your service desk",
       },
       label: {
         driverId: "Driver ID",
