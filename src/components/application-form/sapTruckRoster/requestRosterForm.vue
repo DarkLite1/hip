@@ -69,8 +69,7 @@ export default defineComponent({
       emit('driver-id-query-result', query.driver.result)
 
       emit('form-submitted', {
-        // fromDate: new Date(),
-        fromDate: new Date('2020-10-24'),
+        fromDate: new Date(),
         driverId: driverId.value,
         truckId: truckId.value,
       })

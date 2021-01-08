@@ -20,7 +20,7 @@
     <q-spinner v-if="loading" color="primary" size="3em" />
     <div v-else-if="error">Error: {{ error.message }}</div>
     <div v-else-if="apiError">
-      API Error:{{ apiError.code }} {{ apiError.message }}
+      API Error: {{ apiError.code }} {{ apiError.message }}
     </div>
 
     <div v-else-if="dispatchGroups" style="max-width: 500px">
@@ -43,6 +43,7 @@
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
 import { useResult } from '@vue/apollo-composable'
+import { Notify } from 'quasar'
 import { defineComponent } from '@vue/composition-api'
 import { useSapTruckRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 import { convertToDate } from 'src/services/utils/utilsService'
@@ -50,6 +51,7 @@ import { convertToDate } from 'src/services/utils/utilsService'
 export default defineComponent({
   name: 'ApplicationForm',
   setup() {
+    const { t } = useI18n()
     const {
       result,
       loading,
@@ -57,8 +59,7 @@ export default defineComponent({
       refetch,
     } = useSapTruckRosterDispatchGroupQuery(
       () => ({
-        fromDate: new Date('2020-10-28'),
-        // fromDate: new Date()
+        fromDate: new Date()
       }),
       {
         pollInterval: 15 * 60 * 1000, // every 15 min
@@ -74,6 +75,26 @@ export default defineComponent({
 
     const apiError = useResult(result, null, (data) => {
       if (data.rosterDispatchGroup.__typename === 'ApiError') {
+        Notify.create({
+          type: 'negative',
+          icon: 'error_outline',
+          message: t('general.errorMessage') as string,
+          timeout: 0,
+          actions: [
+            {
+              label: t('button.dismiss'),
+              color: 'white',
+              handler: () => {
+                /* ... */
+              },
+            },
+          ],
+          caption:
+            data.rosterDispatchGroup.code +
+            ' - ' +
+            data.rosterDispatchGroup.message,
+          // color: 'secondary',
+        })
         return data.rosterDispatchGroup
       }
     })

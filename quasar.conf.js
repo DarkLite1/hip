@@ -43,7 +43,12 @@ module.exports = configure(function (ctx) {
       importStrategy: 'auto',
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Notify'],
+      // config: {
+      //   notify: {
+      //     /* look at QUASARCONFOPTIONS from the API card (bottom of page) */
+      //   },
+      // },
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/prefetch-feature

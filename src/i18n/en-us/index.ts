@@ -1,13 +1,14 @@
 export default {
   general: {
     welcome: "Welcome",
-    errorMessage: "Error message: {message}",
+    errorMessage: "Oops, something went wrong",
     fromDate: "From date",
   },
   button: {
     submit: "Submit",
     reset: "Reset",
     back: "Back",
+    dismiss: "Dismiss",
   },
   page: {
     home: {
