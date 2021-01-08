@@ -65,7 +65,19 @@
         </q-item>
       </q-list>
     </div>
-    <div v-else>No trips planned</div>
+    <div v-else>
+      <q-icon name="alarm_off" size="100px" />
+      <q-icon name="snooze" size="100px" />
+      <q-icon name="beach_access" size="100px" />
+      <q-icon name="weekend" size="100px" />
+      <q-icon name="wb_sunny" size="100px" />
+      <q-icon name="mood_bad" size="100px" />
+      <q-icon name="sentiment_dissatisfied" size="100px" />
+      <q-icon name="sentiment_very_dissatisfied" size="100px" />
+      <br />
+      <br />
+      {{ t('application.sapTruckRoster.error.noTripsPlanned') }}
+    </div>
   </div>
 </template>
 

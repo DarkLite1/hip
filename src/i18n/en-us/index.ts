@@ -47,6 +47,7 @@ export default {
         driverId: "Driver ID does not exist",
         truckId: "Truck ID does not exist",
         sapDown: "SAP down please try again later or contact your service desk",
+        noTripsPlanned: "Were sorry, but there are currently no trips planned...",
       },
       label: {
         driverId: "Driver ID",
