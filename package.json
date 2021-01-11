@@ -20,9 +20,9 @@
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "@azure/msal-browser": "2.8.0",
-    "@quasar/extras": "^1.9.12",
+    "@quasar/extras": "^1.9.13",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
-    "@vue/composition-api": "1.0.0-beta.22",
+    "@vue/composition-api": "1.0.0-beta.25",
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
     "env-cmd": "^10.1.0",
@@ -31,7 +31,7 @@
     "graphql-tag": "^2.11.0",
     "quasar": "^1.15.0",
     "vue-apollo": "^3.0.5",
-    "vue-i18n": "^8.22.2",
+    "vue-i18n": "^8.22.3",
     "vue-i18n-composable": "^0.2.1"
   },
   "devDependencies": {
