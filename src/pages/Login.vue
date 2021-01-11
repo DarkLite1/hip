@@ -11,12 +11,10 @@
 
 <script lang="ts">
 import { defineComponent, watch } from '@vue/composition-api'
-import { Dark } from 'quasar'
 import { isAuthenticated } from 'src/store/authStore'
 
 export default defineComponent({
   setup(props, context) {
-    Dark.set(true)
     watch(isAuthenticated, (isAuthenticated) => {
       if (isAuthenticated) {
         void context.root.$router.push('/')
