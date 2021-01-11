@@ -45,20 +45,13 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { t } = useI18n()
-    const {
-      requiredFieldRule,
-      minimumStringLengthRule,
-    } = useValidationRules()
+    const { requiredFieldRule, minimumStringLengthRule } = useValidationRules()
 
     const qInputRef = ref<QInput>()
 
     const truckId = computed({
-      get: () => {
-        return props.id
-      },
-      set: (value) => {
-        emit('update:truck-id', value)
-      },
+      get: () => props.id,
+      set: (value) => emit('update:truck-id', value),
     })
 
     const { refetch } = useSapTruckRosterTruckQuery(

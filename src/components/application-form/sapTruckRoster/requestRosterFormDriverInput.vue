@@ -48,12 +48,8 @@ export default defineComponent({
     const { requiredFieldRule, exactStringLengthRule } = useValidationRules()
 
     const driverId = computed({
-      get: () => {
-        return props.id
-      },
-      set: (value) => {
-        emit('update:driver-id', value)
-      },
+      get: () => props.id,
+      set: (value) => emit('update:driver-id', value),
     })
     const qInputRef = ref<QInput>()
 
