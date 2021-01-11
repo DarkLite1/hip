@@ -12,6 +12,7 @@
       :hint="t('application.sapTruckRoster.hint.truckId')"
       debounce
       lazy-rules="ondemand"
+      mask="XXXXXXXXXXXXXXXXX"
       :rules="validationRules"
       @click="resetValidation"
     >
