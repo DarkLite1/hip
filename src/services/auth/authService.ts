@@ -63,7 +63,7 @@ export const handleResponse = (response: AuthenticationResult | null) => {
 
   if (account) {
     setAccount(account)
-    publish('login', account)
+    publish('login:success', account)
   }
 }
 
