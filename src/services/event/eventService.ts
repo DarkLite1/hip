@@ -20,6 +20,9 @@ export function unsubscribe<T>({ eventName, callback }: ISubscription<T>) {
 }
 
 export function subscribe<T>({ eventName, callback }: ISubscription<T>) {
+  // console.log('subscribe: ', eventName)
+  // console.log('subscribe: ', callback)
+  
   if (!subscriptions[eventName]) {
     subscriptions[eventName] = []
   }
@@ -39,6 +42,7 @@ export function subscribeOnce<T>({ eventName, callback }: ISubscription<T>) {
 }
 
 export function publish<T>(eventName: string, ...args: T[]) {
+  // console.log('publish: ', eventName)
   if (!subscriptions[eventName]) {
     return
   }

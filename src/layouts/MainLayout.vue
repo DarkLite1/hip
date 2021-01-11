@@ -1,5 +1,9 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <div v-if="loading" class="fixed-center">
+    <q-spinner color="primary" size="15em" /><br />
+    <div class="fixed-center text-center">Loading preferences</div>
+  </div>
+  <q-layout v-else view="hHh lpR fFf">
     <app-header />
     <app-SidebarNavigationMenu
       v-if="isAuthenticated"
@@ -18,11 +22,15 @@ import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
 import { isAuthenticated } from 'src/store/authStore'
 import { useApplicationPreferences } from 'src/composables/useApplicationPreferences'
 import { useViewerQuery } from 'src/graphql/generated/operations'
+import { loading } from 'src/store/authStore'
+import { Dark } from 'quasar'
 
 export default defineComponent({
   setup() {
     const { mainNavigationLinks } = useMainNavigationLinks()
     const { setDefaultPreferences, setPreference } = useApplicationPreferences()
+
+    Dark.set(true)
 
     const { onResult, onError } = useViewerQuery(() => ({
       fetchPolicy: 'no-cache',
@@ -30,18 +38,27 @@ export default defineComponent({
     }))
 
     onResult((result) => {
-      if (result.data.viewer.preference) {
-        void setPreference({ ...result.data.viewer.preference }, false)
-      } else {
-        void setDefaultPreferences()
-      }
+      void (async () => {
+        try {
+          // await new Promise((resolve) => setTimeout(resolve, 5000))
+          if (result.data.viewer.preference) {
+            await setPreference({ ...result.data.viewer.preference }, false)
+          } else {
+            await setDefaultPreferences()
+          }
+        } finally {
+          loading.value = false
+        }
+      })()
     })
 
     onError((error) => {
       console.error('error retrieving viewer preferences: ', error)
+      loading.value = false
     })
 
     return {
+      loading,
       mainNavigationLinks,
       isAuthenticated,
     }

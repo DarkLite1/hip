@@ -1,8 +1,7 @@
 import { isInternetExplorer } from 'src/services/utils/utilsService'
 import { Screen } from 'quasar'
-import { setAccount, account } from 'src/store/authStore'
+import { setAccount, account, loading } from 'src/store/authStore'
 import { ENVIRONMENT } from 'src/environment'
-import { publish } from '../event/eventService'
 import {
   PublicClientApplication,
   AccountInfo,
@@ -49,7 +48,7 @@ const getAccount = (): AccountInfo | undefined => {
   }
   if (currentAccounts.length > 1) {
     // Add choose account code here
-    console.log('Multiple accounts detected, need to add choose account code.')
+    // console.log('Multiple accounts, need to add choose account code.')
     return currentAccounts[0]
   } else if (currentAccounts.length === 1) {
     return currentAccounts[0]
@@ -57,14 +56,12 @@ const getAccount = (): AccountInfo | undefined => {
 }
 
 export const handleResponse = (response: AuthenticationResult | null) => {
+  loading.value = true
   let account
   if (response != null) account = response.account
   else account = getAccount()
 
-  if (account) {
-    setAccount(account)
-    publish('login:success', account)
-  }
+  if (account) setAccount(account)
 }
 
 export const loadAuthModule = async (): Promise<void> => {
