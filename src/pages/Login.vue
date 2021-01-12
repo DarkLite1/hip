@@ -10,23 +10,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from '@vue/composition-api'
+import { defineComponent, watchEffect } from '@vue/composition-api'
 import { isAuthenticated } from 'src/store/authStore'
 
 export default defineComponent({
   setup(props, context) {
-    // watchEffect(() => {
-    //   if (isAuthenticated) void context.root.$router.push('/')
-    // })
-    watch(
-      isAuthenticated,
-      (isAuthenticated) => {
-        if (isAuthenticated) {
-          void context.root.$router.push('/')
-        }
-      },
-      { immediate: true }
-    )
+    watchEffect(() => {
+      if (isAuthenticated.value) void context.root.$router.push('/')
+    })
   },
 })
 </script>
