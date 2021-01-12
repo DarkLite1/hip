@@ -13,8 +13,8 @@ export default boot(({ router }) => {
     } else {
       if (to.path !== '/login') next('/login')
       else {
-        loading.value = false
         next()
+        loading.value = false
       }
     }
   })
