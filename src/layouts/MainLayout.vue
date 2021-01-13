@@ -1,7 +1,11 @@
 <template>
   <div v-if="loading" class="fixed-center">
     <q-spinner color="primary" size="15em" /><br />
-    <div class="fixed-center text-center">Loading preferences</div>
+    <q-icon
+      class="fixed-center text-center"
+      name="img:img/HC-logo.png"
+      size="6em"
+    />
   </div>
   <q-layout v-else view="hHh lpR fFf">
     <app-header />
