@@ -33,7 +33,7 @@
       </q-list>
 
       <q-list bordered padding>
-        <q-item-label header>More</q-item-label>
+        <q-item-label header>{{ t('page.settings.more') }}</q-item-label>
 
         <q-item to="/settings/help" tag="label" v-ripple>
           <q-item-section>

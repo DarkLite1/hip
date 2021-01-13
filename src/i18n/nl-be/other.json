@@ -24,7 +24,8 @@
       "language": "Taal",
       "help": "Help",
       "reportProblem": "Meld een probleem",
-      "emailUs": "Stuur ons een e-mail"
+      "emailUs": "Stuur ons een e-mail",
+      "more": "Meer"
     }
   },
   "validationRules": {

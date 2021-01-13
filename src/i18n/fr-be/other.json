@@ -24,7 +24,8 @@
       "language": "Language",
       "help": "à l'aide",
       "reportProblem": "Signaler un problème",
-      "emailUs": "Envoyez-nous un e-mail"
+      "emailUs": "Envoyez-nous un e-mail",
+      "more": "Plus"
     }
   },
   "validationRules": {
