@@ -1,20 +1,20 @@
 {
-  "Name": "LKW-Fahrplan",
+  "name": "LKW-Fahrplan",
   "shortDescription": "Überblick über die geplanten Reisen",
   "longDescription": "Holen Sie sich den Zeitplan der geplanten Reisen",
-  "processDispatchGroupTable": {
+  "processedDispatchGroupTable": {
     "title": "Verfügbare Versandgruppen:"
   },
-  "DienstplanQueryResult": {
+  "rosterQueryResult": {
     "title": "Geplante Reisen:"
   },
-  "Frage": {
+  "question": {
     "TruckId": "Wie lautet Ihre LKW-ID-Nummer?",
     "driverId": "Wie lautet Ihre Treiber-ID?",
     "driverIdUnknown": "Ich kenne meine Treiber-ID nicht"
   },
-  "Error": {
-    "TruckId": "Eine Zeichenfolge mit 4 bis 12 Zeichen mit mindestens 1 alphabetischem Zeichen ist zulässig",
+  "error": {
+    "truckId": "Eine Zeichenfolge mit 4 bis 12 Zeichen mit mindestens 1 alphabetischem Zeichen ist zulässig",
     "driverId": "Eine Nummer zwischen 9800000000 und 9999999999 ist erforderlich",
     "sapDown": "SAP down, versuchen Sie es später erneut oder wenden Sie sich an den Service Desk",
     "noTripsPlanned": "Leider sind derzeit keine Fahrten geplant ..."
