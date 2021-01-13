@@ -1,0 +1,33 @@
+{
+  "name": "Truck scheduling",
+  "shortDescription": "Overview of the planned trips",
+  "longDescription": "Get the truck planning from SAP",
+  "processedDispatchGroupTable": {
+    "title": "Available dispatch groups:"
+  },
+  "rosterQueryResult": {
+    "title": "Planned trips:"
+  },
+  "question": {
+    "driverId": "What is your driver ID?",
+    "truckId": "What is your truck ID number?",
+    "driverIdUnknown": "I don't know my driver ID"
+  },
+  "error": {
+    "driverId": "Driver ID does not exist",
+    "truckId": "Truck ID does not exist",
+    "sapDown": "SAP down please try again later or contact your service desk",
+    "noTripsPlanned": "We're sorry, but there are currently no trips planned..."
+  },
+  "label": {
+    "driverId": "Driver ID",
+    "truckId": "Truck ID",
+    "plantName": "Plant name",
+    "date": "Date",
+    "time": "Time"
+  },
+  "hint": {
+    "driverId": "Example: 9800000000, ...",
+    "truckId": "Example: BU54EAP, ..."
+  }
+}

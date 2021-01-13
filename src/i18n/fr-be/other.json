@@ -1,0 +1,35 @@
+{
+  "général": {
+    "Bienvenue": "Bienvenue",
+    "errorMessage": "Oups, une erreur s'est produite",
+    "fromDate": "De date"
+  },
+  "bouton": {
+    "soumettre": "Soumettre",
+    "reset": "Reset",
+    "back": "Retour",
+    "rejeter": "Ignorer"
+  },
+  "page": {
+    "domicile": {
+      "name": "Home",
+      "welcomeMessage": "Bienvenue {userName}!"
+    },
+    "applications": {
+      "name": "Applications"
+    },
+    "réglages": {
+      "name": "Paramètres",
+      "darkMode": "Mode sombre",
+      "language": "Language",
+      "help": "à l'aide",
+      "reportProblem": "Signaler un problème",
+      "emailUs": "Envoyez-nous un e-mail"
+    }
+  },
+  "validationRules": {
+    "requiredField": "Le champ est obligatoire",
+    "minimumStringLength": "Un minimum de {number} caractères est requis",
+    "exactStringLength": "Exactement {number} caractères sont requis"
+  }
+}

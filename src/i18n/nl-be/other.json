@@ -1,0 +1,35 @@
+{
+  "general": {
+    "welcome": "Welkom",
+    "errorMessage": "Oeps, er is iets misgegaan",
+    "fromDate": "Vanaf datum"
+  },
+  "knop": {
+    "submit": "Verzenden",
+    "reset": "Reset",
+    "back": " Terug",
+    "dismiss": "Afwijzen"
+  },
+  "page": {
+    "home": {
+      "name": "Startpagina",
+      "welcomeMessage": "Welkom {userName}!"
+    },
+    "applications": {
+      "name": "Applicaties"
+    },
+    "settings": {
+      "name": "Instellingen",
+      "darkMode": "Donkere modus",
+      "language": "Taal",
+      "help": "Help",
+      "reportProblem": "Meld een probleem",
+      "emailUs": "Stuur ons een e-mail"
+    }
+  },
+  "validationRules": {
+    "requiredField": "Verplicht veld",
+    "minimumStringLength": "Minimaal {aantal} tekens zijn vereist",
+    "exactStringLength": "Precies {aantal} tekens zijn vereist"
+  }
+}

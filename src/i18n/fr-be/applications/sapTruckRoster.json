@@ -1,0 +1,33 @@
+{
+  "name": "Planification des camions",
+  "shortDescription": "Obtenez la planification du camion",
+  "longDescription": "Obtenez la planification des camions de SAP",
+  "processedDispatchGroupTable": {
+    "title": "Groupes d'expédition disponibles:"
+  },
+  "rosterQueryResult": {
+    "title": "Voyages prévus:"
+  },
+  "question": {
+    "driverId": "Quel est votre ID de pilote?",
+    "truckId": "Quel est votre numéro d'identification de camion?",
+    "driverIdUnknown": "Je ne connais pas mon ID de pilote"
+  },
+  "error": {
+    "driverId": "L'ID de pilote n'existe pas",
+    "truckId": "L'ID de camion n'existe pas",
+    "sapDown": "SAP down, veuillez réessayer plus tard ou contacter votre centre de service",
+    "noTripsPlanned": "Nous sommes désolés, mais aucun voyage n'est actuellement prévu ..."
+  },
+  "label": {
+    "driverId": "ID du pilote",
+    "truckId": "ID du camion",
+    "plantName": "Nom du site",
+    "date": "Date",
+    "time": "Temps"
+  },
+  "hint": {
+    "driverId": "Exemple: 9800000000, ...",
+    "truckId": "Exaeple: BU54EAP, ..."
+  }
+}

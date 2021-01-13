@@ -1,0 +1,35 @@
+{
+  "Allgemeines": {
+    "Wilkommen": "Wilkommen",
+    "errorMessage": "Es tut uns leid, etwas ist schief gelaufen",
+    "fromDate": "ab Datum"
+  },
+  "Taste": {
+    "submit": "Absenden",
+    "reset": "Reset",
+    "back": "Zurück",
+    "dismiss": "Entlassen"
+  },
+  "Seite": {
+    "Zuhause": {
+      "name": "Home",
+      "welcomeMessage": "Willkommen {userName}!"
+    },
+    "Anwendungen": {
+      "name": "Anwendungen"
+    },
+    "die Einstellungen": {
+      "name": "Einstellungen",
+      "darkMode": "Dark mode",
+      "language": "Sprache",
+      "help": " Hilfe",
+      "reportProblem": "Ein Problem melden",
+      "emailUs": "Senden Sie uns eine E-Mail"
+    }
+  },
+  "Validierungsregeln": {
+    "requiredField": "Feld ist erforderlich",
+    "MinimumStringLength": "Minimale {number} Zeichen sind erforderlich",
+    "sureStringLength": "Es sind genau {number} Zeichen erforderlich"
+  }
+}

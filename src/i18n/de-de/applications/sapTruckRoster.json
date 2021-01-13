@@ -1,0 +1,33 @@
+{
+  "Name": "LKW-Fahrplan",
+  "shortDescription": "Überblick über die geplanten Reisen",
+  "longDescription": "Holen Sie sich den Zeitplan der geplanten Reisen",
+  "processDispatchGroupTable": {
+    "title": "Verfügbare Versandgruppen:"
+  },
+  "DienstplanQueryResult": {
+    "title": "Geplante Reisen:"
+  },
+  "Frage": {
+    "TruckId": "Wie lautet Ihre LKW-ID-Nummer?",
+    "driverId": "Wie lautet Ihre Treiber-ID?",
+    "driverIdUnknown": "Ich kenne meine Treiber-ID nicht"
+  },
+  "Error": {
+    "TruckId": "Eine Zeichenfolge mit 4 bis 12 Zeichen mit mindestens 1 alphabetischem Zeichen ist zulässig",
+    "driverId": "Eine Nummer zwischen 9800000000 und 9999999999 ist erforderlich",
+    "sapDown": "SAP down, versuchen Sie es später erneut oder wenden Sie sich an den Service Desk",
+    "noTripsPlanned": "Leider sind derzeit keine Fahrten geplant ..."
+  },
+  "label": {
+    "TruckId": "Truck ID",
+    "driverId": "Driver ID",
+    "plantName": "Name der Pflanze",
+    "date": "Datum",
+    "time": "Uhrzeit"
+  },
+  "hint": {
+    "driverId": "ZB: 9800000000, ...",
+    "TruckId": "ZB: BU54EAP, ..."
+  }
+}

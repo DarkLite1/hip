@@ -1,0 +1,35 @@
+{
+  "general": {
+    "welcome": "Welcome",
+    "errorMessage": "Oops, something went wrong",
+    "fromDate": "From date"
+  },
+  "button": {
+    "submit": "Submit",
+    "reset": "Reset",
+    "back": "Back",
+    "dismiss": "Dismiss"
+  },
+  "page": {
+    "home": {
+      "name": "Home",
+      "welcomeMessage": "Welcome {userName}!"
+    },
+    "applications": {
+      "name": "Applications"
+    },
+    "settings": {
+      "name": "Settings",
+      "darkMode": "Dark mode",
+      "language": "Language",
+      "help": "Help",
+      "reportProblem": "Report an issue",
+      "emailUs": "Send us an e-mail"
+    }
+  },
+  "validationRules": {
+    "requiredField": "Field is required",
+    "minimumStringLength": "Minimal {number} characters are required",
+    "exactStringLength": "Exactly {number} characters are required"
+  }
+}
