@@ -1,24 +1,24 @@
 {
-  "général": {
-    "Bienvenue": "Bienvenue",
+  "general": {
+    "welcome": "Bienvenue",
     "errorMessage": "Oups, une erreur s'est produite",
     "fromDate": "De date"
   },
-  "bouton": {
-    "soumettre": "Soumettre",
+  "button": {
+    "submit": "Soumettre",
     "reset": "Reset",
     "back": "Retour",
-    "rejeter": "Ignorer"
+    "dismiss": "Ignorer"
   },
   "page": {
-    "domicile": {
+    "home": {
       "name": "Home",
       "welcomeMessage": "Bienvenue {userName}!"
     },
     "applications": {
       "name": "Applications"
     },
-    "réglages": {
+    "settings": {
       "name": "Paramètres",
       "darkMode": "Mode sombre",
       "language": "Language",
