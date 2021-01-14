@@ -54,7 +54,8 @@ export const getGraphPhoto = async () => {
     if (!(response && response.data)) {
       return ''
     }
-    const imageBase64 = new Buffer(response.data, 'binary').toString('base64')
+    
+    const imageBase64 = Buffer.from(response.data, 'binary').toString('base64')
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return `data:${response.headers['content-type']};base64, ${imageBase64}`
   } catch (error) {
