@@ -3,7 +3,7 @@
     <q-spinner color="primary" size="15em" /><br />
     <q-icon
       class="fixed-center text-center"
-      name="img:img/HC-logo.png"
+      name="img:icons/favicon-96x96.png"
       size="6em"
     />
   </div>
