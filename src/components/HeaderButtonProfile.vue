@@ -9,7 +9,7 @@
           width="38px"
           transition="scale"
           ratio="1"
-          placeholder-src="img/account.png"
+          :placeholder-src="placeholder"
         />
       </q-avatar>
     </q-chip>
@@ -18,13 +18,14 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import { defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from '@vue/composition-api'
 import {
   setGraphProfile,
   setGraphPhoto,
   profile,
   photo,
 } from 'src/store/graphStore'
+import { Dark } from 'quasar'
 
 export default defineComponent({
   setup(_, context) {
@@ -36,11 +37,18 @@ export default defineComponent({
         null
       })
     }
+
+    const placeholder = computed(() => {
+      return Dark.isActive
+        ? 'img/face_white_48dp.png'
+        : 'img/face_black_48dp.png'
+    })
     return {
       ...useI18n(),
       goToProfilePage,
       photo,
       profile,
+      placeholder,
     }
   },
 })
