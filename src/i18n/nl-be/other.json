@@ -4,10 +4,10 @@
     "errorMessage": "Oeps, er is iets misgegaan",
     "fromDate": "Vanaf datum"
   },
-  "knop": {
+  "button": {
     "submit": "Verzenden",
     "reset": "Reset",
-    "back": " Terug",
+    "back": "Terug",
     "dismiss": "Afwijzen"
   },
   "page": {
