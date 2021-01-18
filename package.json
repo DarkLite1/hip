@@ -18,11 +18,11 @@
     "codegen-watch": "env-cmd -e dev graphql-codegen --watch"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.6",
+    "@apollo/client": "^3.3.7",
     "@azure/msal-browser": "2.9.0",
     "@quasar/extras": "^1.9.13",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
-    "@vue/composition-api": "1.0.0-beta.25",
+    "@vue/composition-api": "1.0.0-beta.26",
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
     "env-cmd": "^10.1.0",
@@ -31,7 +31,7 @@
     "graphql-tag": "^2.11.0",
     "quasar": "^1.15.0",
     "vue-apollo": "^3.0.5",
-    "vue-i18n": "^8.22.3",
+    "vue-i18n": "^8.22.4",
     "vue-i18n-composable": "^0.2.1"
   },
   "devDependencies": {
@@ -44,11 +44,11 @@
     "@graphql-codegen/typescript-vue-apollo": "^2.3.1",
     "@microsoft/microsoft-graph-types": "^1.28.0",
     "@quasar/app": "^2.1.14",
-    "@types/node": "14.14.20",
+    "@types/node": "14.14.21",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "7.17.0",
+    "eslint": "7.18.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-prettier": "^3.3.1",
