@@ -9,8 +9,8 @@
     "title": "Geplande ritten:"
   },
   "question": {
-    "truckId": "Wat is uw vrachtwagen ID nummer?",
-    "driverId": "Wat is uw chauffeur ID?",
+    "truckId": "Wat is uw vrachtwagen ID?",
+    "driverId": "Wat is uw chauffeur ID nummer?",
     "driverIdUnknown": "Ik ken mijn chauffeur ID nummer niet"
   },
   "error": {
