@@ -56,7 +56,7 @@ import { Driver } from 'src/graphql/generated/operations'
 export default defineComponent({
   props: {
     fromDate: {
-      type: String,
+      type: Date,
       required: false,
     },
     truckId: {
