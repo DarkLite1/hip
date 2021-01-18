@@ -20,7 +20,7 @@
   </q-layout>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
 import { isAuthenticated } from 'src/store/authStore'
