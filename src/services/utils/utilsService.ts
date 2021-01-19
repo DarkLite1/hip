@@ -2,7 +2,7 @@ export const isInternetExplorer: boolean =
   window.navigator.userAgent.includes('MSIE ') ||
   window.navigator.userAgent.includes('Trident/')
 
-export const convertToDate = (isoDate: string, locale: string) => {
+export const convertToDate = (isoDate: Date | string, locale: string) => {
   const date = new Date(isoDate)
 
   const options = {
