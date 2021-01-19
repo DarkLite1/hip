@@ -37,6 +37,12 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <q-icon name="mdi-account-off" size="100px" />
+      <br />
+      <br />
+      {{ t('application.sapTruckRoster.error.noTripsPlanned') }}
+    </div>
   </div>
 </template>
 
@@ -59,7 +65,7 @@ export default defineComponent({
       refetch,
     } = useSapTruckRosterDispatchGroupQuery(
       () => ({
-        fromDate: new Date()
+        fromDate: new Date(),
       }),
       {
         pollInterval: 15 * 60 * 1000, // every 15 min
@@ -69,6 +75,7 @@ export default defineComponent({
 
     const dispatchGroups = useResult(result, [], (data) => {
       if (data.rosterDispatchGroup.__typename === 'RosterDispatchGroupArray') {
+        if (!data.rosterDispatchGroup.data?.length) return null
         return data.rosterDispatchGroup.data
       }
     })
