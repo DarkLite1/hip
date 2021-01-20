@@ -41,7 +41,7 @@
       <q-icon name="mdi-account-off" size="100px" />
       <br />
       <br />
-      {{ t('application.sapTruckRoster.error.noTripsPlanned') }}
+      {{ t('application.sapTruckRoster.error.noDispatchGroups') }}
     </div>
   </div>
 </template>

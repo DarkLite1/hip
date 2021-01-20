@@ -17,7 +17,8 @@
     "driverId": "Driver ID does not exist",
     "truckId": "Truck ID does not exist",
     "sapDown": "SAP down please try again later or contact your service desk",
-    "noTripsPlanned": "We're sorry, but there are currently no trips planned..."
+    "noTripsPlanned": "We're sorry, but there are currently no trips planned...",
+    "noDispatchGroups": "We're sorry, but there are currently no dispatch groups that finished their planning..."
   },
   "label": {
     "driverId": "Driver ID",
