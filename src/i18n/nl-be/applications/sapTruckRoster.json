@@ -14,8 +14,8 @@
     "driverIdUnknown": "Ik ken mijn chauffeur ID nummer niet"
   },
   "error": {
-    "truckId": "Een string van 4 tot 12 karakters is toegestaan met minmimum 1 alfabetisch karakter",
-    "driverId": "Een nummer tusen 9800000000 en 9999999999 is vereist",
+    "truckId": "Een string van 4 tot 12 karakters is toegestaan met minimum 1 alfabetisch karakter",
+    "driverId": "Een nummer tussen 9800000000 en 9999999999 is vereist",
     "sapDown": "SAP down probeer het later nog eens of contacteer de service desk",
     "noTripsPlanned": "Sorry, momenteel zijn er geen ritten gepland..."
   },

@@ -1,6 +1,6 @@
 {
   "general": {
-    "Wilkommen": "Wilkommen",
+    "welcome": "Willkommen",
     "errorMessage": "Es tut uns leid, etwas ist schief gelaufen",
     "fromDate": "ab Datum"
   },
