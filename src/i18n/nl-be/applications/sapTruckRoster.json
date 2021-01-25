@@ -17,7 +17,8 @@
     "truckId": "Een string van 4 tot 12 karakters is toegestaan met minimum 1 alfabetisch karakter",
     "driverId": "Een nummer tussen 9800000000 en 9999999999 is vereist",
     "sapDown": "SAP down probeer het later nog eens of contacteer de service desk",
-    "noTripsPlanned": "Sorry, momenteel zijn er geen ritten gepland..."
+    "noTripsPlanned": "Sorry, momenteel zijn er geen ritten gepland...",
+    "noDispatchGroups": "Sorry, maar er zijn momenteel geen dispatch groepen die hun planning hebben voltooid ..."
   },
   "label": {
     "truckId": "Vrachtwagen ID",

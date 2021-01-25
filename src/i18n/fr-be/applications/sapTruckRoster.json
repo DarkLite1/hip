@@ -17,7 +17,8 @@
     "driverId": "L'ID de pilote n'existe pas",
     "truckId": "L'ID de camion n'existe pas",
     "sapDown": "SAP down, veuillez réessayer plus tard ou contacter votre centre de service",
-    "noTripsPlanned": "Nous sommes désolés, mais aucun voyage n'est actuellement prévu ..."
+    "noTripsPlanned": "Nous sommes désolés, mais aucun voyage n'est actuellement prévu ...",
+    "noDispatchGroups": "Nous sommes désolés, mais il n'y a actuellement aucun groupe de répartition qui a terminé sa planification ..."
   },
   "label": {
     "driverId": "ID du pilote",

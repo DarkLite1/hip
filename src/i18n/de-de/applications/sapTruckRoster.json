@@ -17,7 +17,8 @@
     "truckId": "Eine Zeichenfolge mit 4 bis 12 Zeichen mit mindestens 1 alphabetischem Zeichen ist zulässig",
     "driverId": "Eine Nummer zwischen 9800000000 und 9999999999 ist erforderlich",
     "sapDown": "SAP down, versuchen Sie es später erneut oder wenden Sie sich an den Service Desk",
-    "noTripsPlanned": "Leider sind derzeit keine Fahrten geplant ..."
+    "noTripsPlanned": "Leider sind derzeit keine Fahrten geplant ...",
+    "noDispatchGroups": "Es tut uns leid, aber derzeit gibt es keine Versandgruppen, die ihre Planung abgeschlossen haben ..."
   },
   "label": {
     "TruckId": "Truck ID",
