@@ -16,7 +16,7 @@
             t('application.sapTruckRoster.label.time')
           }}</q-tooltip>
           <th><q-icon name="schedule" size="xs" /></th>
-          <td>{{ date }}</td>
+          <td>{{ convertToDate(fromDate, locale) }}</td>
         </tr>
         <template v-if="drivers">
           <tr v-for="(driver, index) in drivers" :key="index">
@@ -49,7 +49,7 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import { defineComponent, computed, PropType } from '@vue/composition-api'
+import { defineComponent, PropType } from '@vue/composition-api'
 import { convertToDate } from 'src/services/utils/utilsService'
 import { Driver } from 'src/graphql/generated/operations'
 
@@ -68,13 +68,7 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props) {
-    const { locale } = useI18n()
-
-    const date = computed(() => {
-      if (props.fromDate) return convertToDate(props.fromDate, locale.value)
-    })
-
+  setup() {
     const convertToDriverFullName = ({
       id,
       firstName,
@@ -93,7 +87,7 @@ export default defineComponent({
     return {
       ...useI18n(),
       convertToDriverFullName,
-      date,
+      convertToDate,
     }
   },
 })
