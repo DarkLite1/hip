@@ -57,7 +57,7 @@
                 <q-tooltip>{{
                   t('application.sapTruckRoster.label.plantName')
                 }}</q-tooltip>
-                <th><q-icon name="local_parking" size="xs" /></th>
+                <th><q-icon name="mdi-factory" size="xs" /></th>
                 <td>{{ trip.plantName }}</td>
               </tr>
             </table>
