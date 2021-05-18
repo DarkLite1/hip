@@ -4,15 +4,12 @@ export const isInternetExplorer: boolean =
 
 export const convertToDate = (isoDate: Date | string, locale: string) => {
   const date = new Date(isoDate)
-
-  const options = {
+  return date.toLocaleDateString(locale, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  }
-
-  return date.toLocaleDateString(locale, options)
+  })
 }
 export const convertToTime = (isoDate: string, locale: string) => {
   const date = new Date(isoDate)
