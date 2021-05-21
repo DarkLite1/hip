@@ -37,13 +37,15 @@
 import { defineComponent } from 'vue'
 import { profile } from 'src/store/graphStore'
 import { useI18n } from 'vue-i18n'
-import { matMenu } from '@quasar/extras/material-icons'
+// import { matMenu } from '@quasar/extras/material-icons'
 
 export default defineComponent({
   setup() {
-    console.log('MatMenu: ', matMenu)
-
-    return { profile, ...useI18n(), matMenu }
+    return {
+      profile,
+      ...useI18n(),
+      // , matMenu
+    }
   },
 })
 </script>
