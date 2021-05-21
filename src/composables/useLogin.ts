@@ -1,4 +1,4 @@
-import { computed, ref } from '@vue/composition-api'
+import { computed, ref } from 'vue'
 import { login as loginAccount } from 'src/services/auth/authService'
 
 const loading = ref(false)

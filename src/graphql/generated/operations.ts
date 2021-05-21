@@ -1,7 +1,7 @@
 /* eslint-disable */
 import gql from 'graphql-tag'
 import * as VueApolloComposable from '@vue/apollo-composable'
-import * as VueCompositionApi from '@vue/composition-api'
+import * as VueCompositionApi from 'vue'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
@@ -460,10 +460,11 @@ export function useAllAccountsQuery(
     AllAccountsQueryVariables
   >(AllAccountsDocument, {}, options)
 }
-export type AllAccountsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  AllAccountsQuery,
-  AllAccountsQueryVariables
->
+export type AllAccountsQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    AllAccountsQuery,
+    AllAccountsQueryVariables
+  >
 export const SetAppPreferenceDocument = gql`
   mutation setAppPreference($darkMode: Boolean, $language: String) {
     setViewerPreference(options: { darkMode: $darkMode, language: $language }) {
@@ -510,10 +511,11 @@ export function useSetAppPreferenceMutation(
     SetAppPreferenceMutationVariables
   >(SetAppPreferenceDocument, options)
 }
-export type SetAppPreferenceMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<
-  SetAppPreferenceMutation,
-  SetAppPreferenceMutationVariables
->
+export type SetAppPreferenceMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    SetAppPreferenceMutation,
+    SetAppPreferenceMutationVariables
+  >
 export const ViewerDocument = gql`
   query viewer {
     viewer {
@@ -554,10 +556,8 @@ export function useViewerQuery(
     options
   )
 }
-export type ViewerQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  ViewerQuery,
-  ViewerQueryVariables
->
+export type ViewerQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<ViewerQuery, ViewerQueryVariables>
 export const SapTruckRosterDriverDocument = gql`
   query sapTruckRosterDriver($id: String!) {
     driver(id: $id) {
@@ -623,10 +623,11 @@ export function useSapTruckRosterDriverQuery(
     SapTruckRosterDriverQueryVariables
   >(SapTruckRosterDriverDocument, variables, options)
 }
-export type SapTruckRosterDriverQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  SapTruckRosterDriverQuery,
-  SapTruckRosterDriverQueryVariables
->
+export type SapTruckRosterDriverQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    SapTruckRosterDriverQuery,
+    SapTruckRosterDriverQueryVariables
+  >
 export const SapTruckRosterRosterDocument = gql`
   query sapTruckRosterRoster(
     $fromDate: DateTime!
@@ -705,10 +706,11 @@ export function useSapTruckRosterRosterQuery(
     SapTruckRosterRosterQueryVariables
   >(SapTruckRosterRosterDocument, variables, options)
 }
-export type SapTruckRosterRosterQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  SapTruckRosterRosterQuery,
-  SapTruckRosterRosterQueryVariables
->
+export type SapTruckRosterRosterQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    SapTruckRosterRosterQuery,
+    SapTruckRosterRosterQueryVariables
+  >
 export const SapTruckRosterDispatchGroupDocument = gql`
   query sapTruckRosterDispatchGroup($fromDate: DateTime!) {
     rosterDispatchGroup(fromDate: $fromDate) {
@@ -769,10 +771,11 @@ export function useSapTruckRosterDispatchGroupQuery(
     SapTruckRosterDispatchGroupQueryVariables
   >(SapTruckRosterDispatchGroupDocument, variables, options)
 }
-export type SapTruckRosterDispatchGroupQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  SapTruckRosterDispatchGroupQuery,
-  SapTruckRosterDispatchGroupQueryVariables
->
+export type SapTruckRosterDispatchGroupQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    SapTruckRosterDispatchGroupQuery,
+    SapTruckRosterDispatchGroupQueryVariables
+  >
 export const SapTruckRosterTruckDocument = gql`
   query sapTruckRosterTruck($id: String!) {
     truck(id: $id) {
@@ -847,7 +850,8 @@ export function useSapTruckRosterTruckQuery(
     SapTruckRosterTruckQueryVariables
   >(SapTruckRosterTruckDocument, variables, options)
 }
-export type SapTruckRosterTruckQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<
-  SapTruckRosterTruckQuery,
-  SapTruckRosterTruckQueryVariables
->
+export type SapTruckRosterTruckQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<
+    SapTruckRosterTruckQuery,
+    SapTruckRosterTruckQueryVariables
+  >

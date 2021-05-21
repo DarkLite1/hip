@@ -12,10 +12,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { useApplications } from 'src/composables/useApplications'
+import { useRouter } from 'vue-router'
+
+import samTruckRoster from 'src/components/application-form/sapTruckRoster/sapTruckRoster.vue'
+import applicationTest from 'src/components/application-form/test.vue'
 
 export default defineComponent({
+  components: {
+    samTruckRoster,
+    applicationTest,
+  },
   props: {
     appId: {
       type: String,
@@ -26,23 +34,19 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props, { root }) {
+  setup(props) {
+    const router = useRouter()
+
     if (!props.appId) {
       console.error('No application ID provided to load the correct form')
-      void (async () => await root.$router.push({ path: 'applications' }))()
+      void router.push({ path: 'applications' })
       return
     }
 
     const { getApplication } = useApplications()
     const application = getApplication(props.appId)
+
     return { application }
-  },
-  components: {
-    samTruckRoster: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/sapTruckRoster.vue'
-      ),
-    applicationTest: () => import('src/components/application-form/test.vue'),
   },
 })
 </script>

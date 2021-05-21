@@ -48,8 +48,8 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-import { defineComponent, PropType } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n'
+import { defineComponent, PropType } from 'vue'
 import { convertToDate } from 'src/services/utils/utilsService'
 import { Driver } from 'src/graphql/generated/operations'
 
@@ -64,7 +64,7 @@ export default defineComponent({
       required: false,
     },
     drivers: {
-      type: (Array as unknown) as PropType<Driver[]>,
+      type: Array as unknown as PropType<Driver[]>,
       required: false,
     },
   },

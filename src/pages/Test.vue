@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 // import { useAccount } from 'src/comp-functions/useAccount'
 import { getGraphProfile } from 'src/services/graph/graphService'
 
@@ -19,7 +19,7 @@ export default defineComponent({
     const onClick = () => {
       getGraphProfile()
         .then((response) => {
-          console.log('response.data  ', response.data )
+          console.log('response.data  ', response.data)
         })
         .catch(console.log.bind(console))
     }

@@ -18,7 +18,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: 'ApplicationCard',
@@ -36,9 +37,11 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(_, { root }) {
+  setup() {
+    const router = useRouter()
+
     const applicationSelected = async (id: string) => {
-      await root.$router.push({
+      await router.push({
         name: 'applicationForm',
         params: { appId: id },
       })

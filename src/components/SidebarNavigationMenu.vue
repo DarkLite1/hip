@@ -25,7 +25,7 @@
             <q-item-section avatar>
               <q-icon :name="link.icon" />
             </q-item-section>
-            <q-item-section>{{ link.label.value }}</q-item-section>
+            <q-item-section>{{ link.label }}</q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
@@ -34,22 +34,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, PropType } from '@vue/composition-api'
+import { defineComponent, ref, watch, PropType } from 'vue'
 import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'SidebarNavigationMenu',
   props: {
     links: {
-      type: (Array as unknown) as PropType<InterfaceMainNavigationLinks[]>,
+      type: Object as PropType<InterfaceMainNavigationLinks[]>,
       required: true,
     },
   },
-  setup(props, context) {
+  setup() {
+    const quasar = useQuasar()
     const miniState = ref(true)
-
     const setMiniState = (state: boolean | undefined) => {
-      if (context.root.$q.screen.width > 1023) {
+      if (quasar.screen.width > 1023) {
         miniState.value = false
       } else if (state !== void 0) {
         miniState.value = state === true
@@ -59,7 +60,7 @@ export default defineComponent({
     }
 
     watch(
-      () => context.root.$q.screen.width,
+      () => quasar.screen.width,
       () => setMiniState(undefined)
     )
 

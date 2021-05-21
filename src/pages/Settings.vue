@@ -67,9 +67,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue'
 import { openURL } from 'quasar'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 import { useApplicationPreferences } from 'src/composables/useApplicationPreferences'
 
 export default defineComponent({

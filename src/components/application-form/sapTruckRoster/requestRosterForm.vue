@@ -38,10 +38,14 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-import { defineComponent, reactive, ref, watch } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n'
+import { defineComponent, reactive, ref, watch } from 'vue'
+
+import requestRosterFormTruckInput from 'src/components/application-form/sapTruckRoster/requestRosterFormTruckInput.vue'
+import requestRosterFormDriverInput from 'src/components/application-form/sapTruckRoster/requestRosterFormDriverInput.vue'
 
 export default defineComponent({
+  emits: ['driver-id-query-result', 'form-submitted'],
   setup(_, { emit }) {
     const submitted = ref(false)
     const showTruckId = ref(false)
@@ -93,14 +97,8 @@ export default defineComponent({
     }
   },
   components: {
-    requestRosterFormTruckInput: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/requestRosterFormTruckInput.vue'
-      ),
-    requestRosterFormDriverInput: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/requestRosterFormDriverInput.vue'
-      ),
+    requestRosterFormTruckInput,
+    requestRosterFormDriverInput,
   },
 })
 </script>

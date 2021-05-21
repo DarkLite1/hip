@@ -44,7 +44,7 @@
                   t('application.sapTruckRoster.label.driverId')
                 }}</q-tooltip>
                 <th><q-icon name="person" size="xs" /></th>
-                <td>{{ trip.driverFirstName }} {{ trip.driverLastName,}}</td>
+                <td>{{ trip.driverFirstName }} {{ trip.driverLastName }}</td>
               </tr>
               <tr>
                 <q-tooltip>{{
@@ -77,9 +77,9 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 import { useResult } from '@vue/apollo-composable'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import {
   Roster,
   useSapTruckRosterRosterQuery,

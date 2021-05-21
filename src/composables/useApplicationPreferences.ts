@@ -1,7 +1,7 @@
-import { reactive, computed } from '@vue/composition-api'
+import { reactive, computed } from 'vue'
 import { Dark } from 'quasar'
 import { useSetAppPreferenceMutation } from 'src/graphql/generated/operations'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 const defaultState = () => ({
   preference: {

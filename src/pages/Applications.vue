@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { useApplications } from 'src/composables/useApplications'
+import appApplicationCard from 'src/components/ApplicationCard.vue'
 
 export default defineComponent({
   setup() {
@@ -23,7 +24,7 @@ export default defineComponent({
     return { applicationCards }
   },
   components: {
-    appApplicationCard: () => import('src/components/ApplicationCard.vue'),
+    appApplicationCard,
   },
 })
 </script>

@@ -12,10 +12,15 @@ const { configure } = require('quasar/wrappers')
 module.exports = configure(function (ctx) {
   return {
     supportTS: {
-      tsCheckerConfig: { eslint: true },
+      tsCheckerConfig: {
+        eslint: {
+          enabled: true,
+          files: './src/**/*.{ts,tsx,js,jsx,vue}',
+        },
+      },
     },
     // order is important
-    boot: ['VueCompositionApi', 'i18n', 'auth', 'apollo', 'router'],
+    boot: ['i18n', 'auth', 'apollo', 'router'],
 
     css: ['app.scss'],
 
@@ -34,13 +39,13 @@ module.exports = configure(function (ctx) {
 
     framework: {
       iconSet: 'material-icons', // Quasar icon set
-      lang: 'en-us', // Quasar language pack
+      lang: 'en-US', // Quasar language pack
       config: {},
 
       // Possible values for "importStrategy":
       // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
       // * 'all'  - Manually specify what to import
-      importStrategy: 'auto',
+      // importStrategy: 'auto',
 
       // Quasar plugins
       plugins: ['Notify'],
@@ -83,27 +88,8 @@ module.exports = configure(function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/handling-webpack
-      extendWebpack(cfg) {
-        // only required when importing from .graphql files directly
-        // we now use the graphql code generator and import from the
-        // generated operations file that is TypeScript compatible
-        // cfg.module.rules.push({
-        //   test: /\.(graphql|gql)$/,
-        //   loader: 'graphql-tag/loader',
-        //   exclude: /node_modules/,
-        // })
-
-        // cfg.devtool = 'source-map'
-        // cfg.devtool =  'cheap-module-eval-source-map'
-        // linting is slow in TS projects, we execute it only for production builds
-        if (ctx.prod) {
-          cfg.module.rules.push({
-            enforce: 'pre',
-            test: /\.(js|vue)$/,
-            loader: 'eslint-loader',
-            exclude: /node_modules/,
-          })
-        }
+      extendWebpack() {
+        //
       },
     },
 
@@ -125,6 +111,9 @@ module.exports = configure(function (ctx) {
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
+      chainWebpackCustomSW(/* chain */) {
+        //
+      },
       manifest: {
         name: 'HC IT Portal',
         short_name: 'HIP',

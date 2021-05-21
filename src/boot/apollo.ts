@@ -1,18 +1,18 @@
 import { boot } from 'quasar/wrappers'
-import { DefaultApolloClient } from '@vue/apollo-composable'
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
   from,
 } from '@apollo/client/core'
-import { provide } from '@vue/composition-api'
 import { getToken } from 'src/services/auth/authService'
 import { ENVIRONMENT } from 'src/environment'
 import { onError } from '@apollo/client/link/error'
 import { setContext } from '@apollo/client/link/context'
 
-export default boot(({ app }) => {
+let apolloClients: Record<string, ApolloClient<unknown>>
+
+export default boot(() => {
   const httpLink = new HttpLink({
     uri: ENVIRONMENT.resources.gatewayApi.uri,
   })
@@ -40,8 +40,9 @@ export default boot(({ app }) => {
     link: from([authMiddleware, logLink, httpLink]),
   })
 
-  app.setup = () => {
-    provide(DefaultApolloClient, apolloClient)
-    return {}
+  apolloClients = {
+    default: apolloClient,
   }
 })
+
+export { apolloClients }

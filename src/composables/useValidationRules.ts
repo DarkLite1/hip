@@ -1,6 +1,7 @@
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 export const useValidationRules = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { t } = useI18n()
 
   const requiredFieldRule = (value: string) =>

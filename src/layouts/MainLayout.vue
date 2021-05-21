@@ -21,13 +21,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { useMainNavigationLinks } from 'src/composables/useNavigationLinks'
 import { isAuthenticated } from 'src/store/authStore'
 import { useApplicationPreferences } from 'src/composables/useApplicationPreferences'
 import { useViewerQuery } from 'src/graphql/generated/operations'
 import { loading } from 'src/store/authStore'
 import { Dark } from 'quasar'
+
+import appHeader from 'components/Header.vue'
+import appFooter from 'components/Footer.vue'
+import appSidebarNavigationMenu from 'components/SidebarNavigationMenu.vue'
 
 export default defineComponent({
   setup() {
@@ -46,8 +50,11 @@ export default defineComponent({
         try {
           // await new Promise((resolve) => setTimeout(resolve, 5000))
           if (result.data.viewer.preference) {
+            console.log('setPreference')
+
             await setPreference({ ...result.data.viewer.preference }, false)
           } else {
+            console.log('setDefaultPreferences')
             await setDefaultPreferences()
           }
         } finally {
@@ -67,12 +74,7 @@ export default defineComponent({
       isAuthenticated,
     }
   },
-  components: {
-    appHeader: () => import('components/Header.vue'),
-    appFooter: () => import('components/Footer.vue'),
-    appSidebarNavigationMenu: () =>
-      import('components/SidebarNavigationMenu.vue'),
-  },
+  components: { appHeader, appFooter, appSidebarNavigationMenu },
 })
 </script>
 

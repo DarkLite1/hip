@@ -47,31 +47,28 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 import { useResult } from '@vue/apollo-composable'
 import { Notify } from 'quasar'
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { useSapTruckRosterDispatchGroupQuery } from 'src/graphql/generated/operations'
 import { convertToDate } from 'src/services/utils/utilsService'
 
 export default defineComponent({
   name: 'ApplicationForm',
   setup() {
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const { t } = useI18n()
-    const {
-      result,
-      loading,
-      error,
-      refetch,
-    } = useSapTruckRosterDispatchGroupQuery(
-      () => ({
-        fromDate: new Date(),
-      }),
-      {
-        pollInterval: 15 * 60 * 1000, // every 15 min
-        fetchPolicy: 'no-cache',
-      }
-    )
+    const { result, loading, error, refetch } =
+      useSapTruckRosterDispatchGroupQuery(
+        () => ({
+          fromDate: new Date(),
+        }),
+        {
+          pollInterval: 15 * 60 * 1000, // every 15 min
+          fetchPolicy: 'no-cache',
+        }
+      )
 
     const dispatchGroups = useResult(result, [], (data) => {
       if (data.rosterDispatchGroup.__typename === 'RosterDispatchGroupArray') {
@@ -85,7 +82,7 @@ export default defineComponent({
         Notify.create({
           type: 'negative',
           icon: 'error_outline',
-          message: t('application.sapTruckRoster.error.sapDown') as string,
+          message: t('application.sapTruckRoster.error.sapDown'),
           timeout: 0,
           actions: [
             {

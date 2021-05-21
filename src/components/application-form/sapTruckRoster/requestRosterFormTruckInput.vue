@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-import { computed, defineComponent, ref } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n'
+import { computed, defineComponent, ref } from 'vue'
 import { QInput } from 'quasar'
 import { useValidationRules } from 'src/composables/useValidationRules'
 import { useSapTruckRosterTruckQuery } from 'src/graphql/generated/operations'
@@ -44,6 +44,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     const { t } = useI18n()
     const { requiredFieldRule, minimumStringLengthRule } = useValidationRules()
 

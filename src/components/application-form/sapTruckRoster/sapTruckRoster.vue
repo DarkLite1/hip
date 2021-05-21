@@ -27,8 +27,13 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-import { defineComponent, ref } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n'
+import { defineComponent, ref } from 'vue'
+
+import listDispatchGroups from 'src/components/application-form/sapTruckRoster/listDispatchGroups.vue'
+import requestRosterForm from 'src/components/application-form/sapTruckRoster/requestRosterForm.vue'
+import rosterQueryResult from 'src/components/application-form/sapTruckRoster/rosterQueryResult.vue'
+import rosterQueryResultSearchFilterTable from 'src/components/application-form/sapTruckRoster/rosterQueryResultSearchFilterTable.vue'
 
 export default defineComponent({
   setup() {
@@ -60,22 +65,10 @@ export default defineComponent({
     }
   },
   components: {
-    listDispatchGroups: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/listDispatchGroups.vue'
-      ),
-    requestRosterForm: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/requestRosterForm.vue'
-      ),
-    rosterQueryResult: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/rosterQueryResult.vue'
-      ),
-    rosterQueryResultSearchFilterTable: () =>
-      import(
-        'src/components/application-form/sapTruckRoster/rosterQueryResultSearchFilterTable.vue'
-      ),
+    listDispatchGroups,
+    requestRosterForm,
+    rosterQueryResult,
+    rosterQueryResultSearchFilterTable,
   },
 })
 </script>

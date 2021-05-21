@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-import { computed, defineComponent } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { computed, defineComponent } from 'vue'
 import {
   setGraphProfile,
   setGraphPhoto,
@@ -28,12 +29,13 @@ import {
 import { Dark } from 'quasar'
 
 export default defineComponent({
-  setup(_, context) {
+  setup() {
+    const router = useRouter()
     void setGraphPhoto()
     void setGraphProfile()
 
     const goToProfilePage = () => {
-      context.root.$router.push('/profile').catch(() => {
+      router.push('/profile').catch(() => {
         null
       })
     }

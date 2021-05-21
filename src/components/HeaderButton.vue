@@ -5,23 +5,20 @@
   </div>
 </template>
 
-
 <script lang="ts">
-  import { defineComponent } from '@vue/composition-api'
-  import { isAuthenticated } from 'src/store/authStore'
+import { defineComponent } from 'vue'
+import { isAuthenticated } from 'src/store/authStore'
 
-  export default defineComponent({
-    setup() {
-      return { isAuthenticated }
-    },
-    components: {
-      appHeaderButtonLogin: () => import('src/components/HeaderButtonLogin.vue'),
-      appHeaderButtonProfile: () =>
-        import('src/components/HeaderButtonProfile.vue'),
-    },
-  })
+import appHeaderButtonLogin from 'src/components/HeaderButtonLogin.vue'
+import appHeaderButtonProfile from 'src/components/HeaderButtonProfile.vue'
+
+export default defineComponent({
+  setup() {
+    return { isAuthenticated }
+  },
+  components: {
+    appHeaderButtonLogin,
+    appHeaderButtonProfile,
+  },
+})
 </script>
-
-
-<style lang='scss' scoped>
-</style>

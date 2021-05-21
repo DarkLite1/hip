@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { account } from 'src/store/authStore'
 import { logout } from 'src/services/auth/authService'
 

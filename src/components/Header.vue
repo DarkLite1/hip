@@ -14,13 +14,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
+import appHeaderButton from 'components/HeaderButton.vue'
 
 export default defineComponent({
   components: {
-    appHeaderButton: () => import('components/HeaderButton.vue'),
+    appHeaderButton,
   },
 })
 </script>
-
-<style lang="scss" scoped></style>

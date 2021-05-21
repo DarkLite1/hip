@@ -1,7 +1,8 @@
-import { computed, reactive } from '@vue/composition-api'
-import { useI18n } from 'vue-i18n-composable'
+import { computed, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export const useMainNavigationLinks = () => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { t } = useI18n()
   const mainNavigation = reactive([
     {

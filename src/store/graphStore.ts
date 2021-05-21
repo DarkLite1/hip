@@ -1,4 +1,4 @@
-import { reactive, computed } from '@vue/composition-api'
+import { reactive, computed } from 'vue'
 import { getGraphProfile, getGraphPhoto } from 'src/services/graph/graphService'
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-types'
 

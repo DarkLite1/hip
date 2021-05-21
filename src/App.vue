@@ -1,13 +1,16 @@
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, provide } from 'vue'
+import { ApolloClients } from '@vue/apollo-composable'
+import { apolloClients } from 'src/boot/apollo'
 
 export default defineComponent({
   name: 'App',
+  setup() {
+    provide(ApolloClients, apolloClients)
+  },
 })
 </script>

@@ -1,4 +1,4 @@
-import { computed, reactive, ref } from '@vue/composition-api'
+import { computed, reactive, ref } from 'vue'
 import { AccountInfo } from '@azure/msal-browser'
 
 const defaultState = () => ({

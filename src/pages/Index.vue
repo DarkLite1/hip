@@ -34,9 +34,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 import { profile } from 'src/store/graphStore'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 import { matMenu } from '@quasar/extras/material-icons'
 
 export default defineComponent({
