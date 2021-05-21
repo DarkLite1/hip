@@ -50,11 +50,10 @@ export default defineComponent({
         try {
           // await new Promise((resolve) => setTimeout(resolve, 5000))
           if (result.data.viewer.preference) {
-            console.log('setPreference')
-
+            // console.log('setPreference')
             await setPreference({ ...result.data.viewer.preference }, false)
           } else {
-            console.log('setDefaultPreferences')
+            // console.log('setDefaultPreferences')
             await setDefaultPreferences()
           }
         } finally {
