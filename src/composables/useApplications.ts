@@ -1,14 +1,6 @@
 import { useI18n } from 'vue-i18n'
 import { computed, reactive } from 'vue'
-import { TranslateResult } from 'vue-i18n'
-
-interface IApplication {
-  [key: string]: {
-    name: TranslateResult
-    shortDescription: TranslateResult
-    formComponentName: string
-  }
-}
+import { IApplication } from 'src/typings/application'
 
 export const useApplications = () => {
   // eslint-disable-next-line @typescript-eslint/unbound-method
