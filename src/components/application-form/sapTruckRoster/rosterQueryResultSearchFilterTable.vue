@@ -64,7 +64,7 @@ export default defineComponent({
       required: false,
     },
     drivers: {
-      type: Array as unknown as PropType<Driver[]>,
+      type: Object as PropType<Driver[]>,
       required: false,
     },
   },

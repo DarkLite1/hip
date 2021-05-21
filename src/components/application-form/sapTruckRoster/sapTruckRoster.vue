@@ -36,6 +36,12 @@ import rosterQueryResult from 'src/components/application-form/sapTruckRoster/ro
 import rosterQueryResultSearchFilterTable from 'src/components/application-form/sapTruckRoster/rosterQueryResultSearchFilterTable.vue'
 
 export default defineComponent({
+  components: {
+    listDispatchGroups,
+    requestRosterForm,
+    rosterQueryResult,
+    rosterQueryResultSearchFilterTable,
+  },
   setup() {
     const showFormSubmitResult = ref(false)
     const driverId = ref()
@@ -63,12 +69,6 @@ export default defineComponent({
       fromDate,
       driverIdQueryResult,
     }
-  },
-  components: {
-    listDispatchGroups,
-    requestRosterForm,
-    rosterQueryResult,
-    rosterQueryResultSearchFilterTable,
   },
 })
 </script>

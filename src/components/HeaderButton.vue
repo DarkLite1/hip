@@ -13,12 +13,12 @@ import appHeaderButtonLogin from 'src/components/HeaderButtonLogin.vue'
 import appHeaderButtonProfile from 'src/components/HeaderButtonProfile.vue'
 
 export default defineComponent({
-  setup() {
-    return { isAuthenticated }
-  },
   components: {
     appHeaderButtonLogin,
     appHeaderButtonProfile,
+  },
+  setup() {
+    return { isAuthenticated }
   },
 })
 </script>

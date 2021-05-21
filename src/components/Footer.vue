@@ -20,7 +20,7 @@ import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
 export default defineComponent({
   props: {
     links: {
-      type: Array as unknown as PropType<InterfaceMainNavigationLinks[]>,
+      type: Object as PropType<InterfaceMainNavigationLinks[]>,
       required: true,
     },
   },

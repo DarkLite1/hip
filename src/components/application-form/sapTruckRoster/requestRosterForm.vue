@@ -45,6 +45,10 @@ import requestRosterFormTruckInput from 'src/components/application-form/sapTruc
 import requestRosterFormDriverInput from 'src/components/application-form/sapTruckRoster/requestRosterFormDriverInput.vue'
 
 export default defineComponent({
+  components: {
+    requestRosterFormTruckInput,
+    requestRosterFormDriverInput,
+  },
   emits: ['driver-id-query-result', 'form-submitted'],
   setup(_, { emit }) {
     const submitted = ref(false)
@@ -95,10 +99,6 @@ export default defineComponent({
       enableQuery,
       query,
     }
-  },
-  components: {
-    requestRosterFormTruckInput,
-    requestRosterFormDriverInput,
   },
 })
 </script>
