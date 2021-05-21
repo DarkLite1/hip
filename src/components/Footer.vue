@@ -15,12 +15,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
+import { IMainNavigationLinks } from 'src/typings/navigation'
 
 export default defineComponent({
   props: {
     links: {
-      type: Object as PropType<InterfaceMainNavigationLinks[]>,
+      type: Object as PropType<IMainNavigationLinks[]>,
       required: true,
     },
   },

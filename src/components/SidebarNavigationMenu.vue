@@ -35,14 +35,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, watch, PropType } from 'vue'
-import { InterfaceMainNavigationLinks } from 'src/typings/navigation'
+import { IMainNavigationLinks } from 'src/typings/navigation'
 import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'SidebarNavigationMenu',
   props: {
     links: {
-      type: Object as PropType<InterfaceMainNavigationLinks[]>,
+      type: Object as PropType<IMainNavigationLinks[]>,
       required: true,
     },
   },

@@ -1,7 +1,7 @@
 import { ComputedRef } from 'vue'
 import { TranslateResult } from 'vue-i18n'
 
-export interface InterfaceMainNavigationLinks {
+export interface IMainNavigationLinks {
   label: ComputedRef<TranslateResult>
   name: string
   to: string
