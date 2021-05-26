@@ -1,7 +1,7 @@
 /* eslint-disable */
 import gql from 'graphql-tag'
 import * as VueApolloComposable from '@vue/apollo-composable'
-import * as VueCompositionApi from 'vue'
+import * as VueCompositionApi from '@vue/composition-api'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
@@ -20,6 +20,139 @@ export type Scalars = {
   Float: number
   /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: any
+}
+
+export type Account = {
+  __typename?: 'Account'
+  id: Scalars['ID']
+  accountIdentifier: Scalars['String']
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+  preference?: Maybe<Preference>
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
+}
+
+export type AccountAddInput = {
+  accountIdentifier: Scalars['String']
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+}
+
+export type AccountAddResult = Account | ExistsAlready
+
+export type AccountRemoveResult = Success | NotFound
+
+export type AccountUpdateInput = {
+  name?: Maybe<Scalars['String']>
+  userName?: Maybe<Scalars['String']>
+}
+
+export type AccountUpdateResult = Account | NotFound
+
+export type AddPreferenceInput = {
+  language?: Maybe<Scalars['String']>
+  darkMode?: Maybe<Scalars['Boolean']>
+}
+
+export type ApiError = {
+  __typename?: 'ApiError'
+  message: Scalars['String']
+  code: Scalars['String']
+}
+
+export type Driver = {
+  __typename?: 'Driver'
+  id?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  telephone?: Maybe<Scalars['String']>
+  despatchGroup?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  postCode?: Maybe<Scalars['String']>
+  city?: Maybe<Scalars['String']>
+  streetHouse?: Maybe<Scalars['String']>
+  additionalRefNr?: Maybe<Scalars['String']>
+  specialProp?: Maybe<Scalars['String']>
+  mainWorkPlant?: Maybe<Scalars['String']>
+  createdOn?: Maybe<Scalars['String']>
+  deletionFlag?: Maybe<Scalars['String']>
+}
+
+export type DriverArray = {
+  __typename?: 'DriverArray'
+  data?: Maybe<Array<Driver>>
+}
+
+export type DriverQueryResult = DriverArray | ApiError
+
+export type ExistsAlready = {
+  __typename?: 'ExistsAlready'
+  message: Scalars['String']
+  account: Account
+}
+
+export type Mutation = {
+  __typename?: 'Mutation'
+  addAccount: AccountAddResult
+  updateAccount: AccountUpdateResult
+  removeAccount: AccountRemoveResult
+  setViewerPreference: Preference
+}
+
+export type MutationAddAccountArgs = {
+  options: AccountAddInput
+}
+
+export type MutationUpdateAccountArgs = {
+  input: AccountUpdateInput
+  accountIdentifier: Scalars['String']
+}
+
+export type MutationRemoveAccountArgs = {
+  accountIdentifier: Scalars['String']
+}
+
+export type MutationSetViewerPreferenceArgs = {
+  options: AddPreferenceInput
+}
+
+export type NotFound = {
+  __typename?: 'NotFound'
+  message: Scalars['String']
+}
+
+export type Plant = {
+  __typename?: 'Plant'
+  id?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
+  customerNrPlant?: Maybe<Scalars['String']>
+  vendorNrPlant?: Maybe<Scalars['String']>
+  factoryCalendar?: Maybe<Scalars['String']>
+  streetHouse?: Maybe<Scalars['String']>
+  country?: Maybe<Scalars['String']>
+  postCode?: Maybe<Scalars['String']>
+  city?: Maybe<Scalars['String']>
+  purchasingOrg?: Maybe<Scalars['String']>
+  region?: Maybe<Scalars['String']>
+}
+
+export type PlantArray = {
+  __typename?: 'PlantArray'
+  data?: Maybe<Array<Plant>>
+}
+
+export type PlantQueryResult = PlantArray | ApiError
+
+export type Preference = {
+  __typename?: 'Preference'
+  id: Scalars['ID']
+  account: Account
+  language: Scalars['String']
+  darkMode: Scalars['Boolean']
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
 }
 
 export type Query = {
@@ -71,39 +204,6 @@ export type QueryTruckArgs = {
   id?: Maybe<Scalars['String']>
 }
 
-export type Account = {
-  __typename?: 'Account'
-  id: Scalars['ID']
-  accountIdentifier: Scalars['String']
-  name?: Maybe<Scalars['String']>
-  userName?: Maybe<Scalars['String']>
-  preference?: Maybe<Preference>
-  createdAt: Scalars['DateTime']
-  updatedAt: Scalars['DateTime']
-}
-
-export type Preference = {
-  __typename?: 'Preference'
-  id: Scalars['ID']
-  account: Account
-  language: Scalars['String']
-  darkMode: Scalars['Boolean']
-  createdAt: Scalars['DateTime']
-  updatedAt: Scalars['DateTime']
-}
-
-export type Viewer = {
-  __typename?: 'Viewer'
-  preference?: Maybe<Preference>
-}
-
-export type RosterQueryResult = RosterArray | ApiError
-
-export type RosterArray = {
-  __typename?: 'RosterArray'
-  data?: Maybe<Array<Roster>>
-}
-
 export type Roster = {
   __typename?: 'Roster'
   truckId?: Maybe<Scalars['String']>
@@ -121,6 +221,31 @@ export type Roster = {
   plantCity?: Maybe<Scalars['String']>
   startPlantLoadingDateTime?: Maybe<Scalars['String']>
   truck?: Maybe<Truck>
+}
+
+export type RosterArray = {
+  __typename?: 'RosterArray'
+  data?: Maybe<Array<Roster>>
+}
+
+export type RosterDispatchGroup = {
+  __typename?: 'RosterDispatchGroup'
+  date: Scalars['String']
+  dispatchGroup: Array<Scalars['String']>
+}
+
+export type RosterDispatchGroupArray = {
+  __typename?: 'RosterDispatchGroupArray'
+  data?: Maybe<Array<RosterDispatchGroup>>
+}
+
+export type RosterDispatchGroupQueryResult = RosterDispatchGroupArray | ApiError
+
+export type RosterQueryResult = RosterArray | ApiError
+
+export type Success = {
+  __typename?: 'Success'
+  message: Scalars['String']
 }
 
 export type Truck = {
@@ -142,141 +267,16 @@ export type Truck = {
   haulerVendorId?: Maybe<Scalars['String']>
 }
 
-export type ApiError = {
-  __typename?: 'ApiError'
-  message: Scalars['String']
-  code: Scalars['String']
-}
-
-export type RosterDispatchGroupQueryResult = RosterDispatchGroupArray | ApiError
-
-export type RosterDispatchGroupArray = {
-  __typename?: 'RosterDispatchGroupArray'
-  data?: Maybe<Array<RosterDispatchGroup>>
-}
-
-export type RosterDispatchGroup = {
-  __typename?: 'RosterDispatchGroup'
-  date: Scalars['String']
-  dispatchGroup: Array<Scalars['String']>
-}
-
-export type PlantQueryResult = PlantArray | ApiError
-
-export type PlantArray = {
-  __typename?: 'PlantArray'
-  data?: Maybe<Array<Plant>>
-}
-
-export type Plant = {
-  __typename?: 'Plant'
-  id?: Maybe<Scalars['String']>
-  name?: Maybe<Scalars['String']>
-  customerNrPlant?: Maybe<Scalars['String']>
-  vendorNrPlant?: Maybe<Scalars['String']>
-  factoryCalendar?: Maybe<Scalars['String']>
-  streetHouse?: Maybe<Scalars['String']>
-  country?: Maybe<Scalars['String']>
-  postCode?: Maybe<Scalars['String']>
-  city?: Maybe<Scalars['String']>
-  purchasingOrg?: Maybe<Scalars['String']>
-  region?: Maybe<Scalars['String']>
-}
-
-export type DriverQueryResult = DriverArray | ApiError
-
-export type DriverArray = {
-  __typename?: 'DriverArray'
-  data?: Maybe<Array<Driver>>
-}
-
-export type Driver = {
-  __typename?: 'Driver'
-  id?: Maybe<Scalars['String']>
-  firstName?: Maybe<Scalars['String']>
-  lastName?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  telephone?: Maybe<Scalars['String']>
-  despatchGroup?: Maybe<Scalars['String']>
-  country?: Maybe<Scalars['String']>
-  postCode?: Maybe<Scalars['String']>
-  city?: Maybe<Scalars['String']>
-  streetHouse?: Maybe<Scalars['String']>
-  additionalRefNr?: Maybe<Scalars['String']>
-  specialProp?: Maybe<Scalars['String']>
-  mainWorkPlant?: Maybe<Scalars['String']>
-  createdOn?: Maybe<Scalars['String']>
-  deletionFlag?: Maybe<Scalars['String']>
-}
-
-export type TruckQueryResult = TruckArray | ApiError
-
 export type TruckArray = {
   __typename?: 'TruckArray'
   data?: Maybe<Array<Truck>>
 }
 
-export type Mutation = {
-  __typename?: 'Mutation'
-  addAccount: AccountAddResult
-  updateAccount: AccountUpdateResult
-  removeAccount: AccountRemoveResult
-  setViewerPreference: Preference
-}
+export type TruckQueryResult = TruckArray | ApiError
 
-export type MutationAddAccountArgs = {
-  options: AccountAddInput
-}
-
-export type MutationUpdateAccountArgs = {
-  input: AccountUpdateInput
-  accountIdentifier: Scalars['String']
-}
-
-export type MutationRemoveAccountArgs = {
-  accountIdentifier: Scalars['String']
-}
-
-export type MutationSetViewerPreferenceArgs = {
-  options: AddPreferenceInput
-}
-
-export type AccountAddResult = Account | ExistsAlready
-
-export type ExistsAlready = {
-  __typename?: 'ExistsAlready'
-  message: Scalars['String']
-  account: Account
-}
-
-export type AccountAddInput = {
-  accountIdentifier: Scalars['String']
-  name?: Maybe<Scalars['String']>
-  userName?: Maybe<Scalars['String']>
-}
-
-export type AccountUpdateResult = Account | NotFound
-
-export type NotFound = {
-  __typename?: 'NotFound'
-  message: Scalars['String']
-}
-
-export type AccountUpdateInput = {
-  name?: Maybe<Scalars['String']>
-  userName?: Maybe<Scalars['String']>
-}
-
-export type AccountRemoveResult = Success | NotFound
-
-export type Success = {
-  __typename?: 'Success'
-  message: Scalars['String']
-}
-
-export type AddPreferenceInput = {
-  language?: Maybe<Scalars['String']>
-  darkMode?: Maybe<Scalars['Boolean']>
+export type Viewer = {
+  __typename?: 'Viewer'
+  preference?: Maybe<Preference>
 }
 
 export type AllAccountsQueryVariables = Exact<{ [key: string]: never }>

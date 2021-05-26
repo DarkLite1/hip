@@ -5,14 +5,14 @@ export interface PossibleTypesResultData {
 }
 const result: PossibleTypesResultData = {
   possibleTypes: {
-    RosterQueryResult: ['RosterArray', 'ApiError'],
-    RosterDispatchGroupQueryResult: ['RosterDispatchGroupArray', 'ApiError'],
-    PlantQueryResult: ['PlantArray', 'ApiError'],
-    DriverQueryResult: ['DriverArray', 'ApiError'],
-    TruckQueryResult: ['TruckArray', 'ApiError'],
     AccountAddResult: ['Account', 'ExistsAlready'],
-    AccountUpdateResult: ['Account', 'NotFound'],
     AccountRemoveResult: ['Success', 'NotFound'],
+    AccountUpdateResult: ['Account', 'NotFound'],
+    DriverQueryResult: ['DriverArray', 'ApiError'],
+    PlantQueryResult: ['PlantArray', 'ApiError'],
+    RosterDispatchGroupQueryResult: ['RosterDispatchGroupArray', 'ApiError'],
+    RosterQueryResult: ['RosterArray', 'ApiError'],
+    TruckQueryResult: ['TruckArray', 'ApiError'],
   },
 }
 export default result
