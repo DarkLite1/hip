@@ -23,7 +23,7 @@
     "@quasar/extras": "^1.10.4",
     "@vue/apollo-composable": "^4.0.0-alpha.12",
     "axios": "^0.21.1",
-    "core-js": "^3.12.1",
+    "core-js": "^3.13.0",
     "env-cmd": "^10.1.0",
     "global": "^4.4.0",
     "graphql": "^15.5.0",
