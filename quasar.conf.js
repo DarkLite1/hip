@@ -8,6 +8,7 @@
 /* eslint-env node */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { configure } = require('quasar/wrappers')
+const webpack = require('webpack')
 
 module.exports = configure(function (ctx) {
   return {
@@ -88,9 +89,20 @@ module.exports = configure(function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/handling-webpack
-      extendWebpack() {
-        //
+      extendWebpack(cfg) {
+        cfg.plugins.push(
+          new webpack.ProvidePlugin({
+            Buffer: ['buffer', 'Buffer'],
+          })
+        )
       },
+      //   plugins: [
+
+      //     // cfg.ProvidePlugin({
+      //     //   Buffer: ['buffer', 'Buffer'],
+      //     // }),
+      //   ]
+      // },
     },
 
     devServer: {

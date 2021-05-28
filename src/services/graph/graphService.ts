@@ -1,7 +1,9 @@
 import axios, { AxiosRequestConfig } from 'axios'
+
 import { getToken } from 'src/services/auth/authService'
 import * as MicrosoftGraph from '@microsoft/microsoft-graph-types'
 import { ENVIRONMENT } from 'src/environment'
+
 
 const callGraph = <T>(
   url: string,
