@@ -3,13 +3,23 @@
     <q-chip clickable @click="goToProfilePage" class="absolute-right">
       {{ profile.givenName || t('general.welcome') }}
       <q-avatar class="q-avatar--right">
+        <!-- width="38px" -->
+        <!-- style="width: 36px; height: 200px;" -->
+        <!-- style="max-width: 36px; max-height: 36px;"
+          fit="contain" -->
+        <!-- ratio="1" -->
+        <!-- ratio="1"
+          height="36px"
+          width="38px"
+          fit="scale-down" -->
         <q-img
           :src="photo"
+          :placeholder-src="placeholder"
           spinner-color="black"
           width="38px"
-          transition="scale"
+          height="36px"
           ratio="1"
-          :placeholder-src="placeholder"
+          fit="contain"
         />
       </q-avatar>
     </q-chip>
