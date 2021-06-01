@@ -29,8 +29,8 @@
     }
   },
   "validationRules": {
-    "requiredField": "Verplicht veld",
+    "requiredField": "Dit is een verplicht veld",
     "minimumStringLength": "Minimaal {aantal} tekens zijn vereist",
-    "exactStringLength": "Precies {aantal} tekens zijn vereist"
+    "exactStringLength": "Exact {aantal} tekens zijn vereist"
   }
 }

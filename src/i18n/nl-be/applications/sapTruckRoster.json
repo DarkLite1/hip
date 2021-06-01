@@ -1,34 +1,34 @@
 {
-  "name": "Vrachtwagenplanning",
-  "shortDescription": "Overzicht van de geplande ritten",
-  "longDescription": "Haal de planning op van de geplande ritten",
+  "name": "Planning",
+  "shortDescription": "Overzicht van de geplande laadtijden",
+  "longDescription": "Haal de geplande laadtijden op",
   "processedDispatchGroupTable": {
-    "title": "Beschikbare dispatchgroepen:"
+    "title": "Reeds geupdatete dispatchgroepen:"
   },
   "rosterQueryResult": {
-    "title": "Geplande ritten:"
+    "title": "Geplande laadtijd:"
   },
   "question": {
-    "truckId": "Wat is uw vrachtwagen ID?",
-    "driverId": "Wat is uw chauffeur ID nummer?",
-    "driverIdUnknown": "Ik ken mijn chauffeur ID nummer niet"
+    "truckId": "Wat is uw vrachtwagennummer?",
+    "driverId": "Wat is uw chauffeursnummer?",
+    "driverIdUnknown": "Ik ken mijn chauffeursnummer niet"
   },
   "error": {
-    "truckId": "Een string van 4 tot 12 karakters is toegestaan met minimum 1 alfabetisch karakter",
-    "driverId": "Een nummer tussen 9800000000 en 9999999999 is vereist",
-    "sapDown": "SAP down probeer het later nog eens of contacteer de service desk",
-    "noTripsPlanned": "Sorry, momenteel zijn er geen ritten gepland...",
-    "noDispatchGroups": "Sorry, maar er zijn momenteel geen dispatch groepen die hun planning hebben voltooid ..."
+    "truckId": "Dit vrachtwagennummer is niet bekend",
+    "driverId": "Een nummer (max. 10 karakters) tussen 9800000000 en 9999999999 is vereist",
+    "sapDown": "SAP down probeer het later nog eens of contacteer de service desk via de Instellingen",
+    "noTripsPlanned": "Geen werk voor de reeds geplande dagen",
+    "noDispatchGroups": "Sorry, momenteel zijn er geen dispatch groepen die hun planning hebben geupdateted..."
   },
   "label": {
-    "truckId": "Vrachtwagen ID",
-    "driverId": "Chauffeur ID",
+    "truckId": "Vrachtwagennummer",
+    "driverId": "Chauffeursnummer",
     "plantName": "Naam van de centrale",
     "date": "Datum",
     "time": "Tijdstip"
   },
   "hint": {
-    "driverId": "Bvb: 9800000000, ...",
-    "truckId": "Bvb: BU54EAP, ..."
+    "driverId": "Bvb: 9800000294, 9800000156, ...",
+    "truckId": "Bvb: NLM9258, BEM1745, ..."
   }
 }
