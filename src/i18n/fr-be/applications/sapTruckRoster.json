@@ -1,34 +1,34 @@
 {
-  "name": "Planification des camions",
-  "shortDescription": "Obtenez la planification du camion",
-  "longDescription": "Obtenez la planification des camions de SAP",
+  "name": "Planification",
+  "shortDescription":  "Aperçu des temps de chargement prévus",
+  "longDescription":  "Récupérer les temps de chargement programmés",
   "processedDispatchGroupTable": {
-    "title": "Groupes d'expédition disponibles:"
+    "title": "Groupes dispatching déjà mis à jour:"
   },
   "rosterQueryResult": {
-    "title": "Voyages prévus:"
+    "title":  "Temps de chargement programmé:"
   },
   "question": {
-    "driverId": "Quel est votre ID de pilote?",
-    "truckId": "Quel est votre numéro d'identification de camion?",
-    "driverIdUnknown": "Je ne connais pas mon ID de pilote"
+    "driverId": "Quel est votre numéro de chauffeur ?",
+    "truckId":  "Quel est le numéro de votre camion ?",
+    "driverIdUnknown":  "Je ne connais pas mon numéro de chauffeur"
   },
   "error": {
-    "driverId": "L'ID de pilote n'existe pas",
-    "truckId": "L'ID de camion n'existe pas",
-    "sapDown": "SAP down, veuillez réessayer plus tard ou contacter votre centre de service",
-    "noTripsPlanned": "Nous sommes désolés, mais aucun voyage n'est actuellement prévu ...",
-    "noDispatchGroups": "Nous sommes désolés, mais il n'y a actuellement aucun groupe de répartition qui a terminé sa planification ..."
+    "driverId":  "Un nombre (10 caractères maximum) compris entre 98000000 et 9999999999 est requis",
+    "truckId": "Ce numéro de camion n'est pas connu",
+    "sapDown": "SAP hors service, essayez à nouveau plus tard ou contactez le service d'assistance via les paramètres",
+    "noTripsPlanned":  "Pas de travail pour les jours déjà programmés",
+    "noDispatchGroups":  "Désolé, actuellement aucun groupe de dispatching n'a mis à jour son planning..."
   },
   "label": {
-    "driverId": "ID du pilote",
-    "truckId": "ID du camion",
-    "plantName": "Nom du site",
+    "driverId": "Numéro de conducteur",
+    "truckId": "Numéro de camion",
+    "plantName": "Nom de la centrale",
     "date": "Date",
-    "time": "Temps"
+    "time": "Heure"
   },
   "hint": {
-    "driverId": "Exemple: 9800000000, ...",
-    "truckId": "Exemple: BU54EAP, ..."
+    "driverId": "Ex. :9800000294, 9800000156, ...",
+    "truckId": "Ex. : NLM9258, BEM1745, ..."
   }
 }

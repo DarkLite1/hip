@@ -1,18 +1,18 @@
 {
   "general": {
     "welcome": "Bienvenue",
-    "errorMessage": "Oups, une erreur s'est produite",
-    "fromDate": "De date"
+    "errorMessage": "Oups, quelque chose a mal tourné",
+    "fromDate": "A partir de cette date"
   },
   "button": {
     "submit": "Soumettre",
     "reset": "Reset",
     "back": "Retour",
-    "dismiss": "Ignorer"
+    "dismiss": "Refuser"
   },
   "page": {
     "home": {
-      "name": "Home",
+      "name": "Page d'accueil",
       "welcomeMessage": "Bienvenue {userName}!"
     },
     "applications": {
@@ -21,16 +21,16 @@
     "settings": {
       "name": "Paramètres",
       "darkMode": "Mode sombre",
-      "language": "Language",
-      "help": "à l'aide",
+      "language": "Langue",
+      "help": "Aide",
       "reportProblem": "Signaler un problème",
-      "emailUs": "Envoyez-nous un e-mail",
+      "emailUs": "Envoyez-nous un courriel",
       "more": "Plus"
     }
   },
   "validationRules": {
-    "requiredField": "Le champ est obligatoire",
-    "minimumStringLength": "Un minimum de {number} caractères est requis",
-    "exactStringLength": "Exactement {number} caractères sont requis"
+    "requiredField": "Ce champ est obligatoire",
+    "minimumStringLength": "Minimum {number} de caractères requis",
+    "exactStringLength": "{number} caractères exacts sont requis"
   }
 }
