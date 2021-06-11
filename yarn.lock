@@ -7383,9 +7383,9 @@ qs@6.7.0:
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 quasar@^2.0.0-beta.17:
-  version "2.0.0-beta.19"
-  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.0.0-beta.19.tgz#2de898ce3fd99398ea9964296abb070a56742cb9"
-  integrity sha512-0h+HMytYpWkmsRldFzJlPlfSoUjxKoCZB8dpK4UTsFdOfN3OLOEhHxxqfViC1MRqU4NnnO4/6PcP9khJiy9esQ==
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/quasar/-/quasar-2.0.0-rc.1.tgz#c047f0cc5ea7f803ec06b7f0830c7ed1b8fe315d"
+  integrity sha512-+b+Hb66+7rzuDQrZkjXh/QTzdyzz1FnYQM2JcngPPYv/4B9SPaX/GJ9L2NnOhYu41b1SVYHWnLpyiAGd4iihsQ==
 
 querystring@0.2.0:
   version "0.2.0"
